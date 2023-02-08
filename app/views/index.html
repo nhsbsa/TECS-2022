@@ -1,0 +1,220 @@
+<!-- Use this page as the index for your project -->
+
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+  NHS.UK prototype kit
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <!-- Change the page title here -->
+      <h1>
+        TECS prototype new toolkit
+      </h1>
+
+      <!-- Add your content here -->
+      <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->     
+      <hr>
+     
+      </div>
+      </div>
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+         <div class="nhsuk-warning-callout">
+            <h3 class="nhsuk-warning-callout__label">
+              <span role="text">
+                <span class="nhsuk-u-visually-hidden">Important: </span>
+                Important
+              </span>
+            </h3>
+            <p>Don't use any of this prototype code on production services, it doesn't adhere to development standards and is hacked together quickly and roughly.</p>
+          </div>
+          <hr>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+          <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+            <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+               <span class="nhsuk-details__summary-text">Current journey</span>
+            </summary>
+            <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+               <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+                  <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                     <span class="nhsuk-details__summary-text"><small>Version 2</small></span>
+                  </summary>
+                 
+                     </details>
+                     <hr>
+                     <h3 class="nhsuk-heading-m">Current journey</h3>
+                     <p> This is the current challenge journey this should be kept up to date in line with the live journey
+                     </p>
+                     
+                     
+                     <a class="nhsuk-button" href="v2/start-page">Current journey</a>
+                     
+    
+                     <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                        <a class="nhsuk-action-link__link" href="v2/start-page">
+                           <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                              </path>
+                           </svg>
+                           <span class="nhsuk-action-link__text">View user journey (current journey)</span>
+                        </a>
+                     </div>
+                  </div>
+               </details>
+            </div>
+         </details>
+         </div>
+    
+          <hr>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta (sprint 3)</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 3</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;"><strong>We believe</strong> that allowing users to continue their application whether they have matched on all children or not <strong>will be a useful for</strong> any user who is not able to get an instant match <strong>as it will</strong> allow them to complete the application online and provide evidence to support their application <strong>this will</strong> reduce the calls to the call centre and support the partial matching of children due to the 2 child rule Universal Credit have.
+                 </p>
+                 
+                 
+                 <a class="nhsuk-button" href="v3/respond-to-your-letter">Respond to your letter</a>
+                 
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v3/respond-to-your-letter>
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey (v3)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta (sprint 2)</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 2</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;"><strong>We believe</strong> that allowing users to continue their application whether they have matched on all children or not <strong>will be a useful for</strong> any user who is not able to get an instant match <strong>as it will</strong> allow them to complete the application online and provide evidence to support their application <strong>this will</strong> reduce the calls to the call centre and support the partial matching of children due to the 2 child rule Universal Credit have.
+                 </p>
+                 
+                 
+                 <a class="nhsuk-button" href="v2/start-page">Respond to your letter</a>
+                 
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v2/start-page">
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey (v2)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+
+
+     <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-three-thirds">
+    <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+      <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+         <span class="nhsuk-details__summary-text">Private Beta (sprint 1)</span>
+      </summary>
+      <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+         <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+            <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+               <span class="nhsuk-details__summary-text"><small>Version 1</small></span>
+            </summary>
+           
+               </details>
+               <hr>
+               <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+               <p style="background: #DEE0E2; padding: 20px;">We are going to be updating the challenge journey into the new toolkit. This is to keep inline with GDS and create a recognisable service for users.
+                  due to capacity we wont be able to update the content immediately, so for now we are keeping the content the same but updating the journey.
+               </p>
+              
+               
+               <a class="nhsuk-button" href="v1/start-page">Respond to your letter</a>
+               
+
+               <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                  <a class="nhsuk-action-link__link" href="v1/start-page">
+                     <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                        </path>
+                     </svg>
+                     <span class="nhsuk-action-link__text">View user journey (v1)</span>
+                  </a>
+               </div>
+            </div>
+         </details>
+      </div>
+   </details>
+   </div>
+     
+      <p>
+        There is also an <a href="/v1/start-page">example page</a>, which contains a selection of NHS.UK frontend styles and components.
+      </p>
+
+      
+      <!-- End of content -->
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Check your answers template - NHS.UK prototype kit
+{% endblock %}
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+      <p class="nhsuk-phase-banner__content">
+        <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+          BETA
+         </strong>
+         <span class="nhsuk-phase-banner__text">
+           This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+        </span>
+       </p>
+     </div>
+     {{ backLink({
+      "href": "/v1/challenge",
+      "text": "Back",
+      "classes": "nhsuk-u-margin-top-9 nhsuk-u-margin-bottom-20"
+    }) }}
+    <div class="nhsuk-grid-column-two-thirds">
+      <form action="/v1/what-is-dob" method="post" class="form">
+        <div class="heading-group">
+          <p>Challenge an enquiry letter</p>
+          <h1 class="nhsuk-heading-l">Check your personal details are correct</h1>
+        </div>
+
+      
+
+      {{ summaryList({
+        rows: [
+          
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "
+              Michelle Doe"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              html: "21 December 1985"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: '12 Old Oak Road, Throckley, NE67 9AD'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <a href="/v1/confirmation-page" class="nhsuk-button">
+       Next
+      </a>
+
+    </div>
+  </div>
+  <style>
+     .heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.nhsuk-hint {
+    margin-top: 0.26316em;
+    margin-bottom: 1.05263em;
+}
+
+
+.nhsuk-label {
+    margin-bottom: 16px;
+    margin-top: 0px;
+}
+.nhsuk-summary-list {
+  padding-top: 60px;
+}
+.heading-group {
+  margin-top: 10px;
+}
+.nhsuk-heading-large {
+  margin: 5px;
+  margin-bottom: 10px;
+  font-size: 50px;
+}
+  </style>
+{% endblock %}

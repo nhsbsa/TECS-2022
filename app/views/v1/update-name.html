@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+        <p class="nhsuk-phase-banner__content">
+          <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+            BETA
+           </strong>
+           <span class="nhsuk-phase-banner__text">
+             This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+          </span>
+         </p>
+       </div>
+       {{ backLink({
+        "href": "/v1/challenge",
+        "text": "Back",
+        "classes": "nhsuk-u-margin-top-9 nhsuk-u-margin-bottom-20"
+      }) }}
+      <form action="/v1/what-is-dob" method="post" class="form">
+        <div class="heading-group">
+          <p>Challenge an enquiry letter</p>
+          <h1 class="nhsuk-heading-l">How was your name written on your [Benefit]?</h1>
+        </div>
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="one-half">
+            First name
+          </label>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+        </div>
+    
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="one-half">
+            Last name (this is your surname or family name)
+          </label>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+        </div>
+        </form>
+        </div>
+    
+        </div>
+      </fieldset>
+    
+      <a href="/v1/check-dob" class="nhsuk-button">
+        Next
+       </a>
+        <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
+       </form>
+
+    </div>
+  </div>
+   
+  <style>
+    .heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.nhsuk-hint {
+    margin-top: 0.26316em;
+    margin-bottom: 1.05263em;
+}
+
+
+.nhsuk-label {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.heading-group {
+  margin-top: 10px;
+}
+.nhsuk-heading-large {
+  margin: 5px;
+}
+
+
+.panel-border-wide {
+    border-left-width: 10px;
+}
+
+.panel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    border-left-style: solid;
+    border-color: #bfc1c3;
+    padding: 0.78947em;
+    margin-bottom: 0.78947em;
+    height: 4em;
+}
+  </style>
+
+{% endblock %}

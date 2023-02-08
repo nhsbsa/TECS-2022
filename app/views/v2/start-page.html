@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Start page template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+  href: "/",
+  text: "Home"
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>
+        Respond to your letter 
+      </h1>
+
+      <p>Use this service to:</p>
+      <ul>
+        <li>respond to a letter</li>
+        <li>pay a Penalty Charge Notice</li>
+        <li>challenge a Penalty Charge Notice</li>
+      </ul>
+      <p>This should take less than 5 minutes.</p>
+      <p> <a href="">Check if you are currently entitled to help with your health costs.</a></p>
+      <p>Your Universal Credit exemption must have been valid when you claimed a free prescription or dental treatment.</p>
+      <p>Find out more about your<a href=""> Universal Credit exemption</a></p>
+      
+      
+   
+      <p>Registering takes around 5 minutes.</p>
+
+
+      <h2 class="nhsuk-heading-m">Before you start</h2>
+      
+       <p>You will need your reference number. This can be found in the top left-hand corner of your letter.</p>
+       <p>To confirm your identity we will ask for details from your letter.</p>
+       <p>If you've lost your letter <a href="">contact us.</a></p>
+       <a href="/v2/reference-number" class="nhsuk-button">
+        Start now
+      </a>
+      
+     
+
+       <h3>How we use your information</h3>
+
+       <p>We use the information you provide to help us match your details. You can find out more about how we use your information.
+
+      <p>You can only use this service if you live in the UK.</p>
+
+      
+
+    </div>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block outerContent %}
+  {{ backLink({
+    "href": "/templates/start-page",
+    "text": "Back",
+    "classes": "nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="/v2/what-is-dob" method="post" class="form">
+
+
+        <h2>What is your reference number?</h2>
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="one-half">
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              You can find this on your letter
+            </div>
+          </label>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+        </div>
+
+        {{ button({
+          "text": "Continue",
+          "id": "btn_submit"
+        }) }}
+
+       </form>
+
+    </div>
+  </div>
+
+{% endblock %}

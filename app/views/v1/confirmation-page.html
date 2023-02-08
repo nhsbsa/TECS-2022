@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Confirmation page template - NHS.UK prototype kit
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+      <p class="nhsuk-phase-banner__content">
+        <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+          BETA
+         </strong>
+         <span class="nhsuk-phase-banner__text">
+           This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+        </span>
+       </p>
+     </div>
+    
+    <div class="nhsuk-grid-column-two-thirds">
+      <form action="/v1/what-is-dob" method="post" class="form">
+        <div class="heading-group">
+          <p>Challenge an enquiry letter</p>
+          <h1 class="nhsuk-heading-l">An exemption has been found</h1>
+        </div>
+      <div class="nhsuk-card" style="background: #005EB8; margin-top: 0;">
+        <div class="nhsuk-card__content">
+          <h1 class="nhsuk-card__heading" style="text-align: center; color: white;">
+           Thank you
+          </h1>
+          
+  
+          <h3 class="nhsuk-card__heading nhsuk-u-font-weight-normal" style="text-align: center; color: white;">
+            your case has now been closed<span class="nhsuk-caption-xl nhsuk-caption--bottom nhsuk-u-font-weight-bold" style="color: white;"></span>
+          </h3>
+        </div>
+      </div>
+     </div>
+
+      </div>
+      <main id="content" role="main">
+  
+        
+        <p>We have matched an exemption based on the details you have given.</p>
+            
+              
+                      <p class="panel panel-border-wide"><span class="">Michelle Doe</span><br>
+            Reference number 01234567890</p>
+      
+            
+          
+              <p><a href="">Print this page</a></p>
+           
+          
+      
+            <h3 class="heading-medium">
+              How to avoid a future enquiry letter
+            </h3>
+              
+              <p>We match exemptions automatically using a combination of your:</p>
+            
+            <ul class="list list-bullet">
+              <li>
+                name
+              </li>
+             <li>
+               address
+              </li>
+                       <li>
+               date of birth
+              </li>
+              <li>NHS number</li>
+            </ul>
+              
+              <p>Make sure these are correct at your GP surgery, dental practice, and any benefits organisations.</p>
+                   
+              
+              <p>If any of your details are not up to date, you may receive another enquiry letter in the future.</p>
+
+              <h3 class="nhsuk-heading-m">Important information for any future claims</h3> 
+              
+                <p>If you are in receipt of Universal Credit, your entitlement to free NHS prescriptions and dental treatment depends on your earnings for the most recent assessment period. </p>
+                <p>You're entitled if your earnings during that period were:</p>
+              <ul>
+                <li>£435 or less</li>
+                <li>£935 or less if your Universal Credit includes an element for a child, or if you have a limited capability for work or limited capability for work and work related activity.</li>
+                </ul>
+                <p>'Most recent assessment period' means the assessment period that ended immediately before the date you claimed free NHS prescriptions or dental treatment. It runs for a calendar month.</p>
+                <p>If you claim universal credit as a couple, the earnings limit applies to the joint income of you and your partner.</p>
+                
+              </div>
+            </div>
+          </form>  
+    
+      </main>
+  <style>
+    .heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.nhsuk-hint {
+    margin-top: 0.26316em;
+    margin-bottom: 1.05263em;
+}
+
+
+.nhsuk-label {
+    margin-bottom: 16px;
+    margin-top: 0px;
+}
+.heading-group {
+  margin-top: 10px;
+}
+.nhsuk-heading-large {
+  margin: 5px;
+}
+
+
+.panel-border-wide {
+    border-left-width: 10px;
+}
+
+.panel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    border-left-style: solid;
+    border-color: #bfc1c3;
+    padding: 0.78947em;
+    margin-bottom: 0.78947em;
+    height: 4em;
+}
+.panel-border-wide-2 {
+    border-left-width: 10px;
+    height: 30px;
+    padding: 0.78947em;
+}
+  </style>
+
+{% endblock %}

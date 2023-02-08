@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+        <p class="nhsuk-phase-banner__content">
+          <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+            BETA
+           </strong>
+           <span class="nhsuk-phase-banner__text">
+             This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+          </span>
+         </p>
+       </div>
+      <form action="/v1/enter-postcode" method="post" class="form">
+        
+          <div class="heading-group">
+            <p>Respond to your letter</p>
+            <h1 class="heading-large">Confirming your identity</h1>
+          </div>
+          <p>Before we can access your information we need to confirm your identity.</p>
+          <h2>What is your date of birth?</h2>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="one-half">
+              <div class="nhsuk-hint" id="example-with-hint-text-hint">
+                For example, 31 03 1980
+              </div>
+            </label>
+           
+          </div>
+        <div class="nhsuk-date-input" id="example">
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="example-day">
+                Day
+              </label>
+              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="example-day" name="example-day" type="text" pattern="[0-9]*" inputmode="numeric">
+            </div>
+          </div>
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="example-month">
+                Month
+              </label>
+              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="example-month" name="example-month" type="text" pattern="[0-9]*" inputmode="numeric">
+            </div>
+          </div>
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="example-year">
+                Year
+              </label>
+              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="example-year" name="example-year" type="text" pattern="[0-9]*" inputmode="numeric">
+            </div>
+          </div>
+        
+    <div class="nhsuk-form-group">
+   
+      {{ button({
+        "text": "Next",
+        "id": "btn_submit"
+      }) }}
+   
+    <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
+   </form>
+  </div>
+
+        
+   
+
+    </div>
+  </div>
+  <style>
+   
+      .address, p, .nhsuk-body-m {
+        margin-bottom: 0px;
+}
+.heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.heading-large {
+  margin: 5px;
+}
+
+.heading-group {
+  margin-top: 10px;
+}
+  </style>
+
+{% endblock %}

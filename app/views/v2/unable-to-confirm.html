@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Check your answers template - NHS.UK prototype kit
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-u-margin-top-4">
+        Unable to match your details
+      </h1>
+
+      <h2>
+        Check your details
+      </h2>
+
+      {{ summaryList({
+        rows: [
+        {
+          key: {
+            text: "Reference number"
+          },
+          value: {
+            html: "90989878787"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              html: "15 March 1984"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Postcode"
+            },
+            value: {
+              html: 'BLS11 5BZ'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "postcode"
+                }
+              ]
+            }
+          }
+        ]
+        
+      }) }}
+
+      <h3 class="nhsuk-heading-m">Contact us</h3>
+        
+      <p>If your details are still correct <a href="">contact us</a>.</p>
+
+
+      
+    </div>
+  </div>
+{% endblock %}
