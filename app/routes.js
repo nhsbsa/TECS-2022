@@ -72,6 +72,24 @@ router.get(/v3-postcode-input/, function (req, res) {
      res.redirect('did-you-have-an-exemption');;
      }
    });
+
+   router.get(/other-exemption/, function (req, res) {
+    if (req.query.exemption == 'income') {
+      res.redirect('check-name');
+    }
+    else if (req.query.exemption== 'support') {
+      res.redirect('check-name');
+    }
+    else if (req.query.exemption == 'uc') {
+      res.redirect('check-name');
+    }
+     else if (req.query.exemption == 'pension') {
+       res.redirect('check-name');
+     }
+     else if (req.query.exemption == 'no') {
+       res.redirect('cannot-confirm-entitlement');
+     }
+   });
    
  // router.get(/benefit-exemption/, function (req, res) {
    // if (req.query.benefit == 'yes) {
