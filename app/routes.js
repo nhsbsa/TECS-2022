@@ -114,52 +114,19 @@ router.get(/v3-postcode-input/, function (req, res) {
     res.redirect('update-address');;
      }
   });
-   
-   
- // router.get(/benefit-exemption/, function (req, res) {
-   // if (req.query.benefit == 'yes) {
-    //  res.redirect('exemption-certificate-number');
-    //} 
-    //else if (req.query.benefit == 'no') {
-    //  res.redirect('did-you-have-an-exemption');;
-    //}
-    
-  //});  
 
+router.get(/certificate-number-input/, function (req, res) {
+  if (req.query.certificatenumber == '9876543210') {
+    res.redirect('exemption-confirmed');
+  } else if (req.query.certificatenumber == '0123456789') {
+    res.redirect('check-name');;
+  }
+  
+});  
+   
+  
 
   
-   
-   router.get(/dwpexemptions-handler/, function (req, res) {
-    if (req.query.benefitsdwp == 'yes') {
-      res.redirect('dwp-check-name-uc');
-    }
-    else if (req.query.benefitsdwp == 'is') {
-      res.redirect('dwp-check-name-uc');
-    }
-    else if (req.query.benefitsdwp == 'jsa') {
-      res.redirect('dwp-check-name-uc');
-    }
-     else if (req.query.benefitsdwp == 'uc') {
-       res.redirect('dwp-check-name-uc');
-     }
-     else if (req.query.benefitsdwp == 'pc') {
-       res.redirect('dwp-check-name-uc');
-     }
-    
-     else if (req.query.benefitsdwp == 'no') {
-       res.redirect('dwp-we-need-proof-pecs');
-     }
-   });
-   router.get(/updatename/, function (req, res) {
-    if (req.query.details == 'yes') {
-      res.redirect('dwp-check-dob');
-    }
-     else if (req.query.details == 'no') {
-     res.redirect('dwp-update-name');;
-     }
-   });
-
-
 
 
 module.exports = router;
