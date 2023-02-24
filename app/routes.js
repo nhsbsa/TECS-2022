@@ -90,6 +90,31 @@ router.get(/v3-postcode-input/, function (req, res) {
        res.redirect('cannot-confirm-entitlement');
      }
    });
+   router.get(/check-name-input/, function (req, res) {
+  if (req.query.name == 'yes') {
+      res.redirect('check-dob');
+    }
+     else if (req.query.name == 'no') {
+     res.redirect('update-name');;
+     }
+   });
+   router.get(/check-dob-input/, function (req, res) {
+    if (req.query.dob == 'yes') {
+      res.redirect('check-address');
+    }
+     else if (req.query.dob == 'no') {
+     res.redirect('update-dob');;
+     }
+   });
+   router.get(/check-address-input/, function (req, res) {
+    if (req.query.address == 'yes') {
+      res.redirect('check-personal-details');
+    }
+    else if (req.query.address == 'no') {
+    res.redirect('update-address');;
+     }
+  });
+   
    
  // router.get(/benefit-exemption/, function (req, res) {
    // if (req.query.benefit == 'yes) {

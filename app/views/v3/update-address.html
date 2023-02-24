@@ -48,35 +48,45 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="v3-postcode-input" method="get" class="form">
+      <form action="check-personal-details" method="post" class="form">
 
         <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>How was your name written on your [Benefit]?</h1>
-        <form action="v22/name" method="post">
+        <h1>What was your address when you had [Benefit]?</h1>
+       
 
           <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="firstname">
-                  First name
+              <label class="nhsuk-label" for="addressline1">
+                  Address line 1
               </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="firstname" name="firstname" type="text" autocomplete="given-name">
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline1" name="addressline1" type="text" autocomplete="address-line1">
           </div>
 
           <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="lastname">
-                  Last name
+                  <label class="nhsuk-label" for="addressline2">
+                  Address line 2 (optional)
               </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="lastname" name="lastname" type="text" autocomplete="family-name">
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline2" name="addressline2" type="text" autocomplete="address-line2">
           </div>
 
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="towncity">
+                  Town or city
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="towncity" name="towncity" type="text" autocomplete="address-level2">
+          </div>
 
-                <details class="nhsuk-details">
-                      <summary class="nhsuk-details__summary">
-                        <span class="nhsuk-details__summary-text">
-                          Why we ask for your name
-                        </span>
-                      </summary>
-                     
-                    </details>
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="postcode">
+                  Postcode
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
+          </div>
+
+          
+
+      
+
+                
 
         <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
           Continue
