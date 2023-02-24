@@ -43,7 +43,7 @@ router.get(/v3-postcode-input/, function (req, res) {
      res.redirect('check-name');;
      }
    });
-
+   
    router.get(/nhs-exemption/, function (req, res) {
     if (req.query.nhs == 'med') {
       res.redirect('check-name');
@@ -64,7 +64,15 @@ router.get(/v3-postcode-input/, function (req, res) {
        res.redirect('were-you-claiming-any-benefits');
      }
    });
-
+   router.get(/benefit-between/, function (req, res) {
+    if (req.query.benefit == 'yes') {
+      res.redirect('check-name');
+    }
+     else if (req.query.benefit == 'no') {
+     res.redirect('did-you-have-an-exemption');;
+     }
+   });
+   
  // router.get(/benefit-exemption/, function (req, res) {
    // if (req.query.benefit == 'yes) {
     //  res.redirect('exemption-certificate-number');
