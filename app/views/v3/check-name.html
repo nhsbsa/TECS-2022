@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block outerContent %}
-  
+
 {% endblock %}
 
 {% block content %}
@@ -39,46 +39,47 @@
    </p>
  </div>
 <div class="nhsuk-back-link">
-  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
-    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
-      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-    </svg>
-    Go back</a>
-  </div>
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="cert-number" method="get" class="form">
+      <form action="benefit-exemption" method="get" class="form">
 
-        <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>Do you know your [Benefit] number?</h1>
+        <span class="nhsuk-caption-l">Challenge an enquiry letter</span>
+        <h2>Is this how your name was written on you [Benefit]?</h2>
         <div class="nhsuk-form-group">
-          <label class="nhsuk-label" for="one-half">
-            <div class="nhsuk-hint" id="example-with-hint-text-hint">
-              You don't have to tell us your certificate number, but telling us can helps us find your certificate. You can find the number on the certificate.
-            </div>
-          </label>
+<p>Michelle doe</p>
           <div class="nhsuk-radios nhsuk-radios">
             <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="yes">
+                <input class="nhsuk-radios__input" id="check-name" name="name" type="radio" value="yes">
                 <label class="nhsuk-label nhsuk-radios__label" for="yes">
                     Yes
                 </label>
             </div>
             <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="no">
+                <input class="nhsuk-radios__input" id="check-name" name="name" type="radio" value="no">
                 <label class="nhsuk-label nhsuk-radios__label" for="no">
                     No
                 </label>
             </div>
         </div>
-        </fieldset>
-      
-      </div>
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-          Continue
-        </button>
-       </form>
+          </fieldset>
+        
+        </div>
+    <div class="nhsuk-form-group">
+    <button class="nhsuk-button" type="submit">
+     Continue
+    </button>
+    </div>
+
+        
+   
 
     </div>
   </div>

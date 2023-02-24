@@ -48,33 +48,16 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="cert-number" method="get" class="form">
+      <form action="v3-postcode-input" method="get" class="form">
 
         <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>Do you know your [Benefit] number?</h1>
+        <h1>What is your [Benefit] number?</h1>
         <div class="nhsuk-form-group">
           <label class="nhsuk-label" for="one-half">
-            <div class="nhsuk-hint" id="example-with-hint-text-hint">
-              You don't have to tell us your certificate number, but telling us can helps us find your certificate. You can find the number on the certificate.
-            </div>
+            
           </label>
-          <div class="nhsuk-radios nhsuk-radios">
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="yes">
-                <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                    Yes
-                </label>
-            </div>
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="no">
-                <label class="nhsuk-label nhsuk-radios__label" for="no">
-                    No
-                </label>
-            </div>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="exemption-cert-number" name="number" type="text">
         </div>
-        </fieldset>
-      
-      </div>
         <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
           Continue
         </button>
