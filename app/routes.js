@@ -20,13 +20,13 @@ router.get(/v3-postcode-input/, function (req, res) {
     }
   });  
 
-  router.get(/benefit-exemption/, function (req, res) {
-    if (req.query.benefit == 'yes) {
-      res.redirect('exemption-certificate-number');
-    } 
-    else if (req.query.benefit == 'no') {
+ // router.get(/benefit-exemption/, function (req, res) {
+   // if (req.query.benefit == 'yes) {
+    //  res.redirect('exemption-certificate-number');
+    //} 
+    //else if (req.query.benefit == 'no') {
     //  res.redirect('did-you-have-an-exemption');;
-    }
+    //}
     
   //});  
 
