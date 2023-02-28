@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+<header class="nhsuk-header nhsuk-header--transactional" role="banner">
+  <div class="nhsuk-width-container nhsuk-header__container">
+    <div class="nhsuk-header__logo nhsuk-header__logo--only"><a class="nhsuk-header__link" href="/" aria-label="NHS homepage">
+
+        <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16" height="40" width="100">
+          <path class="nhsuk-logo__background" fill="#005eb8" d="M0 0h40v16H0z"></path>
+          <path class="nhsuk-logo__text" fill="#fff" d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6"></path>
+        </svg>
+
+      </a>
+    </div>
+    <div class="nhsuk-header__transactional-service-name">
+      <a class="nhsuk-header__transactional-service-name--link" href="/v3/respond-to-your-letter">Respond to your letter</a>
+    </div>
+
+  </div>
+
+</header>
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+  <p class="nhsuk-phase-banner__content">
+    <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+      BETA
+     </strong>
+     <span class="nhsuk-phase-banner__text">
+       This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+    </span>
+   </p>
+ </div>
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+    </svg>
+    Go back</a>
+  </div>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Your details</span>
+      <h1>
+        Enquiry letter reference 01234567890
+      </h1>
+
+      <div class="nhsuk-warning-callout">
+        <h3 class="nhsuk-warning-callout__label">
+          <span role="text">
+            <span class="nhsuk-u-visually-hidden">Important: </span>
+            Do not delay
+          </span>
+        </h3>
+        <p>You now have 28 days to confirm you were entitled to free NHS prescriptions (by 28 March 2018). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
+      </div>
+     
+    
+       <h2>Check your details carefully</h2>
+
+       <p>We use the information you provide to help us match your details. You can find out more about <a href="">how we use your information</a>.</p>
+      <p>We have not been able to confirm you were entitled to free NHS prescriptions using these details.</p>
+      <dl class="nhsuk-summary-list">
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Date prescription was claimed
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Between 1 November and 30 November 2017
+          </dd>
+      
+        </div>
+        </dl>
+      <h3>Details on the prescription</h3>
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Michellle Doe
+          </dd>
+      
+        </div>
+        
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Address
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            12 Old Oak Road<br>Throckley<br> NE67 9AD
+          </dd>
+      
+        </div>
+      
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Exemption reason ticked
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <p>Gets Income Support or income-related Employment and Support Allowance.</p>
+            
+          </dd>
+      
+        </div>
+        
+      </dl>
+      <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.  </p>
+      </dl>
+    </div>
+   
+  </div>
+  <a href="/v3/what-happens-next-copy" class="nhsuk-button">
+    Continue
+  </a>
+{% endblock %}
