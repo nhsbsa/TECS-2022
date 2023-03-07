@@ -126,7 +126,103 @@ router.get(/certificate-number-input/, function (req, res) {
    
   
 
-  
+  ///////////////////////
+// ///V4 Routing///////
+//////////////////////
+
+router.get(/v4-postcode-input/, function (req, res) {
+  if (req.query.postcode == 'NE1 3JA') {
+    res.redirect('enquiry-letter-details');
+  } else if (req.query.postcode == 'NE2 4XL') {
+    res.redirect('enquiry-letter-details-copy');;
+  }
+  else if (req.query.postcode == 'WA4 1AB') {
+    res.redirect('cannot-find-your-details');;
+  }
+  else if (req.query.postcode == 'WAH 3BE') {
+    res.redirect('more-information-needed');;
+  }
+  else {
+    res.redirect('cannot-find-your-details');
+  }
+});  
+
+router.get(/benefit-exemption/, function (req, res) {
+  if (req.query.exemption == 'yes') {
+    res.redirect('exemption-certificate-number');
+  }
+   else if (req.query.exemption == 'no') {
+   res.redirect('did-you-have-an-exemption');;
+   }
+ });
+
+router.get(/v4-cert-number/, function (req, res) {
+  if (req.query.number == 'yes') {
+    res.redirect('enter-exemption-certificate-number');
+  }
+   else if (req.query.number == 'no') {
+   res.redirect('check-personal-details');;
+   }
+ });
+ 
+ router.get(/version4-nhs/, function (req, res) {
+  if (req.query.nhs == 'med') {
+    res.redirect('check-personal-details');
+  }
+  else if (req.query.nhs== 'mat') {
+    res.redirect('check-personal-details');
+  }
+  else if (req.query.nhs == 'ppc') {
+    res.redirect('check-personal-details');
+  }
+   else if (req.query.nhs == 'hc2') {
+     res.redirect('check-personal-details');
+   }
+   else if (req.query.nhs == 'tc') {
+     res.redirect('check-personal-details');
+   }
+   else if (req.query.nhs == 'no') {
+     res.redirect('were-you-claiming-any-benefits');
+   }
+ });
+ router.get(/version4-benefit/, function (req, res) {
+  if (req.query.benefit4 == 'yes') {
+    res.redirect('check-personal-details');
+  }
+   else if (req.query.benefit4 == 'no') {
+   res.redirect('did-you-have-an-exemption');;
+   }
+ });
+
+ router.get(/verson4-exemption/, function (req, res) {
+  if (req.query.exemption == 'income') {
+    res.redirect('check-personal-details');
+  }
+  else if (req.query.exemption== 'support') {
+    res.redirect('check-personal-details');
+  }
+  else if (req.query.exemption == 'uc') {
+    res.redirect('check-personal-details');
+  }
+   else if (req.query.exemption == 'pension') {
+     res.redirect('check-personal-details');
+   }
+   else if (req.query.exemption == 'no') {
+     res.redirect('cannot-confirm-entitlement');
+   }
+ });
+ 
+
+router.get(/v4-certificate-number-input/, function (req, res) {
+if (req.query.certificatenumber == '9876543210') {
+  res.redirect('exemption-confirmed');
+} else if (req.query.certificatenumber == '0123456789') {
+  res.redirect('confirmation-page');;
+}
+
+});  
+ 
+
 
 
 module.exports = router;
