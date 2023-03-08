@@ -140,7 +140,7 @@ router.get(/v4-postcode-input/, function (req, res) {
     res.redirect('cannot-find-your-details');;
   }
   else if (req.query.postcode == 'WAH 3BE') {
-    res.redirect('more-information-needed');;
+    res.redirect('');;
   }
   else {
     res.redirect('cannot-find-your-details');
@@ -222,7 +222,14 @@ if (req.query.certificatenumber == '9876543210') {
 
 });  
  
-
+router.get(/confirm-entitlement/, function (req, res) {
+  if (req.query.confirm== 'entitlement') {
+    res.redirect('what-happens-next');
+  }
+   else if (req.query.confirm == 'pay') {
+   res.redirect('cannot-pay');;
+   }
+ });
 
 
 module.exports = router;
