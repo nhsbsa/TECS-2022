@@ -48,21 +48,21 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="v4-postcode-input" method="get" class="form">
+      <form action="/v2/what-is-dob" method="post" class="form">
 
         <span class="nhsuk-caption-l">Your details</span>
-        <h1>Enter your postcode as shown on your letter</h1>
+        <h1>What is your reference number?</h1>
         <div class="nhsuk-form-group">
           <label class="nhsuk-label" for="one-half">
             <div class="nhsuk-hint" id="example-with-hint-text-hint">
-              For example, WA4 1AB
+              You can find this on your letter. Only include numbers in your reference number
             </div>
           </label>
-          <input class="nhsuk-input nhsuk-u-width-one-half" id="v3-postcode-input" name="postcode" type="text">
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
         </div>
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        <a href="/v4/enter-reference-number-again" class="nhsuk-button">
           Continue
-        </button>
+        </a>
        </form>
 
     </div>

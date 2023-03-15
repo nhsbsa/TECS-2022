@@ -231,5 +231,24 @@ router.get(/confirm-entitlement/, function (req, res) {
    }
  });
 
+  ///////////////////////
+// ///V5 Routing///////
+//////////////////////
 
+router.get(/pcn-postcode/, function (req, res) {
+  if (req.query.postcode == 'NE1 3JA') {
+    res.redirect('penalty-charge-notice-details');
+  } else if (req.query.postcode == 'NE2 4XL') {
+    res.redirect('penalty-charge-notice-details-copy');;
+  }
+  else if (req.query.postcode == 'WA4 1AB') {
+    res.redirect('cannot-find-your-details');;
+  }
+  else if (req.query.postcode == 'WAH 3BE') {
+    res.redirect('');;
+  }
+  else {
+    res.redirect('cannot-find-your-details');
+  }
+});  
 module.exports = router;

@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 
-{% set mainClasses = "nhsuk-main-wrapper--s" %}
-
 {% block pageTitle %}
 <header class="nhsuk-header nhsuk-header--transactional" role="banner">
   <div class="nhsuk-width-container nhsuk-header__container">
@@ -23,10 +21,6 @@
 </header>
 {% endblock %}
 
-{% block outerContent %}
-  
-{% endblock %}
-
 {% block content %}
 <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
   <p class="nhsuk-phase-banner__content">
@@ -38,34 +32,49 @@
     </span>
    </p>
  </div>
-<div class="nhsuk-back-link">
-  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
-    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
-      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-    </svg>
-    Go back</a>
-  </div>
+
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-
-      <form action="v4-postcode-input" method="get" class="form">
-
-        <span class="nhsuk-caption-l">Your details</span>
-        <h1>Enter your postcode as shown on your letter</h1>
-        <div class="nhsuk-form-group">
-          <label class="nhsuk-label" for="one-half">
-            <div class="nhsuk-hint" id="example-with-hint-text-hint">
-              For example, WA4 1AB
-            </div>
-          </label>
-          <input class="nhsuk-input nhsuk-u-width-one-half" id="v3-postcode-input" name="postcode" type="text">
+      <div class="nhsuk-card" style="background: #005EB8; margin-top: 0;">
+        <div class="nhsuk-card__content">
+          <h1 class="nhsuk-card__heading" style="text-align: center; color: white;">
+           An exemption has been found
+          </h1>
+          
+          <h2 class="nhsuk-card__content" style="text-align: center; color: white;">Your case has now been closed.</h2>
+          
+          
+          
         </div>
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-          Continue
-        </button>
-       </form>
+      </div>
+     </div>
+
+      </div>
+
+      <p>We have matched an exemption based on the details you have given.</p>
+
+      
+
+      <p>Michelle Doe</p>
+      <p>Reference number: 01234567890</p>
+      <h2>How to avoid a future enquiry letter</h2>
+      <p>We match exemptions using a combination of your:</p>
+      <ul>
+        <li>name</li>
+        <li>address</li>
+        <li>date of birth</li>
+        <li>NHS number</li>
+      </ul> 
+        <p>Make sure these are correct at your GP surgery, dental practice, and any benefits organisations.</p>
+     <p>If any of your details are not up to date, you may receive another enquiry letter in the future.</p>
+        
+        <p> <a href="">Check if you are currently entitled to help with your health costs.</a></p>
+        <p><a href="">Print this page</a></p>
+<h3>Feedback</h3>
+<p>Leaving feedback only takes 5 minutes. Your comments are extremely helpful and will help us to provide a better service.</p>
+<p><a href="">Leave feedback</a></p>
+   
 
     </div>
   </div>
-
 {% endblock %}
