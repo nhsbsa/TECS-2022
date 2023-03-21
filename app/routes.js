@@ -196,7 +196,7 @@ router.get(/v4-cert-number/, function (req, res) {
    }
  });
 
- router.get(/different-exemption/, function (req, res) {
+router.get(/different-exemption/, function (req, res) {
   if (req.query.exemptiontype === "no")  {
    res.redirect('cannot-confirm-entitlement');
  } else {
@@ -253,6 +253,19 @@ router.get(/debit-card/, function (req, res) {
    res.redirect('enter-postcode');;
    }
  });
+
+//  New route 
+router.post(/claiming-any-benefits/, function (req, res) {
+
+  const anyBenefits = req.session.data['exemptiontype']
+
+  if (anyBenefits === 'no') {
+    res.redirect('cannot-confirm');
+  } else {
+    res.redirect('check-personal-details');
+  }
+
+})
 
 
 
