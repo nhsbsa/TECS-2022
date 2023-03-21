@@ -8,6 +8,8 @@ const router = express.Router();
 ///////////////////////
 // ///V3 Routing///////
 //////////////////////
+// this is version 3 of the prototype //
+
 
 router.get(/v3-postcode-input/, function (req, res) {
     if (req.query.postcode == 'NE1 3JA') {
@@ -194,23 +196,13 @@ router.get(/v4-cert-number/, function (req, res) {
    }
  });
 
- router.get(/verson4-exemption/, function (req, res) {
-  if (req.query.exemption == 'income') {
-    res.redirect('check-personal-details');
-  }
-  else if (req.query.exemption== 'support') {
-    res.redirect('check-personal-details');
-  }
-  else if (req.query.exemption == 'uc') {
-    res.redirect('check-personal-details');
-  }
-   else if (req.query.exemption == 'pension') {
-     res.redirect('check-personal-details');
-   }
-   else if (req.query.exemption == 'no') {
-     res.redirect('cannot-confirm-entitlement');
-   }
- });
+ router.get(/different-exemption/, function (req, res) {
+  if (req.query.exemptiontype === "no")  {
+   res.redirect('cannot-confirm-entitlement');
+ } else {
+   res.redirect('check-personal-details');
+ }
+});
  
 
 router.get(/v4-certificate-number-input/, function (req, res) {
@@ -223,6 +215,7 @@ if (req.query.certificatenumber == '9876543210') {
 });  
  
 router.get(/confirm-entitlement/, function (req, res) {
+
   if (req.query.confirm== 'entitlement') {
     res.redirect('what-happens-next');
   }
@@ -251,4 +244,20 @@ router.get(/pcn-postcode/, function (req, res) {
     res.redirect('cannot-find-your-details');
   }
 });  
+
+router.get(/debit-card/, function (req, res) {
+  if (req.query.debit== 'credit') {
+    res.redirect('respond-to-your-letter');
+  }
+   else if (req.query.debit == 'direct') {
+   res.redirect('enter-postcode');;
+   }
+ });
+
+
+
+
+
+
+
 module.exports = router;

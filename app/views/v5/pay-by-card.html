@@ -15,7 +15,7 @@
       </a>
     </div>
     <div class="nhsuk-header__transactional-service-name">
-      <a class="nhsuk-header__transactional-service-name--link" href="/v4/respond-to-your-letter">Respond to your letter</a>
+      <a class="nhsuk-header__transactional-service-name--link" href="/v3/respond-to-your-letter">Respond to your letter</a>
     </div>
 
   </div>
@@ -49,40 +49,30 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="/v5/enter-postcode" method="post" class="form">
+      <form action="check-name-input" method="get" class="form">
 
-        <span class="nhsuk-caption-l">Your details</span>
-        <h1>What is your date of birth?</h1>
-        <div class="nhsuk-hint" id="example-hint">
-          For example, 31 3 1980
-        </div>
-    
-        <div class="nhsuk-date-input" id="example">
-          <div class="nhsuk-date-input__item">
-            <div class="nhsuk-form-group">
-              <label class="nhsuk-label nhsuk-date-input__label" for="day">
-                Day
-              </label>
-              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="day" name="day" type="text" pattern="[0-9]*" inputmode="numeric">
-            </div>
-          </div>
-          <div class="nhsuk-date-input__item">
-            <div class="nhsuk-form-group">
-              <label class="nhsuk-label nhsuk-date-input__label" for="month">
-                Month
-              </label>
-              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="month" name="month" type="text" pattern="[0-9]*" inputmode="numeric">
-            </div>
-          </div>
-          <div class="nhsuk-date-input__item">
-            <div class="nhsuk-form-group">
-              <label class="nhsuk-label nhsuk-date-input__label" for="year">
-                Year
-              </label>
-              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="year" name="year" type="text" pattern="[0-9]*" inputmode="numeric">
-            </div>
-          </div>
+        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">Pay by card</h1>
+        <div class="nhsuk-form-group">
+<h2>How much are you paying today?</h2>
+<p>It can take up to 24 hours for payment information to update.</p>
+<p>Total amount: £123.80</p>
+<p>Payment made: £0.00</p>
+<p>Total due: £123.80</p>
+<p>You cannot change this on the next page.</p>
+<h3>Amount to pay</h3>
+
+<div class="nhsuk-form-group">
+  <p class="">£
+  <input class="nhsuk-input nhsuk-input--width-5" id="input-width-5" name="test-width-5" type="text">
+</p>
+  
+ 
+</div>
+
+          </fieldset>
         
+        </div>
     <div class="nhsuk-form-group">
     <button class="nhsuk-button" type="submit">
      Continue
@@ -94,5 +84,6 @@
 
     </div>
   </div>
+ 
 
 {% endblock %}
