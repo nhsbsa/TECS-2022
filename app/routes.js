@@ -42,7 +42,7 @@ router.get(/v3-postcode-input/, function (req, res) {
       res.redirect('enter-exemption-certificate-number');
     }
      else if (req.query.number == 'no') {
-     res.redirect('check-name');;
+     res.redirect('check-personal-details');;
      }
    });
    
@@ -247,10 +247,19 @@ router.get(/pcn-postcode/, function (req, res) {
 
 router.get(/debit-card/, function (req, res) {
   if (req.query.debit== 'credit') {
-    res.redirect('respond-to-your-letter');
+    res.redirect('pay-by-card');
   }
    else if (req.query.debit == 'direct') {
    res.redirect('enter-postcode');;
+   }
+ });
+
+ router.get(/penalty-confirm-pay/, function (req, res) {
+  if (req.query.confirm == 'entitlement') {
+    res.redirect('what-happens-next');
+  }
+   else if (req.query.confirm == 'pay') {
+   res.redirect('payment-method');;
    }
  });
 

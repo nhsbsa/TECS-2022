@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+<header class="nhsuk-header nhsuk-header--transactional" role="banner">
+  <div class="nhsuk-width-container nhsuk-header__container">
+    <div class="nhsuk-header__logo nhsuk-header__logo--only"><a class="nhsuk-header__link" href="/" aria-label="NHS homepage">
+
+        <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16" height="40" width="100">
+          <path class="nhsuk-logo__background" fill="#005eb8" d="M0 0h40v16H0z"></path>
+          <path class="nhsuk-logo__text" fill="#fff" d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6"></path>
+        </svg>
+
+      </a>
+    </div>
+    <div class="nhsuk-header__transactional-service-name">
+      <a class="nhsuk-header__transactional-service-name--link" href="/v3/respond-to-your-letter">Respond to your letter</a>
+    </div>
+
+  </div>
+
+</header>
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
+  <p class="nhsuk-phase-banner__content">
+    <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+      BETA
+     </strong>
+     <span class="nhsuk-phase-banner__text">
+       This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
+    </span>
+   </p>
+ </div>
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="debit-card" method="get" class="form">
+
+        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">Select how many months you want to pay over</h1>
+        <div class="nhsuk-form-group">
+          <p>Your total amount to pay is £123.80. You will not be charged interest on this amount and it will not affect your credit score.</p>
+          <p>Select how many months you want to pay over</p>
+
+<div class="nhsuk-form-group">
+  <div class="nhsuk-radios">
+
+    <div class="nhsuk-radios__item">
+      <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="gateway" aria-describedby="example-hints-1-item-hint">
+      <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
+        3 months
+      </label>
+      <div class="nhsuk-hint nhsuk-radios__hint" id="example-hints-1-item-hint">
+        1 payment of £41.28 followed by 2 payments of £41.26
+      </div>
+    </div>
+    <div class="nhsuk-radios__item">
+      <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="gateway" aria-describedby="example-hints-1-item-hint">
+      <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
+        6 months
+      </label>
+      <div class="nhsuk-hint nhsuk-radios__hint" id="example-hints-1-item-hint">
+        1 payment of £20.65 followed by 5 payments of £20.63
+      </div>
+    </div>
+    <div class="nhsuk-radios__item">
+      <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="gateway" aria-describedby="example-hints-1-item-hint">
+      <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
+        12 months
+      </label>
+      <div class="nhsuk-hint nhsuk-radios__hint" id="example-hints-1-item-hint">
+        1 payment of £10.39 followed by 11 payments of £10.31
+      </div>
+    </div>
+       
+       </div>
+    </div>
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us if you cannot afford any of these monthly plans (link opens in new window).</a></p>
+            </fieldset>
+        
+        
+    <div class="nhsuk-form-group">
+     <button class="nhsuk-button" type="submit">
+      Continue
+     </button>
+    </div>
+
+  
+   
+
+    </div>
+  </div>
+
+{% endblock %}
