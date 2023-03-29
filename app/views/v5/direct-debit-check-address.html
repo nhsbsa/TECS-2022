@@ -15,7 +15,7 @@
       </a>
     </div>
     <div class="nhsuk-header__transactional-service-name">
-      <a class="nhsuk-header__transactional-service-name--link" href="/v3/respond-to-your-letter">Respond to your letter</a>
+      <a class="nhsuk-header__transactional-service-name--link" href="/v4/respond-to-your-letter">Respond to your letter</a>
     </div>
 
   </div>
@@ -49,31 +49,69 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="gov-pay" method="post" class="form">
+      <form action="confirmation-page" method="post" class="form">
 
-        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-xl">Pay by card</h1>
+        <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-xl">Check your address is correct</h1>
+        
+    <div class="nhsuk-hint" id="contact-hint">
+      We'll send confirmation of your Direct Debit to the address you provide.
+    </div>
+        <dl class="nhsuk-summary-list">
+
+        
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              12 Old Oak Road<br>Throckley<br> NE67 9AD
+            </dd>
+        
+            <dd class="nhsuk-summary-list__actions">
+        
+             
+        
+            </dd>
+        
+          </div>
+        
+          
+        
+          </div>
+        
+        </dl>
+        </div>
+        
         <div class="nhsuk-form-group">
-<h2>How much are you paying today?</h2>
-<p>It can take up to 24 hours for payment information to update.</p>
-<p>Total amount: £123.80</p>
-<p>Payment made: £0.00</p>
-<p>Total due: £123.80</p>
-<p>You cannot change this on the next page.</p>
-<h3>Amount to pay</h3>
 
-<div class="nhsuk-form-group">
-  <p class="">£
-  <input class="nhsuk-input nhsuk-input--width-5" id="input-width-5" name="test-width-5" type="text">
-</p>
-  
- 
-</div>
+          <div class="nhsuk-radios nhsuk-radios--inline">
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="example-inline-1" name="example-inline" type="radio" value="yes">
+              <label class="nhsuk-label nhsuk-radios__label" for="example-inline-1">
+                Yes
+              </label>
+            </div>
+      
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="example-inline-2" name="example-inline" type="radio" value="no">
+              <label class="nhsuk-label nhsuk-radios__label" for="example-inline-2">
+                No
+              </label>
+            </div>
+      
+          </div>
+          </div>
+        
+
+
 
           </fieldset>
         
-        </div>
-    <div class="nhsuk-form-group">
+      
+    
     <button class="nhsuk-button" type="submit">
      Continue
     </button>
@@ -84,6 +122,5 @@
 
     </div>
   </div>
- 
 
 {% endblock %}
