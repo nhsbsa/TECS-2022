@@ -250,7 +250,7 @@ router.get(/debit-card/, function (req, res) {
     res.redirect('pay-by-card');
   }
    else if (req.query.debit == 'direct') {
-   res.redirect('enter-postcode');;
+   res.redirect('pay-by-dd');;
    }
  });
 
