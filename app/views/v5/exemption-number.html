@@ -3,7 +3,7 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-Did you have a valid [Benefit]between 22 November 2019 and 30 November 2019?
+Did you know your [Benefit] number?
 {% endblock %}
 
 {% block outerContent %}
@@ -23,26 +23,17 @@ Did you have a valid [Benefit]between 22 November 2019 and 30 November 2019?
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="benefit-exemption" method="get" class="form">
+      <form action="ex-number" method="get" class="form">
 
         <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h2>[DWP Benefit] between 22 November 2019 and 30 November 2019?</h2>
+        <h2>What is your [Benefit] number?</h2>
         <div class="nhsuk-form-group">
 
-          <div class="nhsuk-radios nhsuk-radios">
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes">
-                <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                    Yes
-                </label>
-            </div>
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="no">
-                <label class="nhsuk-label nhsuk-radios__label" for="no">
-                    No
-                </label>
-            </div>
-        </div>
+
+          <div class="nhsuk-form-group">
+           
+            <input class="nhsuk-input nhsuk-input--width-10" id="number" name="number" type="text">
+          </div>
           </fieldset>
         
         </div>
@@ -50,7 +41,7 @@ Did you have a valid [Benefit]between 22 November 2019 and 30 November 2019?
     <button class="nhsuk-button" type="submit">
      Continue
     </button>
-    </div>
+    </div></form>
 
         
    

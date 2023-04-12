@@ -3,7 +3,7 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-How would you like to pay your penalty charge?
+Pay by card
 {% endblock %}
 
 {% block outerContent %}
@@ -23,39 +23,49 @@ How would you like to pay your penalty charge?
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="debit-card" method="get" class="form">
+      <form action="pay-choice" method="get" class="form">
 
         <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-xl">How would you like to pay your penalty charge?</h1>
+        <h1 class="nhsuk-heading-xl">Pay by card</h1>
+        <div class="nhsuk-form-group">
+
+        <p>It can take up to 24 hours for payment information to update.</p>
+        <p>Total amount: £123.80</p>
+        <p>Payment made: £0.00</p>
+        <p>Total due: £123.80</p>
+
+        <h2>How much are you paying today?</h2>
         <div class="nhsuk-form-group">
 
           <div class="nhsuk-radios nhsuk-radios">
             <div class="nhsuk-radios__item">
                 <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
                 <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                  Debit or credit card
+                  Partial payment
                 </label>
             </div>
             <div class="nhsuk-radios__item">
                 <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
                 <label class="nhsuk-label nhsuk-radios__label" for="no">
-                  Direct Debit
+                  Full payment 
                 </label>
             </div>
         </div>
           </fieldset>
         
         </div>
-    <div class="nhsuk-form-group">
-    <button class="nhsuk-button" type="submit">
-     Continue
-    </button>
-    </div>
+          <div class="nhsuk-form-group">
+          <button class="nhsuk-button" type="submit">
+          Continue
+          </button>
+          </div>
+      </form>
 
         
    
 
     </div>
   </div>
+ 
 
 {% endblock %}

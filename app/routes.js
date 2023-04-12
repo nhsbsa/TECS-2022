@@ -187,6 +187,14 @@ router.get(/v4-cert-number/, function (req, res) {
      res.redirect('were-you-claiming-any-benefits');
    }
  });
+
+
+
+
+
+
+
+
  router.get(/version4-benefit/, function (req, res) {
   if (req.query.benefit4 == 'yes') {
     res.redirect('check-personal-details');
@@ -205,9 +213,9 @@ router.get(/different-exemption/, function (req, res) {
 });
  
 
-router.get(/v4-certificate-number-input/, function (req, res) {
+router.get(/enq-benefit-num/, function (req, res) {
 if (req.query.certificatenumber == '9876543210') {
-  res.redirect('exemption-confirmed');
+  res.redirect('check-personal-details');
 } else if (req.query.certificatenumber == '0123456789') {
   res.redirect('confirmation-page');;
 }
@@ -231,8 +239,14 @@ router.get(/confirm-entitlement/, function (req, res) {
 router.get(/pcn-postcode/, function (req, res) {
   if (req.query.postcode == 'NE1 3JA') {
     res.redirect('penalty-charge-notice-details');
-  } else if (req.query.postcode == 'NE2 4XL') {
-    res.redirect('penalty-charge-notice-details-copy');;
+  }else if (req.query.postcode == 'NE13JA') {
+    res.redirect('penalty-charge-notice-details');
+  } 
+  else if (req.query.postcode == 'NE2 4XL') {
+    res.redirect('penalty-charge-notice-details-bsa');;
+  }
+  else if (req.query.postcode == 'NE24XL') {
+    res.redirect('penalty-charge-notice-details-bsa');;
   }
   else if (req.query.postcode == 'WA4 1AB') {
     res.redirect('cannot-find-your-details');;
@@ -263,6 +277,16 @@ router.get(/debit-card/, function (req, res) {
    }
  });
 
+
+ router.get(/bsa-choice/, function (req, res) {
+  if (req.query.confirm == 'entitlement') {
+    res.redirect('what-happens-next-bsa');
+  }
+   else if (req.query.confirm == 'pay') {
+   res.redirect('payment-method');;
+   }
+ });
+
 //  New route 
 router.post(/claiming-any-benefits/, function (req, res) {
 
@@ -277,9 +301,75 @@ router.post(/claiming-any-benefits/, function (req, res) {
 })
 
 
+//route for dd checkbox
+
+router.post(/dd-checkbox/, (req, res) => {
+  
+  const dd = req.session.data['contact'];
+
+  console.log(dd.length)
+
+  if (dd.length == '3') {
+    res.redirect('direct-debit-instalment-option');// All items are checked
+    
+
+  }
+  else {
+    res.redirect('unable-to-set-up-direct-debit'); // Send user to unable to setup dd
+   
+  }
+
+});
 
 
 
 
+router.get(/disabled-exemption/, function (req, res) {
+  if (req.query.exemption == 'yes') {
+    res.redirect('no-medex');
+  }
+   else if (req.query.exemption == 'no') {
+   res.redirect('mat-ex');;
+   }
+ });
+
+ router.get(/maternity-exemption/, function (req, res) {
+  if (req.query.exemption == 'yes') {
+    res.redirect('no-matex');
+  }
+   else if (req.query.exemption == 'no') {
+   res.redirect('cannot-find-details-matex');;
+   }
+ });
+
+ router.get(/dwp-exemption-number/, function (req, res) {
+  if (req.query.exemption == 'yes') {
+    res.redirect('exemption-number');
+  }
+   else if (req.query.exemption == 'no') {
+   res.redirect('cannot-find-details-matex');;
+   }
+ });
+
+
+ router.get(/pay-choice/, function (req, res) {
+  if (req.query.debit== 'credit') {
+    res.redirect('partial-payment');
+  }
+   else if (req.query.debit == 'direct') {
+   res.redirect('gov-pay');;
+   }
+ });
+
+
+ router.get(/ex-number/, function (req, res) {
+
+  if (req.query.number== '') {
+    res.redirect('review-contact');
+  }
+   else {
+   res.redirect('confirmation-page-dwp');;
+   }
+ });
 
 module.exports = router;

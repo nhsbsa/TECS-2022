@@ -3,7 +3,7 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-Pay by card
+You are unable to set up a Direct Debit
 {% endblock %}
 
 {% block outerContent %}
@@ -23,41 +23,25 @@ Pay by card
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="gov-pay" method="post" class="form">
+    
 
         <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-xl">Pay by card</h1>
-        <div class="nhsuk-form-group">
-<h2>How much are you paying today?</h2>
-<p>It can take up to 24 hours for payment information to update.</p>
-<p>Total amount: £123.80</p>
-<p>Payment made: £0.00</p>
-<p>Total due: £123.80</p>
-<p>You cannot change this on the next page.</p>
-<h3>Amount to pay</h3>
+        <h1 class="nhsuk-heading-xl">You are unable to set up a Direct Debit</h1>
+       
+        <p>To set up a direct debit online, you must confirm that you are:</p>
+        <ul>
+          <li>using your own bank account</li>
+          <li>the only person required to authorise debits on this account</li>
+        </ul>
 
-<div class="nhsuk-form-group">
-  <p class="">£
-  <input class="nhsuk-input nhsuk-input--width-5" id="input-width-5" name="test-width-5" type="text">
-</p>
-  
- 
-</div>
-
-          </fieldset>
+        <p><a>If you cannot confirm this and need to contact us</a></p>
         
-        </div>
-    <div class="nhsuk-form-group">
-    <button class="nhsuk-button" type="submit">
-     Continue
-    </button>
-    </div>
-
-        
+        <a href="pay-by-dd"><button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+          Continue
+        </button></a>
    
 
     </div>
   </div>
- 
 
 {% endblock %}

@@ -1,0 +1,375 @@
+<!-- Use this page as the index for your project -->
+
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+  NHS.UK prototype kit
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <!-- Change the page title here -->
+      <h1>
+        TECS prototype new toolkit
+      </h1>
+
+      <!-- Add your content here -->
+      <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->     
+      <hr>
+     
+      </div>
+      </div>
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+         <div class="nhsuk-warning-callout">
+            <h3 class="nhsuk-warning-callout__label">
+              <span role="text">
+                <span class="nhsuk-u-visually-hidden">Important: </span>
+                Important
+              </span>
+            </h3>
+            <p>Don't use any of this prototype code on production services, it doesn't adhere to development standards and is hacked together quickly and roughly.</p>
+          </div>
+          <hr>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+          <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+            <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+               <span class="nhsuk-details__summary-text">Current journey</span>
+            </summary>
+            <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+               <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+                  <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                     <span class="nhsuk-details__summary-text"><small>Version 2</small></span>
+                  </summary>
+                 
+                     </details>
+                     <hr>
+                     <h3 class="nhsuk-heading-m">Current journey</h3>
+                     <p> This is the current challenge journey this should be kept up to date in line with the live journey
+                     </p>
+                     
+                     
+                     <a class="nhsuk-button" href="v2/start-page">Current journey</a>
+                     
+    
+                     <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                        <a class="nhsuk-action-link__link" href="v2/start-page">
+                           <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                              </path>
+                           </svg>
+                           <span class="nhsuk-action-link__text">View user journey (current journey)</span>
+                        </a>
+                     </div>
+                  </div>
+               </details>
+            </div>
+         </details>
+         </div>
+    
+          <hr>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta version 5 PCN journey (8/3/2023)</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 5</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;">We believe that updating the challenge journey in the new toolkit and inline with GDS will improve the accesibility of the journey whilst
+                  also keeping consistant with the NHS UK branding. This journey is to be tested on the 27/3/2023
+                 </p>
+                 <br>Use postcode: NE1 3JA to get through the DWP journey</br>
+                 <br>Use postcode: NE2 4XL to get through the BSA journey</br>
+                 <br>Use postcode: WA4 1AB to get to we cannot find your details</br>
+                 
+                 <hr>
+                     
+                 <h3 class="nhsuk-heading-m">What we created:</h3>
+                 <ul class="nhsuk-list nhsuk-list--bullet">
+                    <li> We created a PCN journey with content thats been reviewed by the content designer and also updated components inline with GDS
+                  </li>
+                  <li>
+                    </li>
+                 </ul>
+                 <h3 class="nhsuk-heading-m">What we plan to test:</h3>
+                 <ul class="nhsuk-list nhsuk-list--bullet">
+                    <li>We plan on doing user research with the PCN journey on the week commencing the 27/3/2023</li>
+                    <li>We want to test the journey and see if people can successfully pay</li>
+                    
+                 </ul>
+                 
+                 
+                 <a class="nhsuk-button" href="v5/respond-to-your-letter">Respond to your letter</a>
+                
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v5/user-journey-5">
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey PCN (v5)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta version 4 enquiry journey (6/3/2023)</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 4</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;">We believe by adding in content or a page around why the user cannot pay at the enquiry stage of the journey will help the user understand that they will have to wait until they get a PCN.
+               This is in hopes to cause less frustration and confusion. We understand from our CSAT results that this is one of the biggest issues the user faces with this journey.</p>
+                  
+                  
+                 </p>
+                 <br>Use postcode: NE1 3JA to get through the DWP journey with pay or confirm added screen</br>
+                 <br>Use postcode: NE2 4XL to get through the BSA journey with addeed content on what happens next</br>
+                 <br>Use postcode: WA4 1AB to get to we cannot find your details</br>
+                 
+                 <hr>
+                     
+                 <h3 class="nhsuk-heading-m">What we created:</h3>
+                 <ul class="nhsuk-list nhsuk-list--bullet">
+                    <li>For this journey we have made a couple of changes to the journey we removed some of the personal details pages such as Is this how your name was written on your [Benefit]? As well as the date of birth and address question which
+                     follows after that page. Instead the journey now just has a check your details page where the user can change their details at this point if they need to. This was to shorten the journey for the user.
+                  </li>
+                  <li>We have added one journey to this prototype which asks users on the enquiry letter page whether they want to pay or confirm their entitlement. If they select pay it will give the user a kickout screen explaining why they cannot pay. If they select confirm their 
+               entitlement it will take them through the rest of the journey.
+                    </li>
+                 </ul>
+                 <h3 class="nhsuk-heading-m">What we plan to test:</h3>
+                 <ul class="nhsuk-list nhsuk-list--bullet">
+                    <li>For this round of research too we are going to add in some AB testing around why users can't pay at the enquiry stage we are going to do AB testing with the confirm your entitlement or pay screen against some extra content on the what happens next screen</li>
+                    <li>We also want to find out if the shortened journey of the check your details screen works for the user</li>
+                    <li>We plan to find out more around the service name and if users understand it</li>
+                 </ul>
+                 
+                 
+                 <a class="nhsuk-button" href="v4/respond-to-your-letter">Respond to your letter</a>
+                
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v4/user-journey-4">
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey (v4)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta version 3 enquiry journey (27/2/2023)</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 3</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;">We are going to be testing this prototype with users. The design has been updated to be inline with GDS as well as the content which has been review by the content designer on our team.
+                  
+                  
+                 </p>
+                 <br>Use postcode: NE1 3JA to get through the DWP journey</br>
+                 <br>Use postcode: NE2 4XL to get through the BSA journey</br>
+                 <br>Use postcode: WA4 1AB to get to we cannot find your details</br>
+                 
+                 <hr>
+                     
+                     <h3 class="nhsuk-heading-m">What we created:</h3>
+                     <ul class="nhsuk-list nhsuk-list--bullet">
+                        <li>We updated the challenge journey with the new NHS toolkit, removing old components that weren't inline with GDS. We have done a content review and placed in content to keep inline with GDS.
+                           We have removed an error screen from the journey as it was deemed unessescary and added a screen around the benefit number.
+                        </li>
+                     </ul>
+                     <h3 class="nhsuk-heading-m">What we plan to test:</h3>
+                     <ul class="nhsuk-list nhsuk-list--bullet">
+                        <li>We plan to test the whole journey to get feedback on the pages</li>
+                        <li>We want to focus on the "respond to your letter page", the kickout screens, confirmation page and the "enquiry letter details" screen</li>
+                     </ul>
+                     <h3 class="nhsuk-heading-m">What we found:</h3>
+                     <ul class="nhsuk-list nhsuk-list--bullet">
+                        <li>We found people generally found the journey simple and easy</li>
+                        <li>Users found the journey a recognisable service and the content self expanitory</li>
+                        <li>One of the users found the questions around their details quite tedious before they get to their check your details page</li>
+                        <li>Another user found the yellow warning callout box a little stressful and could cause anxiety to some people</li>
+                     </ul>
+                     <h3 class="nhsuk-heading-m">Any known issues?</h3>
+                     <ul class="nhsuk-list nhsuk-list--bullet">
+                        <li>...</li>
+                     </ul>
+                     <hr>
+
+                 
+                 <a class="nhsuk-button" href="v3/respond-to-your-letter">Respond to your letter</a>
+                 
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v3/user-journey-3">
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey (v3)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+          <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-three-thirds">
+      <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+        <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+           <span class="nhsuk-details__summary-text">Private Beta version 2 ()</span>
+        </summary>
+        <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+           <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+              <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+                 <span class="nhsuk-details__summary-text"><small>Version 2</small></span>
+              </summary>
+             
+                 </details>
+                 <hr>
+                 <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+                 <p style="background: #DEE0E2; padding: 20px;"> 
+                 </p>
+                 
+                 
+                 <a class="nhsuk-button" href="v2/start-page">Respond to your letter</a>
+                 
+
+                 <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                    <a class="nhsuk-action-link__link" href="v2/start-page">
+                       <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                          </path>
+                       </svg>
+                       <span class="nhsuk-action-link__text">View user journey (v2)</span>
+                    </a>
+                 </div>
+              </div>
+           </details>
+        </div>
+     </details>
+     </div>
+
+
+     <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-three-thirds">
+    <details class="nhsuk-details nhsuk-expander" nhsuk-polyfilled="true" id="nhsuk-details3">
+      <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text3" tabindex="0" aria-expanded="false">
+         <span class="nhsuk-details__summary-text">Private Beta (sprint 1)</span>
+      </summary>
+      <div class="nhsuk-details__text" id="nhsuk-details__text3" aria-hidden="true">
+         <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-0" nhsuk-polyfilled="true" id="nhsuk-details4">
+            <summary class="nhsuk-details__summary" role="button" aria-controls="nhsuk-details__text4" tabindex="0" aria-expanded="false">
+               <span class="nhsuk-details__summary-text"><small>Version 1</small></span>
+            </summary>
+           
+               </details>
+               <hr>
+               <h3 class="nhsuk-heading-m">Hypothesis A</h3>
+               <p style="background: #DEE0E2; padding: 20px;">We are going to be updating the challenge journey into the new toolkit. This is to keep inline with GDS and create a recognisable service for users.
+                  due to capacity we wont be able to update the content immediately, so for now we are keeping the content the same but updating the journey.
+               </p>
+              
+               
+               <a class="nhsuk-button" href="v1/start-page">Respond to your letter</a>
+               
+
+               <div class="nhsuk-action-link nhsuk-u-margin-bottom-3">
+                  <a class="nhsuk-action-link__link" href="v1/start-page">
+                     <svg aria-hidden="true" class="nhsuk-icon nhsuk-icon__arrow-right-circle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
+                        </path>
+                     </svg>
+                     <span class="nhsuk-action-link__text">View user journey (v1)</span>
+                  </a>
+               </div>
+            </div>
+         </details>
+      </div>
+   </details>
+   </div>
+     
+      
+
+      
+      <!-- End of content -->
+
+    </div>
+  </div>
+  <style>
+  .nhsuk-button {
+   margin-top: 20px;
+  }
+  
+  
+  
+  </style>
+{% endblock %}

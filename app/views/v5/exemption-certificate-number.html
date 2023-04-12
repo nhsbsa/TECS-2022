@@ -3,7 +3,7 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-How would you like to pay your penalty charge?
+Did you know your [Benefit] number?
 {% endblock %}
 
 {% block outerContent %}
@@ -23,23 +23,27 @@ How would you like to pay your penalty charge?
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="debit-card" method="get" class="form">
+      <form action="dwp-exemption-number" method="get" class="form">
 
-        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-xl">How would you like to pay your penalty charge?</h1>
+        <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h2>Do you know your [Benefit] number?</h2>
         <div class="nhsuk-form-group">
 
+
+    <div class="nhsuk-hint" id="contact-hint">
+      You don't have to tell us your certificate number, but telling us can help us find your certificate. You can find the number on the certificate.
+    </div>
           <div class="nhsuk-radios nhsuk-radios">
             <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
+                <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes">
                 <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                  Debit or credit card
+                    Yes
                 </label>
             </div>
             <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
+                <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="no">
                 <label class="nhsuk-label nhsuk-radios__label" for="no">
-                  Direct Debit
+                    No
                 </label>
             </div>
         </div>
