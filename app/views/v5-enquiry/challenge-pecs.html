@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Start page template - NHS.UK prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ breadcrumb({
+  href: "/",
+  text: "Home"
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>
+        Check your details 
+      </h1>
+      <h3>Details on the prescription</h3>
+      {{ summaryList({
+        rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            html: "Michelle Doe"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "	12 Old Oak Road, Throckley, NE67 9AD"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date prescription was claimed"
+            },
+            value: {
+              html: "Between 1 November and 30 November 2017"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Exemption reason ticked"
+            },
+            value: {
+              html: 'Gets Income Support or income-related Employment and Support Allowance.
+              '
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                 
+                  visuallyHiddenText: "postcode"
+                }
+              ]
+            }
+          }
+        ]
+        
+      }) }}
+      <p>We take the details from your prescription and check these against the details on your exemption certificate, qualifying benefit or prepayment certificate</p>
+      <p>Check that your name, date of birth and address are correct on these and match.</p>
+      <p>Then answer some questions to help us resolve this issue.</p>
+      
+      <div class="nhsuk-warning-callout">
+        <h3 class="nhsuk-warning-callout__label">
+          <span role="text">
+            <span class="nhsuk-u-visually-hidden">Important information</span>
+            Dont delay
+          </span>
+        </h3>
+        <p>    You now have 28 days to challenge your enquiry letter (by 28 March 2018). Doing this could help us resolve the issue and stop you getting a penalty charge</p>
+      </div>
+ 
+
+      
+   
+
+
+
+
+      <h2>Challenge</h2>
+      
+<p>You can challenge if you were entitled to free precriptions because of an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
+
+
+
+       <a href="reference-number" class="nhsuk-button">
+        Challenge
+      </a>
+      
+     
+
+    </div>
+
+  </div>
+{% endblock %}

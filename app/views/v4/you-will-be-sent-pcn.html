@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Start page template - NHS.UK prototype kit
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+      <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+    </svg>
+    Go back</a>
+  </div>
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Your details</span>
+      <h2>
+        Not entitled to free NHS prescriptions
+      </h2>
+      <p>If you were not entitled to free NHS prescriptions you will be sent a Penalty Charge Notice (PCN).</p>
+      <p>We send the enquiry letter before the PCN to give you time to confirm you were entitled to free NHS prescriptions which can stop a PCN being issued.</p>
+      <p>The PCN will be issued within [number] of days (by [date]).</p>
+      <p>You will not be able to make a payment until you receive the PCN.</p>
+      <p>Once you have received it, you’ll be able to use this service to pay your penalty charge.</p>
+      <details class="nhsuk-details">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">
+            I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim 
+          </span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can ask us to review your case.</p><p><a href="">Find out if you can ask for a review.</a> </p>
+      
+        </div>
+      </details>
+
+
+  
+{% endblock %}

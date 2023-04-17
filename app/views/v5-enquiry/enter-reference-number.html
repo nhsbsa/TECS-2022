@@ -39,32 +39,21 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="check-personal-details" method="post" class="form">
+      <form action="/v2/what-is-dob" method="post" class="form">
 
-        <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>How was your name written on your [Benefit]?</h1>
-        <form action="v22/name" method="post">
-
-          <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="firstname">
-                  First name
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="firstname" name="firstname" type="text" autocomplete="given-name">
-          </div>
-
-          <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="lastname">
-                  Last name
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="lastname" name="lastname" type="text" autocomplete="family-name">
-          </div>
-
-
-                
-
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        <span class="nhsuk-caption-l">Your details</span>
+        <h1>What is your reference number?</h1>
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="one-half">
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              You can find this on your letter. Only include numbers in your reference number
+            </div>
+          </label>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+        </div>
+        <a href="enter-reference-number-again" class="nhsuk-button">
           Continue
-        </button>
+        </a>
        </form>
 
     </div>

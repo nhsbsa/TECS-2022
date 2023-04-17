@@ -47,53 +47,65 @@
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="check-personal-details" method="post" class="form">
+    <form action="claiming-any-benefits" method="POST" class="form">
 
       <span class="nhsuk-caption-l">Confirm your entitlement</span>
-      <h1>What your date of birth?</h1>
-      <div class="nhsuk-hint" id="example-hint">
-        For example, 31 3 1980
+      <h1 class="nhsuk-heading-l">Were you claiming any of these benefits (or named on them) between 18 November 2019
+        and 30 November 2019?</h1>
+      <div class="nhsuk-form-group">
+        <div class="nhsuk-radios nhsuk-radios">
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="income" name="exemptiontype" type="radio"
+              value="income">
+            <label class="nhsuk-label nhsuk-radios__label" for="income">
+              Income Support or income-related Employment and Support Allowance
+            </label>
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="support" name="exemptiontype" type="radio"
+              value="support">
+            <label class="nhsuk-label nhsuk-radios__label" for="support">
+              Income-based Jobseeker's Allowance
+            </label>
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="uc" name="exemptiontype" type="radio" value="uc">
+            <label class="nhsuk-label nhsuk-radios__label" for="uc">
+              Universal Credit
+            </label>
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="pension" name="exemptiontype" type="radio"
+              value="pension">
+            <label class="nhsuk-label nhsuk-radios__label" for="pension">
+              Your partner's Pension Credit Guarantee Credit award
+            </label>
+          </div>
+
+          <div class="nhsuk-form-group">
+            <p>or</p>
+          </div>
+          
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="no" name="exemptiontype" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="no">
+              No, none of these
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="nhsuk-form-group">
+        <button class="nhsuk-button" type="submit">
+          Continue
+        </button>
       </div>
 
-      <div class="nhsuk-date-input" id="example">
-        <div class="nhsuk-date-input__item">
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label nhsuk-date-input__label" for="day">
-              Day
-            </label>
-            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="day" name="day" type="text"
-              pattern="[0-9]*" inputmode="numeric">
-          </div>
-        </div>
-        <div class="nhsuk-date-input__item">
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label nhsuk-date-input__label" for="month">
-              Month
-            </label>
-            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="month" name="month" type="text"
-              pattern="[0-9]*" inputmode="numeric">
-          </div>
-        </div>
-        <div class="nhsuk-date-input__item">
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label nhsuk-date-input__label" for="year">
-              Year
-            </label>
-            <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="year" name="year" type="text"
-              pattern="[0-9]*" inputmode="numeric">
-          </div>
-        </div>
-
-        <div class="nhsuk-form-group">
-          <button class="nhsuk-button" type="submit">
-            Continue
-          </button>
-        </div>
+    </form>
 
 
-
-
-      </div>
   </div>
+</div>
 
-  {% endblock %}
+{% endblock %}
