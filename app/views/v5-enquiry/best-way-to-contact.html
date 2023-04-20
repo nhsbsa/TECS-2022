@@ -38,18 +38,49 @@
   </div>
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">We will now review your case and get back to you. What is the best way for us to contact you?</h1>
 
-      <form action="enq-benefit-num" method="get" class="form">
+      <form action="contact-method" method="get" class="form">
 
-        <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>What is your [Benefit] number?</h1>
         <div class="nhsuk-form-group">
+
+          <fieldset class="nhsuk-fieldset">
+           
+        
+            <div class="nhsuk-radios">
+        
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-divider-1" name="contact" type="radio" value="email">
+                <label class="nhsuk-label nhsuk-radios__label" for="example-divider-1">
+                  Email
+                </label>
+              </div>
+        
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-divider-2" name="contact" type="radio" value="phone">
+                <label class="nhsuk-label nhsuk-radios__label" for="example-divider-2">
+                  Telephone
+                </label>
+              </div>
+        
+              <div class="nhsuk-radios__divider">or</div>
+        
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-divider-4" name="contact" type="radio" value="post">
+                <label class="nhsuk-label nhsuk-radios__label" for="example-divider-4">
+                 I don't have access to email or a telephone
+                </label>
+              </div>
+        
+            </div>
+          </fieldset>
           
-          <input class="nhsuk-input nhsuk-u-width-one-half" id="cert-number-input" name="certificatenumber" type="text">
+        
         </div>
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        <button class="nhsuk-button" type="submit">
           Continue
-        </button>
+         </button>
        </form>
 
        <p><a href="respond-to-your-letter">Cancel</a></p>

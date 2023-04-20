@@ -252,6 +252,8 @@ router.get(/enq-benefit-num/, function (req, res) {
     res.redirect('check-personal-details');
   } else if (req.query.certificatenumber == '0123456789') {
     res.redirect('confirmation-page');;
+  }else if (req.query.certificatenumber == 'contact') {
+    res.redirect('best-way-to-contact');;
   }
   else {
     res.redirect('enter-exemption-certificate-number')
@@ -444,7 +446,17 @@ router.get(/ex-number/, function (req, res) {
 
 
 
-
+router.get(/contact-method/, function (req, res) {
+  if (req.query.contact == 'email') {
+    res.redirect('what-is-your-email');
+  }
+  else if (req.query.contact == 'phone') {
+    res.redirect('what-is-your-phone');;
+  }
+  else if (req.query.contact == 'post') {
+    res.redirect('confirm-address');;
+  }
+});
 
 
 module.exports = router;
