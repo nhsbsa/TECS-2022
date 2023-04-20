@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  What is your email address
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      
+      <div class="nhsuk-back-link">
+        <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            aria-hidden="true" height="24" width="24">
+            <path
+              d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+            </path>
+          </svg>
+          Go back</a>
+      </div>
+      <form action="/v1/check-address" method="post" class="form">
+        <div class="heading-group">
+          <span class="nhsuk-caption-l">Confirm your entitlement</span>
+          <h2>What is your email address?</h2>
+          <div class="nhsuk-form-group">
+            
+            <input class="nhsuk-input nhsuk-input--width-30" id="input-width-20" name="test-width-20" type="text">
+          </div>
+        
+      </fieldset>
+      </div>
+    
+      <a href="what-is-your-phone-2" class="nhsuk-button">
+        Continue
+       </a>
+        <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
+       </form>
+
+    </div>
+  </div>
+   
+  <style>
+    .heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.nhsuk-hint {
+    margin-top: 0.26316em;
+    margin-bottom: 1.05263em;
+}
+
+
+.nhsuk-label {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.heading-group {
+  margin-top: 10px;
+}
+.nhsuk-heading-large {
+  margin: 5px;
+}
+
+
+.panel-border-wide {
+    border-left-width: 10px;
+}
+
+.panel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    border-left-style: solid;
+    border-color: #bfc1c3;
+    padding: 0.78947em;
+    margin-bottom: 0.78947em;
+    height: 4em;
+}
+  </style>
+
+{% endblock %}

@@ -39,52 +39,54 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="cert-number" method="get" class="form">
+      <form action="check-address-details" method="post" class="form">
 
         <span class="nhsuk-caption-l">Confirm your entitlement</span>
-        <h1>Do you know your [Benefit] number?</h1>
-        <div class="nhsuk-form-group">
-          <label class="nhsuk-label" for="one-half">
-            <div class="nhsuk-hint" id="example-with-hint-text-hint">
-              You don't have to tell us your certificate number, but telling us can helps us find your certificate. You can find the number on the certificate.
-            </div>
-          </label>
-          <div class="nhsuk-radios nhsuk-radios--conditional">
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="yes">
-                <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                    Yes
-                </label>
-            </div>
+        <h1 class="nhsuk-heading-l">What is your address?</h1>
 
-            <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-contact-1">
+        <p>We will send a letter to this address.</p>
+       
 
-              <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="email">
-                  [Benefit] number
-                </label>
-                <input class="nhsuk-input nhsuk-u-width-one-half" id="cert-number-input" name="certificatenumber" type="text">
-              </div>
+          <div class="nhsuk-form-group">
+              <label class="nhsuk-label" for="addressline1">
+                  Address line 1
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline1" name="addressline1" type="text" autocomplete="address-line1">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="addressline2">
+                  Address line 2 (optional)
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline2" name="addressline2" type="text" autocomplete="address-line2">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="towncity">
+                  Town or city
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="towncity" name="towncity" type="text" autocomplete="address-level2">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="postcode">
+                  Postcode
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
+          </div>
+
+          
+
       
-            </div>
 
+                
 
-
-            
-            <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="cert-number" name="number" type="radio" value="no">
-                <label class="nhsuk-label nhsuk-radios__label" for="no">
-                    No
-                </label>
-            </div>
-        </div>
-        </fieldset>
-      
-      </div>
         <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
           Continue
         </button>
        </form>
+
+       <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
 
     </div>
   </div>

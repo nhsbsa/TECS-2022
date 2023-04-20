@@ -446,17 +446,71 @@ router.get(/ex-number/, function (req, res) {
 
 
 
+// router.get(/contact-method/, function (req, res) {
+//   if (req.query.contact == 'email') {
+//     res.redirect('what-is-your-email');
+//   }
+//   else if (req.query.contact == 'phone') {
+//     res.redirect('what-is-your-phone');;
+//   }
+//   else if (req.query.contact == 'post') {
+//     res.redirect('confirm-address');;
+//   }
+// });
+
+
 router.get(/contact-method/, function (req, res) {
-  if (req.query.contact == 'email') {
-    res.redirect('what-is-your-email');
+
+  const dd = req.session.data['contact'];
+
+  if (dd == 'email') {
+    res.redirect('what-is-your-email');// All items are checked
+
+
+  } else if (dd == 'phone') {
+    res.redirect('what-is-your-phone');// All items are checked
+
+
   }
-  else if (req.query.contact == 'phone') {
-    res.redirect('what-is-your-phone');;
+
+  else if (dd.includes('email', 'phone')) {
+    res.redirect('what-is-your-email-2'); // All items are checked
   }
-  else if (req.query.contact == 'post') {
-    res.redirect('confirm-address');;
+  else if (dd == 'post') {
+    res.redirect('confirm-address');// All items are checked
+
+
+  }
+
+});
+
+
+router.get(/address-contact/, function (req, res) {
+  if (req.query.contact == 'yes') {
+    res.redirect('reviewing-case');
+  }
+  else if (req.query.contact == 'no') {
+    res.redirect('what-is-your-address');;
   }
 });
+
+
+router.post(/do-you-know-number/, function (req, res) {
+
+  const exemption = req.session.data['exemption']
+  const certNumber = req.session.data['certificatenumber']
+
+  if (exemption == 'yes' && certNumber == '9876543210') {
+    res.redirect('check-personal-details')
+  } else if (exemption == 'yes' && certNumber == '0123456789') {
+    res.redirect('confirmation-page');
+  } else if (exemption == 'yes' && certNumber == 'contact') {
+    res.redirect('best-way-to-contact')
+  } else if (exemption == 'no'){
+    res.redirect('check-personal-details');
+  }
+
+})
 
 
 module.exports = router;
