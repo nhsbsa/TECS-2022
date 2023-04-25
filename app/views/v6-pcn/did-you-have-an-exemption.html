@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Did you have one of these NHS exemption certificates?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="version4-nhs" method="get" class="form">
+
+        <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">Did you have one of these NHS exemption certificates between 1 November and 30 November 2017?</h1>
+        <div class="nhsuk-form-group">
+          <div class="nhsuk-radios nhsuk-radios">
+            <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="med">
+                <label class="nhsuk-label nhsuk-radios__label" for="med">
+                  Medical exemption certificate
+                </label>
+            </div>
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="mat">
+              <label class="nhsuk-label nhsuk-radios__label" for="mat">
+                Maternity exemption certificate
+              </label>
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="ppc">
+            <label class="nhsuk-label nhsuk-radios__label" for="ppc">
+              Prescription Prepayment Certificate (PPC)
+            </label>
+        </div>
+        <div class="nhsuk-radios__item">
+          <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="hc2">
+          <label class="nhsuk-label nhsuk-radios__label" for="hc2">
+            HC2 certificate (full help with health costs)
+          </label>
+      </div>
+      <div class="nhsuk-radios__item">
+        <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="tc">
+        <label class="nhsuk-label nhsuk-radios__label" for="tc">
+          NHS Tax Credit Exemption Certificate
+        </label>
+    </div>
+    <div class="nhsuk-form-group">
+      <p>or</p>
+    </div>
+    <div class="nhsuk-radios__item">
+      <input class="nhsuk-radios__input" id="version4-nhs" name="nhs" type="radio" value="no">
+      <label class="nhsuk-label nhsuk-radios__label" for="no">
+        No, none of these
+      </label>
+  </div>
+
+        </div>
+         
+            
+
+          </fieldset>
+        
+        </div>
+    <div class="nhsuk-form-group">
+    <button class="nhsuk-button" type="submit">
+     Continue
+    </button>
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+    </div>
+
+        
+   
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -252,7 +252,7 @@ router.get(/enq-benefit-num/, function (req, res) {
     res.redirect('check-personal-details');
   } else if (req.query.certificatenumber == '0123456789') {
     res.redirect('confirmation-page');;
-  }else if (req.query.certificatenumber == 'contact') {
+  } else if (req.query.certificatenumber == 'contact') {
     res.redirect('best-way-to-contact');;
   }
   else {
@@ -506,11 +506,45 @@ router.post(/do-you-know-number/, function (req, res) {
     res.redirect('confirmation-page');
   } else if (exemption == 'yes' && certNumber == 'contact') {
     res.redirect('best-way-to-contact')
-  } else if (exemption == 'no'){
+  } else if (exemption == 'yes' && certNumber == '1234512345') {
+    res.redirect('cannot-confirm')
+  } else if (exemption == 'no') {
     res.redirect('check-personal-details');
   }
 
 })
 
+
+
+router.get(/version6-pcn/, function (req, res) {
+  if (req.query.confirm == 'entitlement') {
+    res.redirect('what-happens-next-bsa');
+  }
+  else if (req.query.confirm == 'pay') {
+    res.redirect('payment-method');;
+  }
+});
+
+router.get(/dwp-version6/, function (req, res) {
+  if (req.query.confirm == 'entitlement') {
+    res.redirect('what-happens-next');
+  }
+  else if (req.query.confirm == 'pay') {
+    res.redirect('payment-method');;
+  }
+});
+
+
+router.post(/v6-dwp-benefits/, function (req, res) {
+
+  const anyBenefits = req.session.data['exemptiontype']
+
+  if (anyBenefits === 'no') {
+    res.redirect('medical-conditions');
+  } else {
+    res.redirect('check-personal-details-dwp');
+  }
+
+})
 
 module.exports = router;

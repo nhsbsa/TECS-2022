@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Pay by card
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="pay-choice" method="get" class="form">
+
+        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">Pay by card</h1>
+        <div class="nhsuk-form-group">
+
+        <p>It can take up to 24 hours for payment information to update.</p>
+        <p>Total amount: £123.80</p>
+        <p>Payment made: £0.00</p>
+        <p>Total due: £123.80</p>
+
+        <h2>How much are you paying today?</h2>
+        <div class="nhsuk-form-group">
+
+          <div class="nhsuk-radios nhsuk-radios">
+            <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
+                <label class="nhsuk-label nhsuk-radios__label" for="yes">
+                  Partial payment
+                </label>
+            </div>
+            <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
+                <label class="nhsuk-label nhsuk-radios__label" for="no">
+                  Full payment 
+                </label>
+            </div>
+        </div>
+          </fieldset>
+        
+        </div>
+          <div class="nhsuk-form-group">
+          <button class="nhsuk-button" type="submit">
+          Continue
+          </button>
+          </div>
+      </form>
+
+        
+   
+
+    </div>
+  </div>
+ 
+
+{% endblock %}

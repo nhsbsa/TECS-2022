@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Do you have any of these medical conditions or disabilities?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      
+        <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">Do you have any of these medical conditions or disabilities?</h1>
+        <div class="nhsuk-form-group">
+          
+          <div class="nhsuk-inset-text">
+            <span class="nhsuk-u-visually-hidden">Information: </span>
+            <p>If you're unsure about the name of your condition or treatment, check with your doctor.</p>
+          </div>
+            <ul>
+              <li><strong>cancer and are undergoing treatment</strong><br>including treatment for the effects of cancer or the effects of cancer treatment.</li>
+              <li><strong>diabetes (type 1 or type 2)</strong><br>if you need medication to keep blood sugar levels stable.</li>
+              <li><strong>diabetes insipidus</strong><br>and other forms of hypopituitarism.</li>
+              <li><strong>a continuing physical disability</strong><br>which means you can't go out without the help of another person.</li>
+              <li><strong>epilepsy</strong><br>if you need continuous anticonvulsive therapy</li>
+              <li><strong>a permanent fistula</strong><br>which needs continuous surgical dressing or an appliance - for example, caecostomy, colostomy, laryeigostom or ileostomy.</li>
+              <li><strong>hypoadrenalism</strong><br>where specific substitution therapy is essential - for example, Addison's Disease.</li>
+              <li><strong>hypoparathyroidism</strong><br>which means your parathyroid glands produce too little parathyroid hormone.</li>
+             
+           
+              <li><strong>myasthenia gravis</strong><br>where ana autoimmune condition affects your nerves and muscles.</li>
+              <li><strong>myxoedema</strong><br>for example, hypothyroidism which needs thyroid hormone replacement.</li>
+            </ul>
+
+            <form action="disabled-exemption" method="get" class="form">
+
+              
+              <div class="nhsuk-form-group">
+      
+                <div class="nhsuk-radios nhsuk-radios--inline">
+                  <div class="nhsuk-radios__item">
+                      <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes">
+                      <label class="nhsuk-label nhsuk-radios__label" for="yes">
+                          Yes
+                      </label>
+                  </div>
+                  <div class="nhsuk-radios__item">
+                      <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="no">
+                      <label class="nhsuk-label nhsuk-radios__label" for="no">
+                          No
+                      </label>
+                  </div>
+              </div>
+                </fieldset>
+              
+              </div>
+          <div class="nhsuk-form-group">
+          <button class="nhsuk-button" type="submit">
+           Continue
+          </button>
+          <p><a href="respond-to-your-letter">Cancel</a></p>
+          </div>
+      
+              
+         
+      
+          </div>
+        </div>
+
+{% endblock %}

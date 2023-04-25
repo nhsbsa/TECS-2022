@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your address is correct
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="address-dd" method="post" class="form">
+
+        <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">Is your address correct?</h1>
+        
+    <div class="nhsuk-hint" id="contact-hint">
+      We'll send confirmation of your Direct Debit to the address you provide.
+    </div>
+        <dl class="nhsuk-summary-list">
+
+        
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              12 Old Oak Road<br>Throckley<br> NE67 9AD
+            </dd>
+        
+        
+          </div>
+        
+          
+        
+          </div>
+        
+        </dl>
+        </div>
+        
+        <div class="nhsuk-form-group">
+
+          <div class="nhsuk-radios nhsuk-radios--inline">
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="example-inline-1" name="example-inline" type="radio" value="yes">
+              <label class="nhsuk-label nhsuk-radios__label" for="example-inline-1">
+                Yes
+              </label>
+            </div>
+      
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="example-inline-2" name="example-inline" type="radio" value="no">
+              <label class="nhsuk-label nhsuk-radios__label" for="example-inline-2">
+                No
+              </label>
+            </div>
+      
+          </div>
+          </div>
+        
+
+
+
+          </fieldset>
+        
+      
+    
+    <button class="nhsuk-button" type="submit">
+     Continue
+    </button>
+    </div>
+
+        
+   
+
+    </div>
+  </div>
+
+{% endblock %}
