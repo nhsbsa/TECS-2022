@@ -494,6 +494,15 @@ router.get(/address-contact/, function (req, res) {
   }
 });
 
+router.get(/version6-address/, function (req, res) {
+  if (req.query.address == 'yes') {
+    res.redirect('dd-check-answers');
+  }
+  else if (req.query.address == 'no') {
+    res.redirect('what-is-your-address-dd');;
+  }
+});
+
 
 router.post(/do-you-know-number/, function (req, res) {
 
@@ -545,6 +554,17 @@ router.post(/v6-dwp-benefits/, function (req, res) {
     res.redirect('check-personal-details-dwp');
   }
 
-})
+});
+
+
+
+router.get(/matex-pay/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('how-to-pay-maternity');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('pay-by-card');;
+  }
+});
 
 module.exports = router;

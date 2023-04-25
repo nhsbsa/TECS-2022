@@ -1,0 +1,160 @@
+<!-- Use this page as the index for your project -->
+
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+  NHS.UK prototype kit
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+   <div class="nhsuk-grid-column-full">
+     <!-- Change the page title here -->
+     <h1 class="nhsuk-heading-xl">Transforming Exemption Checking Service</h1>
+     <!-- Add your content here -->
+     <!-- Styles and components can be found at https://beta.nhs.uk/service-manual/styles-components-patterns -->
+     <div class="nhsuk-warning-callout">
+      <h3 class="nhsuk-warning-callout__label">
+        <span role="text">
+          <span class="nhsuk-u-visually-hidden">Important: </span>
+          Important
+        </span>
+      </h3>
+      <p>Don't use any of this prototype code on production services, it doesn't adhere to development standards and is hacked together quickly and roughly.</p>
+    </div>
+ 
+     <hr>
+ 
+     <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-5">
+      <summary class="nhsuk-details__summary">
+        <span class="nhsuk-details__summary-text"><small>Version 6 - Private Beta - Changes following baseline - (28/03/2023)</small></span>
+      </summary>
+
+
+
+      <div class="nhsuk-details__text">
+
+        <h2>Prototype Functionality</h2>
+
+        <dl class="nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              DWP Journey:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              NE1 3JA
+            </dd>
+
+
+
+          </div>
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              NHSBSA Journey:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              NE2 4XL
+            </dd>
+
+
+
+          </div>
+
+
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              We cannot find your details:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              WA4 1AB
+
+            </dd>
+
+
+
+          </div>
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+             Benefit number to get send proof:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+             1234512345
+
+            </dd>
+
+
+
+          </div>
+
+        </dl>
+
+        <h2 class="nhsuk-heading-l">Hypothesis A
+
+        </h2>
+
+        <p style="background: #DEE0E2; padding: 20px;">We believe by adding in content or a page around why the user
+          cannot pay at the enquiry stage of the journey will help the user understand that they will have to wait until
+          they get a PCN.
+          This is in hopes to cause less frustration and confusion. We understand from our CSAT results that this is one
+          of the biggest issues the user faces with this journey.</p>
+
+        <hr>
+
+        <h3 class="nhsuk-heading-m">What we created:</h3>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          
+         
+          <li>We have added a new iteration of the filter page to this prototype which asks users whether they want
+            to pay, confirm their entitlement or try to see if they have an exemption if they are not sure. If they select pay it will give the user a kickout screen explaining
+            why they cannot pay. If they select confirm their entitlement or im not sure it will take them through the rest of the
+            journey.</li>
+            <li>We have also made a change to the enquiry letter view page to make it less wordy and more contextualised to the situation the user is in and what they need to do next.</li>
+
+        </ul>
+        <h3 class="nhsuk-heading-m">What we plan to test:</h3>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>Filter page</li>
+          <li>New benefit number input component</li>
+          <li>Check your answers and checkbox to confirm information is correct</li>
+          <li>New changes to enquiry letter view screen</li>
+
+
+          
+        </ul>
+        <hr>
+
+        <a class="nhsuk-button" href="user-research-journies/respond-to-your-letter">Respond to your letter</a>
+
+
+
+      </div>
+    </details>
+ 
+   </div>
+ </div>
+{% endblock %}
