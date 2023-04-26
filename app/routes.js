@@ -516,7 +516,7 @@ router.post(/do-you-know-number/, function (req, res) {
   } else if (exemption == 'yes' && certNumber == 'contact') {
     res.redirect('best-way-to-contact')
   } else if (exemption == 'yes' && certNumber == '1234512345') {
-    res.redirect('cannot-confirm')
+    res.redirect('check-personal-details-UR')
   } else if (exemption == 'no') {
     res.redirect('check-personal-details');
   }
