@@ -496,7 +496,7 @@ router.get(/address-contact/, function (req, res) {
 
 router.get(/version6-address/, function (req, res) {
   if (req.query.address == 'yes') {
-    res.redirect('dd-check-answers');
+    res.redirect('enter-bank-details');
   }
   else if (req.query.address == 'no') {
     res.redirect('what-is-your-address-dd');;

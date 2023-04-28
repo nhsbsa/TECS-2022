@@ -26,7 +26,7 @@ Pay by card
       <form action="pay-choice" method="get" class="form">
 
         <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-xl">Pay by card</h1>
+        <h1 class="nhsuk-heading-l">Pay by card</h1>
         <div class="nhsuk-form-group">
 
         <p>It can take up to 24 hours for payment information to update.</p>
@@ -45,16 +45,27 @@ Pay by card
               
               <div class="nhsuk-summary-list__row">
                 <dt class="nhsuk-summary-list__key">
-                  Total amount:
+                  Total amount
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                   £57.90
                 </dd>
     
               </div>
+              
+    
+    
+            </dl>
+            <h3 class="nhsuk-card__heading">
+              Previous payments
+            </h3>
+    
+          
+            <dl class="nhsuk-summary-list nhsuk-summary-list">
+    
               <div class="nhsuk-summary-list__row">
                 <dt class="nhsuk-summary-list__key">
-                  Payments made:
+                  Payments made
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                   £7.90
@@ -62,23 +73,27 @@ Pay by card
     
               </div>
     
+              
+              
+    
     
             </dl>
+            <p style="font-weight: bold; font-size:36px;">
+             Amount still to pay: £50
+    
+            </p>
     
            
     
           
             
-            <p style="font-weight: bold; font-size:36px;">
-              Outstanding balance due: £50
-    
-            </p>
+            
     
           </div>
         </div>
-        
-
-        <h2>How much are you paying today?</h2>
+        <p>You can either pay the full amount in one payment or split it across several payments.</p>
+        <p>If you have recently made a payment, it can take up to 24 hours or payment information to update.</p>
+        <h2>Do you want to pay the full amount still to pay?</h2>
         <div class="nhsuk-form-group">
 
           <div class="nhsuk-radios nhsuk-radios">
@@ -86,13 +101,13 @@ Pay by card
             <div class="nhsuk-radios__item">
                 <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
                 <label class="nhsuk-label nhsuk-radios__label" for="no">
-                  Full payment 
+                  Yes, I want to pay the full amount
                 </label>
             </div>
             <div class="nhsuk-radios__item">
               <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
               <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                Partial payment
+                No, I want to make a partial payment
               </label>
           </div>
         </div>
