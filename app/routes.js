@@ -567,4 +567,15 @@ router.get(/matex-pay/, function (req, res) {
   }
 });
 
+
+
+router.get(/full-partial/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('payment-choice');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('pay-by-dd');;
+  }
+});
+
 module.exports = router;
