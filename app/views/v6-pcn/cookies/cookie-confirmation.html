@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Your cookie settings have been saved
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+
+      
+      <h1 class="nhsuk-heading-xl">Your cookie settings have been saved</h1>
+      <div class="nhsuk-form-group">
+
+<p>We'll save your settings for 90 days.</p>
+<p>We'll ask you if you're still ok with us using cookies when either:</p>
+<ul>
+<li>it's been 90 days since you last saved your settings</li>
+<li>we add any new cookies or change the cookies we use </li>
+</ul>
+
+<p>You can also <a href="cookie-consent" title="External website">change your cookie settings</a> at any time. </p>
+<p> Select continue to go back to the start page.</p>
+
+<a class="nhsuk-button" data-module="nhsuk-button" type="submit" href="/v6-pcn/respond-to-your-letter">
+Continue
+</a>
+
+    </div>
+  </div>
+
+{% endblock %}

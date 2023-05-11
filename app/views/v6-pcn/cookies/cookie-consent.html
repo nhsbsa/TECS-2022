@@ -1,0 +1,136 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Choose which cookies we use
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+
+
+      <h1 class="nhsuk-heading-xl">Choose which cookies we use</h1>
+      <div class="nhsuk-form-group">
+
+        <p>Let us know which cookies we can use. We'll use a cookie to save your settings for the next 90 days. This
+          setting applies across all our digital services, not just the one you are accessing.</p>
+        <h2>Cookies that measure website use (analytics cookies)</h2>
+        <p>These cookies store information about how you use our website, such as the links you click on. We use them to
+          help make our website better.</p>
+        <details class="nhsuk-details">
+          <summary class="nhsuk-details__summary">
+            <span class="nhsuk-details__summary-text">
+              List of cookies that measure website use
+            </span>
+          </summary>
+          <dl class="nhsuk-summary-list">
+
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                Cookie name
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                <b>Purpose</b>
+              </dd>
+              <dd class="nhsuk-summary-list__value">
+                <b>Expiry</b>
+              </dd>
+
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                _gat
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                Used by Google Analytics, this helps Google Analytics web servers from crashing when collecting
+                information on how you use our website
+              </dd>
+              <dd class="nhsuk-summary-list__value">
+                1 minute
+              </dd>
+
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                _gid
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                Used by Google Analytics, set's a unique ID for your session to help tell us how you use our website
+              </dd>
+              <dd class="nhsuk-summary-list__value">
+                24 hours
+              </dd>
+
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                _ga
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                <p>Used to distinguish users for analytical purposes</p>
+              </dd>
+              <dd class="nhsuk-summary-list__value">
+                2 years
+              </dd>
+
+            </div>
+
+          </dl>
+        </details>
+
+        <div class="nhsuk-form-group">
+
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading">
+                Do you want to allow cookies to measure your website use?
+              </h1>
+            </legend>
+
+            <div class="nhsuk-radios">
+
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes" checked>
+                <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                  Use cookies to measure my website use
+                </label>
+              </div>
+
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                  Do not use cookies to measure my website use
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+
+        </div>
+
+
+
+
+      </div>
+
+      <a class="nhsuk-button" data-module="nhsuk-button" type="submit" href="cookie-confirmation">
+        Save my cookie settings
+      </a>
+
+  </div>
+
+  
+
+
+  {% endblock %}
