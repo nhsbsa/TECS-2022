@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+<header class="nhsuk-header nhsuk-header--transactional" role="banner">
+  <div class="nhsuk-width-container nhsuk-header__container">
+    <div class="nhsuk-header__logo nhsuk-header__logo--only"><a class="nhsuk-header__link" href="/" aria-label="NHS homepage">
+
+        <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16" height="40" width="100">
+          <path class="nhsuk-logo__background" fill="#005eb8" d="M0 0h40v16H0z"></path>
+          <path class="nhsuk-logo__text" fill="#fff" d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6"></path>
+        </svg>
+
+      </a>
+    </div>
+    <div class="nhsuk-header__transactional-service-name">
+      <a class="nhsuk-header__transactional-service-name--link" href="/v4/respond-to-your-letter">Respond to your letter</a>
+    </div>
+
+  </div>
+
+</header>
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+      <span class="nhsuk-caption-m">Respond to your letter</span>
+
+      
+      <h1 class="nhsuk-heading-xl">Cookies on the Respond to your letter website</h1>
+      <div class="nhsuk-form-group">
+        <h2>What are cookies?</h2>
+
+        <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+        <p>They store information about how you use the website, such as the pages you visit.</p>
+        <p>Cookies are not viruses or computer programs. They are very small so do not take up much space.</p>
+
+        <h2>How we use cookies</h2>
+        <p>We use cookies to:</p>
+        <ul>
+          <li>make our website work, for example by keeping it secure</li>
+          <li>measure how you use our website, such as which links you click on (analytics cookies)</li>
+        </ul>
+
+<details class="nhsuk-details">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+      List of cookies that measure website use
+    </span>
+  </summary>
+  <dl class="nhsuk-summary-list">
+
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        Cookie name
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <b>Purpose</b>
+      </dd>
+      <dd class="nhsuk-summary-list__value">
+        <b>Expiry</b>
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        _gat
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        Used by Google Analytics, this helps Google Analytics web servers from crashing when collecting information on how you use our website
+      </dd>
+      <dd class="nhsuk-summary-list__value">
+        1 minute
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        _gid
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        Used by Google Analytics, set's a unique ID for your session to help tell us how you use our website
+      </dd>
+      <dd class="nhsuk-summary-list__value">
+        24 hours
+      </dd>
+  
+    </div>
+  
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        _ga
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        <p>Used to distinguish users for analytical purposes</p>
+      </dd>
+      <dd class="nhsuk-summary-list__value">
+        2 years
+      </dd>
+  
+    </div>
+  
+  </dl>
+</details>
+
+<h2>Change your cookie settings</h2>
+<p>Some cookies, like those needed to measure how you use our website, are not needed for our website to work.</p>
+<p>These cookies can help us make our website better, but we'll only use them if you say it's OK.</p>
+
+<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+  Choose which cookies we use
+</button>
+
+<h2>How we use the information we collect</h2>
+<p>To find out about how we collect, store and use information about you or your visit, see the <a href="https://www.nhsbsa.nhs.uk/our-policies/privacy">NHSBSA website privacy policy.</a> </p>
+<p>If you do not want to change your cookie settings, you can close this tab.</p>
+
+
+
+    </div>
+  </div>
+  
+
+{% endblock %}
