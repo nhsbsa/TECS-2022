@@ -388,7 +388,7 @@ router.post(/dd-checkbox/, (req, res) => {
 
 router.get(/disabled-exemption/, function (req, res) {
   if (req.query.exemption == 'yes') {
-    res.redirect('no-medex');
+    res.redirect('no-medex-radio');
   }
   else if (req.query.exemption == 'no') {
     res.redirect('mat-ex');;
@@ -397,7 +397,7 @@ router.get(/disabled-exemption/, function (req, res) {
 
 router.get(/maternity-exemption/, function (req, res) {
   if (req.query.exemption == 'yes') {
-    res.redirect('no-matex');
+    res.redirect('no-matex-radio');
   }
   else if (req.query.exemption == 'no') {
     res.redirect('cannot-find-details-matex');;
@@ -557,13 +557,42 @@ router.post(/v6-dwp-benefits/, function (req, res) {
 });
 
 
-
 router.get(/matex-pay/, function (req, res) {
   if (req.query.debit == 'credit') {
     res.redirect('how-to-pay-maternity');
   }
   else if (req.query.debit == 'direct') {
-    res.redirect('pay-by-card');;
+    res.redirect('gov-pay-medex');;
+  }
+});
+
+
+
+
+router.get(/medex-pay/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('how-to-pay');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('gov-pay-medex');;
+  }
+});
+
+router.get(/medex-cannot-find-details/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('gov-pay-medex');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('we-need-proof');;
+  }
+});
+
+router.get(/medex-radios/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('how-to-pay-2');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('gov-pay-medex');;
   }
 });
 
