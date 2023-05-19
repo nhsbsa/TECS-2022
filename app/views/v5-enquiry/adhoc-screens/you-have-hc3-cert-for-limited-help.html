@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You have a HC3 certificate for limited help
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+
+      <span class="nhsuk-caption-l">Confirm your entitlement</span>
+      <h1 class="nhsuk-heading-xl">You have a HC3 certificate for limited help</h1>
+      <div class="nhsuk-form-group">
+
+<p>We cannot verify your entitlement at the moment. Please contact us using the details below for further assistance:</p>
+
+<div class="nhsuk-inset-text">
+<span class="nhsuk-u-visually-hidden">Information: </span>
+<p>Email us at: <a href="https://yellowcard.mhra.gov.uk/" title="External website">nhsbsa.decs@nhsbsa.nhs.uk</a></p>
+<p>Call us on: 0300 330 1293</p>
+</div>
+
+<h3>Feedback</h3>
+
+<p>Leaving feedback only takes 5 minutes. Your comments are extremely helpful and will help us provide a better service.</p>
+
+<a href="url">Leave feedback</a>
+
+
+    </div>
+  </div>
+
+{% endblock %}
