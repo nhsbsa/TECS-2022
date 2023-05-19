@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Enter your bank details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      aria-hidden="true" height="24" width="24">
+      <path
+        d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+      </path>
+    </svg>
+    Go back</a>
+</div>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">
+      Enter your bank details
+    </h1>
+  
+    <p>Equifax will perform a check to verify the bank account details you give us. A record of this will be left on your credit record for 12 months but will not affect your credit rating.</p>
+    
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label" for="input-width-10">
+        Account holder's name
+      </label>
+      <input class="nhsuk-input nhsuk-input--width-10" id="input-width-20" name="test-width-20" type="text">
+      <br><br>
+      <label class="nhsuk-label" for="example-with-hint-text">
+        Account number
+      </label>
+      <input class="nhsuk-input nhsuk-input--width-10" id="example-with-hint-text" name="example-with-hint-text" type="text" inputmode="numeric">
+      <br><br>
+      <label class="nhsuk-label" for="input-width-2">
+        Sort code
+      </label>
+      <input class="nhsuk-input nhsuk-input--width-2" id="input-width-2" name="test-width-2" type="text" inputmode="numeric"> <input class="nhsuk-input nhsuk-input--width-2" id="input-width-2" name="test-width-2" type="text" inputmode="numeric">  <input class="nhsuk-input nhsuk-input--width-2" id="input-width-2" name="test-width-2" type="text" inputmode="numeric">
+      
+      
+    </div>
+​
+
+
+    
+​
+    <a class="nhsuk-button" data-module="nhsuk-button" type="submit" href="dd-check-answers">
+      Continue
+    </a>
+​
+    <p><a href="url">Cancel</a></p>
+
+
+
+
+
+
+
+</div>
+</div>
+
+{% endblock %}

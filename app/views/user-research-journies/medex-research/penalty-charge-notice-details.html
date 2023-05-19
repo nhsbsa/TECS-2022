@@ -1,0 +1,315 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+<header class="nhsuk-header nhsuk-header--transactional" role="banner">
+  <div class="nhsuk-width-container nhsuk-header__container">
+    <div class="nhsuk-header__logo nhsuk-header__logo--only"><a class="nhsuk-header__link" href="/"
+        aria-label="NHS homepage">
+
+        <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16" height="40" width="100">
+          <path class="nhsuk-logo__background" fill="#005eb8" d="M0 0h40v16H0z"></path>
+          <path class="nhsuk-logo__text" fill="#fff"
+            d="M3.9 1.5h4.4l2.6 9h.1l1.8-9h3.3l-2.8 13H9l-2.7-9h-.1l-1.8 9H1.1M17.3 1.5h3.6l-1 4.9h4L25 1.5h3.5l-2.7 13h-3.5l1.1-5.6h-4.1l-1.2 5.6h-3.4M37.7 4.4c-.7-.3-1.6-.6-2.9-.6-1.4 0-2.5.2-2.5 1.3 0 1.8 5.1 1.2 5.1 5.1 0 3.6-3.3 4.5-6.4 4.5-1.3 0-2.9-.3-4-.7l.8-2.7c.7.4 2.1.7 3.2.7s2.8-.2 2.8-1.5c0-2.1-5.1-1.3-5.1-5 0-3.4 2.9-4.4 5.8-4.4 1.6 0 3.1.2 4 .6">
+          </path>
+        </svg>
+
+      </a>
+    </div>
+    <div class="nhsuk-header__transactional-service-name">
+      <a class="nhsuk-header__transactional-service-name--link" href="/v4/respond-to-your-letter">Respond to your
+        letter</a>
+    </div>
+
+  </div>
+
+</header>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<style>
+  .payment-summary {
+    border-top: 2px solid #1d70b8;
+    padding: 15px;
+    background-color: white;
+  }
+</style>
+
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      aria-hidden="true" height="24" width="24">
+      <path
+        d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+      </path>
+    </svg>
+    Go back</a>
+</div>
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Respond to your letter</span>
+    <h1>
+      Penalty Charge Notice 01234567890
+    </h1>
+
+    <div class="nhsuk-warning-callout">
+      <h3 class="nhsuk-warning-callout__label">
+        <span role="text">
+          <span class="nhsuk-u-visually-hidden">Important: </span>
+          Do not delay
+        </span>
+      </h3>
+      <p>You now have 10 days to either confirm you were entitled to free NHS prescriptions, or pay this Penalty Charge
+        Notice (by 06 September 2021). <br><br>If you do not respond, an extra surcharge of up to £50 may be added to
+        these charges.</p>
+    </div>
+
+
+    <!-- <h2 class="nhsuk-heading-m">Penalty Charge Notice amount</h2> -->
+
+
+    <!-- <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <dl class="nhsuk-summary-list nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Prescription charges:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £23.80
+            </dd>
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Penalty charge:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £100.00
+            </dd>
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Total Charge:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              
+            </dd>
+        
+          </div>
+
+          <strong style="font-size: 36px;">£123.80</strong>
+        
+          
+        </dl>
+      </div> -->
+
+      
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-card__heading">
+          Penalty Charge Notice amount
+
+        </h3>
+        <dl class="nhsuk-summary-list nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Total prescription charge
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £9.65
+            </dd>
+
+          </div>
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+               Penalty charge
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £48.25
+            </dd>
+
+          </div>
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Total amount
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £57.90
+            </dd>
+
+          </div>
+
+
+        </dl>
+
+       
+            
+            <!-- <p>The penalty charge is calculated at 5 times the total prescription amount claimed, up to a maximum of £100.</p>
+            <p>Your total amount is the penalty charge amount plus your original prescription costs.</p>
+         -->
+      
+        <h2 class="nhsuk-card__heading">
+          Previous payments
+        </h3>
+
+      
+        <dl class="nhsuk-summary-list nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Payments made
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £7.90
+            </dd>
+
+          </div>
+
+          
+          
+
+
+        </dl>
+        <p style="font-weight: bold; font-size:36px;">
+         Amount still to pay: £50
+
+        </p>
+
+      </div>
+    </div>
+    <p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+
+    
+
+    <!-- <div class="payment-summary">
+        <h2 class="nhsuk-heading-l">Penalty Charge Notice summary</h2>
+        <dl class="nhsuk-summary-list nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Prescription charges:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £23.80
+            </dd>
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Penalty charge:
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £100.00
+            </dd>
+        
+          </div>
+        
+        
+        </dl>
+        
+          
+          <p style="font-weight: bold;">
+            Total amount:
+            
+          </p>
+          <span id="amount" style="font-size:36px;"> £123.80</span>
+      </div> -->
+
+
+
+    <!-- <div class="nhsuk-promo">
+
+
+      <p>Prescription charges: £23.80</p>
+      <p> Penalty charge: £100.00</p>
+      <p>Total amount:<br> <strong style="font-size: 36px;">£123.80</strong></p>
+
+    </div> -->
+
+
+    <dl class="nhsuk-summary-list">
+
+
+    </dl>
+    <h3>Details on the prescription</h3>
+    <dl class="nhsuk-summary-list">
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Michellle Doe
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Address
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          12 Old Oak Road<br>Throckley<br> NE67 9AD
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Exemption reason ticked
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <p>Gets Income Support or income-related Employment and Support Allowance.</p>
+
+        </dd>
+
+      </div>
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Date prescription was claimed
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+         On 21 April 2021
+        </dd>
+
+      </div>
+    </dl>
+
+    <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this
+      issue.</p>
+    <p>If you were not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice, you cana pay by
+      either:</p>
+    <ul>
+      <LI>debit or credit card</LI>
+      <li>Direct Debit</li>
+    </ul>
+
+    </dl>
+  </div>
+
+</div>
+<a href="what-you-need-to-do-next-bsa" class="nhsuk-button">
+  Continue
+</a>
+<style>
+  .nhsuk-promo {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 0 0 #D8DDE0;
+  }
+</style>
+{% endblock %}
+         
+
+      

@@ -400,7 +400,7 @@ router.get(/maternity-exemption/, function (req, res) {
     res.redirect('no-matex-radio');
   }
   else if (req.query.exemption == 'no') {
-    res.redirect('cannot-find-details-matex');;
+    res.redirect('cannot-confirm-pcn');;
   }
 });
 
@@ -496,7 +496,7 @@ router.get(/address-contact/, function (req, res) {
 
 router.get(/version6-address/, function (req, res) {
   if (req.query.address == 'yes') {
-    res.redirect('enter-bank-details');
+    res.redirect('dd-check-answers');
   }
   else if (req.query.address == 'no') {
     res.redirect('what-is-your-address-dd');;
@@ -513,6 +513,9 @@ router.post(/do-you-know-number/, function (req, res) {
     res.redirect('check-personal-details')
   } else if (exemption == 'yes' && certNumber == '0123456789') {
     res.redirect('confirmation-page');
+  }
+  else if (exemption == 'yes' && certNumber == '5432154321') {
+    res.redirect('check-personal-details-medex');
   } else if (exemption == 'yes' && certNumber == 'contact') {
     res.redirect('best-way-to-contact')
   } else if (exemption == 'yes' && certNumber == '1234512345') {
