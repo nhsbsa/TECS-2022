@@ -595,7 +595,7 @@ router.get(/medex-radios/, function (req, res) {
     res.redirect('how-to-pay-2');
   }
   else if (req.query.debit == 'direct') {
-    res.redirect('gov-pay-medex');;
+    res.redirect('payment-method');;
   }
 });
 
