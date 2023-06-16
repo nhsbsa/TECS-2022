@@ -41,7 +41,7 @@
             <div class="nhsuk-error-summary__body">
               <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
                 <li>
-                  <a href="#name">Enter your reference number</a>
+                  <a href="#name">Enter your certificate number</a>
                 </li>
               </ul>
             </div>
@@ -62,8 +62,9 @@
         <div class="nhsuk-radios nhsuk-radios--conditional">
 
           <div class="nhsuk-radios__item">
+          
             <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes"
-              aria-controls="conditional-contact-1" aria-expanded="false">
+              aria-controls="conditional-contact-1" aria-expanded="false" checked>
             <label class="nhsuk-label nhsuk-radios__label" for="contact-1">
               Yes
             </label>
@@ -75,6 +76,9 @@
               <label class="nhsuk-label" for="email">
                 Certificate number
               </label>
+              <span class="nhsuk-error-message" id="name-error">
+                <span class="nhsuk-u-visually-hidden">Error:</span> Enter your Certificate number
+              </span>
               <input class="nhsuk-input nhsuk-u-width-one-half" id="cert-number-input" name="certificatenumber"
                 type="text">
             </div>
