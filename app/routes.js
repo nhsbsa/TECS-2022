@@ -565,7 +565,7 @@ router.get(/matex-pay/, function (req, res) {
     res.redirect('how-to-pay-maternity');
   }
   else if (req.query.debit == 'direct') {
-    res.redirect('gov-pay-medex');;
+    res.redirect('payment-method');;
   }
 });
 
@@ -577,7 +577,7 @@ router.get(/medex-pay/, function (req, res) {
     res.redirect('how-to-pay');
   }
   else if (req.query.debit == 'direct') {
-    res.redirect('gov-pay-medex');;
+    res.redirect('payment-method');;
   }
 });
 
