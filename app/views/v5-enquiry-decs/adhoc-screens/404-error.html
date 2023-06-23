@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Page not found
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="enter-postcode" method="post" class="form">
+
+       
+        <h1 class="nhsuk-heading-l">Page not found</h1>
+       
+    
+        
+        
+    
+
+    <p>If you typed the web address, check it is correct.</p>
+    <p>If you pasted the web address, check you copied the entire address.</p>
+    <p>If the link is correct, go to the <a href="respond-to-your-letter">start page</a> to try again.</p>
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us if you have any other queries</a>.</p>
+
+    </div>
+  </div>
+
+{% endblock %}

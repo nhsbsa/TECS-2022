@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You have a HC3 certificate for limited help
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+      <h1 class="nhsuk-heading-l">You have a HC3 certificate for limited help with health costs</h1>
+      <div class="nhsuk-form-group">
+
+<p>We cannot verify your entitlement at the moment.</p>
+
+<p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us for further assistance</a></p>
+
+<h3>Feedback</h3>
+
+<p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
+<p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae"target="_blank">Leave feedback (opens in a new window)</a></p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

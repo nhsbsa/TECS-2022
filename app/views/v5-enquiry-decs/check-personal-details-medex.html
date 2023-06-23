@@ -1,0 +1,148 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your details are correct
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="confirmation-page" method="post" class="form">
+
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">Check your details are correct</h1>
+        
+        
+        
+        
+        <div class="nhsuk-hint" id="contact-hint">
+          We took these details from your prescription.<br><br>
+They should match what was shown on your exemption or prepayment certificate, or on your benefit award.
+        </div>
+        
+        <dl class="nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              Michelle Doe
+            </dd>
+        
+            <dd class="nhsuk-summary-list__actions">
+        
+              <a href="update-name">
+                Change<span class="nhsuk-u-visually-hidden"> name</span>
+              </a>
+        
+            </dd>
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              21 December 1985
+            </dd>
+        
+            <dd class="nhsuk-summary-list__actions">
+        
+              <a href="update-dob">
+                Change<span class="nhsuk-u-visually-hidden"> date of birth</span>
+              </a>
+        
+            </dd>
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              12 Old Oak Road<br>Throckley<br> NE67 9AD
+            </dd>
+        
+            <dd class="nhsuk-summary-list__actions">
+        
+              <a href="update-address">
+                Change<span class="nhsuk-u-visually-hidden"> address</span>
+              </a>
+        
+            </dd>
+        
+          </div>
+        
+          
+        
+          </div>
+        
+        </dl>
+
+
+
+
+
+
+          </fieldset>
+        
+        </div>
+
+
+        <form>
+
+          <div class="nhsuk-form-group">
+        
+            <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+              
+        
+             
+              <div class="nhsuk-checkboxes">
+        
+                
+        
+                <div class="nhsuk-checkboxes__item">
+                  <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message" required>
+                  <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+                   <strong>I confirm that the details are correct</strong>
+                  </label>
+                </div>
+        
+              </div>
+            </fieldset>
+        
+          </div>
+        
+         <br>
+    <div class="nhsuk-form-group">
+    <button class="nhsuk-button" type="submit">
+     Continue
+    </button>
+    </div></form>
+
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+   
+
+    </div>
+  </div>
+
+{% endblock %}
