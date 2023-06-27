@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Enter your reference number again
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+
+    <span class="nhsuk-caption-m">Your details</span>
+    <h1 class="nhsuk-heading-l">Enter your reference number again</h1>
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label" for="one-half">
+        <div class="nhsuk-hint" id="example-with-hint-text-hint">
+          We ask this to make sure we find the correct record.
+        </div>
+      </label>
+      <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+    </div>
+    <a href="date-of-birth" class="nhsuk-button">
+      Continue
+    </a>
+
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

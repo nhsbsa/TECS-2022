@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Choose which cookies we use
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-name-input" method="get" class="form">
+
+
+      <h1 class="nhsuk-heading-l">Choose which cookies we use</h1>
+      <div class="nhsuk-form-group">
+
+        <p>Let us know which cookies we can use. We'll use a cookie to save your settings for the next 90 days. This
+          setting applies across all our digital services, not just the one you are accessing.</p>
+          <h2 class="nhsuk-heading-m">Cookies that measure website use (analytics cookies)</h2>
+        <p>These cookies store information about how you use our website, such as the links you click on. We use them to
+          help make our website better.</p>
+        <details class="nhsuk-details">
+          <summary class="nhsuk-details__summary">
+            <span class="nhsuk-details__summary-text">
+              List of cookies that measure website use
+            </span>
+          </summary>
+          <table role="table" class="nhsuk-table-responsive">
+  
+            <thead role="rowgroup" class="nhsuk-table__head">
+              <tr role="row">
+                <th role="columnheader" class="" scope="col">
+                  Cookie name
+                </th>
+                <th role="columnheader" class="" scope="col">
+                  Purpose
+                </th>
+                <th role="columnheader" class="" scope="col">
+                  Expiry
+                </th>
+              </tr>
+            </thead>
+            <tbody class="nhsuk-table__body">
+              <tr role="row" class="nhsuk-table__row">
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Cookie name </span>_gat
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Purpose </span>Used by Google Analytics, this helps Google Analytics web servers from crashing when collecting information on how you use our website
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Expiry </span>1 minute
+                </td>
+              </tr>
+              <tr role="row" class="nhsuk-table__row">
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Cookie name </span>_gid
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Purpose </span>Used by Google Analytics, set's a unique ID for your session to help tell us how you use our website
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Expiry </span>24 hours
+                </td>
+              </tr>
+              <tr role="row" class="nhsuk-table__row">
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Cookie name </span>_ga
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Purpose </span>Used to distinguish users for analytical purposes
+                </td>
+                <td role="cell" class="nhsuk-table__cell">
+                  <span class="nhsuk-table-responsive__heading">Expiry </span>2 years
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </details>
+        </details>
+
+        <div class="nhsuk-form-group">
+
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h2 class="nhsuk-heading-m">
+                Do you want to allow cookies to measure your website use?
+              </h2>
+            </legend>
+
+            <div class="nhsuk-radios">
+
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes" checked>
+                <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                  Use cookies to measure my website use
+                </label>
+              </div>
+
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
+                <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                  Do not use cookies to measure my website use
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+
+        </div>
+
+
+
+
+      </div>
+
+      <a class="nhsuk-button" data-module="nhsuk-button" type="submit" href="cookie-confirmation">
+        Save my cookie settings
+      </a>
+
+  </div>
+
+  
+
+
+  {% endblock %}

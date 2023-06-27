@@ -1,0 +1,188 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Confirm and submit your Direct Debit
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      aria-hidden="true" height="24" width="24">
+      <path
+        d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+      </path>
+    </svg>
+    Go back</a>
+</div>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">
+      Confirm and submit your Direct Debit
+    </h1>
+
+    <p>If we are unable to take a payment, you may have to pay extra charges. If we are unable to take payments on more
+      than one occasion, you may not be able to pay by Direct Debit in the future.</p>
+
+    <h2 class="nhsuk-heading-m">Direct Debit summary</h2>
+      <dl class="nhsuk-summary-list">
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            First payment
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £11.37
+          </dd>
+
+
+
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            First payment taken on or just after
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            01 February 2023
+          </dd>
+
+
+
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Following 11 payments
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £4.82
+          </dd>
+
+
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Total amount
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £57.90
+          </dd>
+
+
+        </div>
+
+
+
+
+      </dl>
+
+      <p>You're responsible for making sure that payments can be taken on these dates.</p>
+
+
+      <h3 class="nhsuk-heading-m">Your bank details</h3>
+      <dl class="nhsuk-summary-list">
+
+
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Account number
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            12345678
+          </dd>
+
+
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Sort code
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            12 34 56
+          </dd>
+
+
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Account holder's name
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Michelle Doe
+          </dd>
+
+
+        </div>
+
+      </dl>
+
+      ​<div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+
+          <img
+            src="https://www.guhg.co.uk/wp-content/uploads/2018/11/direct-debit-website-992x561-e1542983967438-1140x720.png"
+            width="150px" alt="Picture of DD logo" style="display:block; margin-bottom: 10px;">
+
+          <p>We will send this Direct Debit instruction to: <strong>HSBC BANK PLC, Guernsey, Channel Islands</strong>.
+          </p>
+          <p>Please pay the NHSBSA PECS Direct Debits from the account detailed in this instruction subject to the
+            safeguards assured by the Direct Debit Guarantee. I understand that this instruction may remain with NHSBSA
+            PECS, and if so, details will be passed electronically to my Bank/Building Society</p>
+
+          <p>Originator:<br>NHSBSA PECS, Bridge House,<br>152 Pilgrim Street, Newcastle Upon Tyne, NE1 6SN</p>
+
+          <p>Service User Number (SUN): 174819</p>
+          <P>Telephone: 0300 330 9219</P>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <div class="nhsuk-checkboxes">
+
+
+
+        <div class="nhsuk-checkboxes__item nhsuk-u-margin-bottom-7">
+          <input class="nhsuk-checkboxes__input" id="example-3" name="example" type="checkbox" value="text message"
+            required>
+          <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+            <strong>I agree to the terms and conditions</strong>
+          </label>
+        </div>
+
+      </div>
+      ​
+      <a class="nhsuk-button" data-module="nhsuk-button" type="submit" href="dd-confirmed">
+        Continue
+      </a>
+      ​
+      <p><a href="url">Cancel</a></p>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

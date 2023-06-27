@@ -9,5 +9,10 @@
 ///////////////////////////////////////////
 // Add your custom CSS/Sass styles below...
 ///////////////////////////////////////////
-  
+ 
+.timeout-warning-modal {
+    border: 4px solid $nhsuk-focus-text-color;
+    padding: 20px;
+    background-color: $color_nhsuk-white;
+}
 

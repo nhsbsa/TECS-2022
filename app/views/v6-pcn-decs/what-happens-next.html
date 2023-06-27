@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+What happens next
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+  <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+    <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      aria-hidden="true" height="24" width="24">
+      <path
+        d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+      </path>
+    </svg>
+    Go back</a>
+</div>
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
+    <h2>
+      What happens next?
+    </h2>
+    <p>To try to confirm you were entitled to free or reduced cost NHS dental treatment, we’ll:</p>
+    <ul>
+      <li>ask for some details about your exemption, benefit or prepayment certificate</li>
+      <li>check for other reasons you may have been entitled to free or reduced cost NHS dental treatment</li>
+      <li>tell you how to send us proof you were entitled to free or reduced cost NHS dental treatment if we need this</li>
+      <li>let you know the next steps</li>
+    </ul>
+    <p><a href="https://www.nhsbsa.nhs.uk/our-policies/privacy/challenge-your-pcn-privacy-notice"target="_blank">Find out more about
+        how we use your information (opens in a new window)</a>.</p>
+    <a href="did-you-have-this-exemption" class="nhsuk-button">
+      Continue
+    </a>
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+    {% endblock %}
