@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Your session has timed out
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <h1 class="nhsuk-heading-l">
+            Your session has timed out
+        </h1>
+    
+        <p>
+            We have reset your session because you did not do anything for 30 minutes. We did this to keep your information secure.
+        </p>
+
+        <a href="enter-reference-number" class="nhsuk-button">
+            Start again
+        </a>
+    </div>
+</div>
+{% endblock %}
