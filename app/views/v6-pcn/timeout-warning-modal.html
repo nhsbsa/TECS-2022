@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your reference number?
+{% endblock %}
+
+{% block outerContent %}
+    <div id="tecs-timeout-dialog" tabindex="-1" role="dialog" aria-modal="true" class="tecs-timeout-dialog" aria-labelledby="tecs-timeout-heading tecs-timeout-message">
+        <div>
+            <h1 id="tecs-timeout-heading" class="nhsuk-heading-xl">Your application will time out soon</h1>
+            <p class="nhsuk-body tecs-timeout-dialog__message" aria-hidden="true">We will reset your application if you do not respond in <span id="tecs-timeout-countdown" class="tecs-timeout-dialog__countdown"><strong>4 minutes 59 seconds</strong></span>. We do this to keep your information secure.</p>
+            <p>We will reset your application if you do not respond in five minutes. We do this to keep your information secure.</p>
+            
+            <a id="tecs-timeout-keep-signin-btn" class="nhsuk-button" href="enter-reference-number" role="button">
+                Continue application
+            </a>
+            <div class="tecs-timeout-dialog__link-wrapper"></div></div>
+        </div>
+    <div id="tecs-timeout-overlay" class="tecs-timeout-overlay"></div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="/v2/what-is-dob" method="post" class="form">
+
+        <span class="nhsuk-caption-m">Your details</span>
+        <h1 class="nhsuk-heading-l">
+          What is your reference number?
+        </h1>
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="one-half">
+            <div class="nhsuk-hint" id="example-with-hint-text-hint">
+              You can find this on your letter. Only include numbers in your reference number
+            </div>
+          </label>
+          <input class="nhsuk-input nhsuk-u-width-one-half" id="one-half" name="one-half" type="text">
+        </div>
+        <a href="enter-reference-number-again" class="nhsuk-button">
+          Continue
+        </a>
+       </form>
+
+       <p><a href="respond-to-your-letter">Cancel</a></p>
+
+    </div>
+  </div>
+{% endblock %}
