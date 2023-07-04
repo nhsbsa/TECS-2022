@@ -10,12 +10,20 @@
 // Add your custom CSS/Sass styles below...
 ///////////////////////////////////////////
  
+.tecs-timeout-overlay {
+    background-color: #0b0c0c;
+    filter: alpha(opacity=80);
+    height: 100%;
+    left: 0;
+    opacity: .8;
+    -moz-opacity: .8;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}
 
-@media (min-width: 40.0625em) {
-    .tecs-timeout-dialog {
-        width: 435px;
-    }
-
+@media (min-width: 320px) {
     .tecs-timeout-dialog {
         background-color: #fff;
         border: 5px solid #0b0c0c;
@@ -26,20 +34,16 @@
         position: fixed;
         top: 50%;
         transform: translate(-50%,-50%);
-        width: 500px;
+        width: 435px;
         z-index: 1002;
     }
+}
 
-    .tecs-timeout-overlay {
-        background-color: #0b0c0c;
-        filter: alpha(opacity=80);
-        height: 100%;
-        left: 0;
-        opacity: .8;
-        -moz-opacity: .8;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1001;
+@media (min-width: 768px) {
+    .tecs-timeout-dialog {
+        width: 600px;
+        .nhsuk-button:first-of-type {
+            margin-right: 20px;
+        }
     }
 }
