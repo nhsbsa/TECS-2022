@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    We could not verify extra details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-l">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-xl">We could not verify the extra details you supplied</h1>    
+
+        <p>The information you have given us does not prove you were entitled to free or further reduction in the cost of your dental treatment on 18 December 2019.</p>
+        <p>If you were not entitled to free or reduced cost dental treatment but have an exceptional reason why you made this claim, you can ask us to review your enquiry letter. <a href="url">Find out if you can ask for a review.</a></p>
+
+        <div class="nhsuk-form-group">
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        What to do next
+                    </h1>
+                </legend>
+
+                <p>You have the following options:</p>
+          
+                <div class="nhsuk-radios">     
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="example-divider-1" name="example-divider" type="radio" value="nhsuk-login">
+                        <label class="nhsuk-label nhsuk-radios__label" for="example-divider-1">
+                            Pay the total amount of £88.20
+                        </label>
+                    </div>
+                
+                    <div class="nhsuk-radios__divider">or</div>
+                
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="example-divider-4" name="example-divider" type="radio" value="create-account">
+                        <label class="nhsuk-label nhsuk-radios__label" for="example-divider-4">
+                            Send us proof to show that you were entitled to free or reduced cost dental treatment on 18 Decemeber 2019
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+            Continue
+        </button>
+
+        <h3>Feedback</h3>
+
+        <p>Leaving feedback only takes 5 minutes. Your comments will help us provide a better service.</p>
+
+        <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae"target="_blank">Leave feedback (opens in a new window)</a></p>
+        <p>
+          <a href="#">Print this page</a>
+      </p>
+    </div>
+</div>
+
+{% endblock %}
