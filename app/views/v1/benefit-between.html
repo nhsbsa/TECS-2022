@@ -11,22 +11,13 @@
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
+      {{ backLink({
+       "href": "/v1/challenge",
+       "text": "Back",
+       "classes": ""
+     }) }}
       <div class="nhsuk-form-group">
-        <div class="nhsuk-phase-banner nhsuk-u-margin-bottom-5 no-print">
-          <p class="nhsuk-phase-banner__content">
-            <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
-              BETA
-             </strong>
-             <span class="nhsuk-phase-banner__text">
-               This is a new service - your <a class="nhsuk-link" href="#" target="_blank" rel="noopener">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it.
-            </span>
-           </p>
-         </div>
-         {{ backLink({
-          "href": "/v1/challenge",
-          "text": "Back",
-          "classes": "nhsuk-u-margin-top-9 nhsuk-u-margin-bottom-20"
-        }) }}
+
         <div class="heading-group">
           <p>Respond to your letter</p>
           <h1 class="nhsuk-heading-l">[Benefit] between 1 November and 30 November 2017?</h1>
