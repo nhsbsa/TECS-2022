@@ -12,11 +12,14 @@
       <h1 id="tecs-timeout-heading" class="nhsuk-heading-xl">Your application will time out soon</h1>
       <p class="nhsuk-body tecs-timeout-dialog__message" aria-hidden="true">You are about to be redirected.</p>
       
-      <a id="tecs-timeout-keep-signin-btn" class="nhsuk-button" href="enter-reference-number" role="button">
+      <a id="tecs-timeout-keep-continue-btn" class="nhsuk-button" href="enter-reference-number" role="button">
         Continue
       </a>
 
-      <div class="tecs-timeout-dialog__link-wrapper"></div></div>
+      <a id="tecs-timeout-keep-restart-btn" class="nhsuk-button nhsuk-button--secondary" href="respond-to-your-letter" role="button">
+        Start again
+      </a>
+    </div>
   </div>
 <div id="tecs-timeout-overlay" class="tecs-timeout-overlay"></div>
 {% endblock %}
