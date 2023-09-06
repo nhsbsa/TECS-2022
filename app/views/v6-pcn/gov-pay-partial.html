@@ -426,7 +426,19 @@ GOV.UK prototype kit
               </div>
             </fieldset>
           </div>
-          <br>
+          <hr>
+            <h3>Contact details</h3>
+            <div id="address-hint" class="govuk-hint govuk-!-margin-bottom-6" style="font-size:19px;">We'll send your payment confirmation here.</div>
+            <div class="govuk-form-group govuk-!-width-three-quarters" data-validation="addressCity">
+              <label id="address-city-lbl" for="address-city" class="govuk-label">
+                <span class="address-city-label" data-label-replace="addressCity" data-original-label="Town or city"
+                  style="font-size:19px;">
+                  Email
+                </span>
+              </label>
+              <input id="address-city" type="text" name="addressCity" maxlength="100"
+                class="govuk-input govuk-!-width-three-quarters" value="" autocomplete="billing address-level2" />
+            </div>
           <div class="form-group" style="margin-top:20px">
             <a href="gov-payment-confirmed-partial" class="govuk-button">
               Proceed to payment
