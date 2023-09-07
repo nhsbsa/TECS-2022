@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    We could not verify extra details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+    <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+      <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+        aria-hidden="true" height="24" width="24">
+        <path
+          d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+        </path>
+      </svg>
+      Go back</a>
+  </div>
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-l">Pay an NHS Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">We have tried to find your updated details but still could not verify them</h1>    
+
+        <p>Change your details if any of them are incorrect by selecting Change.</p>
+        <p>Once you have done this, you'll be brought back to this page.</p>
+        <p>Select Try again after you have updated your details.</p>
+
+
+        <dl class="nhsuk-summary-list">
+
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                11 Street <br> ELY <br> Newcastle <br>NEX 421
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                </dd>
+          
+              <dd class="nhsuk-summary-list__actions">
+          
+                <a href="/v6-pcn/what-is-your-address-dd">
+                  Change<span class="nhsuk-u-visually-hidden"> address</span>
+                </a>
+          
+              </dd>
+          
+            </div>
+          
+            <div class="nhsuk-summary-list__row">
+              <dt class="nhsuk-summary-list__key">
+                Bank Account <br> 43215432 <br> Sort Code <br> 40-23-22 <br> Stephens
+              </dt>
+              <dd class="nhsuk-summary-list__value">
+                
+              </dd>
+          
+              <dd class="nhsuk-summary-list__actions">
+          
+                <a href="/v6-pcn/enter-bank-details">
+                  Change<span class="nhsuk-u-visually-hidden"> bank details</span>
+                </a>
+          
+              </dd>
+          
+            </div>
+          
+            
+          
+              
+          
+            
+          
+            
+          
+          </dl>
+
+    
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+            Try again
+        </button>
+
+        
+
+        <p>
+            <a href="#">Cancel</a>
+       </div>
+</div>
+
+{% endblock %}
