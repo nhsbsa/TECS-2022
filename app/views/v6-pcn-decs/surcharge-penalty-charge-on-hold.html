@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    Surcharge penalty charge notice
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+    <a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+        <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            aria-hidden="true" height="24" width="24">
+            <path
+            d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+            </path>
+        </svg>
+        Go back
+    </a>
+</div>
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1>
+            Penalty Charge Notice 01234567890
+        </h1>
+
+        <div class="nhsuk-warning-callout">
+            <h3 class="nhsuk-warning-callout__label">
+                <span role="text">
+                <span class="nhsuk-u-visually-hidden">Important: </span>
+                Immediate action required
+                </span>
+            </h3>
+            <p>You must pay your Penalty Charge Notice as soon as possible.</p>
+            <p>If you do not respond, we will treat it as a deliberate decision to avoid paying the charges that you owe the NHS and we may start debt recovery proceedings.</p>
+        </div>
+        
+        <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading">
+                    Penalty Charge Notice amount
+                </h2>
+                
+                <dl class="nhsuk-summary-list nhsuk-summary-list">
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Dental treatment charges
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £14.30
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Outstanding treatment charge
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £14.30
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Penalty charge
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £71.50
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Surcharge
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £35.75
+                        </dd>
+                    </div>
+                </dl>
+      
+                <h2 class="nhsuk-card__heading">
+                    Previous payments
+                </h2>
+
+                <dl class="nhsuk-summary-list nhsuk-summary-list">
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Payments made
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £0.00
+                        </dd>
+                    </div>
+                </dl>
+
+                <p class="nhsuk-heading-l">
+                    Amount still to pay: £121.55
+                </p>
+            </div>
+        </div>
+        
+        <p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+        <h3>Details on the dental treatment form</h3>
+
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Name
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    Michellle Doe
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Address
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    12 Old Oak Road<br>Throckley<br> NE2 4XL
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Exemption reason ticked
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    Has a valid HC3 certificate - limited help with health costs
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Date dental treatment was claimed
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    On 04 October 2019
+                </dd>
+            </div>
+        </dl>
+
+        <p>If you were entitled to free dental treatment, answering some questions to confirm this can help us resolve this issue.</p>
+        <p>If you were not entitled to free dental treatment and need to pay a Penalty Charge Notice, you can pay by either:</p>
+        
+        <ul>
+            <li>debit or credit card</li>
+            <li>Direct Debit</li>
+        </ul>
+
+        <a href="payment-method" class="nhsuk-button">
+            Pay
+        </a>
+    </div>
+</div>
+{% endblock %}
