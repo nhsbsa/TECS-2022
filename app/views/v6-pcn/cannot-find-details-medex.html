@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You didn't have a valid medical exemption certificate
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      
+
+      
+
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              We cannot find your details
+            </h1>
+          </legend>
+
+          <p>The information you have given us does not prove you were entitled to free NHS prescriptions between 01 October 2023 and 25 October 2023.</p>
+
+          <p>Although you did not have a valid medical exemption certificate when you claimed a free NHS prescription, you still have the chance to apply.</p>
+
+          <p>You have until <strong>10 July 2023</strong> to get a medical exemption certificate.</p>
+          <P>If your application is successful, you'll only have to pay the original prescription charge. You will not have to pay your penalty charge. </P>
+        
+
+            
+         
+
+
+  <h3>What do you want to do next?</h3>
+          <form action="medex-radios" method="get" class="form">
+
+            
+            <div class="nhsuk-form-group">
+    
+              <div class="nhsuk-radios nhsuk-radios">
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
+                    <label class="nhsuk-label nhsuk-radios__label" for="yes">
+                      Pay the original £9.65 prescription charge, and apply for a medical exemption certificate.
+                    </label>
+                    
+                </div>
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
+                    <label class="nhsuk-label nhsuk-radios__label" for="no">
+                      Pay the full penalty charge amount of £57.90
+                    </label>
+                   
+                    
+                </div>
+            </div>
+              </div>
+              <button class="nhsuk-button" type="submit">
+              Continue
+              </button>
+              
+              </form>
+
+         
+         
+
+     
+
+         
+           
+         
+
+          <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made this claim, you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>
+          <p><a href="">Print this page</a></p>
+         
+
+              
+              
+                  
+              
+                    
+              
+              
+        
+        
+        
+        
+        </div>
+
+
+
+        </div>
+         
+          
+
+        
+   
+
+    </div>
+  </div>
+
+{% endblock %}
