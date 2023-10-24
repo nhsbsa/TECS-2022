@@ -599,6 +599,24 @@ router.get(/medex-radios/, function (req, res) {
   }
 });
 
+router.get(/no-matex-radios/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('how-to-pay-maternity');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('payment-method');;
+  }
+});
+
+router.get(/matex-radios/, function (req, res) {
+  if (req.query.debit == 'credit') {
+    res.redirect('how-to-pay-maternity');
+  }
+  else if (req.query.debit == 'direct') {
+    res.redirect('payment-method');;
+  }
+});
+
 
 
 router.get(/full-partial/, function (req, res) {
