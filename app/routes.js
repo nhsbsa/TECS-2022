@@ -628,4 +628,26 @@ router.get(/full-partial/, function (req, res) {
   }
 });
 
+//  Set up DD - Enter bank details - PCN PECS
+
+router.post('/v6-pcn/enter-bank-details', function(request, response) {
+  var accnumber = request.session.data['accnumber']
+  if (accnumber === "1234567891"){
+    response.redirect("/v6-pcn/we-could-not-verify-your-details")
+} else {
+response.redirect("/v6-pcn/confirm-direct-debit")
+}
+})
+
+//  Set up DD - Enter bank details - PCN DECS
+
+router.post('/v6-pcn-decs/enter-bank-details', function(request, response) {
+  var accnumber = request.session.data['accnumber']
+  if (accnumber === "1234567891"){
+    response.redirect("/v6-pcn/we-could-not-verify-your-details")
+} else {
+response.redirect("/v6-pcn-decs/confirm-direct-debit")
+}
+})
+
 module.exports = router;
