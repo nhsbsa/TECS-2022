@@ -650,4 +650,15 @@ response.redirect("/v6-pcn-decs/confirm-direct-debit")
 }
 })
 
+//  You've told us that you were pregnant - PCN DECS
+
+router.post('/v6-pcn-decs/told-us-you-were-pregnant', function (req, res) {
+  var sendProof = req.session.data['sendproof']
+  if (sendProof == "pay") {
+    res.redirect("/v6-pcn-decs/payment-method");
+  }
+  else {
+    res.redirect("/v6-pcn-decs/we-need-proof-pregnant");
+  }
+});
 module.exports = router;

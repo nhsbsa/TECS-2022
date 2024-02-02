@@ -17,7 +17,7 @@ We cannot confirm you were entitled
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="5" method="get" class="form">
+    
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
@@ -34,9 +34,8 @@ We cannot confirm you were entitled
         
 
        
- 
+        <form action="told-us-you-were-pregnant" method="post" class="form">
         <div class="nhsuk-form-group">
-
           <fieldset class="nhsuk-fieldset">
             <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
               <h2 class="nhsuk-fieldset__heading">
@@ -47,15 +46,15 @@ We cannot confirm you were entitled
             <div class="nhsuk-radios">
         
               <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="example-1" name="example" type="radio" value="yes">
-                <label class="nhsuk-label nhsuk-radios__label" for="example-1">
+                <input class="nhsuk-radios__input" id="proof" name="sendproof" type="radio" value="proof">
+                <label class="nhsuk-label nhsuk-radios__label" for="proof">
                   Send proof that you were pregnant at the time you claimed free or reduced dental treatment, or had given birth in the previous 12 months. If you send us valid proof, you wont have to pay anything.
                 </label>
               </div>
         
               <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="example-2" name="example" type="radio" value="no">
-                <label class="nhsuk-label nhsuk-radios__label" for="example-2">
+                <input class="nhsuk-radios__input" id="proof2" name="sendproof" type="radio" value="pay">
+                <label class="nhsuk-label nhsuk-radios__label" for="proof2">
                   Pay the total amount of £123.80.
                 </label>
               </div>
@@ -68,6 +67,7 @@ We cannot confirm you were entitled
         <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
           Continue
         </button>
+      </form>
 
 
         <p>If you were not entitled to free or reduced cost NHS dental treatment but have an exceptional reason why you made this claim,
