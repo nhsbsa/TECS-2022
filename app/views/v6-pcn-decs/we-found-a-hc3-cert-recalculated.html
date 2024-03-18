@@ -1,0 +1,160 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+We found a HC3 certificate and have recalculated your penalty charge
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Pay a Penalty Charge Notice</span>
+    <h1>
+      We found a HC3 certificate and have recalculated your penalty charge
+    </h1>
+    
+    <p>You now owe a different amount.</p>
+  
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-card__heading">
+          Recalculated Penalty Charge Notice amount
+
+        </h3>
+        <dl class="nhsuk-summary-list nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Dental treatment charges
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £23.80
+            </dd>
+
+          </div>
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+               HC3 Contribution
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £5.00
+            </dd>
+
+          </div>
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Amount you should have paid
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £5.00
+            </dd>
+
+          </div>
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Amount you've already paid
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £0.00
+            </dd>
+
+          </div>
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Outstanding Treatment Charge
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £23.80
+            </dd>
+
+          </div>
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Penalty Charge
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £100.00
+            </dd>
+
+        </dl>
+      
+    
+        </dl>
+        <p style="font-weight: bold; font-size:36px;">
+         Total amount to pay: £123.80
+
+        </p>
+
+      </div>
+    </div>
+   
+
+    <div class="nhsuk-form-group">
+
+      <fieldset class="nhsuk-fieldset">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <h1 class="nhsuk-fieldset__heading">
+            What to do next
+          </h1>
+        </legend>
+    
+        <div class="nhsuk-radios">
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-hints-1" name="example-hints" type="radio" value="gateway" aria-describedby="example-hints-1-item-hint">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-hints-1">
+              Pay the total amount of £123.80
+            </label>
+            <div class="nhsuk-hint nhsuk-radios__hint" id="example-hints-1-item-hint">
+            
+            </div>
+          </div>
+    
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="example-hints-2" name="example-hints" type="radio" value="verify" aria-describedby="example-hints-2-item-hint">
+            <label class="nhsuk-label nhsuk-radios__label" for="example-hints-2">
+              Confirm my entitlement
+            </label>
+            <div class="nhsuk-hint nhsuk-radios__hint" id="example-hints-2-item-hint">
+              If you were pregnant or getting benefits at the time you claimed, you can continue your challenge. You may have been entitled to free dental treatment.
+            </div>
+          </div>
+    
+        </div>
+      </fieldset>
+    
+    </div>
+   <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+      Continue
+    </button>
+
+   
+  </div>
+</div>
+<style>
+
+</style>
+
+
+
+
+
+
+
+   
+
+        
+   
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
