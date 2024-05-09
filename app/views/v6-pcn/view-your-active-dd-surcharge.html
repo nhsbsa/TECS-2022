@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Penalty Charge Notice details on hold
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .payment-summary {
+    border-top: 2px solid #1d70b8;
+    padding: 15px;
+    background-color: white;
+  }
+
+  .nhsuk-promo {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 0 0 #D8DDE0;
+  }
+</style>
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Your details</span>
+		<h1>
+		Penalty Charge Notice 01234567890
+		</h1>
+
+		<div class="nhsuk-warning-callout">
+			<h3 class="nhsuk-warning-callout__label">
+				<span role="text">
+				<span class="nhsuk-u-visually-hidden">Important: </span>
+				Important information
+				</span>
+			</h3>
+			<p>You've set up a Direct Debit to pay your penalty charge.</p>
+			<p>If we're unable to take a payment, you may have to pay a surcharge of up to £50.</p>
+		</div>
+			
+		<div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading">
+                    Penalty Charge Notice amount
+                </h2>
+
+                <dl class="nhsuk-summary-list nhsuk-summary-list">
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Prescription charges
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £17.60
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Penalty charge
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £48.25
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Surcharge
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            £35.30
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Total amount to pay
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <strong>£57.90</strong>
+                        </dd>
+                    </div>
+                </dl>
+            
+                <h2 class="nhsuk-card__heading">
+                    Previous payments
+                </h3>
+
+                <dl class="nhsuk-summary-list nhsuk-summary-list">
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                        Payments made
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                        £7.90
+                        </dd>
+                    </div>
+                </dl>
+
+                <p style="font-weight: bold; font-size:36px;">
+                    Amount still to pay: £50.00
+                </p>
+            </div>
+		</div>
+			
+		<p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+		<h3>Details on the prescription</h3>
+		
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Name
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    Michellle Doe
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Address
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    12 Old Oak Road<br>Throckley<br> NE2 4XL
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Exemption reason ticked
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p>Gets Income Support or income-related Employment and Support Allowance</p>
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Date prescription was claimed
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    Between 23 October 2022 and 31 October 2022
+                </dd>
+            </div>
+		</dl>
+
+		<h2>You'll not be able to confirm your entitlement online</h2>
+
+		<p>This is because you have either:</p>
+		<ul>
+			<li>an active Direct Debit</li>
+			<li>previously set up a Direct Debit</li>
+		</ul>
+
+		<p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us if you have any further queries about your Penalty <br>Charge Notice</a>.</p>
+	</div>
+</div>
+
+{% endblock %}
