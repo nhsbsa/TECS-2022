@@ -12,99 +12,62 @@ We cannot confirm you were entitled
 
 {% block content %}
 
-
-
 <div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Confirm your entitlement</span>
 
-    
+		<fieldset class="nhsuk-fieldset">
+			<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+				<h1 class="nhsuk-fieldset__heading">
+				You've told us that you were pregnant at the time you claimed free or reduced cost dental treatment, or you had given birth in the previous 12 months
+				</h1>
+			</legend>
 
-      <span class="nhsuk-caption-m">Confirm your entitlement</span>
-
-      <fieldset class="nhsuk-fieldset">
-        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-          <h1 class="nhsuk-fieldset__heading">
-            You've told us that you were pregnant at the time you claimed free or reduced cost dental treatment, or you had given birth in the previous 12 months
-          </h1>
-        </legend>
-
-        <p>If you were pregnant at the time or had given birth in the previous 12 months you were entitled to free or reduced cost dental treatment.</p>
+			<p>If you were pregnant at the time or had given birth in the previous 12 months you were entitled to free or reduced cost dental treatment.</p>
 
 
-        
+        	<form action="told-us-you-were-pregnant" method="post" class="form">
+				<div class="nhsuk-form-group">
+				<fieldset class="nhsuk-fieldset">
+					<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
+					<h2 class="nhsuk-fieldset__heading">
+						What do you want to do next?
+					</h2>
+					</legend>
+				
+					<div class="nhsuk-radios">
+				
+					<div class="nhsuk-radios__item">
+						<input class="nhsuk-radios__input" id="proof" name="sendproof" type="radio" value="proof">
+						<label class="nhsuk-label nhsuk-radios__label" for="proof">
+						Send proof that you were pregnant at the time you claimed free or reduced dental treatment, or had given birth in the previous 12 months. If you send us valid proof, you wont have to pay anything.
+						</label>
+					</div>
+				
+					<div class="nhsuk-radios__item">
+						<input class="nhsuk-radios__input" id="proof2" name="sendproof" type="radio" value="pay">
+						<label class="nhsuk-label nhsuk-radios__label" for="proof2">
+						Pay the total amount of £123.80.
+						</label>
+					</div>
+				
+					</div>
+				</fieldset>
+				
+				</div>
 
-       
-        <form action="told-us-you-were-pregnant" method="post" class="form">
-        <div class="nhsuk-form-group">
-          <fieldset class="nhsuk-fieldset">
-            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
-              <h2 class="nhsuk-fieldset__heading">
-                What do you want to do next?
-              </h2>
-            </legend>
-        
-            <div class="nhsuk-radios">
-        
-              <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="proof" name="sendproof" type="radio" value="proof">
-                <label class="nhsuk-label nhsuk-radios__label" for="proof">
-                  Send proof that you were pregnant at the time you claimed free or reduced dental treatment, or had given birth in the previous 12 months. If you send us valid proof, you wont have to pay anything.
-                </label>
-              </div>
-        
-              <div class="nhsuk-radios__item">
-                <input class="nhsuk-radios__input" id="proof2" name="sendproof" type="radio" value="pay">
-                <label class="nhsuk-label nhsuk-radios__label" for="proof2">
-                  Pay the total amount of £123.80.
-                </label>
-              </div>
-        
-            </div>
-          </fieldset>
-        
-        </div>
+				<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+				</button>
+			</form>
 
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-          Continue
-        </button>
-      </form>
-
-
-        <p>If you were not entitled to free or reduced cost NHS dental treatment but have an exceptional reason why you made this claim,
-          you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a
-            review</a>.</p>
-
-            
-            
-        <p><a href="">Print this page</a></p>
-        <h3>Feedback</h3>
-        <p>Leaving feedback takes 5 minutes. Your comments will help us  provide a better service.</p>
-
-        <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae"target="_blank">Leave feedback (opens in a new window)</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-
-
+			<p>
+				If you were not entitled to free or reduced cost NHS dental treatment but have an exceptional reason why you made this claim,
+			you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a
+				review</a>.
+			</p>
+	        <p><a href="">Print this page</a></p>
+  		</div>
+	</div>
 </div>
-
-
-
-
-
-
-</div>
-</div>
-
 {% endblock %}
