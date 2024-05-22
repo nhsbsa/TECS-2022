@@ -94,7 +94,7 @@
 .apple-pay-button:active,
 .apple-pay-button:focus    {
   background-color: black;
-  color: white;
+  color: white !important;
   border-radius: 6px;
   text-decoration: none;
   font-family: 'GDS Transport';
