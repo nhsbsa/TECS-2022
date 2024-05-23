@@ -69,7 +69,6 @@ GOV.UK prototype kit
 
 	.google-pay-modal-card {
 		max-width: 100%;
-		padding: 15px;
 		background-color: transparent;
 		display: flex;
 		flex-direction: row;
@@ -77,23 +76,65 @@ GOV.UK prototype kit
 		border-bottom: 2px solid #eee;
 	}
 
-	.apple-pay-modal-card-image {
-		width: 40px;
-		height: 28px;
-		margin-right: 15px;
+	.google-pay-modal-contact-image {
+		width: 30px;
+		height: 30px;
+		margin-right: 40px;
 	}
 
-	.apple-pay-modal-contact-image {
+	.google-pay-modal-card-image {
 		width: 40px;
-		height: 40px;
-		margin-right: 15px;
+		height: 27px;
+		margin-right: 40px;
 	}
-
+	
+	.google-pay-modal-help-text {
+		color: #999;
+		font-size: 14px;
+		margin: 0px 20px;
+	}
 
 	.google-pay-modal-bottom {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		flex-direction: row;
+		justify-content: flex-end;
+		padding: 30px 20px 0px 20px;
+	}
+
+	.google-pay-modal-btn {
+		display: block;
+		background-color: #0067ff;
+		color: #fff !important;
+		padding: 10px 30px;
+		border-radius: 4px;
+		text-decoration: none;
+		margin-left: 15px;
+	}
+
+	.google-pay-modal-btn:hover,
+	.google-pay-modal-btn:focus,
+	.google-pay-modal-btn:active {
+		background-color: #0058d9;
+		color: #fff;
+		box-shadow: none;
+		outline: 0px solid transparent;
+		text-decoration: none;
+	}
+
+	.google-pay-modal-merchant {
+		color: #999;
+		font-weight: 600;
+		font-size: 14px;
+		margin: 0px;
+		text-align: right;
+		margin-bottom: 0px;
+		line-height: 1.2;
+	}
+
+	.google-pay-modal-cost {
+		font-weight: 600;
+		font-size: 18px;
+		text-align: right;
 	}
 
 </style>
@@ -571,28 +612,31 @@ GOV.UK prototype kit
 			</div>
 
 			<div class="google-pay-modal-card">
-				<img src="/images/natwest-card.png" class="apple-pay-modal-card-image">
+				<img src="/images/google-pay-contact-icon.png" class="google-pay-modal-contact-image">
 				<div>
-					<p class="apple-pay-modal-card-primary-text">Natwest Visa Debit Card (... 1727)</p>
-					<p class="apple-pay-modal-card-secondary-text">22 Sanderstead Rd Plymouth PL6 5US Unite...</p>
+					<p>email@example.com</p>
 				</div>
 			</div>
 
 			<div class="google-pay-modal-card">
-				<img src="/images/contact-icon.png" class="apple-pay-modal-contact-image">
+				<img src="/images/google-pay-card.png" class="google-pay-modal-card-image">
 				<div>
-					<p class="apple-pay-modal-contact-primary-text">Contact</p>
-					<p class="apple-pay-modal-contact-secondary-text">
-						samjones@icloud.com<br>
-						07156 272556
-					</p>
+					<p>Example Card •••• 4631</p>
 				</div>
 			</div>
 
+			<p class="google-pay-modal-help-text">Your billing details will also be shared with the merchant</p>
+
 			<div class="google-pay-modal-bottom">
-				<a href="full-payment-made" class="google-pay-modal-btn">
-					Continue
-				</a>
+				<div>
+					<p class="google-pay-modal-merchant">Pay NHS Business Services Authority</p>
+					<p class="google-pay-modal-cost">£50.00</p>
+				</div>
+				<div>
+					<a href="full-payment-made" class="google-pay-modal-btn">
+						Pay
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
