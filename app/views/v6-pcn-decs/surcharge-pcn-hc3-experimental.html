@@ -1,0 +1,200 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Penalty Charge Notice details hc3
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<style>
+  .payment-summary {
+    border-top: 2px solid #1d70b8;
+    padding: 15px;
+    background-color: white;
+  }
+
+  .nhsuk-promo {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 0 0 #D8DDE0;
+  }
+</style>
+
+<div class="nhsuk-back-link">
+	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+		aria-hidden="true" height="24" width="24">
+		<path
+			d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+		</path>
+		</svg>
+		Go back</a>
+</div>
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1>
+			Penalty Charge Notice 01234567890
+		</h1>
+
+		<div class="nhsuk-warning-callout">
+			<h3 class="nhsuk-warning-callout__label">
+				<span role="text">
+					<span class="nhsuk-u-visually-hidden">Important: </span>
+					Immediate action required
+				</span>
+			</h3>
+			<p>You must either confirm you were entitled to free or reduced cost NHS dental treatment, or pay your Penalty Charge Notice as soon as possible.</p>
+			<p>If you do not respond, we will treat it as a deliberate decision to avoid paying the charges that you owe the NHS and we may start debt recovery proceedings.</p>
+		</div>
+
+		<div class="nhsuk-card">
+			<div class="nhsuk-card__content">
+				<h2 class="nhsuk-card__heading">
+					Penalty Charge Notice amount
+				</h2>
+
+				<dl class="nhsuk-summary-list nhsuk-summary-list">
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Dental treatment charges
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£14.70
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							HC3 Contribution
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£54.40
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Amount you should've paid 
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£14.70
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Amount you've already paid 
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£0.00
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Outstanding Treatment Charge 
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£14.70
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Penalty Charge 
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£73.50
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Surcharge
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£35.50
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Total amount to pay
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							<strong>£173.50</strong>
+						</dd>
+					</div>
+				</dl>
+
+				<p style="font-weight: bold; font-size:36px;">
+					Total amount to pay: £173.50
+				</p>
+			</div>
+		</div>
+
+		<p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+		<h3>Details on the dental treatment form</h3>
+		
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Name
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					Michellle Doe
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Address
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					12 Old Oak Road<br>Throckley<br> NE2 4XL
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Exemption reason ticked
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					<p>Has a valid HC3 certificate - limited help with health costs</p>
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+				Date dental treatment was claimed
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+				On 04 October 2019
+				</dd>
+			</div>
+		</dl>
+
+		<p>If you were entitled to free dental treatment, answering some questions to confirm this can help us resolve this
+			issue.</p>
+		<p>If you were not entitled to free dental treatment and need to pay a Penalty Charge Notice, you can pay by
+			either:</p>
+		<ul>
+			<li>debit or credit card</li>
+			<li>Direct Debit</li>
+		</ul>
+
+		<a href="what-you-need-to-do-next-bsa" class="nhsuk-button">
+		Continue
+		</a>
+	</div>
+</div>
+
+{% endblock %}
