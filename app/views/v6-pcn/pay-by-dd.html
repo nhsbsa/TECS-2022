@@ -13,73 +13,63 @@ Paying by Direct Debit
 {% block content %}
 
 <div class="nhsuk-back-link">
-<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
-  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
-    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-  </svg>
-  Go back</a>
+	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+	<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+		<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+	</svg>
+	Go back</a>
 </div>
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">		
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">Paying by Direct Debit</h1>
+		<p>Direct Debit lets you pay your penalty charge over a number of months, on a date that suits you.</p>
+		
+		<div class="nhsuk-inset-text">
+			<span class="nhsuk-u-visually-hidden">Information: </span>
+			<p>If we are unable to take a payment, you may have to pay extra charges.</p>
+		</div>
 
-      <form action="dd-checkbox" method="post" >
-
-        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-        <h1 class="nhsuk-heading-l">Paying by Direct Debit</h1>
-        <form>
-
-          <div class="nhsuk-form-group">
+		<p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and you may need to pay the amount you owe in full.</p>
+		<h3>You must confirm the following to set up a Direct Debit online</h3>
+		
+		
+		<form action="/v6-pcn/pay-by-dd" method="post" >
+			<div class="nhsuk-form-group">
+				<div class="nhsuk-checkboxes">
+					<div class="nhsuk-checkboxes__item">
+						<input class="nhsuk-checkboxes__input" id="example-1" name="checkbox" type="checkbox" value="bank">
+						<label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+							I'm using my own bank account
+						</label>
+					</div>
+			
+					<div class="nhsuk-checkboxes__item">
+						<input class="nhsuk-checkboxes__input" id="example-2" name="checkbox" type="checkbox" value="account">
+						<label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
+							I'm the only person required to authorise debits from this account
+						</label>
+					</div>
+			
+					<div class="nhsuk-checkboxes__item">
+						<input class="nhsuk-checkboxes__input" id="example-3" name="checkbox" type="checkbox" value="direct">
+						<label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
+							I understand that if you are unable to take payments on more than one occasion, I might have to pay extra charges and may not be able to pay by Direct Debit again
+						</label>
+					</div>
+				</div>
+			</div>
+			
+			<p>Read the <a href="https://www.directdebit.co.uk/direct-debit-explained/direct-debit-guarantee/">Direct Debit Guarantee</a>.</p>
         
-           <p>Direct Debit lets you pay your penalty charge over a number of months, on a date that suits you.</p>
-           <div class="nhsuk-inset-text">
-            <span class="nhsuk-u-visually-hidden">Information: </span>
-            <p>If we are unable to take a payment, you may have to pay extra charges.</p>
-          </div>
-          <p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and you may need to pay the amount you owe in full.</p>
-          <h3>You must confirm the following to set up a Direct Debit online</h3>
-              <div class="nhsuk-checkboxes">
-        
-                <div class="nhsuk-checkboxes__item">
-                  <input class="nhsuk-checkboxes__input" id="example-1" name="contact" type="checkbox" value="bank">
-                  <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
-                    I'm using my own bank account
-                  </label>
-                </div>
-        
-                <div class="nhsuk-checkboxes__item">
-                  <input class="nhsuk-checkboxes__input" id="example-2" name="contact" type="checkbox" value="account">
-                  <label class="nhsuk-label nhsuk-checkboxes__label" for="example-2">
-                    I'm the only person required to authorise debits from this account
-                  </label>
-                </div>
-        
-                <div class="nhsuk-checkboxes__item">
-                  <input class="nhsuk-checkboxes__input" id="example-3" name="contact" type="checkbox" value="direct">
-                  <label class="nhsuk-label nhsuk-checkboxes__label" for="example-3">
-                    I understand that if you are unable to take payments on more than one occasion, I might have to pay extra charges and may not be able to pay by Direct Debit again
-                  </label>
-                </div><br>
-        <p>Read the <a href="https://www.directdebit.co.uk/direct-debit-explained/direct-debit-guarantee/">Direct Debit Guarantee</a>.</p>
-              </div>
-            </fieldset>
-        
-          </div>
-        
-        
-        
-        
-    <div class="nhsuk-form-group">
-    <button class="nhsuk-button" type="submit">
-     Continue
-    </button>
-    <p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
-    </div>
-  </form>
-        
-   
-
-    </div>
-  </div>
+			<button class="nhsuk-button" type="submit">
+				Continue
+			</button>
+    		
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+  		</form>
+	</div>
+</div>
 
 {% endblock %}

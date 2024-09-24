@@ -20,11 +20,11 @@ GOV.UK prototype kit
 		background-color: rgb(0,0,0); /* Fallback color */
 		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	}
-
 	.modal-content {
-		background-color: #f9f9f9;
+		background-color: #e7e2e0;
 		margin: 5% auto; /* 15% from the top and centered */
-		border-radius: 8px;
+		border: 2px solid #888;
+		border-radius: 16px;
 		width: 80%; /* Could be more or less, depending on screen size */
 		max-width: 600px;
 	}
@@ -34,109 +34,125 @@ GOV.UK prototype kit
 		flex-direction: row;
 		align-items: center;
 		padding: 20px;
-		background-color: #fff;
-		border-top-right-radius: 8px;
-		border-top-left-radius: 8px;
-		border-bottom: 2px solid #eee;
-		margin-bottom: 20px
 	}
 
 	.close {
-		color: #666;
+		color: #000;
 		float: right;
+		font-size: 14px;
 		font-weight: 600;
 		border: 0px;
-		background-color: transparent;
-		padding: 0px;
-		height: 22px;
+		background-color: #cec8c8;
+		padding: 4px 10px;
+		border-radius: 6px;
 	}
-
 	.close:hover,
 	.close:focus {
-		color: #666;
+		color: black;
 		text-decoration: none;
 		cursor: pointer;
 	}
 
-	.google-pay-modal-title {
-		color: #666;
-		font-weight: 400;
+	.apple-pay-modal-title {
+		font-weight: 600;
 		font-size: 28px;
 		margin-bottom: 0px;
-		margin-left: 4px;
 		width: 100%;
 	}
 
-	.google-pay-modal-card {
+	.apple-pay-modal-card {
 		max-width: 100%;
-		background-color: transparent;
+		padding: 15px;
+		border-radius: 16px;
+		background-color: #fff;
 		display: flex;
 		flex-direction: row;
 		margin: 0px 20px 15px 20px;
-		border-bottom: 2px solid #eee;
 	}
 
-	.google-pay-modal-contact-image {
-		width: 30px;
-		height: 30px;
-		margin-right: 40px;
+	.apple-pay-modal-card-primary-text {
+		font-size: 16px;
+		margin-bottom: 0px;
+		color: black;
+    	line-height: 1.2;
 	}
 
-	.google-pay-modal-card-image {
+	.apple-pay-modal-card-secondary-text {
+		font-size: 14px;
+		margin-bottom: 0px;
+		color: #666;
+	}
+
+	.apple-pay-modal-contact-primary-text {
+		font-size: 14px;
+		margin-bottom: 0px;
+		color: #666;
+    	line-height: 1.2;
+	}
+
+	.apple-pay-modal-contact-secondary-text {
+		font-size: 16px;
+		margin-bottom: 0px;
+		color: black;
+	}
+
+	.apple-pay-modal-card-image {
 		width: 40px;
-		height: 27px;
-		margin-right: 40px;
+		height: 28px;
+		margin-right: 15px;
 	}
-	
-	.google-pay-modal-help-text {
-		color: #999;
+
+	.apple-pay-modal-contact-image {
+		width: 40px;
+		height: 40px;
+		margin-right: 15px;
+	}
+
+	.apple-pay-modal-cost {
+		padding: 0px 20px;
+	}
+
+	.apple-pay-modal-item-name {
 		font-size: 14px;
-		margin: 0px 20px;
-	}
-
-	.google-pay-modal-bottom {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		padding: 30px 20px 0px 20px;
-	}
-
-	.google-pay-modal-btn {
-		display: block;
-		background-color: #0067ff;
-		color: #fff !important;
-		padding: 10px 30px;
-		border-radius: 4px;
-		text-decoration: none;
-		margin-left: 15px;
-	}
-
-	.google-pay-modal-btn:hover,
-	.google-pay-modal-btn:focus,
-	.google-pay-modal-btn:active {
-		background-color: #0058d9;
-		color: #fff;
-		box-shadow: none;
-		outline: 0px solid transparent;
-		text-decoration: none;
-	}
-
-	.google-pay-modal-merchant {
-		color: #999;
-		font-weight: 600;
-		font-size: 14px;
-		margin: 0px;
-		text-align: right;
+		color: #333;
 		margin-bottom: 0px;
 		line-height: 1.2;
+		margin-top: 25px;
 	}
 
-	.google-pay-modal-cost {
+	.apple-pay-modal-price {
+		font-size: 28px;
 		font-weight: 600;
-		font-size: 18px;
-		text-align: right;
+		color: black;
 	}
 
+	.apple-pay-modal-bottom {
+		border-top: 2px solid #d3cac6;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.apple-pay-modal-bottom p {
+		font-size: 16px;
+		line-height: 1.2;
+		color: #000;
+		margin-bottom: 20px;
+	}
+
+	.apple-pay-modal-bottom img {
+		margin: 20px 0px 0px 0px;
+		width: 50px;
+		height: 50px;
+	}
+
+	.apple-pay-modal-bottom a:focus {
+		background-color: transparent;
+		box-shadow: none;
+		color: transparent;
+		outline: 0px;
+		text-decoration: none;
+	}
 </style>
 
 <main id="content" role="main">
@@ -157,25 +173,11 @@ GOV.UK prototype kit
 					<span id="amount" class="govuk-heading-l" style="padding-top: 0px; margin-bottom: 0px;">£50.00</span>
 				</div>
 
-        		<h3 class="govuk-heading-m">Pay with Google Pay</h3>
+        		<h3 class="govuk-heading-m">Pay with Apple Pay</h3>
 
 				<a href="#" class="apple-pay-button nhsuk-u-margin-bottom-4" id="payBtn">
-					Pay with
-                    
-                    <?xml version="1.0" encoding="UTF-8"?>
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
-                    <g id="surface1">
-                    <path style=" stroke:none;fill-rule:nonzero;fill:rgb(25.882353%,52.156863%,95.686275%);fill-opacity:1;" d="M 18.601562 9.800781 C 18.601562 9.199219 18.535156 8.601562 18.464844 8 L 10.132812 8 L 10.132812 11.398438 L 14.867188 11.398438 C 14.667969 12.464844 14.066406 13.464844 13.132812 14.066406 L 13.132812 16.265625 L 16 16.265625 C 17.667969 14.734375 18.601562 12.464844 18.601562 9.800781 Z M 18.601562 9.800781 "/>
-                    <path style=" stroke:none;fill-rule:nonzero;fill:rgb(20.392157%,65.882353%,32.54902%);fill-opacity:1;" d="M 10.132812 18.398438 C 12.535156 18.398438 14.535156 17.601562 16 16.265625 L 13.132812 14.066406 C 12.332031 14.601562 11.332031 14.933594 10.132812 14.933594 C 7.867188 14.933594 5.867188 13.398438 5.199219 11.265625 L 2.265625 11.265625 L 2.265625 13.535156 C 3.800781 16.535156 6.800781 18.398438 10.132812 18.398438 Z M 10.132812 18.398438 "/>
-                    <path style=" stroke:none;fill-rule:nonzero;fill:rgb(98.431373%,73.72549%,1.568627%);fill-opacity:1;" d="M 5.199219 11.265625 C 4.800781 10.199219 4.800781 9 5.199219 7.867188 L 5.199219 5.601562 L 2.265625 5.601562 C 1 8.066406 1 11 2.265625 13.535156 Z M 5.199219 11.265625 "/>
-                    <path style=" stroke:none;fill-rule:nonzero;fill:rgb(91.764706%,26.27451%,20.784314%);fill-opacity:1;" d="M 10.132812 4.265625 C 11.398438 4.265625 12.601562 4.734375 13.535156 5.601562 L 16.066406 3.066406 C 14.464844 1.601562 12.332031 0.734375 10.199219 0.800781 C 6.867188 0.800781 3.800781 2.667969 2.332031 5.667969 L 5.265625 7.933594 C 5.867188 5.800781 7.867188 4.265625 10.132812 4.265625 Z M 10.132812 4.265625 "/>
-                    </g>
-                    </svg>
-                    
-
-                    Pay
+					 Pay
 				</a>
-
 
 				<p class="or-lines">
 					or
@@ -572,7 +574,7 @@ GOV.UK prototype kit
 					</div>
 					
 					<div class="form-group" style="margin-top:20px">
-						<a href="gov-payment-confirmed" class="govuk-button nhsuk-u-margin-bottom-6">
+						<a href="/v6-pcn/gov-payment-confirmed" class="govuk-button nhsuk-u-margin-bottom-6">
 						Continue
 						</a>
 						
@@ -585,88 +587,74 @@ GOV.UK prototype kit
   	</div>
 </main>
 
-	<!-- The Modal -->
-	<div id="googleModal" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-content-top">
-				<?xml version="1.0" encoding="UTF-8"?>
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28px" height="28px" viewBox="0 0 20 20" version="1.1">
-				<g id="surface1">
-				<path style=" stroke:none;fill-rule:nonzero;fill:rgb(25.882353%,52.156863%,95.686275%);fill-opacity:1;" d="M 18.601562 9.800781 C 18.601562 9.199219 18.535156 8.601562 18.464844 8 L 10.132812 8 L 10.132812 11.398438 L 14.867188 11.398438 C 14.667969 12.464844 14.066406 13.464844 13.132812 14.066406 L 13.132812 16.265625 L 16 16.265625 C 17.667969 14.734375 18.601562 12.464844 18.601562 9.800781 Z M 18.601562 9.800781 "/>
-				<path style=" stroke:none;fill-rule:nonzero;fill:rgb(20.392157%,65.882353%,32.54902%);fill-opacity:1;" d="M 10.132812 18.398438 C 12.535156 18.398438 14.535156 17.601562 16 16.265625 L 13.132812 14.066406 C 12.332031 14.601562 11.332031 14.933594 10.132812 14.933594 C 7.867188 14.933594 5.867188 13.398438 5.199219 11.265625 L 2.265625 11.265625 L 2.265625 13.535156 C 3.800781 16.535156 6.800781 18.398438 10.132812 18.398438 Z M 10.132812 18.398438 "/>
-				<path style=" stroke:none;fill-rule:nonzero;fill:rgb(98.431373%,73.72549%,1.568627%);fill-opacity:1;" d="M 5.199219 11.265625 C 4.800781 10.199219 4.800781 9 5.199219 7.867188 L 5.199219 5.601562 L 2.265625 5.601562 C 1 8.066406 1 11 2.265625 13.535156 Z M 5.199219 11.265625 "/>
-				<path style=" stroke:none;fill-rule:nonzero;fill:rgb(91.764706%,26.27451%,20.784314%);fill-opacity:1;" d="M 10.132812 4.265625 C 11.398438 4.265625 12.601562 4.734375 13.535156 5.601562 L 16.066406 3.066406 C 14.464844 1.601562 12.332031 0.734375 10.199219 0.800781 C 6.867188 0.800781 3.800781 2.667969 2.332031 5.667969 L 5.265625 7.933594 C 5.867188 5.800781 7.867188 4.265625 10.132812 4.265625 Z M 10.132812 4.265625 "/>
-				</g>
-				</svg>
-				<p class="google-pay-modal-title">
-					Pay
-				</p>
+<!-- The Modal -->
+<div id="appleModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-content-top">
+			<p class="apple-pay-modal-title"> Pay</p>
+			<button class="close">Cancel</button>
+		</div>
 
-				<button class="close">
-					<?xml version="1.0" encoding="utf-8"?>
-					<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#0F1729"/>
-					</svg>
-				</button>
-			</div>
-
-			<div class="google-pay-modal-card">
-				<img src="/images/google-pay-contact-icon.png" class="google-pay-modal-contact-image">
-				<div>
-					<p>email@example.com</p>
-				</div>
-			</div>
-
-			<div class="google-pay-modal-card">
-				<img src="/images/google-pay-card.png" class="google-pay-modal-card-image">
-				<div>
-					<p>Example Card •••• 4631</p>
-				</div>
-			</div>
-
-			<p class="google-pay-modal-help-text">Your billing details will also be shared with the merchant</p>
-
-			<div class="google-pay-modal-bottom">
-				<div>
-					<p class="google-pay-modal-merchant">Pay NHS Business Services Authority</p>
-					<p class="google-pay-modal-cost">£50.00</p>
-				</div>
-				<div>
-					<a href="full-payment-made" class="google-pay-modal-btn">
-						Pay
-					</a>
-				</div>
+		<div class="apple-pay-modal-card">
+			<img src="/images/natwest-card.png" class="apple-pay-modal-card-image">
+			<div>
+				<p class="apple-pay-modal-card-primary-text">Natwest Visa Debit Card (... 1727)</p>
+				<p class="apple-pay-modal-card-secondary-text">22 Sanderstead Rd Plymouth PL6 5US Unite...</p>
 			</div>
 		</div>
+
+		<div class="apple-pay-modal-card">
+			<img src="/images/contact-icon.png" class="apple-pay-modal-contact-image">
+			<div>
+				<p class="apple-pay-modal-contact-primary-text">Contact</p>
+				<p class="apple-pay-modal-contact-secondary-text">
+					samjones@icloud.com<br>
+					07156 272556
+				</p>
+			</div>
+		</div>
+
+		<div class="apple-pay-modal-cost">
+			<p class="apple-pay-modal-item-name">Penalty charge notice</p>
+			<p class="apple-pay-modal-price">£50.00</p>
+		</div>
+
+		<div class="apple-pay-modal-bottom">
+			<a href="full-payment-made">
+				<img src="/images/apple-touch-icon.png" alt="apple touch icon">
+			</a>
+			<p>Pay with Touch ID</p>
+		</div>
 	</div>
+</div>
 
-	<script>
-		// Get the modal
-		var modal = document.getElementById("googleModal");
+<script>
+    // Get the modal
+    var modal = document.getElementById("appleModal");
 
-		// Get the button that opens the modal
-		var btn = document.getElementById("payBtn");
+    // Get the button that opens the modal
+    var btn = document.getElementById("payBtn");
 
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-		modal.style.display = "block";
-		}
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
 
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-		modal.style.display = "none";
-		}
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
 
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-		}
-	</script>
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+</script>
 
 {% endblock %}

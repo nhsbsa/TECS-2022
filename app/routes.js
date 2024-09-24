@@ -126,8 +126,6 @@ router.get(/certificate-number-input/, function (req, res) {
 
 });
 
-
-
 ///////////////////////
 // ///V4 Routing///////
 //////////////////////
@@ -181,8 +179,6 @@ router.get(/benefit-exemption/, function (req, res) {
 //   }
 // })
 
-
-
 router.get(/v4-cert-number/, function (req, res) {
   if (req.query.number == 'yes') {
     res.redirect('enter-exemption-certificate-number');
@@ -221,13 +217,6 @@ router.get(/version4-nhs/, function (req, res) {
     res.redirect('were-you-claiming-any-benefits');
   }
 });
-
-
-
-
-
-
-
 
 router.get(/version4-benefit/, function (req, res) {
   if (req.query.benefit4 == 'yes') {
@@ -444,8 +433,6 @@ router.get(/ex-number/, function (req, res) {
 });
 
 
-
-
 // router.get(/contact-method/, function (req, res) {
 //   if (req.query.contact == 'email') {
 //     res.redirect('what-is-your-email');
@@ -569,9 +556,6 @@ router.get(/matex-pay/, function (req, res) {
   }
 });
 
-
-
-
 router.get(/medex-pay/, function (req, res) {
   if (req.query.debit == 'credit') {
     res.redirect('how-to-pay');
@@ -628,18 +612,79 @@ router.get(/full-partial/, function (req, res) {
   }
 });
 
-//  Set up DD - Enter bank details - PCN PECS
+// Version 6
+
+// Pay by DD checkboxes - PECS
+
+router.post('/v6-pcn/pay-by-dd', function(req, res) {
+    const selectedCheckboxes = req.body.checkbox;
+
+    // Check if all 3 checkboxes are selected
+    if (Array.isArray(selectedCheckboxes) && selectedCheckboxes.length === 3) {
+      // All checkboxes are selected, redirect to 'instalment' page
+      res.redirect('/v6-pcn/direct-debit-instalment-option');
+    } else {
+      // Not all checkboxes are selected, redirect to 'unable to set up' page
+      res.redirect('/v6-pcn/unable-to-set-up-direct-debit');
+    }
+});
+
+// DD monthly instalment option - PECS
+
+router.post('/v6-pcn/direct-debit-instalment-option', function(req, res) {
+  const months = req.session.data['months'];
+
+  if (months === "3" || months === "6" || months === "12") {
+    res.redirect('/v6-pcn/direct-debit-date');
+  } else {
+    // If none of the options are selected don't progress
+    res.redirect('/v6-pcn/direct-debit-instalment-option');
+  }
+});
+
+// DD select payment date - PECS
+
+router.post('/v6-pcn/direct-debit-date', function(req, res) {
+  const day = req.session.data['day'];
+
+  if (day > 0 &&  day <= 28) {
+    // if day number is greater than 0 and less or equal to 28 progress
+    res.redirect('/v6-pcn/direct-debit-check-address');
+  } else {
+    // if day number is greater than 28 don't progress
+    res.redirect('/v6-pcn/direct-debit-date');
+  }
+});
+
+// DD check address is correct - PECS
+
+router.post('/v6-pcn/direct-debit-check-address', function(req, res) {
+  const address = req.session.data['address'];
+
+  if (address === "yes") {
+    res.redirect('/v6-pcn/dd-check-answers');
+  } else if (address === "no") {
+    res.redirect('/v6-pcn/what-is-your-address-dd');
+  }
+  else {
+    // if no option selected don't progress
+    res.redirect('/v6-pcn/direct-debit-check-address');
+  }
+});
+
+
+//  Enter your bank details - PECS
 
 router.post('/v6-pcn/enter-bank-details', function(request, response) {
   var accnumber = request.session.data['accnumber']
   if (accnumber === "1234567891"){
     response.redirect("/v6-pcn/we-could-not-verify-your-details")
-} else {
-response.redirect("/v6-pcn/confirm-direct-debit")
-}
+  } else {
+    response.redirect("/v6-pcn/confirm-direct-debit")
+  }
 })
 
-//  Set up DD - Enter bank details - PCN DECS
+//  Enter your bank details - DECS
 
 router.post('/v6-pcn-decs/enter-bank-details', function(request, response) {
   var accnumber = request.session.data['accnumber']
@@ -650,7 +695,7 @@ response.redirect("/v6-pcn-decs/confirm-direct-debit")
 }
 })
 
-//  You've told us that you were pregnant - PCN DECS
+//  You've told us that you were pregnant - DECS
 
 router.post('/v6-pcn-decs/told-us-you-were-pregnant', function (req, res) {
   var sendProof = req.session.data['sendproof']
