@@ -706,4 +706,18 @@ router.post('/v6-pcn-decs/told-us-you-were-pregnant', function (req, res) {
     res.redirect("/v6-pcn-decs/we-need-proof-pregnant");
   }
 });
+
+// Experimental - Postcode lookup for address
+
+router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, res) {
+  let postcode = req.session.data['postcode-search'];
+  
+  if (postcode && postcode.trim() !== '') {
+    res.redirect('/v6-pcn/experimental/what-is-your-address-select');
+  } else {
+    // If blank don't progress
+    res.redirect('/v6-pcn/experimental/what-is-your-address-postcode');
+  }
+});
+
 module.exports = router;
