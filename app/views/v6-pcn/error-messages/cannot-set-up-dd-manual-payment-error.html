@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    We cannot set up your Direct Debit
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <p>
+            You must confirm you understand the conditions to pay in installments.
+          </p>
+          <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+            <li>
+              <a href="#termsCheckbox">Select the checkbox</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">
+      We cannot set up your Direct Debit
+    </h1>
+
+    <p>We've been unable to verify your details.</p>
+    <p>You'll not be able to pay by Direct Debit.</p>
+
+    <h2 class="nhsuk-heading-m">Card payments</h2>
+
+    <p>You'll need to pay by card if you want to pay online.</p>
+    
+    <p class="nhsuk-u-margin-bottom-0">
+        <a href="/v6-pcn/payment-choice" class="nhsuk-button" role="button">
+          Pay by card
+        </a>
+    </p>
+
+    <h2 class="nhsuk-heading-m">Pay in installments</h2>
+
+    <p>If you want to pay in installments, you can make regular card payments using a payment plan similar to Direct Debit.</p>
+    <p>You'll need to make the first payment within 28 days (by 17 July 2024).</p>
+
+    <h3 class="nhsuk-heading-s">The payment plan summary:</h3>
+
+    <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                First payment
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £4.82
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Following 11 payments
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £4.82
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Chosen payment date
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                1
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Total amount
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £57.90
+            </dd>
+        </div>
+    </dl>
+
+    <p>You'll need to make regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>
+
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">Contact us if you have any enquiries</a>.</p>
+    <br>
+    <form action="/v6-pcn/error-messages/cannot-set-up-dd-manual-payment" method="post">
+        <div class="nhsuk-form-group nhsuk-form-group--error">
+            <div class="nhsuk-checkboxes">
+                <span class="nhsuk-error-message" id="terms-error">
+                    <span class="nhsuk-u-visually-hidden">Error:</span> You must confirm you understand the conditions to continue
+                  </span>
+                <div class="nhsuk-checkboxes__item">
+                    <input class="nhsuk-checkboxes__input" id="termsCheckbox" name="terms" type="checkbox" value="understand">
+                    <label class="nhsuk-label nhsuk-checkboxes__label" for="termsCheckbox">
+                        I understand the terms and conditions...
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+            Pay in installments
+        </button>
+    </form>
+
+    <p><a href="#">Print this page</a></p>
+    <p><a href="/v6-pcn/penalty-charge-notice-details">Cancel</a></p>
+    
+  </div>
+</div>
+{% endblock %}
