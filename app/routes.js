@@ -719,6 +719,18 @@ router.post('/v6-pcn/error-messages/cannot-set-up-dd-manual-payment', function (
   }
 });
 
+// Cannot set up DD 3rd KYC failure - manual payment (surcharge)
+
+router.post('/v6-pcn/error-messages/cannot-set-up-dd-manual-payment-surcharge', function (req, res) {
+  let terms = req.session.data['terms']
+  if (terms == "understand") {
+    res.redirect("/v6-pcn/succces");
+  }
+  else {
+    res.redirect("/v6-pcn/error-messages/cannot-set-up-dd-manual-payment-surcharge-error");
+  }
+});
+
 // Experimental - Postcode lookup for address
 
 router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, res) {
