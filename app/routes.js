@@ -709,25 +709,25 @@ router.post('/v6-pcn-decs/told-us-you-were-pregnant', function (req, res) {
 
 // Cannot set up DD 3rd KYC failure - manual payment
 
-router.post('/v6-pcn/error-messages/cannot-set-up-dd-manual-payment', function (req, res) {
+router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment', function (req, res) {
   let terms = req.session.data['terms']
   if (terms == "understand") {
     res.redirect("/v6-pcn/succces");
   }
   else {
-    res.redirect("/v6-pcn/error-messages/cannot-set-up-dd-manual-payment-error");
+    res.redirect("/v6-pcn/kickout/cannot-set-up-dd-manual-payment-error");
   }
 });
 
 // Cannot set up DD 3rd KYC failure - manual payment (surcharge)
 
-router.post('/v6-pcn/error-messages/cannot-set-up-dd-manual-payment-surcharge', function (req, res) {
+router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment-surcharge', function (req, res) {
   let terms = req.session.data['terms']
   if (terms == "understand") {
     res.redirect("/v6-pcn/succces");
   }
   else {
-    res.redirect("/v6-pcn/error-messages/cannot-set-up-dd-manual-payment-surcharge-error");
+    res.redirect("/v6-pcn/kickout/cannot-set-up-dd-manual-payment-surcharge-error");
   }
 });
 
