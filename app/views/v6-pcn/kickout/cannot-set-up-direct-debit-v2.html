@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+	We cannot set up your Direct Debit
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">
+			We cannot set up your Direct Debit
+		</h1>
+
+	    <p>We've been unable to verify your details. You'll not be able to pay by Direct Debit.</p>
+
+    	<p>You can still make a payment online using a debit or credit card.</p>
+        
+		<a href="/v6-pcn/payment-choice" class="nhsuk-button" role="button">
+      		Pay by card
+    	</a>
+
+        <h2 class="nhsuk-heading-m">Pay in installments</h2>
+		
+		<p>If you are unable to pay your Penalty Charge Notice in full, you are still able to pay in instalments.</p>
+		
+		<p>
+			<a href="/v6-pcn/kickout/cannot-set-up-direct-debit-instalments">
+				Find out more about paying in instalments.
+			  </a>
+		</p>
+
+        <p><a href="/v6-pcn/penalty-charge-notice-details">Cancel</a></p>
+            
+	</div>
+</div>
+{% endblock %}

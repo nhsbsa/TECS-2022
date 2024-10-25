@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Paying in instalments
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">
+			Paying in instalments
+		</h1>
+
+	    <p>If you want to pay in instalments, you can make regular payments using a payment plan similar to Direct Debit.</p>
+		<p>You'll need to make the first payment within 28 days (by 17 July 2024).</p>
+        
+		<h3 class="nhsuk-heading-s">The payment plan summary:</h3>
+
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					First payment
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£4.82
+				</dd>
+			</div>
+	
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Following 11 payments
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£4.82
+				</dd>
+			</div>
+	
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Chosen payment date
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					1
+				</dd>
+			</div>
+	
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Total amount
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£57.90
+				</dd>
+			</div>
+		</dl>
+
+		<div class="nhsuk-inset-text">
+			<span class="nhsuk-u-visually-hidden">Information: </span>
+			<p>It is important that you remember to make regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>
+		</div>
+
+		<form action="#" method="post">
+			<div class="nhsuk-form-group nhsuk-u-margin-bottom-0">
+				<div class="nhsuk-checkboxes">
+					<div class="nhsuk-checkboxes__item">
+						<input class="nhsuk-checkboxes__input" id="termsCheckbox" name="terms" type="checkbox" value="understand">
+						<label class="nhsuk-label nhsuk-checkboxes__label nhsuk-u-padding-top-0" for="termsCheckbox">
+							I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.
+						</label>
+					</div>
+				</div>
+			</div>
+			<br>
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Pay in instalments
+			</button>
+		</form>
+	
+		<p><a href="#">Print this page</a></p>
+		<p><a href="/v6-pcn/penalty-charge-notice-details">Cancel</a></p>
+            
+	</div>
+</div>
+{% endblock %}
