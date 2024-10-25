@@ -712,7 +712,7 @@ router.post('/v6-pcn-decs/told-us-you-were-pregnant', function (req, res) {
 router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment', function (req, res) {
   let terms = req.session.data['terms']
   if (terms == "understand") {
-    res.redirect("/v6-pcn/succces");
+    res.redirect("/v6-pcn/payment-choice");
   }
   else {
     res.redirect("/v6-pcn/kickout/cannot-set-up-dd-manual-payment-error");
@@ -724,7 +724,7 @@ router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment', function (req, re
 router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment-surcharge', function (req, res) {
   let terms = req.session.data['terms']
   if (terms == "understand") {
-    res.redirect("/v6-pcn/succces");
+    res.redirect("/v6-pcn/payment-choice");
   }
   else {
     res.redirect("/v6-pcn/kickout/cannot-set-up-dd-manual-payment-surcharge-error");
