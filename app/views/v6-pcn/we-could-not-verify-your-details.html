@@ -22,67 +22,53 @@
         <p>Once you have done this, you'll be brought back to this page.</p>
         <p>Select try again after you have updated your details.</p>
 
-
         <dl class="nhsuk-summary-list">
-
             <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-                12 Old Oak Road <br> Throckley <br>NE67 9AD
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                </dd>
+				<dt class="nhsuk-summary-list__key">
+					{{ data['address-change-one'] | default('12 Old Oak Road') }} <br> 
+					{{ data['address-change-town'] | default('Throckley') | capitalize }} <br>
+					{{ data['address-change-postcode'] | default('NE67 9AD') | upper }}
+				</dt>
+
+				<dd class="nhsuk-summary-list__value">
+				</dd>
           
-              <dd class="nhsuk-summary-list__actions">
-          
-                <a href="/v6-pcn/what-is-your-address-dd">
-                  Change<span class="nhsuk-u-visually-hidden"> address</span>
-                </a>
-          
-              </dd>
-          
+				<dd class="nhsuk-summary-list__actions">
+					<a href="/v6-pcn/what-is-your-address-dd-change">
+						Change<span class="nhsuk-u-visually-hidden"> address</span>
+					</a>
+				</dd>
             </div>
           
             <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-                Bank Account <br> 1234567891 <br> Sort Code <br> 12-34-56 <br> Michelle Doe
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                
-              </dd>
-          
-              <dd class="nhsuk-summary-list__actions">
-          
-                <a href="/v6-pcn/enter-bank-details">
-                  Change<span class="nhsuk-u-visually-hidden"> bank details</span>
-                </a>
-          
-              </dd>
-          
+				<dt class="nhsuk-summary-list__key">
+					Bank Account <br>
+					{{ data['account-number-change'] | default('1234567891') }} <br>
+					Sort Code <br>
+					{{ data['account-sort-one-change'] | default('12') }}-{{ data['account-sort-two-change'] | default('34') }}-{{ data['account-sort-three-change'] | default('56') }} <br>
+					{{ data['account-name-change'] | default('Michelle Doe') }}
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+				</dd>
+			
+				<dd class="nhsuk-summary-list__actions">
+			
+				<a href="/v6-pcn/enter-bank-details-change">
+					Change<span class="nhsuk-u-visually-hidden"> bank details</span>
+				</a>
+			
+				</dd>
             </div>
-          
-            
-          
-              
-          
-            
-          
-            
-          
-          </dl>
+		</dl>
 
-    
-
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        <a href="/v6-pcn/we-have-tried-to-find-your-updated-details" class="nhsuk-button" role="button">
             Try again
-        </button>
+        </a>
 
         <p>If your details are correct, <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">contact us</a> about your Penalty Charge Notice. You may not be able to pay by Direct Debit. </p>
-
-        
-
-        <p>
-            <a href="penalty-charge-notice-details-bsa">Cancel</a>
-       </div>
+    
+        <a href="penalty-charge-notice-details-bsa">Cancel</a>
+	</div>
 </div>
 
 {% endblock %}

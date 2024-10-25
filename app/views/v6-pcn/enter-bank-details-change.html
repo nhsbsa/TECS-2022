@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Enter your bank details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+			<path
+				d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z">
+			</path>
+		</svg>
+		Go back
+	</a>
+</div>
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">
+			Enter your bank details
+		</h1>
+  
+		<p>Equifax will perform a check to verify the bank account details you give us. A record of this will be left on your credit record for 12 months but will not affect your credit rating.</p>
+    
+    	<form action="/v6-pcn/we-could-not-verify-your-details" method="post">
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="accountName">
+					Account holder's name
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-10" id="accountName" name="account-name-change" type="text">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="accountNumber">
+					Account number
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-10" id="accountNumber" name="account-number-change" type="text" inputmode="numeric">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="accountSort">
+					Sort code
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-2" id="accountSort" name="account-sort-one-change" type="text" inputmode="numeric"> 
+				<input class="nhsuk-input nhsuk-input--width-2" id="accountSort" name="account-sort-two-change" type="text" inputmode="numeric"> 
+				<input class="nhsuk-input nhsuk-input--width-2" id="accountSort" name="account-sort-three-change" type="text" inputmode="numeric">
+			</div>
+      
+			<details class="nhsuk-details">
+				<summary class="nhsuk-details__summary">
+					<span class="nhsuk-details__summary-text">
+						View the Direct Debit Guarantee
+					</span>
+				</summary>
+				<div class="nhsuk-details__text">
+					<img src="/images/dd-logo.png" width="150px" alt="Direct Debit logo" style="display:block; margin-bottom: 30px;"/>
+					
+					<h3>The Direct Debit Guarantee</h3>
+
+					<ul>
+						<li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+						<li>If there are any changes to the amount, date or frequency of your Direct Debit NHSBSA PECS will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request NHSBSA DECS to collect a payment, confirmation of the amount and date will be given to you at the time of the request. </li>
+						<li>If an error is made in the payment of your Direct Debit, by NHSBSA DECS or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society. </li>
+						<li>If you receive a refund you are not entitled to, you must pay it back when NHSBSA DECS asks you to. </li>
+						<li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us. </li>						
+					</ul>
+				</div>
+			</details>
+
+    		<p>You will confirm your Direct Debit set-up on the next page.</p>
+
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>
+		</form>
+    	
+		<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+	</div>
+</div>
+
+{% endblock %}
