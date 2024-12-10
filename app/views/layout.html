@@ -31,6 +31,23 @@
       "showSearch": "false"
     })
   }}
+
+  <div class="nhsuk-width-container ">
+
+          <!-- phase banner -->
+          <div class="nhsuk-phase-banner">
+            <p class="nhsuk-phase-banner__content">
+              <strong class="nhsuk-tag nhsuk-phase-banner__content__tag">
+                BETA
+              </strong>
+              <span class="nhsuk-phase-banner__text">
+                This is a new service – your <a class="nhsuk-link" href="https://online1.snapsurveys.com/interview/6a165693-7cb5-4397-a2cf-f21fb14613a0">feedback</a> will help us to improve it.
+              </span>
+            </p>
+          </div>
+
+  </div>
+
 {% endblock %}
 
 
@@ -54,7 +71,33 @@
     {% include "includes/scripts.html" %}
     <!-- For adding page specific JavsScript -->
     {% block pageScripts %}{% endblock %}
-    <footer role="contentinfo">
+
+    {{ footer({
+      links: [
+        {
+          URL: 'https://www.nhsbsa.nhs.uk/accessibility-statement-respond-your-letter',
+          label: 'Accessibility'
+        },
+        {
+          URL: 'https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs',
+          label: 'Contact us'
+        },
+        {
+          URL: '/v6-pcn/cookies/our-cookies',
+          label: 'Cookies'
+        },
+        {
+          URL: 'https://www.nhsbsa.nhs.uk/our-policies/privacy/challenge-your-pcn-privacy-notice',
+          label: 'Privacy policy'
+        },
+        {
+          URL: 'https://www.nhsbsa.nhs.uk/our-policies/terms-and-conditions',
+          label: 'Terms and conditions'
+        }
+      ]
+    })}}
+
+    <!--<footer role="contentinfo">
       <div class="nhsuk-footer" id="nhsuk-footer">
         <div class="nhsuk-width-container">
           <h2 class="nhsuk-u-visually-hidden">Support links</h2>
@@ -80,6 +123,9 @@
         </p>
       </div>
     </div>
-    </footer>
+    </footer>-->
+
+
+
   {% endblock %}
 {% endblock %}

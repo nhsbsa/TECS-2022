@@ -7,6 +7,70 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
    */
   const filters = {};
 
+  //
+  // ALTER DATE BY NUMBER OF MONTHS FUNCTION
+  //
+  filters.alterTodaysDateByNumberOfMonths = function( monthOffset ){
+
+    let today = new Date();
+    var d = today.getDate();
+    today.setMonth(today.getMonth() + monthOffset);
+    if (today.getDate() !== d) {
+      today.setDate(0);
+    }
+
+    return today.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+  };
+
+   //
+  // ALTER DATE BY NUMBER OF DAYS FUNCTION
+  //
+  filters.alterTodaysDateByNumberOfDays = function( dayOffset ){
+
+    let today = new Date();
+    today.setDate(today.getDate() + dayOffset);
+
+    // Manually format the date to avoid leading zeros (day, month, year)
+    return today.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+  };
+
+
+  //
+  // GENERATE PAYMENT PLAN ROWS FUNCTION
+  //
+  filters.generatePaymentPlanRows = function( amount, months ){
+
+    months = ( !Number.isNaN( parseInt(months) ) ) ? parseInt(months) : 12;
+    amount = ( !Number.isNaN( amount.toFixed(2) ) ) ? amount.toFixed(2) : 50;
+
+    let paymentAmount = amount / months;
+    paymentAmount = paymentAmount.toFixed(2);
+
+    const rows = [];
+    
+    for( let i = 0; i < months; i++  ){
+      rows.push( [ 
+        { text: ( i + 1 ) },
+        { text: '£' + paymentAmount },
+        { text: filters.alterTodaysDateByNumberOfMonths(i) }
+      ] );
+    }
+
+    return rows;
+    
+
+  };
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

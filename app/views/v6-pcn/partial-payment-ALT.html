@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Pay by card
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-l">Make a partial payment</h1>
+
+
+
+          {{ table({
+            panel: true,
+            caption: 'Penalty Charge Notice amount',
+            firstCellIsHeader: true,
+            tableClasses: 'nhsuk-u-margin-top-5',
+            rows: [
+              [
+                { text: 'Total amount' },
+                { text: '£50' }
+              ],
+              [
+                { text: 'Payments made' },
+                { text: '£0' }
+              ],
+              [
+                { text: 'Amount left to pay' },
+                { text: '£50' }
+              ]
+            ]
+          }) }}
+
+
+          <p>We have calculated a payment plan that spreads the cost out over 12 months. This is a recommendation.</p>
+
+          <p>You can choose to pay in different instalments if you would like. But you will need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}).</p>
+
+          {{ table({
+            panel: true,
+            caption: 'Recommended payment plan',
+            firstCellIsHeader: false,
+            tableClasses: 'nhsuk-u-margin-top-5',
+            head: [
+              { text: 'Payment' },
+              { text: 'Amount' },
+              { text: 'Date' }
+            ],
+            rows: 50 | generatePaymentPlanRows( 12 ) 
+          }) }}
+
+
+
+
+          <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
+
+         <form action="gov-pay-partial" method="post" class="form">
+
+            {{ input({
+                label: {
+                  text: 'Amount to pay'
+                },
+                id: 'amountToPay',
+                name: 'amountToPay',
+                classes: 'nhsuk-input--width-5',
+                inputmode: 'numeric',
+                prefix: '£'
+              }) }}
+              
+
+        <p>You cannot change this on the next page.</p>
+
+  
+
+  {{ checkboxes({
+    idPrefix: "example",
+    name: "example",
+    fieldset: {
+      legend: {
+        text: 'Confirm you understand the conditions to continue',
+        classes: 'nhsuk-u-visually-hidden',
+        isPageHeading: false
+      }
+    },
+    items: [
+      {
+        value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
+        text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
+      }
+    ]
+  }) }}
+          
+
+
+
+         {{ button({
+            text: 'Continue'
+          }) }}
+
+      </form>
+
+       <p><a href="#">Print this page</a></p>
+      <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+
+
+        
+   
+
+    </div>
+  </div>
+ 
+
+{% endblock %}

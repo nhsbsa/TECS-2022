@@ -1,0 +1,186 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    We cannot set up your Direct Debit
+{% endblock %}
+
+{% block content %}
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+            <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+            <h1 class="nhsuk-heading-l">
+      We cannot set up your Direct Debit
+    </h1>
+
+            <p>We've been unable to verify your details. You will not be able to pay by Direct Debit.</p>
+
+            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+            <h2 class="nhsuk-heading-m">What to do next</h2>
+
+            <p>You can now either:</p>
+
+            <ul>
+                <li>Pay in full today</li>
+                <li>Pay in instalments over twelve months</li>
+            </ul>
+
+            <p>You can make either payment online using a debit or credit card.</p>
+
+            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+            <!-- TABS -->
+
+            <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+                <h2 class="nhsuk-tabs__title nhsuk-u-visually-hidden">Ways to pay</h2>
+
+                <ul class="nhsuk-tabs__list">
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#pay-in-full">Pay in full</a>
+                    </li>
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#pay-in-instalments">Pay in instalments</a>
+                    </li>
+
+                </ul>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
+
+                    <!-- CONTENT FOR PAY IN FULL -->
+                    <h3 class="nhsuk-heading-m">Pay in full</h3>
+                    <p>You have £50 left to pay. You can make this payment now.</p>
+
+                    {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Pay in full',
+                        href: '../gov-pay'
+                    }) }}
+
+                </div>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-instalments">
+
+                    <!-- CONTENT FOR PAY IN INSTALMENTS -->
+                    <h3 class="nhsuk-heading-m">Pay in instalments</h3>
+
+                    <p>If you want to pay in instalments, you can make regular partial payments using this service.</p>
+                    <p>These will not be automatic and you are responsible for keeping up the payments.</p>
+                    <p>If you fail to make any payment, or if you do not keep up payments, an extra £50 surcharge will be added to your total.</p>
+                    <p>Payments can be as small or as large as you like. But you will need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}).</p>
+
+                     {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Pay my first instalment',
+                        href: '../partial-payment-ALT'
+                    }) }}
+
+                </div>
+
+            </div>
+
+
+            <script src="/js/tabs.js"></script>
+
+
+
+
+            
+
+
+
+
+            <!--
+    <p>You can still make a payment online using a debit or credit card.</p>
+
+    <p class="nhsuk-u-margin-bottom-0">
+        <a href="/v6-pcn/payment-choice" class="nhsuk-button" role="button">
+          Pay by card
+        </a>
+    </p>
+
+
+
+    
+    <h2 class="nhsuk-heading-m">Pay in instalments</h2>
+
+    <p>If you want to pay in instalments, you can make regular payments using a payment plan similar to Direct Debit.</p>
+    <p>You'll need to make the first payment within 28 days (by 17 July 2024).</p>
+
+    <h3 class="nhsuk-heading-s">The payment plan summary:</h3>
+
+    <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                First payment
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £4.82
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Following 11 payments
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £4.82
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Chosen payment date
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                1
+            </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+                Total amount
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+                £57.90
+            </dd>
+        </div>
+    </dl>
+
+    <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <p>It is important that you remember to make regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>
+    </div>
+    
+    <p>You can make a payment online using a debit or credit card. You can also make payments over the phone.</p>
+    <p><strong>Telephone:</strong> 0300 330 9291</p>
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">Find out about call charges and other ways to contact us on our website</a>.</p>
+    <br>
+    <form action="/v6-pcn/kickout/cannot-set-up-dd-manual-payment" method="post">
+        <div class="nhsuk-form-group nhsuk-u-margin-bottom-0">
+            <div class="nhsuk-checkboxes">
+                <div class="nhsuk-checkboxes__item">
+                    <input class="nhsuk-checkboxes__input" id="termsCheckbox" name="terms" type="checkbox" value="understand">
+                    <label class="nhsuk-label nhsuk-checkboxes__label nhsuk-u-padding-top-0" for="termsCheckbox">
+                        I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+            Pay in instalments
+        </button>
+    </form>
+
+    -->
+
+           
+            <p>
+                <a href="/v6-pcn/penalty-charge-notice-details">Cancel</a>
+            </p>
+
+        </div>
+    </div>
+{% endblock %}
