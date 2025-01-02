@@ -1,3 +1,4 @@
+
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
@@ -93,16 +94,13 @@
                 
                     <p>If you want spread the cost of your PCN over several payments, you can make regular partial payments using this service.</p>
                     <p>You'll need to make the first payment within 28 days (by 17 July 2024) and make regular monthly payments until you have paid the PCN in full.</p>
-                    
-                    <div class="nhsuk-warning-callout">
-                        <h3 class="nhsuk-warning-callout__label">
-                          <span role="text">
-                            Important:
-                          </span>
-                        </h3>
+
+                    <div class="nhsuk-inset-text">
+                        <span class="nhsuk-u-visually-hidden">Important: </span>
+                        
                         <p>These will not be taken automatically and you are responsible for keeping up the payments.</p>
-                     </div>
-                    
+                    </div>
+                
                     <p>It is important that you remember to to make regular monthly payments. If you do not, we may start debt recovery proceedings.</p>
 
                      {{ button({
@@ -116,14 +114,12 @@
                     <p>You will need to keep a record of your PCN reference number to make a payment.</p>
                     <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website.</a></p>
                 </div>
-
             </div>
             
             <p>
                 <a href="/v6-pcn/penalty-charge-notice-details">Cancel</a>
             </p>
-
-            <script src="/js/tabs.js"></script>
         </div>
     </div>
+    <script src="/js/tabs.js"></script>
 {% endblock %}
