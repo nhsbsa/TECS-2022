@@ -677,7 +677,7 @@ router.post('/v6-pcn/direct-debit-check-address', function(req, res) {
 
 router.post('/v6-pcn/enter-bank-details', function(request, response) {
   var accnumber = request.session.data['accnumber']
-  if (accnumber === "1234567891"){
+  if (accnumber === "12345679"){
     response.redirect("/v6-pcn/we-could-not-verify-your-details")
   } else {
     response.redirect("/v6-pcn/confirm-direct-debit")
@@ -688,7 +688,7 @@ router.post('/v6-pcn/enter-bank-details', function(request, response) {
 
 router.post('/v6-pcn-decs/enter-bank-details', function(request, response) {
   var accnumber = request.session.data['accnumber']
-  if (accnumber === "1234567891"){
+  if (accnumber === "12345679"){
     response.redirect("/v6-pcn/we-could-not-verify-your-details")
 } else {
 response.redirect("/v6-pcn-decs/confirm-direct-debit")
