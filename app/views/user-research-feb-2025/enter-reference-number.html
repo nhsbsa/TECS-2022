@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+	What is your reference number?
+{% endblock %}
+
+{% block outerContent %}
+  
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Your details</span>
+		<h1 class="nhsuk-heading-l">
+			What is your reference number?
+        </h1>
+		
+		<form action="enter-reference-number" method="post" class="form">
+        	<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="reference-number">
+					<div class="nhsuk-hint">
+						You can find this on your letter. Only include numbers in your reference number
+					</div>
+				</label>
+          	
+				<input class="nhsuk-input nhsuk-u-width-one-half" id="reference-number" name="reference-number" type="text">
+        	</div>
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>
+       </form>
+
+       <p><a href="respond-to-your-letter">Cancel</a></p>
+    </div>
+</div>
+{% endblock %}

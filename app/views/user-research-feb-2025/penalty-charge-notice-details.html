@@ -1,0 +1,143 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+	Penalty Charge Notice
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+    	<span class="nhsuk-caption-m">Your details</span>
+		<h1>
+			Penalty Charge Notice 01234567890
+		</h1>
+
+		<div class="nhsuk-warning-callout">
+			<h2 class="nhsuk-warning-callout__label">
+				<span role="text">
+				<span class="nhsuk-u-visually-hidden">Important: </span>
+				Do not delay
+				</span>
+			</h2>
+			<p>You now have 10 days to either confirm you were entitled to free NHS prescriptions, or pay this Penalty Charge Notice (by 06 September 2021).</p>
+			<p>If you do not respond, an extra surcharge of up to £50 may be added to these charges.</p>
+		</div>
+
+    	<div class="nhsuk-card">
+      		<div class="nhsuk-card__content">
+        		<h2 class="nhsuk-card__heading">
+          			Penalty Charge Notice amount
+        		</h2>
+        
+				<dl class="nhsuk-summary-list nhsuk-summary-list">
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Prescription charges
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£9.65
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Penalty charge
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£48.25
+						</dd>
+					</div>
+
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Total amount to pay
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							<strong>£57.90</strong>
+						</dd>
+					</div>
+		        </dl>
+  
+				<h2 class="nhsuk-card__heading">
+					Previous payments
+				</h2>
+
+				<dl class="nhsuk-summary-list nhsuk-summary-list">
+					<div class="nhsuk-summary-list__row">
+						<dt class="nhsuk-summary-list__key">
+							Payments made
+						</dt>
+						<dd class="nhsuk-summary-list__value">
+							£7.90
+						</dd>
+					</div>
+				</dl>
+		
+				<h2 class="nhsuk-heading-l">Amount still to pay: £50</h2>
+
+      		</div>
+   		 </div>
+    	
+		 <p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+	    <h3>Details on the prescription</h3>
+    	
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Name
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					Michellle Doe
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Address
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					12 Old Oak Road<br>Throckley<br>{{ data['postcode'] | default('NE1 3JA') }}
+				</dd>
+			</div>
+
+      		<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Exemption reason ticked
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					{% if data['postcode'] == 'NE2 4XL' %}
+						<p>Has a valid medical exemption certificate</p>
+					{% elif  data['postcode'] == 'NE24XL' %}
+						<p>Has a valid medical exemption certificate</p>
+					{% else %}
+						<p>Gets Income Support or income-related Employment and Support Allowance</p>
+					{% endif %}
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Date prescription was claimed
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					On 21 April 2021
+				</dd>
+			</div>
+    	</dl>
+
+	    <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue.</p>
+    	<p>If you were not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice, you can pay by either:</p>
+
+		<ul>
+			<li>debit or credit card</li>
+			<li>Direct Debit</li>
+		</ul>
+		
+		<a href="what-you-need-to-do-next" class="nhsuk-button">
+		  Continue
+		</a>
+	</div>
+</div>
+
+{% endblock %}

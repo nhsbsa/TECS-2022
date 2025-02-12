@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What do you want to do next?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-back-link">
+	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+			<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+		</svg>
+		Go back
+	</a>
+</div>
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+		<span class="nhsuk-caption-m">Confirm your entitlement</span>
+		
+      	
+		<form action="" method="post" class="form">
+			<fieldset class="nhsuk-fieldset">
+        	
+				<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+					<h1 class="nhsuk-fieldset__heading nhsuk-u-margin-bottom-2">What do you want to do next?</h1>
+				</legend>
+
+				<div class="nhsuk-form-group">
+					<div class="nhsuk-radios nhsuk-radios">
+						
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="entitled" name="confirm" type="radio" value="entitled">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="entitled">
+								Confirm I was entitled to free NHS prescriptions
+								<span class="nhsuk-hint nhsuk-u-margin-top-2">
+									We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate.
+								</span>
+							</label>
+						</div>
+
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="not-entitled" name="confirm" type="radio" value="pay">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="not-entitled">
+								I was not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice
+							</label>
+						</div>
+
+						<div class="nhsuk-radios__divider nhsuk-u-margin-bottom-4">or</div>
+				
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="check" name="confirm" type="radio" value="check">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="check">
+								I'm not sure if I was entitled to free NHS prescriptions and want to check.
+							</label>
+						</div>    
+
+					</div>
+				</div>
+
+			</fieldset>
+
+			<details class="nhsuk-details">
+				<summary class="nhsuk-details__summary">
+					<span class="nhsuk-details__summary-text">
+						I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim
+					</span>
+				</summary>
+				<div class="nhsuk-details__text">
+					<p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can ask us to review your case. <a href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>
+				</div>
+			</details>
+
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>
+		</form>
+
+		<p><a href="respond-to-your-letter">Cancel</a></p>
+	</div>
+</div>
+
+{% endblock %}
