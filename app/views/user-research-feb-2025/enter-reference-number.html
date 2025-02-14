@@ -13,20 +13,41 @@
 {% block content %}
 <div class="nhsuk-grid-row">
 	<div class="nhsuk-grid-column-two-thirds">
+		{% if formError %}
+		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+			<h2 class="nhsuk-error-summary__title" id="error-summary-title">
+				There is a problem
+			</h2>
+			<div class="nhsuk-error-summary__body">
+				<ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+					<li>
+						<a href="#reference-number">Enter your reference number</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
+
 		<span class="nhsuk-caption-m">Your details</span>
 		<h1 class="nhsuk-heading-l">
 			What is your reference number?
         </h1>
 		
 		<form action="enter-reference-number" method="post" class="form">
-        	<div class="nhsuk-form-group">
+        	<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">
 				<label class="nhsuk-label" for="reference-number">
 					<div class="nhsuk-hint">
 						You can find this on your letter. Only include numbers in your reference number
 					</div>
 				</label>
-          	
-				<input class="nhsuk-input nhsuk-u-width-one-half" id="reference-number" name="reference-number" type="text">
+
+				{% if formError %}
+				<span class="nhsuk-error-message" id="reference-error">
+					<span class="nhsuk-u-visually-hidden">Error:</span> Enter your reference number
+				</span>
+				{% endif %}
+				
+				<input class="nhsuk-input nhsuk-u-width-one-half {% if formError %} nhsuk-input--error {% endif %}" id="reference-number" name="reference-number" type="text">
         	</div>
 			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
 				Continue

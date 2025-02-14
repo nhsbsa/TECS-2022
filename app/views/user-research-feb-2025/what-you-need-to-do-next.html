@@ -11,8 +11,8 @@ What do you want to do next?
 {% endblock %}
 
 {% block content %}
-<div class="nhsuk-back-link">
-	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+<div class="nhsuk-back-link nhsuk-u-margin-bottom-4">
+	<a class="nhsuk-back-link__link" href="penalty-charge-notice-details">
 		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
 			<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
 		</svg>
@@ -23,17 +23,38 @@ What do you want to do next?
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-		<span class="nhsuk-caption-m">Confirm your entitlement</span>
+		{% if formError %}
+		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+			<h2 class="nhsuk-error-summary__title" id="error-summary-title">
+				There is a problem
+			</h2>
+			<div class="nhsuk-error-summary__body">
+				<ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+					<li>
+						<a href="#confirm-error">Select an option</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
 		
+		<span class="nhsuk-caption-m">Confirm your entitlement</span>
       	
-		<form action="" method="post" class="form">
+		<form action="what-you-need-to-do-next" method="post" class="form">
 			<fieldset class="nhsuk-fieldset">
         	
 				<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
 					<h1 class="nhsuk-fieldset__heading nhsuk-u-margin-bottom-2">What do you want to do next?</h1>
 				</legend>
 
-				<div class="nhsuk-form-group">
+				
+				<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">	
+					{% if formError %}
+					<span class="nhsuk-error-message" id="confirm-error">
+						<span class="nhsuk-u-visually-hidden">Error:</span> Select an option
+					</span>
+					{% endif %}
+
 					<div class="nhsuk-radios nhsuk-radios">
 						
 						<div class="nhsuk-radios__item">
