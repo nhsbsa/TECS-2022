@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Select how many months you want to pay over
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link nhsuk-u-margin-bottom-4">
+	<a class="nhsuk-back-link__link" href="paying-by-direct-debit">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+			<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+		</svg>
+		Go back
+	</a>
+</div>
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+
+		{% if formError %}
+		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+			<h2 class="nhsuk-error-summary__title" id="error-summary-title">
+				There is a problem
+			</h2>
+			<div class="nhsuk-error-summary__body">
+				<ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+					<li>
+						<a href="#instalment-error">Select an option</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
+
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		
+		<form action="direct-debit-instalment-option" method="post" class="form">
+			<fieldset class="nhsuk-fieldset">
+				
+				<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+					<h1 class="nhsuk-fieldset__heading nhsuk-u-margin-bottom-2">Select how many months you want to pay over</h1>
+				</legend>
+
+				<p>Your total amount to pay is £123.80. You will not be charged interest on this amount and it will not affect your credit score.</p>
+				<p>Select how many months you want to pay over</p>
+
+				
+				<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">	
+					{% if formError %}
+					<span class="nhsuk-error-message" id="instalment-error">
+						<span class="nhsuk-u-visually-hidden">Error:</span> Select an option
+					</span>
+					{% endif %}
+
+					<div class="nhsuk-radios nhsuk-radios">
+						
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="three-months" name="instalment" type="radio" value="3">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="three-months">
+								3 months
+							</label>
+							<div class="nhsuk-hint nhsuk-radios__hint" id="three-months-hint">
+								1 payment of £41.28 followed by 2 payments of £41.26
+							</div>
+						</div>
+
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="six-months" name="instalment" type="radio" value="6">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="six-months">
+								6 months
+							</label>
+							<div class="nhsuk-hint nhsuk-radios__hint" id="six-months-hint">
+								1 payment of £20.65 followed by 5 payments of £20.63
+							</div>
+						</div>
+				
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="twelve-months" name="instalment" type="radio" value="12">
+							
+							<label class="nhsuk-label nhsuk-radios__label" for="twelve-months">
+								12 months
+							</label>
+							<div class="nhsuk-hint nhsuk-radios__hint" id="twelve-months-hint">
+								1 payment of £10.39 followed by 11 payments of £10.31
+							</div>
+						</div>    
+
+					</div>
+				</div>
+
+			</fieldset>
+	
+			<p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">Contact us if you cannot afford any of these monthly plans (link opens in new window)</a>.</p>
+ 
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>
+		</form>
+
+		<p><a href="penalty-charge-notice-details">Cancel</a></p>
+    </div>
+</div>
+
+{% endblock %}

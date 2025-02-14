@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your address?
+{% endblock %}
+
+{% block outerContent %}
+  
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-back-link nhsuk-u-margin-bottom-4">
+	<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+			<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+		</svg>
+		Go back
+	</a>
+</div>
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">What is your address?</h1>
+
+		<p>This address will be updated on your record.</p>
+      	
+		<form action="direct-debit-what-is-your-address" method="post" class="form">
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="address-line-1">
+					Address line 1
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-20" id="address-line-1" name="address-line-one" type="text">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="address-line-2">
+					Address line 2
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-20" id="address-line-2" name="address-line-two" type="text">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="address-line-3">
+					Address line 3 (optional)
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-20" id="address-line-3" name="address-line-three" type="text">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="address-line-4">
+					Address line 4 (optional)
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-20" id="address-line-4" name="address-line-four" type="text">
+			</div>
+
+			<div class="nhsuk-form-group">
+				<label class="nhsuk-label" for="postcode">
+					Postcode
+				</label>
+				<input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="postcode" type="text">
+			</div>
+
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>			
+		</form>
+
+		<p>
+			<a class="cancel" href="penalty-charge-notice-details">Cancel</a>
+		</p>
+    </div>
+</div>
+{% endblock %}

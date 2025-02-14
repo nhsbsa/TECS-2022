@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+How would you like to pay your penalty charge?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link nhsuk-u-margin-bottom-4">
+	<a class="nhsuk-back-link__link" href="what-you-need-to-do-next">
+		<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+			<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+		</svg>
+		Go back
+	</a>
+</div>
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">	
+		{% if formError %}
+		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+			<h2 class="nhsuk-error-summary__title" id="error-summary-title">
+				There is a problem
+			</h2>
+			<div class="nhsuk-error-summary__body">
+				<ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+					<li>
+						<a href="#payment-error">Select a payment method</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
+
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+
+		<form action="payment-method" method="post" class="form">
+			<fieldset class="nhsuk-fieldset">				
+				<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+					<h1 class="nhsuk-fieldset__heading nhsuk-u-margin-bottom-2">How would you like to pay your penalty charge?</h1>
+				</legend>
+
+				<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">
+
+					{% if formError %}
+					<span class="nhsuk-error-message" id="payment-error">
+						<span class="nhsuk-u-visually-hidden">Error:</span> Select a payment option
+					</span>
+					{% endif %}
+
+					<div class="nhsuk-radios nhsuk-radios">
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="debit-credit" name="payment-method" type="radio" value="credit">
+							<label class="nhsuk-label nhsuk-radios__label" for="debit-credit">
+								Debit or credit card
+							</label>
+						</div>
+
+						<div class="nhsuk-radios__item">
+							<input class="nhsuk-radios__input" id="direct-debit" name="payment-method" type="radio" value="dd">
+							<label class="nhsuk-label nhsuk-radios__label" for="direct-debit">
+								Direct Debit
+							</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			<button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+				Continue
+			</button>
+		</form>
+
+    	<p><a href="respond-to-your-letter">Cancel</a></p>
+    </div>
+</div>
+
+{% endblock %}
