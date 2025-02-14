@@ -59,7 +59,9 @@ Check your address is correct
                             Address
                         </dt>
                         <dd class="nhsuk-summary-list__value">
-                            12 Old Oak Road<br>Throckley<br> {{ data['postcode'] | default('NE1 3JA') | upper }}
+                            {{ data['address-line-one'] | default('12 Old Oak Road') }}<br>
+                            {{ data['address-line-two'] | default('Throckley') }}<br>
+                            {{ data['postcode'] | default('NE1 3JA') | upper }}
                         </dd>
                     </div>     
                 </dl>

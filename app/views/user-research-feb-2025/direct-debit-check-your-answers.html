@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">Check your answers are correct</h1>
+     
+		<p><a href="">Print this page</a></p>
+
+		<h2>Your Direct Debit details</h2>
+
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Number of payments
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					{{ data['instalment'] | default('12') }}
+				</dd>
+				<dd class="nhsuk-summary-list__actions">
+
+					<a href="direct-debit-instalment-option">
+						Change<span class="nhsuk-u-visually-hidden"> instament option</span>
+					</a>
+				</dd>
+			</div>
+
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Chosen payment date
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					{{ data['date'] | default('1') }}
+				</dd>
+
+				<dd class="nhsuk-summary-list__actions">
+					<a href="direct-debit-date">
+						Change<span class="nhsuk-u-visually-hidden"> payment date</span>
+					</a>
+				</dd>
+
+			</div>
+		</dl>
+
+      	<p>Your payments will be taken on, or just after, your chosen date each month until your penalty charge has been cleared.</p>
+
+        <h2>Your payment summary</h2>
+      	
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					First payment
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£4.82
+				</dd>
+			</div>
+		
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					First payment taken on or just after
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					01 April 2023
+				</dd>
+			</div>
+      
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Following 11 payments
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£4.82
+				</dd>  
+			</div>
+		
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Total amount
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					£57.90
+				</dd>
+			</div>  
+		</dl>
+
+      	<p>Your payment summary is based on the information you have given us.</p>
+
+	    <p>You're responsible for making sure that payments can be taken on these dates.</p> 
+
+    	<h2>We'll send confirmation of your Direct Debit to this address</h2>
+    
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Address
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					{{ data['address-line-one'] | default('12 Old Oak Road') }}<br>
+					{{ data['address-line-two'] | default('Throckley') }}<br>
+					{{ data['postcode'] | default('NE1 3JA') | upper }}
+				</dd>
+
+				<dd class="nhsuk-summary-list__actions">
+					<a href="direct-debit-what-is-your-address">
+						Change<span class="nhsuk-u-visually-hidden">address</span>
+					</a>
+				</dd>
+			</div>
+		</dl>
+  
+		<p>
+			<a class="nhsuk-button" data-module="nhsuk-button" role="button" href="enter-your-bank-details">
+			  Continue
+			</a>
+		</p>
+
+		<p><a href="penalty-charge-notice-details">Cancel</a></p>
+	</div>
+</div>
+
+{% endblock %}

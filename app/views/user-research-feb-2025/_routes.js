@@ -153,7 +153,7 @@ router.post('/direct-debit-date', function(request, response) {
   }
 })
 
-// Direct debit check address
+// Direct Debit check address
 router.post('/direct-debit-check-address', function(request, response) {
   let address = request.session.data['dd-address']
 
@@ -167,5 +167,25 @@ router.post('/direct-debit-check-address', function(request, response) {
     response.redirect("direct-debit-what-is-your-address")
   }
 })
+
+// Direct Debit what is your address
+router.post('/direct-debit-what-is-your-address', function(request, response) {
+  let addressOne = request.session.data['address-line-one']
+  let addressTwo = request.session.data['address-line-two']
+  // let addressThree = request.session.data['address-line-three']
+  // let addressFour = request.session.data['address-line-four']
+  let postcode = request.session.data['postcode']
+
+  if (!addressOne || addressOne.trim() === '' || !addressTwo || addressTwo.trim() === '' || !postcode || postcode.trim() === '') {
+    return response.render(path.join(__dirname, 'direct-debit-what-is-your-address'), {
+      formError: ' '
+    });
+  } else {
+    response.redirect("direct-debit-check-your-answers")
+  }
+})
+
+// Enter your bank details
+
 
 module.exports = router
