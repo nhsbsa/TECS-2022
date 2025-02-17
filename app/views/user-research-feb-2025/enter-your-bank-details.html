@@ -23,36 +23,71 @@ Enter your bank details
 
 <div class="nhsuk-grid-row">
 	<div class="nhsuk-grid-column-two-thirds">
+		{% if formError %}
+		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+			<h2 class="nhsuk-error-summary__title" id="error-summary-title">
+				There is a problem
+			</h2>
+			<div class="nhsuk-error-summary__body">
+				<ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+					<li>
+						<a href="#account-holder">Enter your bank details</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
 
 		<span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
 		<h1 class="nhsuk-heading-l">
-		Enter your bank details
+			Enter your bank details
 		</h1>
   
     	<p>Equifax will perform a check to verify the bank account details you give us. A record of this will be left on your credit record for 12 months but will not affect your credit rating.</p>
     
     	<form action="enter-your-bank-details" method="post">
-			<div class="nhsuk-form-group">
+			<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">
 				<label class="nhsuk-label" for="account-holder">
 					Account holder's name
 				</label>
-				<input class="nhsuk-input nhsuk-input--width-10" id="account-holder" name="account-holder" type="text">
+
+				{% if formError %}
+				<span class="nhsuk-error-message" id="account-error">
+					<span class="nhsuk-u-visually-hidden">Error:</span> Enter account holder's name
+				</span>
+				{% endif %}
+
+				<input class="nhsuk-input nhsuk-input--width-10 {% if formError %} nhsuk-input--error {% endif %}" id="account-holder" name="account-holder" type="text">
 			</div>
 
-			<div class="nhsuk-form-group">
+			<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">
 				<label class="nhsuk-label" for="example-with-hint-text">
 					Account number
 				</label>
-				<input class="nhsuk-input nhsuk-input--width-10" id="account-number" name="accoun-number" type="text" inputmode="numeric">
+
+				{% if formError %}
+				<span class="nhsuk-error-message" id="number-error">
+					<span class="nhsuk-u-visually-hidden">Error:</span> Enter account number
+				</span>
+				{% endif %}
+
+				<input class="nhsuk-input nhsuk-input--width-10 {% if formError %} nhsuk-input--error {% endif %}" id="account-number" name="account-number" type="text" inputmode="numeric">
 			</div>
 
-			<div class="nhsuk-form-group">
+			<div class="nhsuk-form-group {% if formError %} nhsuk-form-group--error {% endif %}">
 				<label class="nhsuk-label" id="sort-code-label">
 					Sort code
 				</label>
-				<input class="nhsuk-input nhsuk-input--width-2" id="sort-code-one" name="sort-code-one" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
-				<input class="nhsuk-input nhsuk-input--width-2" id="sort-code-two" name="sort-code-two" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
-				<input class="nhsuk-input nhsuk-input--width-2" id="sort-code-3" name="sort-code-three" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
+
+				{% if formError %}
+				<span class="nhsuk-error-message" id="sort-error">
+					<span class="nhsuk-u-visually-hidden">Error:</span> Enter sort code
+				</span>
+				{% endif %}
+
+				<input class="nhsuk-input nhsuk-input--width-2 {% if formError %} nhsuk-input--error {% endif %}" id="sort-code-one" name="sort-code-one" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
+				<input class="nhsuk-input nhsuk-input--width-2 {% if formError %} nhsuk-input--error {% endif %}" id="sort-code-two" name="sort-code-two" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
+				<input class="nhsuk-input nhsuk-input--width-2 {% if formError %} nhsuk-input--error {% endif %}" id="sort-code-3" name="sort-code-three" type="text" inputmode="numeric" aria-labelledby="sort-code-label">
 			</div>
 
 			<details class="nhsuk-details">
@@ -83,7 +118,7 @@ Enter your bank details
 			</button>
 		</form>
 	
-		<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+		<p><a href="penalty-charge-notice-details">Cancel</a></p>
 	</div>
 </div>
 

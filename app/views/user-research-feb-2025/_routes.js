@@ -186,6 +186,22 @@ router.post('/direct-debit-what-is-your-address', function(request, response) {
 })
 
 // Enter your bank details
+router.post('/enter-your-bank-details', function(request, response) {
+  let holder = request.session.data['account-holder']
+  let number = request.session.data['account-number']
+  let sortOne = request.session.data['sort-code-one']
+  let sortTwo = request.session.data['sort-code-two']
+  let sortThree = request.session.data['sort-code-three']
 
+  if (!holder || holder.trim() === '' || !number || number.trim() === '' || !sortOne || sortOne.trim() === '' || !sortTwo || sortTwo.trim() === '' || !sortThree || sortThree.trim() === '') {
+    return response.render(path.join(__dirname, 'enter-your-bank-details'), {
+      formError: ' '
+    });
+  } else if ( number === "12345679") {
+    response.redirect("we-could-not-verify-your-details")
+  } else {
+    response.redirect("direct-debit-confirmed")
+  }
+})
 
 module.exports = router
