@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    We could not verify your updated details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-l">Pay an NHS Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">We have tried to find your updated details but still could not find them</h1>    
+
+        <p>Change your details if any of them are incorrect by selecting change.</p>
+        <p>Once you've done this, you'll be brought back to this page.</p>
+        
+
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					{{ data['address-line-one'] | default('12 Old Oak Road') }}<br>
+					{{ data['address-line-two'] | default('Throckley') }}<br>
+					{{ data['postcode'] | default('NE1 3JA') | upper }}
+				</dt>
+
+				<dd class="nhsuk-summary-list__value">
+				</dd>
+          
+				<dd class="nhsuk-summary-list__actions">
+					<a href="change-your-address-again">
+						Change<span class="nhsuk-u-visually-hidden"> address</span>
+					</a>
+				</dd>
+            </div>
+          
+            <div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Bank Account <br>
+					{{ data['account-number'] | default('12345679') }} <br>
+					Sort Code <br>
+					{{ data['sort-code-one'] | default('12') }}-{{ data['sort-code-two'] | default('34') }}-{{ data['sort-code-three'] | default('56') }} <br>
+					{{ data['account-holder'] | default('Michelle Doe') }}
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+				</dd>
+			
+				<dd class="nhsuk-summary-list__actions">
+					<a href="change-your-bank-details-again">
+						Change<span class="nhsuk-u-visually-hidden"> bank details</span>
+					</a>
+				</dd>
+            </div>
+		</dl>
+
+		<div class="nhsuk-inset-text">
+            <span class="nhsuk-u-visually-hidden">Information: </span>
+            <p>After you've updated your details, select continue so we can check them again.</p>
+        </div>
+
+        <a href="we-cannot-set-up-your-direct-debit" class="nhsuk-button" role="button">
+            Continue
+        </a>
+
+        <p>If your details are correct, <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">contact us</a> about your Penalty Charge Notice. You may not be able to pay by Direct Debit. </p>
+
+        <p>
+            <a href="penalty-charge-notice-details.html">Cancel</a>
+		</p>
+	</div>
+</div>
+
+{% endblock %}

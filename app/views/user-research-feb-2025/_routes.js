@@ -65,7 +65,7 @@ router.post('/enter-postcode', function(request, response) {
 router.post('/what-you-need-to-do-next', function(request, response) {
   let confirm = request.session.data['confirm']
 
-  // There will be conditions based on postcode need adding, one for DWP journey one for BSA on the entitled option
+  // There will be conditions need adding based on postcode entered, one for DWP journey one for BSA on the entitled option
 
   if (confirm === "entitled") {
     response.redirect("entitled")
@@ -80,16 +80,16 @@ router.post('/what-you-need-to-do-next', function(request, response) {
   }
 })
 
-// Confirm I was entitled
+// Confirm I was entitled (Need page building)
 
-// Check I was entitled
+// Check I was entitled (Need page building)
 
 // Payment method
 router.post('/payment-method', function(request, response) {
   let method = request.session.data['payment-method']
 
   if (method === "credit") {
-    response.redirect("credit")
+    response.redirect("pay-by-card")
   } else if (method === "dd") {
     response.redirect("paying-by-direct-debit")
   } else {
@@ -100,6 +100,36 @@ router.post('/payment-method', function(request, response) {
 })
 
 // Paying by debit or credit card
+router.post('/pay-by-card', function(request, response) {
+  let fullAmount = request.session.data['amount']
+
+  if (fullAmount === "yes") {
+    response.redirect("gov-pay")
+  } else if (fullAmount === "no") {
+    response.redirect("partial-payment")
+  } else {
+    return response.render(path.join(__dirname, 'pay-by-card'), {
+      formError: ' '
+    });
+  }
+})
+
+// Partial payment by debit or credit card
+router.post('/partial-payment', function(request, response) {
+  let amount = request.session.data['partial-amount']
+  
+  if (!amount || amount.trim() === '') {
+    return response.render(path.join(__dirname, 'partial-payment'), {
+      formError: ' '
+    });
+  } else {
+    response.redirect("gov-pay")
+  }
+})
+
+// Gov Pay
+
+// Gov Pay confirm payment
 
 // Paying by Direct Debit
 router.post('/paying-by-direct-debit', function(request, response) {
@@ -201,6 +231,42 @@ router.post('/enter-your-bank-details', function(request, response) {
     response.redirect("we-could-not-verify-your-details")
   } else {
     response.redirect("direct-debit-confirmed")
+  }
+})
+
+// Change your bank details (KYC fail - we could not verify your details)
+router.post('/change-your-bank-details', function(request, response) {
+  let holder = request.session.data['account-holder']
+  let number = request.session.data['account-number']
+  let sortOne = request.session.data['sort-code-one']
+  let sortTwo = request.session.data['sort-code-two']
+  let sortThree = request.session.data['sort-code-three']
+
+  if (!holder || holder.trim() === '' || !number || number.trim() === '' || !sortOne || sortOne.trim() === '' || !sortTwo || sortTwo.trim() === '' || !sortThree || sortThree.trim() === '') {
+    return response.render(path.join(__dirname, 'change-your-bank-details'), {
+      formError: ' '
+    });
+  } else {
+    // If fields aren't empty send back here to try again
+    response.redirect("we-could-not-verify-your-details")
+  }
+})
+
+// Change your address
+router.post('/change-your-address', function(request, response) {
+  let addressOne = request.session.data['address-line-one']
+  let addressTwo = request.session.data['address-line-two']
+  // let addressThree = request.session.data['address-line-three']
+  // let addressFour = request.session.data['address-line-four']
+  let postcode = request.session.data['postcode']
+
+  if (!addressOne || addressOne.trim() === '' || !addressTwo || addressTwo.trim() === '' || !postcode || postcode.trim() === '') {
+    return response.render(path.join(__dirname, 'direct-debit-what-is-your-address'), {
+      formError: ' '
+    });
+  } else {
+    // If fields aren't empty send back here to try again
+    response.redirect("we-could-not-verify-your-details")
   }
 })
 
