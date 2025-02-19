@@ -128,6 +128,17 @@ router.post('/partial-payment', function(request, response) {
 })
 
 // Gov Pay
+router.post('/gov-pay', function(request, response) {
+  let name = request.session.data['cardholder']
+  
+  if (!name || name.trim() === '') { // Probably needs more fields adding here and error messaging added to view
+    return response.render(path.join(__dirname, 'gov-pay'), {
+      formError: ' '
+    });
+  } else {
+    response.redirect("gov-pay-confirm")
+  }
+})
 
 // Gov Pay confirm payment
 

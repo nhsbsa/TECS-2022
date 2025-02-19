@@ -28,7 +28,7 @@
 								Card number
 							</dt>
 							<dd class="govuk-summary-list__value">
-								●●●●●●●●●●●●1111
+								●●●●●●●●●●●●{{data['card-number'].slice(-4) | default('●●●●●●●●●●●●1111')}}
 							</dd>
 						</div>
 						<div class="govuk-summary-list__row">
@@ -36,7 +36,7 @@
 								Expiry date
 							</dt>
 							<dd class="govuk-summary-list__value">
-								01/25
+								{{ data['expiry-month'] | default('01') }}/{{ data['expiry-year'] | default('25') }}
 							</dd>
 						</div>
 						<div class="govuk-summary-list__row">
@@ -44,7 +44,7 @@
 								Name on card
 							</dt>
 							<dd class="govuk-summary-list__value">
-								Michelle Doe
+								{{ data['cardholder'] | default('Michelle Doe') }}
 							</dd>
 						</div>
 						<div class="govuk-summary-list__row">
@@ -52,7 +52,9 @@
 								Billing address
 							</dt>
 							<dd class="govuk-summary-list__value">
-								1 Test Road<br>Town<br>NE1 OLD
+								{{ data['addressLineOne'] | default('12 Old Oak Road') }}<br>
+								{{ data['addressTown'] | default('Throckley') }}<br>
+								{{ data['addressPostcode'] | default('NE1 OLD') }}
 							</dd>
 						</div>
 						<div class="govuk-summary-list__row">
@@ -60,7 +62,7 @@
 								Confirmation email
 							</dt>
 							<dd class="govuk-summary-list__value">
-								michelle.doe123@test.com
+								{{ data['gov-pay-email'] | default('michelle.doe123@test.com') }}
 							</dd>
 						</div>
 					</dl>
