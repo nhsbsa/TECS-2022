@@ -68,11 +68,11 @@ router.post('/what-you-need-to-do-next', function(request, response) {
   // There will be conditions need adding based on postcode entered, one for DWP journey one for BSA on the entitled option
 
   if (confirm === "entitled") {
-    response.redirect("entitled")
+    response.redirect("what-happens-next")
   } else if (confirm === "pay") {
     response.redirect("payment-method")
   } else if (confirm === "check") {
-    response.redirect("check")
+    response.redirect("what-happens-next")
   } else {
     return response.render(path.join(__dirname, 'what-you-need-to-do-next'), {
       formError: ' '
