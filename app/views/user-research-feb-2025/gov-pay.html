@@ -10,6 +10,23 @@ GOV.UK
 <main id="content" role="main">
 	<div class="nhsuk-grid-row">
 		<div class="nhsuk-grid-column-two-thirds">
+			{% if formError %}
+			<div class="govuk-error-summary nhsuk-u-margin-top-4" data-module="govuk-error-summary">
+				<div role="alert">
+					<h2 class="govuk-error-summary__title">
+						There is a problem
+					</h2>
+					<div class="govuk-error-summary__body">
+						<ul class="govuk-list govuk-error-summary__list">
+							<li>
+								<a href="#card-no">Enter your payment details</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			  
 			<h1 class="govuk-heading-xl nhsuk-u-margin-top-4">Enter payment details</h1>
 
       		<div class="payment-summary-wrap">
@@ -29,10 +46,16 @@ GOV.UK
 				<h3 class="govuk-heading-m">Enter card details</h3>
 
 				<form action="gov-pay" method="post" id="card-details" style="margin-top:20px;">
-					<div class="govuk-form-group card-no-group" data-validation="cardNo">
+					<div class="govuk-form-group card-no-group {% if formError %}govuk-form-group--error{% endif %}" data-validation="cardNo">
 						<label class="govuk-label govuk-!-font-weight-bold" for="card-number">
 							Card number
 						</label>
+
+						{% if formError %}
+						<span class="nhsuk-error-message" id="card-error">
+							<span class="nhsuk-u-visually-hidden">Error:</span> Enter card number
+						</span>
+						{% endif %}
 
 						<div id="card-no-hint" class="govuk-hint">
 							Accepted credit and debit card types
@@ -49,10 +72,10 @@ GOV.UK
 							</li>
 						</ul>
 
-						<input id="card-no" type="number" inputmode="numeric" pattern="[0-9]*" name="card-number" maxlength="26" class="govuk-input" value="">
+						<input id="card-no" type="number" inputmode="numeric" pattern="[0-9]*" name="card-number" maxlength="26" class="govuk-input {% if formError %}govuk-input--error{% endif %}" value="">
 					</div>
 
-					<div class="govuk-form-group expiry-date" data-validation="expiryMonth">
+					<div class="govuk-form-group expiry-date {% if formError %}govuk-form-group--error{% endif %}" data-validation="expiryMonth">
 						<label class="govuk-label govuk-!-font-weight-bold" id="expiry-date-lbl" for="expiry-month">
 							Expiry date
 						</label>
@@ -61,36 +84,55 @@ GOV.UK
 							For example, 10/23
 						</div>
 
+						{% if formError %}
+						<span class="nhsuk-error-message" id="expiry-error">
+							<span class="nhsuk-u-visually-hidden">Error:</span> Enter expiry date
+						</span>
+						{% endif %}
+
 						<div class="govuk-date-input__item govuk-date-input__item--month govuk-date-input__item--with-separator">
 							<label class="govuk-label govuk-date-input__label" for="expiry-month" style="font-size: 19px;">Month</label>
-							<input id="expiry-month" type="text" inputmode="numeric" pattern="[0-9]*" name="expiry-month" value="" class="govuk-input govuk-date-input__input govuk-input--width-3" minlength="1" maxlength="2" autocomplete="" />
+							<input id="expiry-month" type="text" inputmode="numeric" pattern="[0-9]*" name="expiry-month" value="" class="govuk-input govuk-date-input__input govuk-input--width-3 {% if formError %}govuk-input--error{% endif %}" minlength="1" maxlength="2" autocomplete="" />
 						</div>
 
 						<span class="nhsuk-u-margin-right-3 nhsuk-u-font-weight-bold" style="font-size: 26px;">/</span>
 
 						<div class="govuk-date-input__item govuk-date-input__item--year">
 							<label for="expiry-year" class="govuk-label govuk-date-input__label" style="font-size: 19px;">Year</label>
-							<input id="expiry-year" type="text" inputmode="numeric" pattern="[0-9]*" name="expiry-year" value="" minlength="2" maxlength="4" class="govuk-input govuk-date-input__input govuk-input--width-3" autocomplete="" data-required />
+							<input id="expiry-year" type="text" inputmode="numeric" pattern="[0-9]*" name="expiry-year" value="" minlength="2" maxlength="4" class="govuk-input govuk-date-input__input govuk-input--width-3 {% if formError %}govuk-input--error{% endif %}" autocomplete="" data-required />
 						</div>
 					</div>
 	
-					<div class="govuk-form-group">
+					<div class="govuk-form-group {% if formError %}govuk-form-group--error{% endif %}">
 						<label class="govuk-label govuk-!-font-weight-bold" for="cardholder">
 							Name on card
 						</label>
-						<input id="cardholder-name" type="text" name="cardholder" maxlength="200"
-						class="govuk-input" value="" autocomplete="cc-name" />
+
+						{% if formError %}
+						<span class="nhsuk-error-message" id="name-error">
+							<span class="nhsuk-u-visually-hidden">Error:</span> Enter card holder name
+						</span>
+						{% endif %}
+
+						<input id="cardholder-name" type="text" name="cardholder" maxlength="200" class="govuk-input {% if formError %}govuk-input--error{% endif %}" value="" autocomplete="cc-name" />
 					</div>
 
-					<div class="govuk-form-group cvc govuk-clearfix" data-validation="cvc">
+					<div class="govuk-form-group cvc govuk-clearfix {% if formError %}govuk-form-group--error{% endif %}" data-validation="cvc">
 						<label class="govuk-label govuk-!-font-weight-bold" id="cvc-lbl" for="cvc">
 							Card security code
 						</label>
+
+						{% if formError %}
+						<span class="nhsuk-error-message" id="cvc-error">
+							<span class="nhsuk-u-visually-hidden">Error:</span> Enter card security card
+						</span>
+						{% endif %}
+
 						<div id="cvc-hint" class="govuk-hint nhsuk-u-margin-bottom-0">
 							The last 3 digits on the back of the card
 						</div>
 
-						<input id="cvc" type="text" inputmode="numeric" pattern="[0-9]*" value="" name="cvc" class="govuk-input govuk-input--width-3 cvc" maxlength="3" autocomplete="" />
+						<input id="cvc" type="text" inputmode="numeric" pattern="[0-9]*" value="" name="cvc" class="govuk-input govuk-input--width-3 cvc {% if formError %}govuk-input--error{% endif %}" maxlength="3" autocomplete="" />
 
 						<img src="/images/security-code.png" height="40px" class="generic-cvc-image" alt="The last 3 digits on the back of the card" />
 					</div>
@@ -103,11 +145,18 @@ GOV.UK
 					</p>
 
 					<fieldset class="govuk-fieldset">
-						<div class="govuk-form-group">
+						<div class="govuk-form-group {% if formError %}govuk-form-group--error{% endif %}">
 							<label class="govuk-label" for="address-line-1">
 								Address line 1
 							</label>
-							<input class="govuk-input" id="address-line-1" name="addressLineOne" type="text" autocomplete="">
+
+							{% if formError %}
+							<span class="nhsuk-error-message" id="address-1-error">
+								<span class="nhsuk-u-visually-hidden">Error:</span> Enter billing address line 1
+							</span>
+							{% endif %}
+
+							<input class="govuk-input {% if formError %}govuk-input--error{% endif %}" id="address-line-1" name="addressLineOne" type="text" autocomplete="">
 						</div>
 
 						<div class="govuk-form-group">
@@ -117,21 +166,28 @@ GOV.UK
 							<input class="govuk-input" id="address-line-2" name="addressLineTwo" type="text" autocomplete="">
 						</div>
 
-						<div class="govuk-form-group">
+						<div class="govuk-form-group {% if formError %}govuk-form-group--error{% endif %}">
 							<label class="govuk-label" for="address-town">
 								Town or city
 							</label>
-							<input class="govuk-input govuk-!-width-one-half" id="address-town" name="addressTown" type="text" autocomplete="">
+
+							{% if formError %}
+							<span class="nhsuk-error-message" id="town-error">
+								<span class="nhsuk-u-visually-hidden">Error:</span> Enter billing address town or city
+							</span>
+							{% endif %}
+
+							<input class="govuk-input govuk-!-width-one-half {% if formError %}govuk-input--error{% endif %}" id="address-town" name="addressTown" type="text" autocomplete="">
 						</div>
 
-						<div class="govuk-form-group " data-validation="addressCountry">
+						<div class="govuk-form-group" data-validation="addressCountry">
 							<label id="address-country-lbl" for="address-country" class="govuk-label">
 								<span class="address-country-label" data-label-replace="addressCountry" data-original-label="Country or territory">
 									Country or territory
 								</span>
 							</label>
 
-							<select name="addressCountry" class="govuk-select govuk-!-width-two-thirds" id="address-country" autocomplete="" style="font-size:19px; height: 40px;">
+							<select name="addressCountry" class="govuk-select govuk-!-width-two-thirds {% if formError %}govuk-input--error{% endif %}" id="address-country" autocomplete="" style="font-size:19px; height: 40px;">
 								<option value="AF">Afghanistan</option>
 								<option value="AL">Albania</option>
 								<option value="DZ">Algeria</option>
@@ -384,11 +440,18 @@ GOV.UK
 							</select>
 						</div>
 
-						<div class="govuk-form-group nhsuk-u-margin-bottom-2">
+						<div class="govuk-form-group nhsuk-u-margin-bottom-2 {% if formError %}govuk-form-group--error{% endif %}">
 							<label class="govuk-label" for="address-postcode">
 								Postcode
 							</label>
-							<input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="">
+
+							{% if formError %}
+							<span class="nhsuk-error-message" id="card-error">
+								<span class="nhsuk-u-visually-hidden">Error:</span> Enter billing address postcode
+							</span>
+							{% endif %}
+
+							<input class="govuk-input govuk-input--width-10 {% if formError %}govuk-input--error{% endif %}" id="address-postcode" name="addressPostcode" type="text" autocomplete="">
 						</div>
 					</fieldset>
 			
@@ -398,14 +461,20 @@ GOV.UK
 					
 					<div id="address-hint" class="govuk-hint govuk-!-margin-bottom-2">We'll send your payment confirmation here</div>
 					
-					<div class="govuk-form-group govuk-!-width-three-quarters" data-validation="addressCity">
+					<div class="govuk-form-group govuk-!-width-three-quarters {% if formError %}govuk-form-group--error{% endif %}" data-validation="addressCity">
 						<label id="address-city-lbl" for="email" class="govuk-label">
 							<span class="address-city-label" data-label-replace="addressCity" data-original-label="Email" style="font-size:19px;">
 								Email
 							</span>
 						</label>
+
+						{% if formError %}
+						<span class="nhsuk-error-message" id="card-error">
+							<span class="nhsuk-u-visually-hidden">Error:</span> Enter email address
+						</span>
+						{% endif %}
 						
-						<input id="email" type="text" name="gov-pay-email" maxlength="100" class="govuk-input govuk-!-width-three-quarters" value="" autocomplete="" />
+						<input id="email" type="text" name="gov-pay-email" maxlength="100" class="govuk-input govuk-!-width-three-quarters {% if formError %}govuk-input--error{% endif %}" value="" autocomplete="" />
 					</div>
 					
 					<div class="form-group" style="margin-top:20px">

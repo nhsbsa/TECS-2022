@@ -28,7 +28,7 @@
 								Card number
 							</dt>
 							<dd class="govuk-summary-list__value">
-								●●●●●●●●●●●●{{data['card-number'].slice(-4) | default('●●●●●●●●●●●●1111')}}
+								●●●●●●●●●●●●{{ data['card-number'].slice(-4) | default('●●●●●●●●●●●●1111') }}
 							</dd>
 						</div>
 						<div class="govuk-summary-list__row">
@@ -68,7 +68,8 @@
 					</dl>
 
 					<div class="form-group" style="margin-top:20px">
-						<a href="full-payment-made" class="govuk-button">
+
+						<a href="{% if data['amount'] == 'yes' %}full-payment-made{% else %}partial-payment-made{% endif %}" class="govuk-button" role="button">
 							Confirm payment
 						</a>
 					

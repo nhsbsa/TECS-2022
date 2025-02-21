@@ -130,8 +130,9 @@ router.post('/partial-payment', function(request, response) {
 // Gov Pay
 router.post('/gov-pay', function(request, response) {
   let name = request.session.data['cardholder']
+  let cardNumber = request.session.data['card-number']
   
-  if (!name || name.trim() === '') { // Probably needs more fields adding here and error messaging added to view
+  if (!name || name.trim() === '' || !cardNumber || !cardNumber.trim() === '') { //  Needs more fields adding as reqiured here
     return response.render(path.join(__dirname, 'gov-pay'), {
       formError: ' '
     });
@@ -139,8 +140,6 @@ router.post('/gov-pay', function(request, response) {
     response.redirect("gov-pay-confirm")
   }
 })
-
-// Gov Pay confirm payment
 
 // Paying by Direct Debit
 router.post('/paying-by-direct-debit', function(request, response) {
