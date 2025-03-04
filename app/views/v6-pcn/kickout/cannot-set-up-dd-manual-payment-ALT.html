@@ -16,7 +16,7 @@
 
             <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 
-            <h2 class="nhsuk-heading-m">Other ways to pay your Penalty Charge Notice (PCN)</h2>
+            <h2 class="nhsuk-heading-m">How to pay your Penalty Charge Notice (PCN) online</h2>
 
             <p>You can use this service to make a payment using a debit or credit card. You can either:</p>
 
@@ -36,7 +36,7 @@
                     </li>
 
                     <li class="nhsuk-tabs__list-item">
-                        <a class="nhsuk-tabs__tab" href="#pay-in-instalments">Split payments over several payments</a>
+                        <a class="nhsuk-tabs__tab" href="#split-payment-over-several-payments">Split payment over several payments</a>
                     </li>
 
                 </ul>
@@ -45,39 +45,27 @@
 
                     <!-- CONTENT FOR PAY IN FULL -->
 
-                    <h3 class="nhsuk-heading-m">
-                        Penalty Charge Notice amount
-                    </h3>
+                    <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
 
-                    <dl class="nhsuk-summary-list nhsuk-summary-list">
-                        <div class="nhsuk-summary-list__row">
-                            <dt class="nhsuk-summary-list__key">
-                                Total amount
-                            </dt>
-                            <dd class="nhsuk-summary-list__value">
-                                £57.90
-                            </dd>
-                        </div>
-                    </dl>
+                    {{ summaryList({
+                        rows: [
+                            {
+                                key: { text: 'Total amount' },
+                                value: { text: '£57.90' }
+                            }]
+                    }) }}
 
-                    <h3 class="nhsuk-heading-m">
-                        Previous payments
-                    </h3>
-                    
-                    <dl class="nhsuk-summary-list nhsuk-summary-list">           
-                        <div class="nhsuk-summary-list__row">
-                            <dt class="nhsuk-summary-list__key">
-                                Payments made
-                            </dt>
-                            <dd class="nhsuk-summary-list__value">
-                                £7.90
-                            </dd>
-                        </div>
-                    </dl>
+                    <h3 class="nhsuk-heading-m">Previous payments</h3>
 
-                    <p class="nhsuk-heading-l nhsuk-u-margin-bottom-6">
-                        Amount still to pay: £50
-                    </p>
+                    {{ summaryList({
+                        rows: [
+                            {
+                                key: { text: 'Payments made' },
+                                value: { text: '£7.90' }
+                            }]
+                    }) }}
+
+                    <p class="nhsuk-heading-l nhsuk-u-margin-bottom-6">Amount still to pay: £50</p>
 
                     {{ button({
                         classes: 'nhsuk-u-margin-bottom-0',
@@ -87,38 +75,57 @@
 
                 </div>
 
-                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-instalments">
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="split-payment-over-several-payments">
 
-                    <!-- CONTENT FOR PAY IN INSTALMENTS -->
+                    <!-- CONTENT FOR SPLIT PAYMENT OVER SEVERAL PAYMENTS -->
                 
                     <p>If you want spread the cost of your PCN over several payments, you can make regular partial payments using this service.</p>
-                    <p>You'll need to make the first payment within 28 days (by 17 July 2024) and make regular monthly payments until you have paid the PCN in full.</p>
+                    <p>You'll need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) and make regular monthly payments until you have paid the PCN in full.</p>
                     
-                    <div class="nhsuk-warning-callout">
-                        <h3 class="nhsuk-warning-callout__label">
-                          <span role="text">
-                            Important:
-                          </span>
-                        </h3>
-                        <p>These will not be taken automatically and you are responsible for keeping up the payments.</p>
-                     </div>
-                    
-                    <p>It is important that you remember to to make regular monthly payments. If you do not, we may start debt recovery proceedings.</p>
+
+                    {% if data.warningOption === 'true' %}
+
+                        <!-- WARNING OPTION -->
+                        {{ warningCallout({
+                            classes: 'nhsuk-u-margin-bottom-5',
+                            heading: 'Important',
+                            HTML: '<p>These will not be taken automatically and you are responsible for keeping up regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                        }) }}
+
+                    {% else %}
+
+                        <!-- INSET OPTION -->
+                        {{ insetText({
+                            classes: 'nhsuk-u-margin-bottom-5',
+                            html: '<p>These will not be taken automatically and you are responsible for keeping up the payments.</p>'
+                        }) }}
+                        
+                        <p>It is important that you remember to make regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>
+
+                    {% endif %}
 
                      {{ button({
-                        classes: 'nhsuk-u-margin-bottom-6',
+                        classes: 'nhsuk-u-margin-bottom-0',
                         text: 'Make a partial payment',
                         href: '../partial-payment-ALT'
                     }) }}
                     
-                    <p>You can also make payments over the phone.</p>
-                    <p><strong>Telephone:</strong> 0300 330 9291</p>
-                    <p>You will need to keep a record of your PCN reference number to make a payment.</p>
-                    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website.</a></p>
+                    
                 </div>
-
             </div>
+
+
+
+
+            <!-- OTHER WAYS TO PAY YOUR PCN -->
+            <h2 class="nhsuk-heading-m">Other ways to pay your PCN</h2>
+
+            <p>You can also make payments over the phone.</p>
+            <p><strong>Telephone:</strong> 0300 330 9291</p>
+            <p>You will need to keep a record of your PCN reference number to make a payment.</p>
+            <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website.</a></p>
             
+
             <p>
                 <a href="/v6-pcn/penalty-charge-notice-details">Cancel</a>
             </p>

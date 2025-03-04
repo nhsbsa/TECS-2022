@@ -27,45 +27,52 @@ Pay by card
         <h1 class="nhsuk-heading-l">Make a partial payment</h1>
 
 
+          <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+              <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
 
-          {{ table({
-            panel: true,
-            caption: 'Penalty Charge Notice amount',
-            firstCellIsHeader: true,
-            tableClasses: 'nhsuk-u-margin-top-5',
-            rows: [
-              [
-                { text: 'Total amount' },
-                { text: '£50' }
+              {{ summaryList({
+                rows: [
+                  {
+                    key: { text: 'Total amount' },
+                    value: { text: '£57.90' }
+                  }]
+              }) }}
+
+              <h3 class="nhsuk-heading-m">Previous payments</h3>
+
+              {{ summaryList({
+                rows: [
+                  {
+                    key: { text: 'Payments made' },
+                    value: { text: '£7.90' }
+                  }]
+              }) }}
+
+              <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: £50</p>
+            </div>
+          </div>
+          
+
+          {% if data.showPaymentPlan === 'true' %}
+
+            <p>We have calculated a payment plan that spreads the cost out over 12 months. This is a recommendation.</p>
+            <p>You can choose to pay in different instalments if you would like. But you will need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}).</p>
+
+            {{ table({
+              panel: true,
+              caption: 'Recommended payment plan',
+              firstCellIsHeader: false,
+              tableClasses: 'nhsuk-u-margin-top-5',
+              head: [
+                { text: 'Payment' },
+                { text: 'Amount' },
+                { text: 'Date' }
               ],
-              [
-                { text: 'Payments made' },
-                { text: '£0' }
-              ],
-              [
-                { text: 'Amount left to pay' },
-                { text: '£50' }
-              ]
-            ]
-          }) }}
+              rows: 50 | generatePaymentPlanRows( 12 ) 
+            }) }}
 
-
-          <p>We have calculated a payment plan that spreads the cost out over 12 months. This is a recommendation.</p>
-
-          <p>You can choose to pay in different instalments if you would like. But you will need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}).</p>
-
-          {{ table({
-            panel: true,
-            caption: 'Recommended payment plan',
-            firstCellIsHeader: false,
-            tableClasses: 'nhsuk-u-margin-top-5',
-            head: [
-              { text: 'Payment' },
-              { text: 'Amount' },
-              { text: 'Date' }
-            ],
-            rows: 50 | generatePaymentPlanRows( 12 ) 
-          }) }}
+          {% endif %}
 
 
 
@@ -78,37 +85,39 @@ Pay by card
                 label: {
                   text: 'Amount to pay'
                 },
+                hint: {
+                  text: 'You cannot change this on the next page'
+                },
                 id: 'amountToPay',
                 name: 'amountToPay',
                 classes: 'nhsuk-input--width-5',
                 inputmode: 'numeric',
                 prefix: '£'
-              }) }}
+            }) }}
+
+            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
               
-
-        <p>You cannot change this on the next page.</p>
-
+        
   
 
-  {{ checkboxes({
-    idPrefix: "example",
-    name: "example",
-    fieldset: {
-      legend: {
-        text: 'Confirm you understand the conditions to continue',
-        classes: 'nhsuk-u-visually-hidden',
-        isPageHeading: false
-      }
-    },
-    items: [
-      {
-        value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
-        text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
-      }
-    ]
-  }) }}
+        {{ checkboxes({
+          idPrefix: 'surchargeUnderstood',
+          name: 'surchargeUnderstood',
+          fieldset: {
+            legend: {
+              text: 'Confirm you understand the condition to continue',
+              classes: 'nhsuk-u-visually-hidden',
+              isPageHeading: false
+            }
+          },
+          items: [
+            {
+              value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
+              text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
+            }
+          ]
+        }) }}
           
-
 
 
          {{ button({
