@@ -81,19 +81,44 @@ Pay by card
 
          <form action="gov-pay-partial" method="post" class="form">
 
-            {{ input({
-                label: {
-                  text: 'Amount to pay'
-                },
-                hint: {
-                  text: 'You cannot change this on the next page'
-                },
-                id: 'amountToPay',
-                name: 'amountToPay',
-                classes: 'nhsuk-input--width-5',
-                inputmode: 'numeric',
-                prefix: '£'
-            }) }}
+            {% if data.showErrors === 'true' %}
+
+              {{ input({
+                  errorMessage: { text: 'Amount must be more than £9' },
+                  label: {
+                    text: 'Amount to pay'
+                  },
+                  hint: {
+                    text: 'You cannot change this on the next page'
+                  },
+                  id: 'amountToPay',
+                  name: 'amountToPay',
+                  classes: 'nhsuk-input--width-5',
+                  inputmode: 'numeric',
+                  prefix: '£'
+              }) }}
+
+            {% else %}
+
+              {{ input({
+                  label: {
+                    text: 'Amount to pay'
+                  },
+                  hint: {
+                    text: 'You cannot change this on the next page'
+                  },
+                  id: 'amountToPay',
+                  name: 'amountToPay',
+                  classes: 'nhsuk-input--width-5',
+                  inputmode: 'numeric',
+                  prefix: '£'
+              }) }}
+              
+            {% endif %}
+
+              <!-- INPUT WITH ERROR -->
+
+              
 
             <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
               
