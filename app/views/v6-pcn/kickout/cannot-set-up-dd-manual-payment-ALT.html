@@ -83,16 +83,7 @@
                     <p>You'll need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) and make regular monthly payments until you have paid the PCN in full.</p>
                     
 
-                    {% if data.warningOption === 'true' %}
-
-                        <!-- WARNING OPTION -->
-                        {{ warningCallout({
-                            classes: 'nhsuk-u-margin-bottom-5',
-                            heading: 'Important',
-                            HTML: '<p>These will not be taken automatically and you are responsible for keeping up regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>'
-                        }) }}
-
-                    {% else %}
+                    {% if data.insetOption === 'true' %}
 
                         <!-- INSET OPTION -->
                         {{ insetText({
@@ -102,6 +93,17 @@
                         
                         <p>It is important that you remember to make regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>
 
+
+                    {% else %}
+
+                        <!-- WARNING OPTION -->
+                        {{ warningCallout({
+                            classes: 'nhsuk-u-margin-bottom-5',
+                            heading: 'Important',
+                            HTML: '<p>These will not be taken automatically and you are responsible for keeping up regular monthly payments. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                        }) }}
+
+                       
                     {% endif %}
 
                      {{ button({
