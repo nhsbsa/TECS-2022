@@ -1,0 +1,170 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    We cannot set up your Direct Debit
+{% endblock %}
+
+{% block content %}
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+            <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+            <h1 class="nhsuk-heading-l">
+                We cannot set up your Direct Debit
+            </h1>
+
+            <p>We've been unable to verify your details. You'll not be able to pay by Direct Debit.</p>
+
+            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+            <h2 class="nhsuk-heading-m">How to pay your Penalty Charge Notice (PCN) online</h2>
+
+            <p>You can use this service to make a payment using a debit or credit card. You can either:</p>
+
+            <ul class="nhsuk-u-margin-bottom-8">
+                <li>pay the full amount in one payment</li>
+                <li>follow a regular manual payment plan</li>
+            </ul>
+
+            <!-- TABS -->
+
+            <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+
+                <ul class="nhsuk-tabs__list">
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#pay-in-full">Pay in full</a>
+                    </li>
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#follow-manual-payment-plan">Follow a manual payment plan</a>
+                    </li>
+
+                </ul>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
+
+                    <!-- CONTENT FOR PAY IN FULL -->
+
+                    <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+
+                    {{ summaryList({
+                        rows: [
+                            {
+                                key: { text: 'Total amount' },
+                                value: { text: '£57.90' }
+                            }]
+                    }) }}
+
+                    <h3 class="nhsuk-heading-m">Previous payments</h3>
+
+                    {{ summaryList({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        rows: [
+                            {
+                                key: { text: 'Payments made' },
+                                value: { text: '£7.90' }
+                            }]
+                    }) }}
+
+
+                    {{ details({
+                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
+                        text: 'View all previous payments',
+                        HTML: table({
+                            panel: false,
+                            caption: 'Previous payments',
+                            captionClasses: 'nhsuk-u-visually-hidden',
+                            firstCellIsHeader: false,
+                            head: [
+                                { text: 'Date' },
+                                { text: 'Amount' }
+                            ],
+                            rows: [
+                                [ { text: -2 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                                [ { text: -5 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                            ] 
+                            })
+                        })
+                    }}
+
+
+
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £50</p>
+
+                    {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Pay in full',
+                        href: '../gov-pay'
+                    }) }}
+
+                </div>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="follow-manual-payment-plan">
+
+                    <!-- CONTENT FOR FOLLOW MANUAL PAYMENT PLAN -->
+                
+                    <p>If you want spread the cost of your PCN, you can make regular manual payments using this service.</p>
+                    <p>You will need to make the first payment of £9 by {{ 12 | alterTodaysDateByNumberOfDays }} and then make monthly manual payments until you have paid the PCN in full.</p>
+                    
+                    <!-- VIEW MANUAL PAYMENT PLAN DATES -->
+                    {% set paymentPlanDates = table({
+                        panel: false,
+                        caption: 'Manual payment plan',
+                        captionClasses: 'nhsuk-u-visually-hidden',
+                        firstCellIsHeader: false,
+                        head: [
+                            { text: 'Payment' },
+                            { text: 'Amount' },
+                            { text: 'Date' }
+                        ],
+                        rows: 50 | generatePaymentPlanRows( 3, 12 ) 
+                        }) + button({
+                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary',
+                        text: 'Download PDF',
+                        href: '#'
+                    }) %}
+
+                    {{ details({
+                        text: 'View manual payment plan dates',
+                        HTML: paymentPlanDates
+                    }) }}
+
+                    <!-- WARNING OPTION -->
+                    {{ warningCallout({
+                        classes: 'nhsuk-u-margin-bottom-5',
+                        heading: 'Important',
+                        HTML: '<p>These payments will not be taken automatically and you are responsible for paying what you owe by the due date. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                    }) }}
+
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
+
+                     {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Make a manual payment',
+                        href: '../partial-payment-NEW-RULES'
+                    }) }}
+                    
+                    
+                </div>
+            </div>
+
+
+
+
+            <!-- OTHER WAYS TO PAY YOUR PCN -->
+            <h2 class="nhsuk-heading-m">Other ways to pay your PCN</h2>
+
+            <p>You can also make payments over the phone.</p>
+            <p><strong>Telephone:</strong> 0300 330 9291</p>
+            <p>You will need to keep a record of your PCN reference number to make a payment.</p>
+            <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website.</a></p>
+            
+
+            <p>
+                <a href="/v6-pcn/penalty-charge-notice-details">Cancel</a>
+            </p>
+
+            <script src="/js/tabs.js"></script>
+        </div>
+    </div>
+{% endblock %}

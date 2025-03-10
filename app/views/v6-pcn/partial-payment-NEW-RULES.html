@@ -42,6 +42,7 @@ Pay by card
               <h3 class="nhsuk-heading-m">Previous payments</h3>
 
               {{ summaryList({
+                classes: 'nhsuk-u-margin-bottom-0',
                 rows: [
                   {
                     key: { text: 'Payments made' },
@@ -49,44 +50,65 @@ Pay by card
                   }]
               }) }}
 
-              <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: £50</p>
+              {{ details({
+                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
+                        text: 'View all previous payments',
+                        HTML: table({
+                            panel: false,
+                            caption: 'Previous payments',
+                            captionClasses: 'nhsuk-u-visually-hidden',
+                            firstCellIsHeader: false,
+                            head: [
+                                { text: 'Date' },
+                                { text: 'Amount' }
+                            ],
+                            rows: [
+                                [ { text: -2 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                                [ { text: -5 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                            ] 
+                            })
+                        })
+                    }}
+
+              <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
+
             </div>
           </div>
-          
 
-          {% if data.showPaymentPlan === 'true' %}
-
-            <p>We have calculated a payment plan that spreads the cost out over 12 months. This is a recommendation.</p>
-            <p>You can choose to pay in different instalments if you would like. But you will need to make the first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}).</p>
-
-            {{ table({
-              panel: true,
-              caption: 'Recommended payment plan',
-              firstCellIsHeader: false,
-              tableClasses: 'nhsuk-u-margin-top-5',
-              head: [
-                { text: 'Payment' },
-                { text: 'Amount' },
-                { text: 'Date' }
-              ],
-              rows: 50 | generatePaymentPlanRows( 12 ) 
-            }) }}
-
-          {% endif %}
 
 
 
 
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
+          <!-- VIEW MANUAL PAYMENT PLAN DATES -->
+              {% set paymentPlanDates = table({
+                        panel: false,
+                        caption: 'Manual payment plan',
+                        captionClasses: 'nhsuk-u-visually-hidden',
+                        firstCellIsHeader: false,
+                        head: [
+                            { text: 'Payment' },
+                            { text: 'Amount' },
+                            { text: 'Date' }
+                        ],
+                        rows: 50 | generatePaymentPlanRows( 3, 12 ) 
+                        }) + button({
+                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary',
+                        text: 'Download PDF',
+                        href: '#'
+                    }) %}
+
+                    {{ details({
+                        text: 'View manual payment plan dates',
+                        HTML: paymentPlanDates
+                    }) }}
+
+
+
          <form action="gov-pay-partial" method="post" class="form">
 
-            {% if data.showErrors === 'true' %}
-
-               <!-- INPUT WITH ERROR -->
-
-              {{ input({
-                  errorMessage: { text: 'Amount must be more than £9' },
+             {{ input({
                   label: {
                     text: 'Amount to pay'
                   },
@@ -100,29 +122,8 @@ Pay by card
                   prefix: '£'
               }) }}
 
-            {% else %}
 
-              <!-- INPUT -->
               
-              {{ input({
-                  label: {
-                    text: 'Amount to pay'
-                  },
-                  hint: {
-                    text: 'You cannot change this on the next page'
-                  },
-                  id: 'amountToPay',
-                  name: 'amountToPay',
-                  classes: 'nhsuk-input--width-5',
-                  inputmode: 'numeric',
-                  prefix: '£'
-              }) }}
-              
-            {% endif %}
-
-             
-              
-
             <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
               
         

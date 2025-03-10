@@ -10,12 +10,16 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   //
   // ALTER DATE BY NUMBER OF MONTHS FUNCTION
   //
-  filters.alterTodaysDateByNumberOfMonths = function( monthOffset ){
+  filters.alterTodaysDateByNumberOfMonths = function( monthOffset, daysOffset ){
+
+    daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) && parseInt(daysOffset) > 0 ) ? parseInt(daysOffset) : 0;
 
     let today = new Date();
+    today.setDate(today.getDate() + daysOffset);
     var d = today.getDate();
+
     today.setMonth(today.getMonth() + monthOffset);
-    if (today.getDate() !== d) {
+    if (today.getDate() !== d ) {
       today.setDate(0);
     }
 
@@ -30,10 +34,10 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
    //
   // ALTER DATE BY NUMBER OF DAYS FUNCTION
   //
-  filters.alterTodaysDateByNumberOfDays = function( dayOffset ){
+  filters.alterTodaysDateByNumberOfDays = function( daysOffset ){
 
     let today = new Date();
-    today.setDate(today.getDate() + dayOffset);
+    today.setDate(today.getDate() + daysOffset);
 
     // Manually format the date to avoid leading zeros (day, month, year)
     return today.toLocaleDateString('en-GB', {
@@ -48,9 +52,11 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   //
   // GENERATE PAYMENT PLAN ROWS FUNCTION
   //
-  filters.generatePaymentPlanRows = function( amount, months ){
+  filters.generatePaymentPlanRows = function( amount, months, daysOffset ){
 
-    months = ( !Number.isNaN( parseInt(months) ) ) ? parseInt(months) : 12;
+    daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) && parseInt(daysOffset) > 0 ) ? parseInt(daysOffset) : 0;
+
+    months = ( !Number.isNaN( parseInt(months) ) ) ? parseInt(months) : 3;
     amount = ( !Number.isNaN( amount.toFixed(2) ) ) ? amount.toFixed(2) : 50;
 
     let paymentAmount = amount / months;
@@ -62,7 +68,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
       rows.push( [ 
         { text: ( i + 1 ) },
         { text: '£' + paymentAmount },
-        { text: filters.alterTodaysDateByNumberOfMonths(i) }
+        { text: filters.alterTodaysDateByNumberOfMonths( i, daysOffset ) }
       ] );
     }
 
