@@ -51,12 +51,24 @@
               {% else %}
 
                 <!-- FIRST PAYMENT -->
-               
-                {% set amountPaid = '£7.90' %}
-                {% set amountPaidRows = [
-                    [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
-                    [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
-                ] %}
+                {% if alreadyPaid === 'true' %}
+
+                  {% set amountPaid = '£24.57' %}
+                  {% set amountPaidRows = [
+                      [ { text: -1 | alterTodaysDateByNumberOfDays }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% else %}
+
+                  {% set amountPaid = '£7.90' %}
+                  {% set amountPaidRows = [
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% endif %}
 
               {% endif %}
 
