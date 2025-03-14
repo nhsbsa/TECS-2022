@@ -1,7 +1,7 @@
 
-{% macro paymentBlock( secondPayment = 'false', showButton = 'false', payingFullAmount = 'false', contentsOnly = 'false' ) %}
+{% macro paymentBlock( secondPayment = 'false', showButton = 'false', payingFullAmount = 'false', contentsOnly = 'false', alreadyPaid = 'false' ) %}
 
-    {% from "summary-list/macro.njk" import summaryList %}
+    {% from 'summary-list/macro.njk' import summaryList %}
     {% from 'tables/macro.njk' import table %}
     {% from 'details/macro.njk' import details %}
     {% from 'button/macro.njk' import button %}
@@ -27,13 +27,26 @@
               {% if secondPayment === 'true' %}
 
                 <!-- SECOND PAYMENT -->
+                {% if alreadyPaid === 'true' %}
 
-                {% set amountPaid = '£24.57' %}
-                {% set amountPaidRows = [
-                    [ { text: 1 | alterTodaysDateByNumberOfMonths(-20) }, { text: '£16.67' } ],
-                    [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
-                    [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
-                ] %}
+                  {% set amountPaid = '£41.24' %}
+                  {% set amountPaidRows = [
+                      [ { text: 1 | alterTodaysDateByNumberOfMonths(0) }, { text: '£16.67' } ],
+                      [ { text: 0 | alterTodaysDateByNumberOfMonths(-10) }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% else %}
+
+                  {% set amountPaid = '£24.57' %}
+                  {% set amountPaidRows = [
+                      [ { text: 0 | alterTodaysDateByNumberOfMonths(-10) }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% endif %}
 
               {% else %}
 
@@ -85,11 +98,17 @@
 
                 {% else %}
 
+                  {% if alreadyPaid === 'true' %}
+                    {% set amountToPayThisMonth = '£0' %}
+                  {% else %}
+                   {% set amountToPayThisMonth = '£16.67' %}
+                  {% endif %}
+
                   <!-- PARTIAL PAYMENT -->
                   {% if secondPayment === 'true' %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: £16.67</p>
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
                   {% else %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: {{ amountToPayThisMonth }}</p>
                   {% endif %}
 
                 {% endif %}

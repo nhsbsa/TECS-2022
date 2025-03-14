@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Pay by card
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+<a class="nhsuk-back-link__link" href="javascript:history.go(-1)">
+  <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+  </svg>
+  Go back</a>
+</div>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-l">Make a partial payment</h1>
+
+        {% from './MACRO-payment-plan.njk' import paymentPlan %}
+        {% from './MACRO-payment-block.njk' import paymentBlock %}
+
+        <!-- PAYMENT BLOCK -->
+        {{ paymentBlock( data.secondPayment, 'false', 'false', 'true', 'true' ) }}
+
+
+          {% if data.hasBeenWarned === 'true' %}
+
+            <!-- USER HAS BEEN WARNED ABOUT OVERPAYMENT -->
+
+            <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
+
+            <!-- PAYMENT PLAN -->
+            {{ paymentPlan( data.secondPayment, 'true' ) }}
+
+            <!-- PAYMENT FORM -->
+            <form action="gov-pay-partial" method="post" novalidate>
+
+                {{ input({
+                      label: {
+                        text: 'Amount to pay'
+                      },
+                      hint: {
+                        text: 'You cannot change this on the next page'
+                      },
+                      id: 'amountToPay',
+                      name: 'amountToPay',
+                      classes: 'nhsuk-input--width-5',
+                      inputmode: 'numeric',
+                      prefix: '£'
+                }) }}
+
+                <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+                    
+                {{ checkboxes({
+                  idPrefix: 'surchargeUnderstood',
+                  name: 'surchargeUnderstood',
+                  fieldset: {
+                    legend: {
+                      text: 'Confirm you understand the condition to continue',
+                      classes: 'nhsuk-u-visually-hidden',
+                      isPageHeading: false
+                    }
+                  },
+                  items: [
+                    {
+                      value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
+                      text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
+                    }
+                  ]
+                }) }}
+          
+                {{ button({
+                  text: 'Continue'
+                }) }}
+
+            </form>
+
+          {% else %}
+
+            <h2 class="nhsuk-heading-m">You have already paid enough this month</h2>
+
+            <p class="nhsuk-body">You can choose to overpay this month, but this will not count toward your next monthly payment.</p>
+            
+            {{ paymentPlan( data.secondPayment, 'true' ) }}
+
+            <!-- PAYMENT FORM -->
+            <form class="nhsuk-u-margin-top-5" action="partial-payment-NEW-RULES-ALREADY-PAID" method="post" novalidate>
+              
+              {{ radios({
+                  idPrefix: 'hasBeenWarned',
+                  name: 'hasBeenWarned',
+                  classes: 'nhsuk-radios--inline',
+                  fieldset: {
+                    legend: {
+                      text: 'Would you like to make a payment?',
+                      classes: 'nhsuk-fieldset__legend--m',
+                      isPageHeading: false
+                    }
+                  },
+                  items: [
+                    {
+                      value: 'true',
+                      text: 'Yes'
+                    },
+                    {
+                      value: 'false',
+                      text: 'No'
+                    }
+                  ]
+                }) }}
+
+               {{ button({
+                  text: 'Continue'
+                }) }}
+
+            </form>
+
+          {% endif %}
+
+
+      <p><a href="#">Print this page</a></p>
+      <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+   
+
+    </div>
+  </div>
+ 
+
+{% endblock %}

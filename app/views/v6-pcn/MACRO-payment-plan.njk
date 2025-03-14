@@ -1,13 +1,13 @@
-{% macro paymentPlan( secondPayment = 'false' ) %}
+{% macro paymentPlan( secondPayment = 'false', alreadyPaid = 'false' ) %}
 
     {% from 'tables/macro.njk' import table %}
     {% from 'details/macro.njk' import details %}
     {% from 'button/macro.njk' import button %}
     
     {% if secondPayment === 'true' %}
-      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1 ) %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1, alreadyPaid ) %}
     {% else %}
-      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0 ) %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0, alreadyPaid ) %}
     {% endif %}
 
 
