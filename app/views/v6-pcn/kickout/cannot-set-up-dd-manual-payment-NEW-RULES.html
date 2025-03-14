@@ -14,7 +14,7 @@
 
             <p>We've been unable to verify your details. You'll not be able to pay by Direct Debit.</p>
 
-            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+            <!--<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">-->
 
             <h2 class="nhsuk-heading-m">How to pay your Penalty Charge Notice (PCN) online</h2>
 
@@ -45,57 +45,8 @@
 
                     <!-- CONTENT FOR PAY IN FULL -->
 
-                    <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
-
-                    {{ summaryList({
-                        rows: [
-                            {
-                                key: { text: 'Total amount' },
-                                value: { text: '£57.90' }
-                            }]
-                    }) }}
-
-                    <h3 class="nhsuk-heading-m">Previous payments</h3>
-
-                    {{ summaryList({
-                        classes: 'nhsuk-u-margin-bottom-0',
-                        rows: [
-                            {
-                                key: { text: 'Payments made' },
-                                value: { text: '£7.90' }
-                            }]
-                    }) }}
-
-
-                    {{ details({
-                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
-                        text: 'View all previous payments',
-                        HTML: table({
-                            panel: false,
-                            caption: 'Previous payments',
-                            captionClasses: 'nhsuk-u-visually-hidden',
-                            firstCellIsHeader: false,
-                            head: [
-                                { text: 'Date' },
-                                { text: 'Amount' }
-                            ],
-                            rows: [
-                                [ { text: -2 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
-                                [ { text: -5 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
-                            ] 
-                            })
-                        })
-                    }}
-
-
-
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £50</p>
-
-                    {{ button({
-                        classes: 'nhsuk-u-margin-bottom-0',
-                        text: 'Pay in full',
-                        href: '../gov-pay'
-                    }) }}
+                    {% from '../MACRO-payment-block.njk' import paymentBlock %}
+                    {{ paymentBlock( data.secondPayment, 'true', 'true', 'false' ) }}
 
                 </div>
 
@@ -104,8 +55,16 @@
                     <!-- CONTENT FOR FOLLOW MANUAL PAYMENT PLAN -->
                 
                     <p>If you want spread the cost of your PCN, you can make regular manual payments using this service.</p>
-                    <p>You will need to make the first payment of £9 by {{ 12 | alterTodaysDateByNumberOfDays }} and then make monthly manual payments until you have paid the PCN in full.</p>
                     
+                    {% if data.secondPayment === 'true' %}
+                        {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1 ) %}
+                        <p>You will need to make the next payment of £16.67 by {{ 1 | alterTodaysDateByNumberOfMonths(12) }} and then make monthly manual payments until you have paid the PCN in full.</p>
+                    {% else %}
+                        {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0 ) %}
+                        <p>You will need to make the first payment of £16.67 by {{ 12 | alterTodaysDateByNumberOfDays }} and then make monthly manual payments until you have paid the PCN in full.</p>
+                    {% endif %}
+
+
                     <!-- VIEW MANUAL PAYMENT PLAN DATES -->
                     {% set paymentPlanDates = table({
                         panel: false,
@@ -115,12 +74,17 @@
                         head: [
                             { text: 'Payment' },
                             { text: 'Amount' },
-                            { text: 'Date' }
+                            { text: 'Date' },
+                            { text: 'Status' }
                         ],
-                        rows: 50 | generatePaymentPlanRows( 3, 12 ) 
-                        }) + button({
-                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary',
+                        rows: paymentPlanRows
+                     }) + button({
+                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16',
                         text: 'Download PDF',
+                        href: '#'
+                    }) + button({
+                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16 nhsuk-u-margin-left-3',
+                        text: 'Add to calendar',
                         href: '#'
                     }) %}
 
@@ -136,7 +100,7 @@
                         HTML: '<p>These payments will not be taken automatically and you are responsible for paying what you owe by the due date. If you do not, you may have to pay a surcharge of up to £50.</p>'
                     }) }}
 
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount to pay by {% if data.secondPayment === 'true' %}{{ 1 | alterTodaysDateByNumberOfMonths(12) }}{% else %}{{ 12 | alterTodaysDateByNumberOfDays }}{% endif %}: £16.67</p>
 
                      {{ button({
                         classes: 'nhsuk-u-margin-bottom-0',

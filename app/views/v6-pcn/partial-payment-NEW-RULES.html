@@ -26,140 +26,67 @@ Pay by card
         <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
         <h1 class="nhsuk-heading-l">Make a partial payment</h1>
 
-
-          <div class="nhsuk-card">
-            <div class="nhsuk-card__content">
-              <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
-
-              {{ summaryList({
-                rows: [
-                  {
-                    key: { text: 'Total amount' },
-                    value: { text: '£57.90' }
-                  }]
-              }) }}
-
-              <h3 class="nhsuk-heading-m">Previous payments</h3>
-
-              {{ summaryList({
-                classes: 'nhsuk-u-margin-bottom-0',
-                rows: [
-                  {
-                    key: { text: 'Payments made' },
-                    value: { text: '£7.90' }
-                  }]
-              }) }}
-
-              {{ details({
-                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
-                        text: 'View all previous payments',
-                        HTML: table({
-                            panel: false,
-                            caption: 'Previous payments',
-                            captionClasses: 'nhsuk-u-visually-hidden',
-                            firstCellIsHeader: false,
-                            head: [
-                                { text: 'Date' },
-                                { text: 'Amount' }
-                            ],
-                            rows: [
-                                [ { text: -2 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
-                                [ { text: -5 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
-                            ] 
-                            })
-                        })
-                    }}
-
-              <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
-
-            </div>
-          </div>
-
-
-
+        <!-- PAYMENT BLOCK -->
+        {% from './MACRO-payment-block.njk' import paymentBlock %}
+        {{ paymentBlock( data.secondPayment, 'false', 'false', 'true' ) }}
 
 
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
-          <!-- VIEW MANUAL PAYMENT PLAN DATES -->
-              {% set paymentPlanDates = table({
-                        panel: false,
-                        caption: 'Manual payment plan',
-                        captionClasses: 'nhsuk-u-visually-hidden',
-                        firstCellIsHeader: false,
-                        head: [
-                            { text: 'Payment' },
-                            { text: 'Amount' },
-                            { text: 'Date' }
-                        ],
-                        rows: 50 | generatePaymentPlanRows( 3, 12 ) 
-                        }) + button({
-                        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary',
-                        text: 'Download PDF',
-                        href: '#'
-                    }) %}
-
-                    {{ details({
-                        text: 'View manual payment plan dates',
-                        HTML: paymentPlanDates
-                    }) }}
-
+          <!-- PAYMENT PLAN -->
+          {% from './MACRO-payment-plan.njk' import paymentPlan %}
+          {{ paymentPlan( data.secondPayment ) }}
 
 
          <form action="gov-pay-partial" method="post" class="form">
 
-             {{ input({
-                  label: {
-                    text: 'Amount to pay'
-                  },
-                  hint: {
-                    text: 'You cannot change this on the next page'
-                  },
-                  id: 'amountToPay',
-                  name: 'amountToPay',
-                  classes: 'nhsuk-input--width-5',
-                  inputmode: 'numeric',
-                  prefix: '£'
-              }) }}
+          {{ input({
+                label: {
+                  text: 'Amount to pay'
+                },
+                hint: {
+                  text: 'You cannot change this on the next page'
+                },
+                id: 'amountToPay',
+                name: 'amountToPay',
+                classes: 'nhsuk-input--width-5',
+                inputmode: 'numeric',
+                prefix: '£'
+          }) }}
 
 
               
-            <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+          <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
               
-        
-  
+      
+          {{ checkboxes({
+            idPrefix: 'surchargeUnderstood',
+            name: 'surchargeUnderstood',
+            fieldset: {
+              legend: {
+                text: 'Confirm you understand the condition to continue',
+                classes: 'nhsuk-u-visually-hidden',
+                isPageHeading: false
+              }
+            },
+            items: [
+              {
+                value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
+                text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
+              }
+            ]
+          }) }}
+    
 
-        {{ checkboxes({
-          idPrefix: 'surchargeUnderstood',
-          name: 'surchargeUnderstood',
-          fieldset: {
-            legend: {
-              text: 'Confirm you understand the condition to continue',
-              classes: 'nhsuk-u-visually-hidden',
-              isPageHeading: false
-            }
-          },
-          items: [
-            {
-              value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
-              text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
-            }
-          ]
-        }) }}
-          
-
-
-         {{ button({
+          {{ button({
             text: 'Continue'
           }) }}
 
       </form>
 
-       <p><a href="#">Print this page</a></p>
+
+      <p><a href="#">Print this page</a></p>
       <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
-
-
-        
    
 
     </div>

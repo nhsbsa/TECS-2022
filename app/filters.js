@@ -12,7 +12,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   //
   filters.alterTodaysDateByNumberOfMonths = function( monthOffset, daysOffset ){
 
-    daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) && parseInt(daysOffset) > 0 ) ? parseInt(daysOffset) : 0;
+    daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) ) ? parseInt(daysOffset) : 0;
 
     let today = new Date();
     today.setDate(today.getDate() + daysOffset);
@@ -52,12 +52,17 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   //
   // GENERATE PAYMENT PLAN ROWS FUNCTION
   //
-  filters.generatePaymentPlanRows = function( amount, months, daysOffset ){
+  filters.generatePaymentPlanRows = function( amount, months, daysOffset, dueMonth ){
 
+    dueMonth = ( typeof dueMonth === 'number' && parseInt(dueMonth) > -1 ) ? parseInt(dueMonth) : -1;
     daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) && parseInt(daysOffset) > 0 ) ? parseInt(daysOffset) : 0;
 
     months = ( !Number.isNaN( parseInt(months) ) ) ? parseInt(months) : 3;
     amount = ( !Number.isNaN( amount.toFixed(2) ) ) ? amount.toFixed(2) : 50;
+
+    if( dueMonth > months ){
+      dueMonth = months - 1;
+    }
 
     let paymentAmount = amount / months;
     paymentAmount = paymentAmount.toFixed(2);
@@ -65,11 +70,53 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     const rows = [];
     
     for( let i = 0; i < months; i++  ){
-      rows.push( [ 
-        { text: ( i + 1 ) },
-        { text: '£' + paymentAmount },
-        { text: filters.alterTodaysDateByNumberOfMonths( i, daysOffset ) }
-      ] );
+
+      let arr;
+
+      if( dueMonth > -1 ){
+
+        //
+        // SHOWING STATUS
+        //
+
+        arr = [ 
+          { text: ( i + 1 ) },
+          { text: '£' + paymentAmount },
+          { text: filters.alterTodaysDateByNumberOfMonths( i, daysOffset ) }
+        ];
+
+        if( dueMonth > i ){
+
+          // Paid row
+          arr.push( { html: '<strong class="nhsuk-tag nhsuk-tag--green">Paid</strong>' } );
+
+        } else if ( i === dueMonth ){
+
+          // Due row
+          arr.push( { html: '<strong class="nhsuk-tag nhsuk-tag--dark-blue">Due</strong>' } );
+
+        } else {
+
+          // Empty row i.e. in the future
+          arr.push( { html: '' } );
+
+        }
+
+      } else {
+
+        //
+        // NOT SHOWING STATUS
+        //
+
+        arr = [ 
+          { text: ( i + 1 ) },
+          { text: '£' + paymentAmount },
+          { text: filters.alterTodaysDateByNumberOfMonths( i, daysOffset ) }
+        ];
+
+      }
+
+      rows.push( arr );
     }
 
     return rows;

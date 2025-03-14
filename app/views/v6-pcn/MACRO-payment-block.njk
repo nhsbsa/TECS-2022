@@ -1,0 +1,115 @@
+
+{% macro paymentBlock( secondPayment = 'false', showButton = 'false', payingFullAmount = 'false', contentsOnly = 'false' ) %}
+
+    {% from "summary-list/macro.njk" import summaryList %}
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+
+    {% if contentsOnly === 'true' %}
+    <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+                {% endif %}
+              
+              <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+
+              {{ summaryList({
+                rows: [
+                  {
+                    key: { text: 'Total amount' },
+                    value: { text: '£57.90' }
+                  }]
+              }) }}
+
+              <h3 class="nhsuk-heading-m">Previous payments</h3>
+
+              {% if secondPayment === 'true' %}
+
+                <!-- SECOND PAYMENT -->
+
+                {% set amountPaid = '£24.57' %}
+                {% set amountPaidRows = [
+                    [ { text: 1 | alterTodaysDateByNumberOfMonths(-20) }, { text: '£16.67' } ],
+                    [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                    [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                ] %}
+
+              {% else %}
+
+                <!-- FIRST PAYMENT -->
+               
+                {% set amountPaid = '£7.90' %}
+                {% set amountPaidRows = [
+                    [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                    [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                ] %}
+
+              {% endif %}
+
+                {{ summaryList({
+                    classes: 'nhsuk-u-margin-bottom-0',
+                    rows: [
+                    {
+                        key: { text: 'Payments made' },
+                        value: { text: amountPaid }
+                    }]
+                }) }}
+
+                {{ details({
+                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
+                        text: 'View all previous payments',
+                        HTML: table({
+                            panel: false,
+                            caption: 'Previous payments',
+                            captionClasses: 'nhsuk-u-visually-hidden',
+                            firstCellIsHeader: false,
+                            head: [
+                                { text: 'Date' },
+                                { text: 'Amount' }
+                            ],
+                            rows: amountPaidRows
+                            })
+                        })
+                    }}
+
+
+                {% if payingFullAmount === 'true' %}
+
+                  <!-- PAY FULL AMOUNT -->
+                  {% if secondPayment === 'true' %}
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £33.33</p>
+                  {% else %}
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £50.00</p>
+                  {% endif %}
+
+                {% else %}
+
+                  <!-- PARTIAL PAYMENT -->
+                  {% if secondPayment === 'true' %}
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: £16.67</p>
+                  {% else %}
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: £16.67</p>
+                  {% endif %}
+
+                {% endif %}
+
+
+                {% if showButton === 'true' %}
+
+                  <!-- SHOW BUTTON -->
+                  {{ button({
+                      classes: 'nhsuk-u-margin-bottom-0',
+                      text: 'Pay in full',
+                      href: '../gov-pay'
+                  }) }}
+
+                {% endif %}
+
+
+        {% if contentsOnly === 'true' %}
+            </div>
+          </div>
+          {% endif %}
+
+{% endmacro %}

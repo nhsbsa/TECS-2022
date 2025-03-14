@@ -1,0 +1,43 @@
+{% macro paymentPlan( secondPayment = 'false' ) %}
+
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+    
+    {% if secondPayment === 'true' %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1 ) %}
+    {% else %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0 ) %}
+    {% endif %}
+
+
+    <!-- VIEW MANUAL PAYMENT PLAN DATES -->
+
+    {% set paymentPlanDates = table({
+        panel: false,
+        caption: 'Manual payment plan',
+        captionClasses: 'nhsuk-u-visually-hidden',
+        firstCellIsHeader: false,
+        head: [
+            { text: 'Payment' },
+            { text: 'Amount' },
+            { text: 'Date' },
+            { text: 'Status' }
+        ],
+        rows: paymentPlanRows
+     }) + button({
+        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16',
+        text: 'Download PDF',
+        href: '#'
+    }) + button({
+        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16 nhsuk-u-margin-left-3',
+        text: 'Add to calendar',
+        href: '#'
+    }) %}
+
+    {{ details({
+        text: 'View manual payment plan dates',
+        HTML: paymentPlanDates
+    }) }}
+
+{% endmacro %}
