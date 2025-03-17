@@ -32,100 +32,22 @@ Pay by card
         <!-- PAYMENT BLOCK -->
         {{ paymentBlock( data.secondPayment, 'false', 'false', 'true', 'true' ) }}
 
+        <!-- WARNING -->
 
-          {% if data.hasBeenWarned === 'true' %}
+        <h2 class="nhsuk-heading-m">You have already paid this month</h2>
 
-            <!-- USER HAS BEEN WARNED ABOUT OVERPAYMENT -->
+        {% if secondPayment === 'true' %}
+          <p class="nhsuk-body">You can pay your next installment after {{ 2 | alterTodaysDateByNumberOfMonths(12) }}, or pay in full today.</p>
+        {% else %}
+          <p class="nhsuk-body">You can pay your next installment after {{ 1 | alterTodaysDateByNumberOfMonths(12) }}, or pay in full today.</p>
+        {% endif %}
+        
+        {{ paymentPlan( data.secondPayment, 'true' ) }}
 
-            <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
-
-            <!-- PAYMENT PLAN -->
-            {{ paymentPlan( data.secondPayment, 'true' ) }}
-
-            <!-- PAYMENT FORM -->
-            <form action="gov-pay-partial" method="post" novalidate>
-
-                {{ input({
-                      label: {
-                        text: 'Amount to pay'
-                      },
-                      hint: {
-                        text: 'You cannot change this on the next page'
-                      },
-                      id: 'amountToPay',
-                      name: 'amountToPay',
-                      classes: 'nhsuk-input--width-5',
-                      inputmode: 'numeric',
-                      prefix: '£'
-                }) }}
-
-                <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-                    
-                {{ checkboxes({
-                  idPrefix: 'surchargeUnderstood',
-                  name: 'surchargeUnderstood',
-                  fieldset: {
-                    legend: {
-                      text: 'Confirm you understand the condition to continue',
-                      classes: 'nhsuk-u-visually-hidden',
-                      isPageHeading: false
-                    }
-                  },
-                  items: [
-                    {
-                      value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
-                      text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
-                    }
-                  ]
-                }) }}
-          
-                {{ button({
-                  text: 'Continue'
-                }) }}
-
-            </form>
-
-          {% else %}
-
-            <h2 class="nhsuk-heading-m">You have already paid enough this month</h2>
-
-            <p class="nhsuk-body">You can choose to overpay this month, but this amount will not count toward your next monthly payment.</p>
-            
-            {{ paymentPlan( data.secondPayment, 'true' ) }}
-
-            <!-- PAYMENT FORM -->
-            <form class="nhsuk-u-margin-top-5" action="partial-payment-NEW-RULES-ALREADY-PAID" method="post" novalidate>
-              
-              {{ radios({
-                  idPrefix: 'hasBeenWarned',
-                  name: 'hasBeenWarned',
-                  classes: 'nhsuk-radios--inline',
-                  fieldset: {
-                    legend: {
-                      text: 'Would you like to make a payment?',
-                      classes: 'nhsuk-fieldset__legend--m',
-                      isPageHeading: false
-                    }
-                  },
-                  items: [
-                    {
-                      value: 'true',
-                      text: 'Yes'
-                    },
-                    {
-                      value: 'false',
-                      text: 'No'
-                    }
-                  ]
-                }) }}
-
-               {{ button({
-                  text: 'Continue'
-                }) }}
-
-            </form>
-
-          {% endif %}
+        {{ button({
+           href: 'payment-choice',
+           text: 'Pay in full'
+         }) }}
 
 
       <p><a href="#">Print this page</a></p>

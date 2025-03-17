@@ -40,21 +40,43 @@ Pay by card
 
          <form action="gov-pay-partial" method="post" class="form">
 
-          {{ input({
-                label: {
-                  text: 'Amount to pay'
-                },
-                hint: {
-                  html: 'You cannot change this on the next page'
-                },
-                id: 'amountToPay',
-                name: 'amountToPay',
-                classes: 'nhsuk-input--width-5',
-                inputmode: 'numeric',
-                prefix: '£'
-          }) }}
+          {% if data.showErrors === 'true' %}
 
-          <p class="nhsuk-body">You can choose to overpay this month, but this amount will not count toward your next monthly payment.</p>
+            {{ input({
+                  errorMessage: {
+                    text: 'You cannot pay more than £16.67'
+                  },
+                  label: {
+                    text: 'Amount to pay'
+                  },
+                  hint: {
+                    html: 'You cannot change this on the next page'
+                  },
+                  id: 'amountToPay',
+                  name: 'amountToPay',
+                  value: '20',
+                  classes: 'nhsuk-input--width-5',
+                  inputmode: 'numeric',
+                  prefix: '£'
+            }) }}
+
+          {% else %}
+
+            {{ input({
+                  label: {
+                    text: 'Amount to pay'
+                  },
+                  hint: {
+                    html: 'You cannot change this on the next page'
+                  },
+                  id: 'amountToPay',
+                  name: 'amountToPay',
+                  classes: 'nhsuk-input--width-5',
+                  inputmode: 'numeric',
+                  prefix: '£'
+            }) }}
+
+          {% endif %}
               
           <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
               

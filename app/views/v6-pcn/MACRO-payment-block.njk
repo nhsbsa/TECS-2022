@@ -110,18 +110,30 @@
 
                 {% else %}
 
+                  {% set amountToPayThisMonth = '£16.67' %}
+
                   {% if alreadyPaid === 'true' %}
-                    {% set amountToPayThisMonth = '£0' %}
+
+                    <!-- MANUAL PAYMENT ALREADY MADE -->
+                    {% if secondPayment === 'true' %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 2 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
+                    {% else %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
+                    {% endif %}
+                  
                   {% else %}
-                   {% set amountToPayThisMonth = '£16.67' %}
+
+                    <!-- MANUAL PAYMENT -->
+                    {% if secondPayment === 'true' %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
+                    {% else %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: {{ amountToPayThisMonth }}</p>
+                    {% endif %}
+
                   {% endif %}
 
-                  <!-- PARTIAL PAYMENT -->
-                  {% if secondPayment === 'true' %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
-                  {% else %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: {{ amountToPayThisMonth }}</p>
-                  {% endif %}
+
+                  
 
                 {% endif %}
 
