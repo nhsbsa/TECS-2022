@@ -36,10 +36,10 @@ Pay by card
 
         <h2 class="nhsuk-heading-m">You have already paid this month</h2>
 
-        {% if secondPayment === 'true' %}
-          <p class="nhsuk-body">You can pay your next installment after {{ 2 | alterTodaysDateByNumberOfMonths(12) }}, or pay in full today.</p>
+        {% if data.secondPayment === 'true' %}
+          <p class="nhsuk-body">You can pay your next installment on, or after {{ 1 | alterTodaysDateByNumberOfMonths(13) }}, or pay in full today.</p>
         {% else %}
-          <p class="nhsuk-body">You can pay your next installment after {{ 1 | alterTodaysDateByNumberOfMonths(12) }}, or pay in full today.</p>
+          <p class="nhsuk-body">You can pay your next installment on, or after {{ 13 | alterTodaysDateByNumberOfDays }}, or pay in full today.</p>
         {% endif %}
         
         {{ paymentPlan( data.secondPayment, 'true' ) }}
