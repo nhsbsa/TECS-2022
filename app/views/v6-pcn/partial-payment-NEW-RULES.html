@@ -26,6 +26,22 @@ Pay by card
         <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
         <h1 class="nhsuk-heading-l">Make a partial payment</h1>
 
+
+        {% if data.showErrors === 'true' %}
+
+          <!-- ERROR MESSAGE -->
+          {{ errorSummary({
+          titleText: 'There is a problem',
+          errorList: [
+            {
+              text: 'You cannot pay more than £16.67',
+              href: "#amountToPay"
+            }
+          ]
+        }) }}
+
+        {% endif %}
+
         <!-- PAYMENT BLOCK -->
         {% from './MACRO-payment-block.njk' import paymentBlock %}
         {{ paymentBlock( data.secondPayment, 'false', 'false', 'true' ) }}
