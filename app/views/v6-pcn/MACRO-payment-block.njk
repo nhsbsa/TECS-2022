@@ -14,13 +14,53 @@
               
               <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
 
+              <!-- OUTSTANDING BALANCE -->
+              {% if secondPayment === 'true' %}
+                
+                {% if alreadyPaid === 'true' %}
+                  {% set amountOutstanding = '£16.67' %}
+                {% else %}
+                  {% set amountOutstanding = '£33.33' %}
+                {% endif %}
+
+              {% else %}
+
+                {% if alreadyPaid === 'true' %}
+                  {% set amountOutstanding = '£33.33' %}
+                {% else %}
+                  {% set amountOutstanding = '£50' %}
+                {% endif %}
+
+              {% endif %}
+
+
+
+              <!-- SUMMARY LIST -->
+              {% if payingFullAmount === 'true' or alreadyPaid === 'true' %}
+
+                 {% set summaryListRows = [{
+                      key: { text: 'Total amount' },
+                      value: { text: '£57.90' }
+                  }]%}                
+
+              {% else %}
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Total amount' },
+                      value: { text: '£57.90' }
+                    },{
+                      key: { text: 'Amount still to pay' },
+                      value: { text: amountOutstanding }
+                    }]%}    
+
+              {% endif %}
+
               {{ summaryList({
-                rows: [
-                  {
-                    key: { text: 'Total amount' },
-                    value: { text: '£57.90' }
-                  }]
+                  rows: summaryListRows
               }) }}
+
+
 
               <h3 class="nhsuk-heading-m">Previous payments</h3>
 
@@ -102,28 +142,20 @@
                 {% if payingFullAmount === 'true' %}
 
                   <!-- PAY FULL AMOUNT -->
-                  {% if secondPayment === 'true' %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £33.33</p>
-                  {% else %}
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: £50.00</p>
-                  {% endif %}
-
+                  <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
+                  
                 {% else %}
-
-                  {% set amountToPayThisMonth = '£16.67' %}
 
                   {% if alreadyPaid === 'true' %}
 
                     <!-- MANUAL PAYMENT ALREADY MADE -->
-                    {% if secondPayment === 'true' %}
-                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 2 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
-                    {% else %}
-                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
-                    {% endif %}
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
                   
                   {% else %}
 
                     <!-- MANUAL PAYMENT -->
+                    {% set amountToPayThisMonth = '£16.67' %}
+
                     {% if secondPayment === 'true' %}
                       <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
                     {% else %}

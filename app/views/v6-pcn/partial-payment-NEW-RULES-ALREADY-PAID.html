@@ -28,26 +28,77 @@ Pay by card
 
         {% from './MACRO-payment-plan.njk' import paymentPlan %}
         {% from './MACRO-payment-block.njk' import paymentBlock %}
+        {% from './MACRO-partial-payment-form.njk' import partialPaymentForm %}
 
         <!-- PAYMENT BLOCK -->
         {{ paymentBlock( data.secondPayment, 'false', 'false', 'true', 'true' ) }}
 
-        <!-- WARNING -->
 
-        <h2 class="nhsuk-heading-m">You have already paid this month</h2>
+
+        {% if data.makeAnotherPayment === 'makeAnOverpayment' %}
+
+          <!-- MAKE AN OVERPAYMENT -->
+          <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
+
+          <!-- PAYMENT PLAN -->
+          {{ paymentPlan( data.secondPayment ) }}
+
+          <!-- PARTIAL PAYMENT FORM -->
+          {{ partialPaymentForm( 'false' ) }}
+
+        {% else %}
+
+
+        <!-- DEFAULT -->
+        <h2 class="nhsuk-heading-m">You have already paid enough this month</h2>
 
         {% if data.secondPayment === 'true' %}
-          <p class="nhsuk-body">You can pay your next installment on, or after {{ 1 | alterTodaysDateByNumberOfMonths(13) }}, or pay in full today.</p>
+          <p class="nhsuk-body">You must pay your next installment on, or after {{ 1 | alterTodaysDateByNumberOfMonths(13) }}.</p>
         {% else %}
-          <p class="nhsuk-body">You can pay your next installment on, or after {{ 13 | alterTodaysDateByNumberOfDays }}, or pay in full today.</p>
+          <p class="nhsuk-body">You must pay your next installment on, or after {{ 13 | alterTodaysDateByNumberOfDays }}.</p>
         {% endif %}
-        
+
+        <p class="nhsuk-body">You can choose to overpay this month, but this amount will not count toward your next monthly payment.</p>
+
         {{ paymentPlan( data.secondPayment, 'true' ) }}
 
-        {{ button({
-           href: 'payment-choice',
-           text: 'Pay in full'
-         }) }}
+
+        <hr class="nhsuk-section-break nhsuk-section-break--m">
+
+        <form action="partial-payment-NEW-RULES-ALREADY-PAID" method="post" novalidate>
+
+          {{ radios({
+            idPrefix: 'makeAnotherPayment',
+            name: 'makeAnotherPayment',
+            fieldset: {
+              legend: {
+                text: 'Would you like to make a further payment?',
+                classes: 'nhsuk-fieldset__legend--m',
+                isPageHeading: false
+              }
+            },
+            items: [
+              {
+                value: 'makeAnOverpayment',
+                text: 'Make an overpayment'
+              },
+              {
+                value: 'payInFull',
+                text: 'Pay in full'
+              }
+            ]
+          }) }}
+
+          {{ button({
+            text: 'Continue'
+          }) }}
+
+        </form>
+
+      {% endif %}
+        
+
+       
 
 
       <p><a href="#">Print this page</a></p>

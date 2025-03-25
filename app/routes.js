@@ -745,6 +745,17 @@ router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, 
 });
 
 
+router.post('/v6-pcn/partial-payment-NEW-RULES-ALREADY-PAID', function(req, res) {
+
+  if( req.session.data.makeAnotherPayment === 'payInFull' ){
+    res.redirect('gov-pay');
+  } else {
+    res.redirect('partial-payment-NEW-RULES-ALREADY-PAID');
+  }
+
+});
+
+
 // Routes for UR Feb 2025
 router.use('/user-research-feb-2025', require('./views/user-research-feb-2025/\_routes'));
 

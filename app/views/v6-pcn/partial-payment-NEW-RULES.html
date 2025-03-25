@@ -42,10 +42,9 @@ Pay by card
 
         {% endif %}
 
-        <!-- PAYMENT BLOCK -->
-        {% from './MACRO-payment-block.njk' import paymentBlock %}
-        {{ paymentBlock( data.secondPayment, 'false', 'false', 'true' ) }}
-
+          <!-- PAYMENT BLOCK -->
+          {% from './MACRO-payment-block.njk' import paymentBlock %}
+          {{ paymentBlock( data.secondPayment, 'false', 'false', 'true' ) }}
 
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
@@ -53,74 +52,9 @@ Pay by card
           {% from './MACRO-payment-plan.njk' import paymentPlan %}
           {{ paymentPlan( data.secondPayment ) }}
 
-
-         <form action="gov-pay-partial" method="post" class="form">
-
-          {% if data.showErrors === 'true' %}
-
-            {{ input({
-                  errorMessage: {
-                    text: 'You cannot pay more than £16.67'
-                  },
-                  label: {
-                    text: 'Amount to pay'
-                  },
-                  hint: {
-                    html: 'You cannot change this on the next page'
-                  },
-                  id: 'amountToPay',
-                  name: 'amountToPay',
-                  value: '20',
-                  classes: 'nhsuk-input--width-5',
-                  inputmode: 'numeric',
-                  prefix: '£'
-            }) }}
-
-          {% else %}
-
-            {{ input({
-                  label: {
-                    text: 'Amount to pay'
-                  },
-                  hint: {
-                    html: 'You cannot change this on the next page'
-                  },
-                  id: 'amountToPay',
-                  name: 'amountToPay',
-                  classes: 'nhsuk-input--width-5',
-                  inputmode: 'numeric',
-                  prefix: '£'
-            }) }}
-
-          {% endif %}
-              
-          <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-              
-      
-          {{ checkboxes({
-            idPrefix: 'surchargeUnderstood',
-            name: 'surchargeUnderstood',
-            fieldset: {
-              legend: {
-                text: 'Confirm you understand the condition to continue',
-                classes: 'nhsuk-u-visually-hidden',
-                isPageHeading: false
-              }
-            },
-            items: [
-              {
-                value: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.',
-                text: 'I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be added to my charges.'
-              }
-            ]
-          }) }}
-    
-
-          {{ button({
-            text: 'Continue'
-          }) }}
-
-      </form>
+          <!-- PARTIAL PAYMENT FORM -->
+          {% from './MACRO-partial-payment-form.njk' import partialPaymentForm %}
+          {{ partialPaymentForm() }}
 
 
       <p><a href="#">Print this page</a></p>
