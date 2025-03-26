@@ -31,9 +31,7 @@ Pay by card
         {% from './MACRO-partial-payment-form.njk' import partialPaymentForm %}
 
         <!-- PAYMENT BLOCK -->
-        {{ paymentBlock( data.secondPayment, 'false', 'false', 'true', 'true' ) }}
-
-
+        {{ paymentBlock( 'partial', 'true', data.secondPayment ) }}
 
         {% if data.makeAnotherPayment === 'makeAnOverpayment' %}
 

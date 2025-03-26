@@ -1,16 +1,24 @@
+<!-- 
 
-{% macro paymentBlock( secondPayment = 'false', showButton = 'false', payingFullAmount = 'false', contentsOnly = 'false', alreadyPaid = 'false' ) %}
+  BLOCK TYPES 
+  
+  partial
+  full
+  simplified
+
+-->
+{% macro paymentBlock( blockType = 'partial', alreadyPaid = 'false', secondPayment = 'false' ) %}
+{#% macro paymentBlock( secondPayment = 'false', showButton = 'false', payingFullAmount = 'false', contentsOnly = 'false', alreadyPaid = 'false', simplified = 'false' ) %#}
 
     {% from 'summary-list/macro.njk' import summaryList %}
     {% from 'tables/macro.njk' import table %}
     {% from 'details/macro.njk' import details %}
     {% from 'button/macro.njk' import button %}
 
-
-    {% if contentsOnly === 'true' %}
-    <div class="nhsuk-card">
+    {% if blockType !== 'full' %}
+      <div class="nhsuk-card">
             <div class="nhsuk-card__content">
-                {% endif %}
+    {% endif %}
               
               <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
 
@@ -36,7 +44,7 @@
 
 
               <!-- SUMMARY LIST -->
-              {% if payingFullAmount === 'true' or alreadyPaid === 'true' %}
+              {% if blockType === 'full' or alreadyPaid === 'true' %}
 
                  {% set summaryListRows = [{
                       key: { text: 'Total amount' },
@@ -139,11 +147,16 @@
                     }}
 
 
-                {% if payingFullAmount === 'true' %}
+                {% if blockType === 'full' %}
 
                   <!-- PAY FULL AMOUNT -->
                   <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
                   
+                {% elseif blockType === 'simplified' %}
+                
+                  <!-- SIMPLIFIED -->
+                  <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 12 | alterTodaysDateByNumberOfDays }}</p>
+
                 {% else %}
 
                   {% if alreadyPaid === 'true' %}
@@ -167,7 +180,7 @@
                 {% endif %}
 
 
-                {% if showButton === 'true' %}
+                {% if blockType === 'full' %}
 
                   <!-- SHOW BUTTON -->
                   {{ button({
@@ -179,9 +192,9 @@
                 {% endif %}
 
 
-        {% if contentsOnly === 'true' %}
+        {% if blockType !== 'full' %}
             </div>
           </div>
-          {% endif %}
+        {% endif %}
 
 {% endmacro %}
