@@ -52,7 +52,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   //
   // GENERATE PAYMENT PLAN ROWS FUNCTION
   //
-  filters.generatePaymentPlanRows = function( amount, months, daysOffset, dueMonth, alreadyPaid ){
+  filters.generatePaymentPlanRows = function( amount, months, daysOffset, dueMonth, alreadyPaid, showStatuses ){
 
     dueMonth = ( typeof dueMonth === 'number' && parseInt(dueMonth) > -1 ) ? parseInt(dueMonth) : -1;
     daysOffset = ( typeof daysOffset === 'number' && parseInt(daysOffset) && parseInt(daysOffset) > 0 ) ? parseInt(daysOffset) : 0;
@@ -73,7 +73,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
       let arr;
 
-      if( dueMonth > -1 ){
+      if( dueMonth > -1 && showStatuses === 'true' ){
 
         //
         // SHOWING STATUS
@@ -85,7 +85,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
           { text: filters.alterTodaysDateByNumberOfMonths( i, daysOffset ) }
         ];
 
-        if( dueMonth > i ){
+        if( dueMonth > i  ){
 
           // Paid row
           arr.push( { html: '<strong class="nhsuk-tag nhsuk-tag--green">Paid</strong>' } );

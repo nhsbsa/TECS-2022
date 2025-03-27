@@ -1,29 +1,52 @@
-{% macro paymentPlan( secondPayment = 'false', alreadyPaid = 'false' ) %}
+{% macro paymentPlan( planType = 'default', secondPayment = 'false', alreadyPaid = 'false' ) %}
 
     {% from 'tables/macro.njk' import table %}
     {% from 'details/macro.njk' import details %}
     {% from 'button/macro.njk' import button %}
+
+    {% if planType === 'simplified' %}
+        
+        <!-- NOT SHOWING STATUSES -->
+        {% set headRow = [
+            { text: 'Payment' },
+            { text: 'Amount' },
+            { text: 'Date' }
+        ] %}
+        {% set planTitle = 'View suggested payment dates' %}
+        {% set showStatuses = 'false' %}
+        {% set additionalHTML = '<p class="nhsuk-body">Making payments on these dates will allow you to pay the amount you owe over a reasonable time.</p>' %}
+
+    {% else %}
+
+        <!-- SHOWING STATUSES -->
+        {% set headRow = [
+            { text: 'Payment' },
+            { text: 'Amount' },
+            { text: 'Date' },
+            { text: 'Status' }
+        ] %}
+        {% set planTitle = 'View manual payment plan dates' %}
+        {% set showStatuses = 'true' %}
+        {% set additionalHTML = '' %}
+
+    {% endif %}
+
     
     {% if secondPayment === 'true' %}
-      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1, alreadyPaid ) %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1, alreadyPaid, showStatuses ) %}
     {% else %}
-      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0, alreadyPaid ) %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0, alreadyPaid, showStatuses ) %}
     {% endif %}
 
 
     <!-- VIEW MANUAL PAYMENT PLAN DATES -->
 
-    {% set paymentPlanDates = table({
+    {% set paymentPlanDates = additionalHTML + table({
         panel: false,
         caption: 'Manual payment plan',
         captionClasses: 'nhsuk-u-visually-hidden',
         firstCellIsHeader: false,
-        head: [
-            { text: 'Payment' },
-            { text: 'Amount' },
-            { text: 'Date' },
-            { text: 'Status' }
-        ],
+        head: headRow,
         rows: paymentPlanRows
      }) + button({
         classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16',
@@ -36,7 +59,7 @@
     }) %}
 
     {{ details({
-        text: 'View manual payment plan dates',
+        text: planTitle,
         HTML: paymentPlanDates
     }) }}
 

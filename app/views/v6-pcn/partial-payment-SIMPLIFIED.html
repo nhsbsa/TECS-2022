@@ -27,6 +27,7 @@ Pay by card
         <h1 class="nhsuk-heading-l">Make a partial payment</h1>
 
           {% from './MACRO-payment-block.njk' import paymentBlock %}
+          {% from './MACRO-payment-plan.njk' import paymentPlan %}
           {% from './MACRO-partial-payment-form.njk' import partialPaymentForm %}
 
           <!-- PAYMENT BLOCK -->
@@ -34,8 +35,12 @@ Pay by card
 
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
+          <!-- SUGGESTED -->
+          {{ paymentPlan( 'simplified', 'false', 'false'  ) }}
+
           <!-- PARTIAL PAYMENT FORM -->
           {{ partialPaymentForm( 'simplified' ) }}
+        
 
 
       <p><a href="#">Print this page</a></p>

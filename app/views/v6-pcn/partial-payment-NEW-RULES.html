@@ -36,7 +36,7 @@ Pay by card
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
           <!-- PAYMENT PLAN -->
-          {{ paymentPlan( data.secondPayment ) }}
+          {{ paymentPlan( 'default', data.secondPayment ) }}
 
           <!-- PARTIAL PAYMENT FORM -->
           {{ partialPaymentForm( 'partial' ) }}

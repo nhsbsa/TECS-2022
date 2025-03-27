@@ -39,7 +39,7 @@ Pay by card
           <h2 class="nhsuk-heading-m">How much are you paying today?</h2>
 
           <!-- PAYMENT PLAN -->
-          {{ paymentPlan( data.secondPayment ) }}
+          {{ paymentPlan( 'default', data.secondPayment ) }}
 
           <!-- PARTIAL PAYMENT FORM -->
           {{ partialPaymentForm( 'partialAlreadyPaid' ) }}
@@ -58,7 +58,7 @@ Pay by card
 
         <p class="nhsuk-body">You can choose to pay more this month, but this will not count toward your next monthly payment.</p>
 
-        {{ paymentPlan( data.secondPayment, 'true' ) }}
+        {{ paymentPlan( 'default', data.secondPayment, 'true' ) }}
 
 
         <hr class="nhsuk-section-break nhsuk-section-break--m">
