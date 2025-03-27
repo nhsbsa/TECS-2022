@@ -56,7 +56,7 @@ Pay by card
           <p class="nhsuk-body">You must pay your next installment on, or after {{ 13 | alterTodaysDateByNumberOfDays }}.</p>
         {% endif %}
 
-        <p class="nhsuk-body">You can choose to overpay this month, but this amount will not count toward your next monthly payment.</p>
+        <p class="nhsuk-body">You can choose to pay more this month, but this will not count toward your next monthly payment.</p>
 
         {{ paymentPlan( data.secondPayment, 'true' ) }}
 
@@ -78,7 +78,7 @@ Pay by card
             items: [
               {
                 value: 'makeAnOverpayment',
-                text: 'Make an overpayment'
+                text: 'Pay more'
               },
               {
                 value: 'payInFull',
