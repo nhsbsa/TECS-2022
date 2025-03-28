@@ -8,13 +8,13 @@
         
         <!-- NOT SHOWING STATUSES -->
         {% set headRow = [
-            { text: 'Payment' },
-            { text: 'Amount' },
-            { text: 'Date' }
+            { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
+            { text: 'Suggested amount' },
+            { text: 'Suggested date' }
         ] %}
         {% set planTitle = 'View suggested payment dates' %}
         {% set showStatuses = 'false' %}
-        {% set additionalHTML = '<p class="nhsuk-body">Making payments on these dates will allow you to pay the amount you owe over a reasonable time.</p>' %}
+        {% set additionalHTML = '<p class="nhsuk-body">Making payments on these dates will allow you to pay the amount you owe over 3 months.</p>' %}
 
     {% else %}
 
