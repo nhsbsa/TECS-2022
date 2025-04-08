@@ -35,7 +35,7 @@
                 {% if alreadyPaid === 'true' %}
                   {% set amountOutstanding = '£33.33' %}
                 {% else %}
-                  {% set amountOutstanding = '£50' %}
+                  {% set amountOutstanding = '£50.00' %}
                 {% endif %}
 
               {% endif %}
@@ -57,8 +57,8 @@
                       key: { text: 'Total amount' },
                       value: { text: '£57.90' }
                     },{
-                      key: { text: 'Amount still to pay' },
-                      value: { text: amountOutstanding }
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>' + amountOutstanding + '</strong>' }
                     }]%}    
 
               {% endif %}
