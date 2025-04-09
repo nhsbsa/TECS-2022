@@ -78,16 +78,26 @@ Payment confirmation
 
       
       </div>
-      <h3>Further payments</h3>
-      <p>You can use this service to pay the remaining amount of <strong>£25</strong>.</p>
 
-      <a href="payment-method"><button class="nhsuk-button" data-module="nhsuk-button" type="submit" >
-        Make another payment
-      </button></a>
+      {{ warningCallout({
+         classes: 'nhsuk-u-margin-bottom-4',
+         heading: 'Your next manual payment',
+         HTML: '
+         <p class="nhsuk-body">You can return to <a href="respond-to-your-letter">this service</a> to pay your remaining balance at any time.</p>
+         <p class="nhsuk-heading-s">You must make your next payment by ' + ( 31 | alterTodaysDateByNumberOfDays ) + '</p>'
+      }) }}
+
+      
+
+      {{ button({
+        text: 'Make another payment',
+        href: 'partial-payment-SIMPLIFIED'
+      }) }}
+
 
       <p><a href="javascript:window.print();">Print this page</a></p>
 
-      
+
       <h2>How to avoid a Penalty Charge Notice in the future</h2>
       <p>We match exemptions using a combination of your:</p>
       <ul>
