@@ -19,20 +19,14 @@ What do you want to do next?
   <div class="nhsuk-grid-column-two-thirds">
 
 
-  <form action="version6-pcn" method="get" class="form">
+  <form action="version6-pcn-SIMPLIFIED" method="post" class="form">
 
     <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
-    {{ radios({
-      name: 'penalty-confirm-pay',
-      fieldset: {
-        legend: {
-          text: 'What do you want to do next?',
-          classes: 'nhsuk-fieldset__legend--l',
-          isPageHeading: true
-        }
-      },
-      items: [
+
+    {% if data.partialPaymentMade === 'true' %}
+
+      {% set items = [
         {
           value: 'pay',
           text: 'I have already made a partial payment and want to make another'
@@ -51,7 +45,52 @@ What do you want to do next?
           value: 'check',
           text: 'I\'m not sure if I was entitled to free NHS prescriptions and want to check'
         }
-      ]
+      ] %}
+
+    {% else %}
+
+      {% set items = [
+       {
+          value: 'payInFull',
+          text: 'Pay the full amount'
+        },
+        {
+          value: 'pay',
+          text: 'Make a partial payment'
+        },
+        {
+          value: 'entitlement',
+          text: 'Confirm I was entitled to free NHS prescriptions',
+          hint: {
+            text: 'We\'ll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate.'
+          }
+        },
+        {
+          divider: 'or'
+        },
+        {
+          value: 'check',
+          text: 'I\'m not sure if I was entitled to free NHS prescriptions and want to check'
+        }
+      ] %}
+
+
+    {% endif %}
+
+
+
+    <!-- RADIOS -->
+
+    {{ radios({
+      name: 'penalty-confirm-pay',
+      fieldset: {
+        legend: {
+          text: 'What do you want to do next?',
+          classes: 'nhsuk-fieldset__legend--l',
+          isPageHeading: true
+        }
+      },
+      items: items
     }) }}
 
     {{ details({

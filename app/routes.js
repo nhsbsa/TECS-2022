@@ -520,7 +520,7 @@ router.get(/version6-pcn/, function (req, res) {
     res.redirect('what-happens-next-bsa');
   }
   else if (req.query.confirm == 'pay') {
-    res.redirect('payment-method');;
+    res.redirect('payment-method');
   }
 });
 
@@ -745,6 +745,8 @@ router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, 
 });
 
 
+/* SIMPLIFIED AND NEW RULES ROUTES */
+
 router.post('/v6-pcn/partial-payment-NEW-RULES-ALREADY-PAID', function(req, res) {
 
   if( req.session.data.makeAnotherPayment === 'payInFull' ){
@@ -752,6 +754,24 @@ router.post('/v6-pcn/partial-payment-NEW-RULES-ALREADY-PAID', function(req, res)
   } else {
     res.redirect('partial-payment-NEW-RULES-ALREADY-PAID');
   }
+
+});
+
+router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
+
+  let destination = 'what-happens-next-bsa';
+
+   switch( req.session.data['penalty-confirm-pay'] ) {
+     case 'payInFull': 
+      destination = 'gov-pay';
+      break;
+    case 'pay':
+      destination = 'partial-payment-SIMPLIFIED';
+    break;
+   }
+    
+  res.redirect( destination );
+   
 
 });
 
