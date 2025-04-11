@@ -43,12 +43,12 @@
 
 
               <!-- SUMMARY LIST -->
-              {% if blockType === 'full' or alreadyPaid === 'true' %}
+              {% if blockType === 'full' or blockType === 'simplifiedNoPayment' or alreadyPaid === 'true' %}
 
                  {% set summaryListRows = [{
-                      key: { text: 'Total amount' },
-                      value: { text: '£57.90' }
-                  }]%}                
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£57.90</strong>' }
+                  }]%}            
 
               {% else %}
 
@@ -68,6 +68,7 @@
               }) }}
 
 
+            {% if blockType !== 'simplifiedNoPayment' %}
 
               <h3 class="nhsuk-heading-m">Previous payments</h3>
 
@@ -145,13 +146,15 @@
                         })
                     }}
 
+                {% endif %}
+
 
                 {% if blockType === 'full' %}
 
                   <!-- PAY FULL AMOUNT -->
                   <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
                   
-                {% elseif blockType === 'simplified' %}
+                {% elseif blockType === 'simplified' or blockType === 'simplifiedNoPayment' %}
                 
                   <!-- SIMPLIFIED -->
                   <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 12 | alterTodaysDateByNumberOfDays }}</p>
@@ -176,7 +179,7 @@
 
                   {% endif %}
 
-                {% endif %}
+                
 
 
                 {% if blockType === 'full' %}
@@ -189,6 +192,8 @@
                   }) }}
 
                 {% endif %}
+
+              {% endif %}
 
 
         {% if blockType !== 'full' %}
