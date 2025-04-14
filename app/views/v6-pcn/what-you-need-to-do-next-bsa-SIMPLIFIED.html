@@ -24,61 +24,6 @@ What do you want to do next?
     <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
 
-    {% if data.partialPaymentMade === 'true' %}
-
-      {% set items = [
-        {
-          value: 'pay',
-          text: 'I have already made a partial payment and want to make another'
-        },
-        {
-          value: 'entitlement',
-          text: 'Confirm I was entitled to free NHS prescriptions',
-          hint: {
-            text: 'We\'ll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate.'
-          }
-        },
-        {
-          divider: 'or'
-        },
-        {
-          value: 'check',
-          text: 'I\'m not sure if I was entitled to free NHS prescriptions and want to check'
-        }
-      ] %}
-
-    {% else %}
-
-      {% set items = [
-       {
-          value: 'payInFull',
-          text: 'Pay the full amount'
-        },
-        {
-          value: 'pay',
-          text: 'Make a partial payment'
-        },
-        {
-          value: 'entitlement',
-          text: 'Confirm I was entitled to free NHS prescriptions',
-          hint: {
-            text: 'We\'ll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate.'
-          }
-        },
-        {
-          divider: 'or'
-        },
-        {
-          value: 'check',
-          text: 'I\'m not sure if I was entitled to free NHS prescriptions and want to check'
-        }
-      ] %}
-
-
-    {% endif %}
-
-
-
     <!-- RADIOS -->
 
     {{ radios({
@@ -90,7 +35,26 @@ What do you want to do next?
           isPageHeading: true
         }
       },
-      items: items
+      items: [
+        {
+          value: 'pay',
+          text: 'Pay my Penalty Charge Notice'
+        },
+        {
+          value: 'entitlement',
+          text: 'Confirm I was entitled to free NHS prescriptions',
+          hint: {
+            text: 'We\'ll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate.'
+          }
+        },
+        {
+          divider: 'or'
+        },
+        {
+          value: 'check',
+          text: 'I\'m not sure if I was entitled to free NHS prescriptions and want to check'
+        }
+      ]
     }) }}
 
     {{ details({

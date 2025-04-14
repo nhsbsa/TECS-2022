@@ -179,22 +179,18 @@
 
                   {% endif %}
 
-                
-
-
-                {% if blockType === 'full' %}
-
-                  <!-- SHOW BUTTON -->
-                  {{ button({
-                      classes: 'nhsuk-u-margin-bottom-0',
-                      text: 'Pay in full',
-                      href: '../gov-pay'
-                  }) }}
-
-                {% endif %}
-
               {% endif %}
 
+              {% if blockType === 'full' %}
+
+                <!-- SHOW BUTTON -->
+                {{ button({
+                    classes: 'nhsuk-u-margin-bottom-0',
+                    text: 'Pay in full',
+                    href: '../gov-pay'
+                }) }}
+
+              {% endif %}
 
         {% if blockType !== 'full' %}
             </div>

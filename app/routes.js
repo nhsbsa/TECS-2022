@@ -762,11 +762,8 @@ router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
   let destination = 'what-happens-next-bsa';
 
    switch( req.session.data['penalty-confirm-pay'] ) {
-     case 'payInFull': 
-      destination = 'gov-pay';
-      break;
     case 'pay':
-      destination = 'partial-payment-SIMPLIFIED';
+      destination = 'payment-choice';
     break;
    }
     
