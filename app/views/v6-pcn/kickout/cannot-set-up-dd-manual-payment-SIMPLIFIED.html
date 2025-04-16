@@ -22,7 +22,7 @@
 
             <ul class="nhsuk-u-margin-bottom-8">
                 <li>pay the full amount in one payment</li>
-                <li>make manual payments every month</li>
+                <li>make manual payments every month to spread the cost over several payments</li>
             </ul>
 
             <!-- TABS -->
@@ -54,9 +54,9 @@
 
                     <!-- CONTENT FOR MAKE MANUAL PAYMENTS EVERY MONTH -->
                 
-                    <p class="nhsuk-body">If you want spread the cost of your PCN, you can make regular manual payments using this service.</p>
-                    <p class="nhsuk-body">You will need to make your first payment by {{ 12 | alterTodaysDateByNumberOfDays }} and then make further payments every month until you have paid the PCN in full.</p>
-                    <p class="nhsuk-body">Payments can be as much as you like, but we suggest a payment each month of £16.67 to pay over 3 months.</p>
+                    <p class="nhsuk-body">If you want spread the cost of your PCN over several payments, you can make regular manual payments.</p>
+                    <p class="nhsuk-body">You will need to make your first payment within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}). You then need to continue to make payments every month until you have paid the PCN in full.</p>
+                    <p class="nhsuk-body">Payments can be as much as you like, but we suggest a payment each month of £16.67. This will mean you will pay your PCN in full within 3 months.</p>
 
                     <!-- SUGGESTED -->
                     {% from '../MACRO-payment-plan.njk' import paymentPlan %}
@@ -66,7 +66,7 @@
                     {{ warningCallout({
                         classes: 'nhsuk-u-margin-bottom-5',
                         heading: 'Important',
-                        HTML: '<p>These payments will not be taken automatically and you are responsible for making a payment every month. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                        HTML: '<p>Payments will not be taken automatically. You are responsible for making a payment every month. If you do not, you may have to pay a surcharge of up to £50.</p>'
                     }) }}
 
                     <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">You must make a payment by {{ 12 | alterTodaysDateByNumberOfDays }}</p>
