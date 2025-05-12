@@ -121,7 +121,7 @@
               {% endif %}
 
                 {{ summaryList({
-                    classes: 'nhsuk-u-margin-bottom-0',
+                    classes: 'nhsuk-u-margin-bottom-6',
                     rows: [
                     {
                         key: { text: 'Payments made' },
@@ -129,7 +129,7 @@
                     }]
                 }) }}
 
-                {{ details({
+                {# details({
                         classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
                         text: 'View all previous payments',
                         HTML: table({
@@ -144,7 +144,7 @@
                             rows: amountPaidRows
                             })
                         })
-                    }}
+                    #}
 
                 {% endif %}
 

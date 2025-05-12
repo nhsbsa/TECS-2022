@@ -128,6 +128,65 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
   };
 
+
+  //
+  // GENERATE CALCULATOR PAYMENT PLAN ROWS FILTER
+  //
+  filters.generateCalculatorPaymentPlanRows = function( amountToPay, idealPaymentAmount ){
+
+    let rows = [];
+
+    amountToPay = Number(amountToPay).toFixed(2);
+    idealPaymentAmount = Number(idealPaymentAmount).toFixed(2);
+    
+    if( !Number.isNaN(amountToPay) && !Number.isNaN(idealPaymentAmount) ){
+
+      let months = Math.floor( amountToPay/idealPaymentAmount );
+      let remainingAmount = amountToPay - ( months * idealPaymentAmount );
+
+      let firstPayment = 0;
+      let monthlyPayment = 0;
+
+      if( remainingAmount > 0 ){
+        monthlyPayment = ( amountToPay / months ).toFixed(2);
+        firstPayment = (amountToPay - ( monthlyPayment * ( months - 1 ) )).toFixed(2);
+      } else {
+        monthlyPayment = firstPayment = amountToPay/months;
+      }
+
+      /*
+      console.log( '-------------------------------------------' );
+      console.log( 'TO PAY: ' + amountToPay );
+      console.log( 'Months: ' + months );
+      console.log( 'Remaing amount: ' + remainingAmount );
+      console.log( 'First: ' + firstPayment );
+      console.log( 'Then: ' + monthlyPayment );
+      console.log( 'CALC: ' + Number( Number(firstPayment) + Number( monthlyPayment * ( months-1 ) ) ).toFixed(2) );
+      */
+
+      
+      for( let i = 0; i < months; i++ ){
+        const arr = [];
+
+        arr.push({ text: ( i+1 ) });
+        if( i === 0 ){
+          arr.push({ text: ( '£' + firstPayment ) });
+        } else {
+          arr.push({ text: ( '£' + monthlyPayment ) });
+        }
+        arr.push({ text: filters.alterTodaysDateByNumberOfMonths( i, 0 ) });
+        rows.push( arr );
+      }
+      
+
+
+    }
+
+    return rows;
+
+  };
+
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

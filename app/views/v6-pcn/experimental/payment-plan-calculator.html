@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    Payment plan calculator
+{% endblock %}
+
+{% block outerContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-l">Payment plan calculator</h1>
+
+        <form action="payment-plan-calculator" method="post" novalidate>
+
+            {{ input({
+                label: {
+                    text: 'Amount to pay'
+                },
+                id: 'calculatorAmountToPay',
+                name: 'calculatorAmountToPay',
+                value: data.calculatorAmountToPay or '325.00',
+                attributes: { 'inputmode' : 'numeric' },
+                prefix: '£',
+                classes: 'nhsuk-input--width-5'
+            }) }}
+
+            {{ input({
+                label: {
+                    text: 'Ideal monthly payment amount'
+                },
+                id: 'calculatorIdealMonthlyPaymentAmount',
+                name: 'calculatorIdealMonthlyPaymentAmount',
+                value: data.calculatorIdealMonthlyPaymentAmount or '20.00',
+                attributes: { 'inputmode' : 'numeric' },
+                prefix: '£',
+                classes: 'nhsuk-input--width-5'
+            }) }}
+
+
+            {{ button({
+                text: 'Calculate payment plan'
+            }) }}
+
+        </form>
+
+
+
+        {% if data.calculatorAmountToPay and data.calculatorIdealMonthlyPaymentAmount %}
+
+            <hr class="nhsuk-section-break nhsuk-section-break-m" />
+
+            <h2>Manual payment plan for £{{ data.calculatorAmountToPay }}</h2>
+            <p>Payments should be as close to £{{ data.calculatorIdealMonthlyPaymentAmount }} as possible.</p>
+
+
+            {% set headRow = [
+                { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
+                { text: 'Suggested amount' },
+                { text: 'Date' }
+            ] %}
+
+            {{ table({
+                panel: false,
+                caption: 'Manual payment plan',
+                captionClasses: 'nhsuk-u-visually-hidden',
+                firstCellIsHeader: false,
+                head: headRow,
+                rows: data.calculatorAmountToPay | generateCalculatorPaymentPlanRows( data.calculatorIdealMonthlyPaymentAmount )
+            }) }}
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
