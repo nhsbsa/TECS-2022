@@ -11,6 +11,61 @@
 {% endblock %}
 
 {% block content %}
+
+
+
+
+{% if data.calculatorAmountToPay and data.calculatorNumberOfMonths and data.calculatorStartDate %}
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+
+            <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+            <h1 class="nhsuk-heading-l">Payment plan calculator</h1>
+
+            <!-- MANUAL PAYMENT PLAN -->
+            <div class="nhsuk-card">
+                <div class="nhsuk-card__content">
+
+                    <h2 class="nhsuk-heading-m">Manual payment plan for £{{ data.calculatorAmountToPay }}</h2>
+
+                    {% set headRow = [
+                        { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
+                        { text: 'Amount' },
+                        { text: 'Date' }
+                    ] %}
+
+                    {{ table({
+                        panel: false,
+                        caption: 'Manual payment plan',
+                        captionClasses: 'nhsuk-u-visually-hidden',
+                        firstCellIsHeader: false,
+                        head: headRow,
+                        rows: data.calculatorAmountToPay | generateCalculatorPaymentPlanDateRows( data.calculatorNumberOfMonths, data.calculatorStartDate )
+                    }) }}
+
+                    <!-- WARNING OPTION -->
+                    {{ warningCallout({
+                        heading: 'Important',
+                        HTML: '<p>Payments will not be taken automatically. You are responsible for making a payment every month. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                    }) }}
+
+                </div>
+            </div>
+
+            <form class="no-print" action="payment-plan-calculator-date-reset" method="post" novalidate>
+                
+                {{ button({
+                    classes: 'nhsuk-button--secondary',
+                    text: 'Calculate again'
+                }) }}
+            
+            </form>
+
+        </div>
+    </div>
+
+{% else %}
+
 <div class="nhsuk-grid-row no-print">
     <div class="nhsuk-grid-column-two-thirds">
 
@@ -83,36 +138,6 @@
      </div>
 </div>
 
-{% if data.calculatorAmountToPay and data.calculatorNumberOfMonths and data.calculatorStartDate %}
-    <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-two-thirds">
-
-            <!-- MANUAL PAYMENT PLAN -->
-            <div class="nhsuk-card">
-                <div class="nhsuk-card__content">
-
-                    <h2 class="nhsuk-heading-m">Manual payment plan for £{{ data.calculatorAmountToPay }}</h2>
-
-                    {% set headRow = [
-                        { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
-                        { text: 'Amount' },
-                        { text: 'Date' }
-                    ] %}
-
-                    {{ table({
-                        panel: false,
-                        caption: 'Manual payment plan',
-                        captionClasses: 'nhsuk-u-visually-hidden',
-                        firstCellIsHeader: false,
-                        head: headRow,
-                        rows: data.calculatorAmountToPay | generateCalculatorPaymentPlanDateRows( data.calculatorNumberOfMonths, data.calculatorStartDate )
-                    }) }}
-
-                </div>
-            </div>
-
-        </div>
-    </div>
 {% endif %}
 
 {% endblock %}

@@ -772,6 +772,16 @@ router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
 
 });
 
+router.post( /payment-plan-calculator-date-reset/, function(req, res){
+
+  delete req.session.data.calculatorAmountToPay;
+  delete req.session.data.calculatorNumberOfMonths;
+  delete req.session.data.calculatorStartDate;
+
+  res.redirect('payment-plan-calculator-date');
+
+});
+
 
 // Routes for UR Feb 2025
 router.use('/user-research-feb-2025', require('./views/user-research-feb-2025/\_routes'));
