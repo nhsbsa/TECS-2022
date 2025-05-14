@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    We cannot set up your Direct Debit
+{% endblock %}
+
+{% block content %}
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+            <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+            <h1 class="nhsuk-heading-l">
+                We cannot set up your Direct Debit
+            </h1>
+
+            <p>We've been unable to verify your details. You'll not be able to pay by Direct Debit.</p>
+
+            <!--<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">-->
+
+            <h2 class="nhsuk-heading-m">How to pay your Penalty Charge Notice online</h2>
+
+            <p>You can use this service to make a payment using a debit or credit card. You can either:</p>
+
+            <ul class="nhsuk-u-margin-bottom-8">
+                <li>pay the full amount in one payment</li>
+                <li>make manual payments every month to spread the cost over several payments</li>
+            </ul>
+
+            <!-- TABS -->
+
+            <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+
+                <ul class="nhsuk-tabs__list">
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#pay-in-full">Pay in full</a>
+                    </li>
+
+                    <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#make-manual-payments-every-month">Make manual payments every month</a>
+                    </li>
+
+                </ul>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
+
+                    <!-- CONTENT FOR PAY IN FULL -->
+
+                    {% from '../MACRO-payment-block.njk' import paymentBlock %}
+                    {{ paymentBlock( 'full', 'false', 'false' ) }}
+
+                </div>
+
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="make-manual-payments-every-month">
+
+                    <!-- CONTENT FOR MAKE MANUAL PAYMENTS EVERY MONTH -->
+                
+                    <p class="nhsuk-body">If you want spread the cost of your Penalty Charge Notice over several payments, you can make regular manual payments.</p>
+                    <p class="nhsuk-body">You will need to make your first payment by {{ 31 | alterTodaysDateByNumberOfDays }}. You then need to continue to make payments every month until you have paid the Penalty Charge Notice in full.</p>
+                    
+                    <p class="nhsuk-body">You can use our <a target="_blank" class="nhsuk-link" href="../experimental/payment-plan-calculator-date?atp=50.00&nom=3">payment plan calculator (opens in a new tab)</a> to help you plan your payments over 3 months.</p>
+
+                    <!-- WARNING OPTION -->
+                    {{ warningCallout({
+                        classes: 'nhsuk-u-margin-bottom-5',
+                        heading: 'Important',
+                        HTML: '<p>Payments will not be taken automatically. You are responsible for making a payment every month. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                    }) }}
+
+                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">You must make a payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
+
+                     {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Make a manual payment',
+                        href: '../partial-payment-SIMPLIFIED'
+                    }) }}
+                    
+                    
+                </div>
+            </div>
+
+
+
+
+            <!-- OTHER WAYS TO PAY YOUR PCN -->
+            <h2 class="nhsuk-heading-m">Other ways to pay your Penalty Charge Notice</h2>
+
+            <p>You can also make payments over the phone.</p>
+            <p><strong>Telephone:</strong> 0300 330 9291</p>
+            <p>You will need to keep a record of your Penalty Charge Notice reference number to make a payment.</p>
+            <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website.</a></p>
+            
+
+            <p>
+                <a href="/v6-pcn/penalty-charge-notice-details">Cancel</a>
+            </p>
+
+            <script src="/js/tabs.js"></script>
+        </div>
+    </div>
+{% endblock %}

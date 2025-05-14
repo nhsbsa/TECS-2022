@@ -11,3 +11,10 @@
 ///////////////////////////////////////////
 // Add your custom CSS/Sass styles below...
 ///////////////////////////////////////////
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
+

@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+    Payment plan calculator - Date
+{% endblock %}
+
+{% block outerContent %}
+  
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row no-print">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-l">Payment plan calculator</h1>
+
+        <form action="payment-plan-calculator-date" method="post" novalidate>
+
+            {{ input({
+                label: { text: 'Amount to pay' },
+                id: 'calculatorAmountToPay',
+                name: 'calculatorAmountToPay',
+                value: data.calculatorAmountToPay or data.atp,
+                attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' },
+                prefix: '£',
+                classes: 'nhsuk-input--width-5',
+                errorMessage: false
+            }) }}
+            
+            {{ input({
+                label: { text: 'Number of months' },
+                id: 'calculatorNumberOfMonths',
+                name: 'calculatorNumberOfMonths',
+                value: data.calculatorNumberOfMonths or data.nom,
+                attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' },
+                classes: 'nhsuk-input--width-2'
+            }) }}
+
+            {{ dateInput({
+                    id: 'calculatorStartDate',
+                    namePrefix: 'calculatorStartDate',
+                    fieldset: {
+                        legend: {
+                            text: 'When do you want to make your first payment?',
+                            isPageHeading: false
+                        }
+                    },
+                    hint: {
+                        text: 'For example, today is ' + ( '' | getTodaysDate )
+                    },
+                    items: [
+                        {
+                            name: 'day',
+                            value: data.calculatorStartDate.day or data.sdd,
+                            classes: 'nhsuk-input--width-2',
+                            attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
+                        },
+                        {
+                            name: 'month',
+                            value: data.calculatorStartDate.month or data.sdm,
+                            classes: 'nhsuk-input--width-2',
+                            attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
+                        },
+                        {
+                            name: 'year',
+                            value: data.calculatorStartDate.year or data.sdy,
+                            classes: 'nhsuk-input--width-4',
+                            attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
+                        }
+                    ]
+                }) }}
+           
+
+            {{ button({
+                text: 'Calculate payment plan'
+            }) }}
+
+        </form>
+
+     </div>
+</div>
+
+{% if data.calculatorAmountToPay and data.calculatorNumberOfMonths and data.calculatorStartDate %}
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+
+            <!-- MANUAL PAYMENT PLAN -->
+            <div class="nhsuk-card">
+                <div class="nhsuk-card__content">
+
+                    <h2 class="nhsuk-heading-m">Manual payment plan for £{{ data.calculatorAmountToPay }}</h2>
+
+                    {% set headRow = [
+                        { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
+                        { text: 'Amount' },
+                        { text: 'Date' }
+                    ] %}
+
+                    {{ table({
+                        panel: false,
+                        caption: 'Manual payment plan',
+                        captionClasses: 'nhsuk-u-visually-hidden',
+                        firstCellIsHeader: false,
+                        head: headRow,
+                        rows: data.calculatorAmountToPay | generateCalculatorPaymentPlanDateRows( data.calculatorNumberOfMonths, data.calculatorStartDate )
+                    }) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Payment confirmation
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-xl">Partial payment made</h1>
+      <div class="nhsuk-card" style="background: #005EB8; margin-top: 0;">
+        <div class="nhsuk-card__content">
+          
+          
+          <h2 class="nhsuk-card__content" style="text-align: center; color: white;">You have paid £25 towards your Penalty Charge Notice</h2>
+          
+ 
+          
+        </div>
+      
+
+      </div>
+       <h2>Payment confirmation</h2>
+      <p>We've received your payment towards your Penalty Charge Notice.</p>
+
+      <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+
+
+
+        <dl class="nhsuk-summary-list">
+
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Penalty Charge Notice reference number
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              123456789
+            </dd>
+        
+          
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              So far you've paid
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £32.90
+            </dd>
+        
+            
+        
+          </div>
+        
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              You still need to pay
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              <p >£25</p>
+            </dd>
+        
+            
+        
+          </div>
+        
+          
+        </dl>
+
+
+
+      
+      </div>
+
+      {{ warningCallout({
+         classes: 'nhsuk-u-margin-bottom-4',
+         heading: 'Your next manual payment',
+         HTML: '
+         <p class="nhsuk-body">You can return to <a href="respond-to-your-letter">this service</a> to pay your remaining balance at any time.</p>
+         <p class="nhsuk-heading-s">You must make your next payment by ' + ( 31 | alterTodaysDateByNumberOfDays ) + '</p>'
+         
+      }) }}
+
+      <p class="nhsuk-body" target="_blank">You can use our <a href="experimental/payment-plan-calculator-date?atp=25.00&sdd={{ 'day' | getTodaysDate }}&sdm={{ 'month' | getTodaysDate }}&sdy={{ 'year' | getTodaysDate }}">payment plan calculator (opens in a new tab)</a> to help you plan your payments.</p>
+
+      {{ button({
+        text: 'Make another payment',
+        href: 'partial-payment-SIMPLIFIED'
+      }) }}
+
+
+      <p><a href="javascript:window.print();">Print this page</a></p>
+
+
+      <h2>How to avoid a Penalty Charge Notice in the future</h2>
+      <p>We match exemptions using a combination of your:</p>
+      <ul>
+        <li>name</li>
+        <li>address</li>
+        <li>date of birth</li>
+        <li>NHS number</li>
+      </ul>
+        <p>Make sure your details are correct at your GP surgery, dental practice, and any benefits organisations.</p>
+     <p>If any of your details are not up to date, you may receive another Penalty Charge Notice in the future.</p>
+        
+
+     <div class="nhsuk-action-link">
+      <a class="nhsuk-action-link__link" href="https://www.nhsbsa.nhs.uk/check-if-youre-eligible-help">
+        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="nhsuk-action-link__text">Check if you are currently entitled to help with your health costs.</span>
+      </a>
+    </div>
+      
+        
+<h3>Feedback</h3>
+<p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
+<p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae"target="_blank">Leave feedback (opens in a new window)</a></p>
+   
+
+    </div>
+  </div>
+{% endblock %}

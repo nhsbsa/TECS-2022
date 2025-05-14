@@ -8,6 +8,51 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   const filters = {};
 
   //
+  // GET TODAYS DATE FUNCTION
+  //
+  filters.getTodaysDate = function( output ){
+
+    console.log(output);
+
+    output = ( ['full','numeric','day','month','year'].indexOf(output) > -1 ) ? output : 'numeric';
+
+    console.log(output);
+
+    let today = new Date();
+    let dateString;
+   
+    switch( output ){
+
+       case 'full':
+         dateString = today.toLocaleDateString('en-GB', {
+           day: 'numeric',
+           month: 'long',
+           year: 'numeric'
+         });
+         break;
+
+      case 'day':
+        dateString = today.getDate();
+        break;
+
+      case 'month':
+        dateString = today.getMonth() + 1;
+        break;
+
+      case 'year':
+        dateString = today.getFullYear();
+        break;
+      
+      case 'numeric':
+      default:
+        dateString = today.getDate() + ' ' + (today.getMonth() + 1) + ' ' + today.getFullYear();
+
+    }
+
+    return dateString;
+  };
+
+  //
   // ALTER DATE BY NUMBER OF MONTHS FUNCTION
   //
   filters.alterTodaysDateByNumberOfMonths = function( monthOffset, daysOffset ){
@@ -143,6 +188,65 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
       let months = Math.floor( amountToPay/idealPaymentAmount );
       let remainingAmount = amountToPay - ( months * idealPaymentAmount );
+
+      let firstPayment = 0;
+      let monthlyPayment = 0;
+
+      if( remainingAmount > 0 ){
+        monthlyPayment = ( amountToPay / months ).toFixed(2);
+        firstPayment = (amountToPay - ( monthlyPayment * ( months - 1 ) )).toFixed(2);
+      } else {
+        monthlyPayment = firstPayment = amountToPay/months;
+      }
+
+      /*
+      console.log( '-------------------------------------------' );
+      console.log( 'TO PAY: ' + amountToPay );
+      console.log( 'Months: ' + months );
+      console.log( 'Remaing amount: ' + remainingAmount );
+      console.log( 'First: ' + firstPayment );
+      console.log( 'Then: ' + monthlyPayment );
+      console.log( 'CALC: ' + Number( Number(firstPayment) + Number( monthlyPayment * ( months-1 ) ) ).toFixed(2) );
+      */
+
+      
+      for( let i = 0; i < months; i++ ){
+        const arr = [];
+
+        arr.push({ text: ( i+1 ) });
+        if( i === 0 ){
+          arr.push({ text: ( '£' + firstPayment ) });
+        } else {
+          arr.push({ text: ( '£' + monthlyPayment ) });
+        }
+        arr.push({ text: filters.alterTodaysDateByNumberOfMonths( i, 0 ) });
+        rows.push( arr );
+      }
+      
+
+
+    }
+
+    return rows;
+
+  };
+
+  //
+  // GENERATE CALCULATOR PAYMENT PLAN DATE ROWS FILTER
+  //
+  filters.generateCalculatorPaymentPlanDateRows = function( amountToPay, months, startDate ){
+
+    console.log( 'generateCalculatorPaymentPlanDateRows' );
+
+    let rows = [];
+
+    amountToPay = Number(amountToPay).toFixed(2);
+    months = Number(months).toFixed();
+    
+    if( !Number.isNaN(amountToPay) && !Number.isNaN(months) ){
+
+      let paymentAmount = Math.floor( amountToPay/months );
+      let remainingAmount = amountToPay - ( months * paymentAmount );
 
       let firstPayment = 0;
       let monthlyPayment = 0;
