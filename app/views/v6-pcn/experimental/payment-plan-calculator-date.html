@@ -23,7 +23,7 @@
                 label: { text: 'Amount to pay' },
                 id: 'calculatorAmountToPay',
                 name: 'calculatorAmountToPay',
-                value: data.calculatorAmountToPay or data.atp,
+                value: data.atp,
                 attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' },
                 prefix: '£',
                 classes: 'nhsuk-input--width-5',
@@ -34,7 +34,7 @@
                 label: { text: 'Number of months' },
                 id: 'calculatorNumberOfMonths',
                 name: 'calculatorNumberOfMonths',
-                value: data.calculatorNumberOfMonths or data.nom,
+                value: data.nom,
                 attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' },
                 classes: 'nhsuk-input--width-2'
             }) }}
@@ -54,19 +54,19 @@
                     items: [
                         {
                             name: 'day',
-                            value: data.calculatorStartDate.day or data.sdd,
+                            value: data.sdd,
                             classes: 'nhsuk-input--width-2',
                             attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
                         },
                         {
                             name: 'month',
-                            value: data.calculatorStartDate.month or data.sdm,
+                            value: data.sdm,
                             classes: 'nhsuk-input--width-2',
                             attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
                         },
                         {
                             name: 'year',
-                            value: data.calculatorStartDate.year or data.sdy,
+                            value: data.sdy,
                             classes: 'nhsuk-input--width-4',
                             attributes: { 'inputmode' : 'numeric', 'autocomplete' : 'off' }
                         }
