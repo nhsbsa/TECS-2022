@@ -14,7 +14,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
     console.log(output);
 
-    output = ( ['full','numeric','day','month','year'].indexOf(output) > -1 ) ? output : 'numeric';
+    output = ( ['full','numeric','day','month','year','nth'].indexOf(output) > -1 ) ? output : 'numeric';
 
     console.log(output);
 
@@ -22,6 +22,20 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     let dateString;
    
     switch( output ){
+
+      case 'nth':
+          let num = String(today.getDate());
+          let char = num.charAt(num.length-1);
+          if( char === '1' ){
+            dateString = num + 'st';
+          } else if( char === '2' ){
+            dateString = num + 'nd';
+          } else if( char === '3' ){
+            dateString = num + 'rd';
+          } else {
+            dateString = num + 'th';
+          }
+          break;
 
        case 'full':
          dateString = today.toLocaleDateString('en-GB', {
