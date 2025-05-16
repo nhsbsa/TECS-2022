@@ -8,6 +8,49 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   const filters = {};
 
   //
+  // GET PAYMENT DATE FUNCTION
+  //
+  filters.getPaymentDate = function( months ){
+
+    months = ( parseInt(months) ) ? parseInt(months) : 0;
+
+    let today = new Date();
+    //let today = new Date('January 31, 2025');
+    let date = today.getDate();
+    let month = today.getMonth();
+
+    let dateString;
+
+    if( date > 28 && months ){
+
+      date = 30;
+      for( let i = 0; i < months; i++ ){
+        let newMonth = month + i;
+        // Check for a February
+        if( newMonth === 1 ){
+          date = 28;
+        }
+      }
+    }
+
+    let num = String(date);
+    let char = num.charAt(num.length-1);
+
+    if( char === '1' ){
+      dateString = num + 'st';
+    } else if( char === '2' ){
+      dateString = num + 'nd';
+    } else if( char === '3' ){
+      dateString = num + 'rd';
+    } else {
+      dateString = num + 'th';
+    }
+
+    return dateString;
+
+  };
+
+  //
   // GET TODAYS DATE FUNCTION
   //
   filters.getTodaysDate = function( output ){
@@ -15,8 +58,6 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     console.log(output);
 
     output = ( ['full','numeric','day','month','year','nth'].indexOf(output) > -1 ) ? output : 'numeric';
-
-    console.log(output);
 
     let today = new Date();
     let dateString;
