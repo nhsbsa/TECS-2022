@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What do you want to do next?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="what-happens-next" method="get" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+      {{ radios({
+      idPrefix: "example",
+      name: "example",
+      fieldset: {
+      legend: {
+      text: "What do you want to do next?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "confirm-entitled",
+      text: "Confirm I was entitled to free NHS prescriptions",
+      hint: {
+      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
+      }
+      },
+      {
+      value: "not-entitled",
+      text: "I was not entitled to free NHS prescriptions and want to know what happens next"
+      },
+      {
+      value: "not-sure",
+      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check."
+      }
+      ]
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+
+  </div>
+</div>
+<style>
+</style>
+
+{% endblock %}

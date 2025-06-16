@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Enquiry letter
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Your details</span>
+    <h1>
+      Enquiry letter reference 01234567890
+    </h1>
+
+    {% from 'warning-callout/macro.njk' import warningCallout %}
+    {{ warningCallout({
+    heading: "Do not delay",
+    HTML: "<p>You now have 28 days to confirm you were entitled to free NHS prescriptions (by 28 August 2025). If you
+      can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>"
+    }) }}
+
+
+    <h2>Check your details carefully</h2>
+
+    <p>We check details on your prescription match the details on your exemption certificate, qualifying benefit, or
+      prepayment certificate.</p>
+    <p>We have not been able to confirm you were entitled to free NHS prescriptions using these details.</p>
+
+
+    <form action="what-you-want-to-do-next" method="post" class="form">
+      <p>We have been unable to confirm your identity using the information you've provided. Check your answers and
+        change
+        any that are incorrect.</p>
+
+      {% from 'tables/macro.njk' import table %}
+
+      {{ table({
+      responsive: false,
+      panel: false,
+      caption: "Details on the prescription",
+      firstCellIsHeader: true,
+      rows: [
+      [
+      {
+      text: "Name"
+      },
+      {
+      text: "Michelle Doe"
+      }
+      ],
+      [
+      {
+      text: "Address"
+      },
+      {
+      text: "12 Old Oak Road Throckley NE67 9AD"
+      }
+      ],
+      [
+      {
+      text: "Exemption reason ticked"
+      },
+      {
+      text: "Gets Income Support or income-related Employment and Support Allowance"
+      }
+      ],
+      [
+      {
+      text: "Date prescription was claimed"
+      },
+      {
+      text: "Between 1 June and 30 June 2025"
+      }
+      ]
+      ]
+      }) }}
+
+
+      <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve
+        this
+        issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment
+        certificate.</p>
+      </dl>
+      {{ button({
+      text: 'Continue'
+      }) }}
+    </form>
+  </div>
+
+</div>
+{% endblock %}

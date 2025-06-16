@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+We cannot find your details
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Your details</span>
+    <h1 class="nhsuk-heading-l">
+      We cannot find your details
+    </h1>
+    <form action="enter-reference-number" method="post" class="form">
+      <p>We have been unable to confirm your identity using the information you've provided. Check your answers and
+        change
+        any that are incorrect.</p>
+
+      {% from 'tables/macro.njk' import table %}
+
+      {{ table({
+      responsive: false,
+      panel: false,
+      firstCellIsHeader: true,
+      rows: [
+      [
+      {
+      text: "Reference"
+      },
+      {
+      text: "1234567890"
+      }
+      ],
+      [
+      {
+      text: "Date of birth"
+      },
+      {
+      text: "15 March 1984"
+      }
+      ],
+      [
+      {
+      text: "Postcode"
+      },
+      {
+      text: "LS2 5ZN"
+      }
+      ]
+      ]
+      }) }}
+
+      {{ button({
+      text: 'Try again'
+      }) }}
+    </form>
+
+    <p>If your answers are correct, <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">contact us</a> if
+      you have received a letter about claiming help with your health costs.</p>
+
+
+
+
+  </div>
+</div>
+<style>
+
+</style>
+{% endblock %}
