@@ -43,23 +43,29 @@
 
 
               <!-- SUMMARY LIST -->
-              {% if blockType === 'full' or blockType === 'simplifiedNoPayment' or alreadyPaid === 'true' %}
+              {% if blockType === 'partial' or blockType === 'simplifiedPartial' or blockType === 'full' %}
 
-                 {% set summaryListRows = [{
-                      key: { text: 'Total amount to pay' },
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Total amount' },
                       value: { html: '<strong>£57.90</strong>' }
-                  }]%}            
+                  }]%}  
 
               {% else %}
 
                 {% set summaryListRows = [
                     {
-                      key: { text: 'Total amount' },
-                      value: { text: '£57.90' }
-                    },{
+                      key: { text: 'Prescription charges' },
+                      value: { text: '£9.65' }
+                    },
+                    {
+                      key: { text: 'Penalty charges' },
+                      value: { text: '£48.25' }
+                    },
+                    {
                       key: { text: 'Total amount to pay' },
-                      value: { html: '<strong>' + amountOutstanding + '</strong>' }
-                    }]%}    
+                      value: { html: '<strong>£57.90</strong>' }
+                  }]%}  
 
               {% endif %}
 
@@ -68,7 +74,6 @@
               }) }}
 
 
-            {% if blockType !== 'simplifiedNoPayment' %}
 
               <h3 class="nhsuk-heading-m">Previous payments</h3>
 
@@ -96,7 +101,7 @@
 
                 {% endif %}
 
-              {% else %}
+            {% else %}
 
                 <!-- FIRST PAYMENT -->
                 {% if alreadyPaid === 'true' %}
@@ -146,17 +151,22 @@
                         })
                     #}
 
-                {% endif %}
 
 
                 {% if blockType === 'full' %}
-
+                
                   <!-- PAY FULL AMOUNT -->
-                  <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
+
+                {% elseif blockType === 'simplifiedPartial' %}
+
+                 
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
                   
-                {% elseif blockType === 'simplified' or blockType === 'simplifiedNoPayment' %}
+                {% elseif blockType === 'simplified' %}
                 
                   <!-- SIMPLIFIED -->
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-3">Amount still to pay: {{ amountOutstanding }}</p>
                   <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
 
                 {% else %}
@@ -164,7 +174,7 @@
                   {% if alreadyPaid === 'true' %}
 
                     <!-- MANUAL PAYMENT ALREADY MADE -->
-                    <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
+                    <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
                   
                   {% else %}
 
