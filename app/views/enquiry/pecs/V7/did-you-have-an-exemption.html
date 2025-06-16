@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Did you have an NHS exemption
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-back-link">
+  {{ backLink({
+  href: 'javascript:history.back();',
+  text: "Go back"
+  }) }}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="exemption-certificate-number" method="get" class="form">
+
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+        {{ radios({
+        idPrefix: "example-divider",
+        name: "example-divider",
+        fieldset: {
+        legend: {
+        text: "Did you have one of these NHS exemption certificates between 1 June and 30 June
+        2025?",
+        classes: "nhsuk-fieldset__legend--l",
+        isPageHeading: true
+        }
+        },
+        items: [
+        {
+        value: "medex-cert",
+        text: "Medical exemption certificate"
+        },
+        {
+        value: "matex-cert",
+        text: "Maternity exemption certificate"
+        },
+        {
+        value: "ppc-cert",
+        text: "Prescription Prepayment Certificate (PPC)"
+        },
+        {
+        value: "hc2-cert",
+        text: "HC2 certificate (full help with health costs)"
+        },
+        {
+        value: "tac-credit-cert",
+        text: "NHS Tax Credit Exemption Certificate"
+        },
+        {
+        divider: "or"
+        },
+        {
+        value: "none-of-these",
+        text: "No, none of these"
+        }
+        ]
+        }) }}
+
+        {{ button({
+        text: 'Continue'
+        }) }}
+
+
+      </form>
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+  {% endblock %}

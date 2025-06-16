@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Confirm entitlement
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+    {{ backLink({
+    href: 'javascript:history.back();',
+    text: "Go back"
+    }) }}
+
+    <form action="did-you-have-an-exemption" method="get" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+      {{ radios({
+      idPrefix: "example-inline",
+      name: "example-inline",
+      classes: "nhsuk-radios--inline",
+      fieldset: {
+      legend: {
+      text: "Did you have a valid [Benefit] between 1 June and 30 June 2025?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "yes",
+      text: "Yes"
+      },
+      {
+      value: "no",
+      text: "No"
+      }
+      ]
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+
+
+
+    </form>
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

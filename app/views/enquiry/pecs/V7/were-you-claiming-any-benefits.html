@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Were you claiming any of these benefits?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
+    <form action="check-personal-details-dwp" method="POST" class="form">
+
+      {{ radios({
+      idPrefix: "example-divider",
+      name: "example-divider",
+      fieldset: {
+      legend: {
+      text: "Were you claiming any of these benefits (or named on them) between 1 June
+      and 30 June 2025?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "income-employment-support",
+      text: "Income Support or income-related Employment and Support Allowance"
+      },
+      {
+      value: "jsa",
+      text: "Income-based Jobseeker's Allowance"
+      },
+      {
+      value: "universal-credit",
+      text: "Universal Credit"
+      },
+      {
+      value: "pension-credit-guarantee",
+      text: "Your partner's Pension Credit Guarantee Credit award"
+      },
+
+      {
+      divider: "or"
+      },
+      {
+      value: "none",
+      text: "No, none of these"
+      }
+      ]
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

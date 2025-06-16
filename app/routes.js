@@ -250,15 +250,15 @@ router.get(/enq-benefit-num/, function (req, res) {
 
 });
 
-router.get(/confirm-entitlement/, function (req, res) {
+// router.get(/confirm-entitlement/, function (req, res) {
 
-  if (req.query.confirm == 'entitlement') {
-    res.redirect('what-happens-next');
-  }
-  else if (req.query.confirm == 'pay') {
-    res.redirect('cannot-pay');;
-  }
-});
+//   if (req.query.confirm == 'entitlement') {
+//     res.redirect('what-happens-next');
+//   }
+//   else if (req.query.confirm == 'pay') {
+//     res.redirect('cannot-pay');;
+//   }
+// });
 
 ///////////////////////
 // ///V5 Routing///////

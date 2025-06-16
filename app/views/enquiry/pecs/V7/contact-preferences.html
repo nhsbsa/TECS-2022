@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Contact preferences
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        <form action="what-is-your-email" method="get" class="form">
+            {{ checkboxes({
+            idPrefix: "example",
+            name: "example",
+            fieldset: {
+            legend: {
+            text: "We'll review your case and get back to you, How can we contact you?",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+            }
+            },
+            hint: {
+            text: "Select all options that are relevant to you."
+            },
+            items: [
+            {
+            value: "email",
+            text: "Email"
+            },
+            {
+            value: "telephone",
+            text: "Telephone"
+            }
+            ]
+            }) }}
+
+            {{ button({
+            text: 'Continue'
+            }) }}
+        </form>
+        <p><a href="respond-to-your-letter">Cancel</a></p>
+    </div>
+</div>
+{% endblock %}
