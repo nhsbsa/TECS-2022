@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Enter your your reference number again
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="date-of-birth" method="post" class="form">
+      <span class="nhsuk-caption-m">Your details</span>
+
+      {% call fieldset({
+      legend: {
+      text: 'Enter your your reference number again',
+      classes: 'nhsuk-fieldset__legend--l',
+      isPageHeading: true
+      }
+      }) %}
+
+      {{ input({
+      hint: {
+      text: "We ask this to make sure we find the correct record."
+      },
+      classes: 'nhsuk-u-width-two-thirds',
+      id: 'referenceNumber',
+      name: 'referenceNumber',
+      value: data.referenceNumber
+      }) }}
+
+      {% endcall %}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+
+    </form>
+
+
+
+  </div>
+</div>
+
+{% endblock %}

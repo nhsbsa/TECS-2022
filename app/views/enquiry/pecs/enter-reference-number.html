@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your reference number?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="enter-reference-number-again" method="post" class="form">
+      <span class="nhsuk-caption-m">Your details</span>
+
+      {% call fieldset({
+      legend: {
+      text: 'What is your reference number?',
+      classes: 'nhsuk-fieldset__legend--l',
+      isPageHeading: true
+      }
+      }) %}
+
+      {{ input({
+      hint: {
+      text: "You can find this on your letter. Only include numbers in your reference number"
+      },
+      classes: 'nhsuk-u-width-two-thirds',
+      id: 'referenceNumber',
+      name: 'referenceNumber',
+      value: data.referenceNumber
+      }) }}
+
+      {% endcall %}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+    </form>
+
+
+
+  </div>
+</div>
+
+{% endblock %}
