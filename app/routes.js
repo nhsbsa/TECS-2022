@@ -384,14 +384,14 @@ router.get(/disabled-exemption/, function (req, res) {
   }
 });
 
-router.get(/maternity-exemption/, function (req, res) {
-  if (req.query.exemption == 'yes') {
-    res.redirect('no-matex-radio');
-  }
-  else if (req.query.exemption == 'no') {
-    res.redirect('cannot-confirm-pcn');;
-  }
-});
+// router.get(/maternity-exemption/, function (req, res) {
+//   if (req.query.exemption == 'yes') {
+//     res.redirect('no-matex-radio');
+//   }
+//   else if (req.query.exemption == 'no') {
+//     res.redirect('cannot-confirm-pcn');;
+//   }
+// });
 
 router.get(/dwp-exemption-number/, function (req, res) {
   if (req.query.exemption == 'yes') {

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your name?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="check-personal-details" method="post" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+      <h1 class="nhsuk-heading-l">How was your name written on your [Benefit]?</h1>
+      <form action="v22/name" method="post">
+
+        {{ input({
+        label: {
+        text: "First name"
+        },
+        id: "first-name",
+        name: "first-name",
+        classes: "nhsuk-input--width-20"
+        }) }}
+        {{ input({
+        label: {
+        text: "Last name"
+        },
+        id: "last-name",
+        name: "last-name",
+        classes: "nhsuk-input--width-20"
+        }) }}
+
+        {{ button({
+        text: "Continue"
+        }) }}
+
+        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

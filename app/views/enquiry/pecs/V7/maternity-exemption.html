@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Were you pregnant?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+    <div class="nhsuk-form-group">
+      <form action="maternity-exemption" method="get" class="form">
+
+        {{ radios({
+        idPrefix: "maternity-exemption",
+        name: "maternity-exemption",
+        classes: "nhsuk-radios--inline",
+        fieldset: {
+        legend: {
+        text: "Were you pregnant between 1 June 2025 and 30 June 2025, or had you given birth in the previous 12
+        months?",
+        classes: "nhsuk-fieldset__legend--l",
+        isPageHeading: false
+        }
+        },
+        items: [
+        {
+        value: "yes",
+        text: "Yes"
+        },
+        {
+        value: "no",
+        text: "No"
+        }
+        ]
+        }) }}
+
+        <div class="nhsuk-form-group">
+          {{ button({
+          text: 'Continue'
+          }) }}
+          <p><a href="respond-to-your-letter">Cancel</a></p>
+
+
+
+
+
+        </div>
+    </div>
+
+    {% endblock %}
