@@ -1,0 +1,89 @@
+{% macro paymentBlock( blockType = 'partial', showCard = 'true', showDate = 'false', showButton = 'false' ) %}
+
+    {% from 'summary-list/macro.njk' import summaryList %}
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+    {% if showCard === 'true' %}
+        <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+    {% endif %}
+
+    <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+
+    {% if blockType === 'partial' %}
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Total amount' },
+                      value: { html: '<strong>£77.40</strong>' }
+                  }]%}  
+
+              {% else %}
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Dental treatment charges' },
+                      value: { text: '£27.40' }
+                    },
+                    {
+                      key: { text: 'Penalty charges' },
+                      value: { text: '£50.00' }
+                    },
+                    {
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£77.40</strong>' }
+                  }]%}  
+
+            {% endif %}
+
+              {{ summaryList({
+                  rows: summaryListRows
+              }) }}
+
+        <!-- PREVIOUS PAYMENTS -->
+        <h3 class="nhsuk-heading-m">Previous payments</h3>
+
+         {{ summaryList({
+                    classes: 'nhsuk-u-margin-bottom-6',
+                    rows: [
+                    {
+                        key: { text: 'Payments made' },
+                        value: { text: '£7.40' }
+                    }]
+                }) }}
+
+        <!-- AMOUNT STILL TO PAY -->
+        {% if showDate === 'true' %}
+            <p class="nhsuk-heading-l nhsuk-u-margin-bottom-3">Amount still to pay: £70.00</p>
+            <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
+        {% else %}
+
+            <!-- SHOW BUTTON -->
+
+            {% if showButton === 'true' %}
+                <p class="nhsuk-heading-l nhsuk-u-margin-bottom-6">Amount still to pay: £70.00</p>
+                    {{ button({
+                        classes: 'nhsuk-u-margin-bottom-0',
+                        text: 'Pay in full',
+                        href: '../gov-pay'
+                    }) }}
+            {% else %}
+                <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: £70.00</p>
+            {% endif %}
+
+            
+        {% endif %}
+
+
+
+        
+
+
+    {% if showCard === 'true' %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endmacro %}
