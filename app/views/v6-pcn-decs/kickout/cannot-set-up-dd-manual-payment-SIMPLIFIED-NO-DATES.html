@@ -86,10 +86,16 @@
                     }) }}
 
                     <!-- WARNING OPTION -->
+                    {% if data.isSCN === 'true' %}
+                        {% set warningText = '<p class="nhsuk-body">Payments will not be taken automatically. You are responsible for making a payment every 31 days.</p><p class="nhsuk-body">If you do not, we will treat it as a deliberate decision to avoid paying the charges that you owe the NHS and we may start debt recovery proceedings.</p>' %}
+                    {% else %}
+                        {% set warningText = '<p class="nhsuk-body">Payments will not be taken automatically. You are responsible for making a payment every 31 days. If you do not, you may have to pay a surcharge of up to £50.</p>' %}
+                    {% endif %}
+
                     {{ warningCallout({
                         classes: 'nhsuk-u-margin-bottom-5',
                         heading: 'Important',
-                        HTML: '<p>Payments will not be taken automatically. You are responsible for making a payment every 31 days. If you do not, you may have to pay a surcharge of up to £50.</p>'
+                        HTML: warningText
                     }) }}
 
                     <p class="nhsuk-heading-m nhsuk-u-margin-bottom-6">You must make your first payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
