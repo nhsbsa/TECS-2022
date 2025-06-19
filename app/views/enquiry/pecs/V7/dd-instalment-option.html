@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Select how many months you want to pay over
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+
+		<form action="" method="post" class="form">
+
+			{% set hintHtml -%}
+			<p>Your total amount to pay is £123.80. You will not be charged interest on this amount and it will not
+				affect
+				your credit score.</p>
+			<p>Select how many months you want to pay over</p>
+			{%- endset %}
+
+			{{ radios({
+			idPrefix: "example-hints",
+			name: "example-hints",
+			fieldset: {
+			legend: {
+			text: "Select how many months you want to pay over",
+			classes: "nhsuk-fieldset__legend--l",
+			isPageHeading: true
+			}
+			}, hint: {
+			html: hintHtml
+			},
+			items: [
+			{
+			value: "3 months",
+			text: "Yes, I have a mobile phone with signal",
+			hint: {
+			text: "1 payment of £41.28 followed by 2 payments of £41.26"
+			}
+			},
+			{
+			value: "6 months",
+			text: "Yes, I have a mobile phone with signal",
+			hint: {
+			text: "1 payment of £20.65 followed by 5 payments of £20.63"
+			}
+			},
+			{
+			value: "12 months",
+			text: "No, I want to use my landline",
+			hint: {
+			text: "1 payment of £10.39 followed by 11 payments of £10.31"
+			}
+			}
+			]
+			}) }}
+
+			<p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">Contact us if you
+					cannot afford any of these monthly plans (link opens in new window).</a></p>
+
+			{{ button({
+			text: 'Continue'
+			}) }}
+
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

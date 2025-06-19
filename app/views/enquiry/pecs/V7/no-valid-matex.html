@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You didn't have a valid medical exemption certificate
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="5" method="get" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+      <fieldset class="nhsuk-fieldset">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <h1 class="nhsuk-fieldset__heading">
+            You didn't have a valid maternity exemption certificate at the time, but you can still apply
+          </h1>
+        </legend>
+
+        <p>Although you didn't have a valid maternity exemption certificate when you claimed a free prescription, you
+          still have the chance to apply.</p>
+        <p>You have until <strong>10 July 2025</strong> to get a maternity exemption certificate.</p>
+        <p>If your application is successful, you'll only have to pay the original prescription charge. You will not
+          have to pay your penalty charge.</p>
+
+        {{ radios({
+        idPrefix: "example",
+        name: "example",
+        fieldset: {
+        legend: {
+        text: "What do you want to do next?",
+        classes: "nhsuk-fieldset__legend--m",
+        isPageHeading: true
+        }
+        },
+        items: [
+        {
+        value: "pay-prescription",
+        text: "Pay the original £9.65 prescription charge, and apply for a maternity exemption certificate."
+        },
+        {
+        value: "pay-charge",
+        text: "Pay the full penalty charge amount £57.90"
+        }
+        ]
+        }) }}
+        {{ button({
+        text: 'Continue'
+        }) }}
+
+        <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made this claim,
+          you can ask us to review your enquiry letter. <a href="who-can-ask-for-review">Find out if you can ask for a
+            review</a></p>
+        <p>
+          <a href="">Print this page</a>
+        </p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+An exemption has been found
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .nhsuk-panel {
+    background: #005EB8;
+  }
+
+  .nhsuk-panel__title,
+  .nhsuk-panel__body {
+    text-align: center;
+  }
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+    <span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+    <h1>Direct Debit completed</h1>
+    {{ panel({
+    titleText: "Thank you",
+    html: "You have set up a Direct Debit to pay your penalty charge."
+    }) }}
+
+
+    <p>Confirmation of the instruction will be sent to you in 3 working days, or be received to you by no later than 10
+      working days before the first collection.</p>
+
+
+
+
+
+    <h2>First payment</h2>
+    <p>Your first payment of £4.82 will be taken on or just after 01 August 2025.</p>
+    <h2>Next payment</h2>
+    <p>Your next payment of £4.42 will be taken on or just after 01 September 2025.</p>
+    <p>As long as you keep up payments there will be no further changes added to your account.</p>
+
+
+
+    <h2>How to avoid a future Penalty Charge Notice</h2>
+    <p>We match exemptions using a combination of your:</p>
+    <ul>
+      <li>name</li>
+      <li>address</li>
+      <li>date of birth</li>
+      <li>NHS number</li>
+    </ul>
+    <p>Make sure these are correct at your GP surgery, dental practice, and any benefits organisations.</p>
+    <p>If any of your details are not up to date, you may receive another Penalty Charge Notice in the future.</p>
+
+    {{ actionLink({
+    text: "Check if you are currently entitled to help with your health costs",
+    href: "https://services.nhsbsa.nhs.uk/check-for-help-paying-nhs-costs/start"
+    }) }}
+
+    <p><a href="">Print this page</a></p>
+    <h3>Feedback</h3>
+    <p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
+    <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">Leave
+        feedback (opens in a new window)</a></p>
+
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+How would you like to pay your penalty charge?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="full-partial" method="get" class="form">
+
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+
+      {{ radios({
+      idPrefix: "example",
+      name: "example",
+      fieldset: {
+      legend: {
+      text: "How would you like to pay your penalty charge?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "debit-credit-card",
+      text: "Debit or credit card"
+      },
+      {
+      value: "direct-debit",
+      text: "Direct Debit"
+      }
+      ]
+      }) }}
+
+      <div class="nhsuk-form-group">
+        {{ button({
+        text: 'Continue'
+        }) }}
+        <p><a href="respond-to-your-letter">Cancel</a></p>
+      </div>
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

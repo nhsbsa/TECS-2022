@@ -1,0 +1,150 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">Check your answers are correct</h1>
+
+    <p><a href="">Print this page</a></p>
+
+    <form action="" method="post" class="form"></form>
+    <h3>Your Direct Debit details</h3>
+
+    {{ summaryList({
+    rows: [
+    {
+    key: {
+    text: "Number of payments"
+    },
+    value: {
+    text: "12"
+    },
+    actions: {
+    items: [
+    {
+    href: "dd-insatlment-option",
+    text: "Change",
+    visuallyHiddenText: "name"
+    }
+    ]
+    }
+    },
+    {
+    key: {
+    text: "Chosen payment date"
+    },
+    value: {
+    text: "1"
+    },
+    actions: {
+    items: [
+    {
+    href: "dd-payment-date",
+    text: "Change",
+    visuallyHiddenText: "contact details"
+    }
+    ]
+    }
+    }
+    ]
+    }) }}
+
+    <p>Your payments will be taken on, or just after, your chosen date each month until your penalty charge has been
+      cleared.</p>
+
+    <h3>Your payment summary</h3>
+
+    {{ summaryList({
+    rows: [
+    {
+    key: {
+    text: "First payment"
+    },
+    value: {
+    text: "£4.82"
+    }
+    },
+    {
+    key: {
+    text: "First payment taken on or just after"
+    },
+    value: {
+    text: "01 August 2025"
+    }
+    },
+    {
+    key: {
+    text: "Following 11 payments"
+    },
+    value: {
+    text: "£4.42"
+    }
+    },
+    {
+    key: {
+    text: "Total amount"
+    },
+    value: {
+    text: "£57.90"
+    }
+    }
+    ]
+    }) }}
+
+    <P>Your payment summary is based on the information you have given us.</P>
+
+    <p>You're responsible for making sure that payments can be taken on these dates.</p>
+
+    <h3>We'll send confirmation of your Direct Debit to this address</h3>
+
+    {{ summaryList({
+    rows: [
+    {
+    key: {
+    text: "Address"
+    },
+    value: {
+    html: "12 Old Oak Road
+    </br>Throckley</br>NE2 4XL"
+    },
+    actions: {
+    items: [
+    {
+    href: "dd-insatlment-option",
+    text: "Change",
+    visuallyHiddenText: "name"
+    }
+    ]
+    }
+    }
+    ]
+    }) }}
+
+    {{ button({
+    text: 'Continue'
+    }) }}
+    </form>
+    <p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

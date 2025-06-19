@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Confirm and submit your Direct Debit
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">
+			Confirm and submit your Direct Debit
+		</h1>
+
+		<p>If we are unable to take a payment, you may have to pay extra charges. If we are unable to take payments on
+			more than one occasion, you may not be able to pay by Direct Debit in the future.</p>
+
+		<h2 class="nhsuk-heading-m">Direct Debit summary</h2>
+
+		{{ summaryList({
+		rows: [
+		{
+		key: {
+		text: "First payment"
+		},
+		value: {
+		text: "£4.82"
+		}
+		},
+		{
+		key: {
+		text: "First payment taken on or just after"
+		},
+		value: {
+		text: "01 August 2025"
+		}
+		},
+		{
+		key: {
+		text: "Following 11 payments"
+		},
+		value: {
+		text: "£4.42"
+		}
+		},
+		{
+		key: {
+		text: "Total amount"
+		},
+		value: {
+		text: '£57.90'
+		}
+		}
+		]
+		}) }}
+
+		<p>You're responsible for making sure that payments can be taken on these dates.</p>
+
+		<h2 class="nhsuk-heading-m">Your bank details</h2>
+
+		{{ summaryList({
+		rows: [
+		{
+		key: {
+		text: "Account number"
+		},
+		value: {
+		text: "12345678"
+		}
+		},
+		{
+		key: {
+		text: "Sort code"
+		},
+		value: {
+		text: "12 34 56"
+		}
+		},
+		{
+		key: {
+		text: "Account holder's name"
+		},
+		value: {
+		text: 'Michelle Doe'
+		}
+		}
+		]
+		}) }}
+
+		{{ card({
+		heading: "If you need help now, but it’s not an emergency",
+		headingLevel: "3",
+		descriptionHtml: '<img src="/images/dd-logo.png" width="150px" alt="Direct Debit logo"
+			style="display:block; margin-bottom: 30px;" />
+
+		<p>We will send this Direct Debit instruction to: <strong>HSBC BANK PLC, Guernsey, Channel
+				Islands</strong>.</p>
+		<p>Please pay the NHSBSA PECS Direct Debits from the account detailed in this instruction subject to the
+			safeguards assured by the Direct Debit Guarantee. I understand that this instruction may remain with
+			NHSBSA
+			PECS, and if so, details will be passed electronically to my Bank/Building Society</p>
+
+		<p>Originator:<br>NHSBSA PECS, Bridge House,<br>152 Pilgrim Street, Newcastle Upon Tyne, NE1 6SN</p>
+
+		<p>Service User Number (SUN): 174819</p>
+		<p>Telephone: 0300 330 9219</p>'
+		}) }}
+
+		<p>You must agree to the terms and conditions.</p>
+
+		<form>
+			{{ checkboxes({
+			idPrefix: "example",
+			name: "example",
+			fieldset: {
+			},
+			items: [
+			{
+			value: "email",
+			html: '<p><strong>I agree to the terms and conditions</strong></p>'
+			}
+			]
+			}) }}
+		</form>
+
+		{{ button({
+		text: 'Continue'
+		}) }}
+
+		<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+	</div>
+</div>
+
+{% endblock %}

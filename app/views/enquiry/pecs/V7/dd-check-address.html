@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your address is correct
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">Is your address correct?</h1>
+
+		<div class="nhsuk-hint" id="contact-hint">
+			We'll send confirmation of your Direct Debit to the address you provide.
+		</div>
+
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Address
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					12 Old Oak Road<br>Throckley<br> NE67 9AD
+				</dd>
+			</div>
+		</dl>
+
+		<form action="/v6-pcn/direct-debit-check-address" method="post" class="form">
+
+			{{ radios({
+			idPrefix: "example-inline",
+			name: "example-inline",
+			classes: "nhsuk-radios--inline",
+			fieldset: {
+			legend: {
+			text: "",
+			classes: "nhsuk-fieldset__legend--l"
+			}
+			},
+			items: [
+			{
+			value: "yes",
+			text: "Yes"
+			},
+			{
+			value: "no",
+			text: "No"
+			}
+			]
+			}) }}
+
+			{{ button({
+			text: 'Continue'
+			}) }}
+
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

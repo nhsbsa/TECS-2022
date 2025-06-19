@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Enter your bank details
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-m">Pay an NHS Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">
+      Enter your bank details
+    </h1>
+
+    <p>Equifax will perform a check to verify the bank account details you give us. A record of this will be left on
+      your credit record for 12 months but will not affect your credit rating.</p>
+
+    <form action="/v6-pcn/enter-bank-details" method="post">
+      {{ input({
+      label: {
+      text: "Account holder's name"
+      },
+      id: "account-holder",
+      name: "account-holder",
+      classes: "nhsuk-input--width-10"
+      }) }}
+      {{ input({
+      label: {
+      text: "Account number"
+      },
+      id: "account-number",
+      name: "account-number",
+      classes: "nhsuk-input--width-10"
+      }) }}
+
+
+      {{ dateInput({
+      id: "example",
+      namePrefix: "example",
+      fieldset: {
+      legend: {
+      text: "Sort code"
+      }
+      },
+      items: [
+      {
+      classes: "nhsuk-input--width-2"
+      },
+      {
+      classes: "nhsuk-input--width-2"
+      },
+      {
+      classes: "nhsuk-input--width-2"
+      }
+      ]
+      }) }}
+
+      <p>You will confirm your Direct Debit set-up on the next page.</p>
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+    </form>
+    <p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

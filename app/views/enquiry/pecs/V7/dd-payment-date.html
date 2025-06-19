@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Which date would you like payments to be taken each month?
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+	<div class="nhsuk-grid-column-two-thirds">
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+		<h1 class="nhsuk-heading-l">Which date would you like payments to be taken each month?</h1>
+		<p>All payments will be taken on, or just after, your chosen date.</p>
+		<p>Enter a payment date between 1 and 28.</p>
+
+		<form action="" method="post" class="form">
+			{{ input({
+			label: {
+			text: "Date"
+			},
+			id: "date",
+			name: "date",
+			classes: "nhsuk-input--width-2",
+			inputmode: "numeric"
+			}) }}
+
+			{{ button({
+			text: 'Continue'
+			}) }}
+
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You are unable to set up a Direct Debit
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+
+    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">You are unable to set up a Direct Debit</h1>
+
+    <p>To set up a Direct Debit online, you must confirm that you are:</p>
+    <ul>
+      <li>using your own bank account</li>
+      <li>the only person required to authorise debits on this account</li>
+    </ul>
+
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us if you cannot confirm this.</a></p>
+
+    {{ button({
+    text: 'Continue'
+    }) }}
+    <p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+
+
+  </div>
+</div>
+
+{% endblock %}
