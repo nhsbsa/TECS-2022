@@ -772,6 +772,13 @@ router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
 
 });
 
+router.post(/accept-pcn-EXPEDITE/, function (req, res) {
+
+  res.redirect( 'pcn-accepted-EXPEDITE' );
+   
+
+});
+
 router.post( /payment-plan-calculator-date-reset/, function(req, res){
 
   delete req.session.data.calculatorAmountToPay;
