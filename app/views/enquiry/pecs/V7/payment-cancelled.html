@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+You have cancelled your payment
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">
+      You have cancelled your payment
+    </h1>
+
+    <p>We have not taken any money from your account.</p>
+    <p>You can try to make a payment again.</p>
+    {{ insetText({
+    html: "</span>
+    <p>Penalty Charge Notice reference number:<br><b>30352220</b></p>
+    <p>So far you've paid:<br><b>£0.00</b></p>
+    <p>You still need to pay:<br><b>£419.30</b></p>"
+    }) }}
+
+    <form action="" method="post" class="form">
+      {{ button({
+      text: 'Try payment again'
+      }) }}
+    </form>
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">Contact us</a> if you want to pay over the
+      phone or have any other questions.</p>
+
+  </div>
+</div>
+<style>
+
+</style>
+{% endblock %}

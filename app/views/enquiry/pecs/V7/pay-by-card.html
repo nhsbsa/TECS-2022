@@ -23,35 +23,63 @@ text: "Go back"
     <h1 class="nhsuk-heading-l">Pay by card</h1>
     <form action="gov-pay" method="post" class="form">
       {{ card({
-      heading: "If you need help now, but it’s not an emergency",
+      heading: "Penalty charge notice amount",
       headingLevel: "3",
-      descriptionHtml: '<div class="nhsuk-form-group">
+      descriptionHtml: '
 
-        <p>It can take up to 24 hours for payment information to update.</p>
-        <p>Total amount: £123.80</p>
-        <p>Payment made: £0.00</p>
-        <p>Total due: £123.80</p>
-        <p>You cannot change this on the next page.</p>
-        <h3>Amount to pay</h3>
-
-        <div class="nhsuk-form-group">
-          <p class="">£
-            <input class="nhsuk-input nhsuk-input--width-5" id="input-width-5" name="test-width-5" type="text">
-          </p>
-
-
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Total amount
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £57.90
+          </dd>
         </div>
-
-        </fieldset>
-
-      </div>'
+      </dl>
+      <h4>Previous payments</h4>
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Payments made
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £7.90
+          </dd>
+        </div>
+      </dl>
+      <h2>Amount still to pay: £50</h2>'
       }) }}
+      <p>You can either pay the full amount in one payment or split it across several payments.</p>
+      <p>If you have recently made a payment, it can take up to 24 hours for payment information to update.</p>
 
+      {{ radios({
+      idPrefix: "example",
+      name: "example",
+      fieldset: {
+      legend: {
+      text: "Do you want to pay the full amount still to pay?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "yes",
+      text: "Yes, I want to pay the full amount"
+      },
+      {
+      value: "no",
+      text: "No, I want to make a partial payment"
+      }
+      ]
+      }) }}
 
       <div class="nhsuk-form-group">
         {{ button({
         text: 'Continue'
         }) }}
+        <p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
       </div>
 
 

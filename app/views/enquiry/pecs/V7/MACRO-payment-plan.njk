@@ -1,0 +1,67 @@
+{% macro paymentPlan( planType = 'default', secondPayment = 'false', alreadyPaid = 'false' ) %}
+
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+    {% if planType === 'simplified' %}
+        
+        <!-- NOT SHOWING STATUSES -->
+        {% set headRow = [
+            { html: '<span class="nhsuk-u-visually-hidden">Payment number</span>' },
+            { text: 'Suggested amount' },
+            { text: 'Date' }
+        ] %}
+        {% set planTitle = 'View suggested payment plan' %}
+        {% set showStatuses = 'false' %}
+        {% set additionalHTML = '
+        <p class="nhsuk-body">Making the suggested payments on these dates will allow you to pay the amount you owe over 3 months.</p><p class="nhsuk-body">The first payment amount may be different to future payments. This can be because the amount owed does not split equally over 3 months.</p>' %}
+
+    {% else %}
+
+        <!-- SHOWING STATUSES -->
+        {% set headRow = [
+            { text: 'Payment' },
+            { text: 'Amount' },
+            { text: 'Date' },
+            { text: 'Status' }
+        ] %}
+        {% set planTitle = 'View manual payment plan dates' %}
+        {% set showStatuses = 'true' %}
+        {% set additionalHTML = '' %}
+
+    {% endif %}
+
+    
+    {% if secondPayment === 'true' %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 1, alreadyPaid, showStatuses ) %}
+    {% else %}
+      {% set paymentPlanRows = 50 | generatePaymentPlanRows( 3, 12, 0, alreadyPaid, showStatuses ) %}
+    {% endif %}
+
+
+    <!-- VIEW MANUAL PAYMENT PLAN DATES -->
+
+    {% set paymentPlanDates = additionalHTML + table({
+        panel: false,
+        caption: 'Manual payment plan',
+        captionClasses: 'nhsuk-u-visually-hidden',
+        firstCellIsHeader: false,
+        head: headRow,
+        rows: paymentPlanRows
+     }) + button({
+        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16',
+        text: 'Download PDF',
+        href: '#'
+    }) + button({
+        classes: 'nhsuk-u-margin-bottom-0 nhsuk-button--secondary nhsuk-u-font-size-16 nhsuk-u-margin-left-3',
+        text: 'Add to calendar',
+        href: '#'
+    }) %}
+
+    {{ details({
+        text: planTitle,
+        HTML: paymentPlanDates
+    }) }}
+
+{% endmacro %}

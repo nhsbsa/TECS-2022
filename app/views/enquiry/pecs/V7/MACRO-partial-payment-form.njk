@@ -1,0 +1,67 @@
+<!-- 
+
+  FORM TYPES 
+  
+  partial
+  partialAlreadyPaid
+  simplified
+
+-->
+{% macro partialPaymentForm( formType = 'partial' ) %}
+
+    {% from 'input/macro.njk' import input %}
+    {% from 'checkboxes/macro.njk' import checkboxes %}
+    {% from 'button/macro.njk' import button %}
+
+    <form action="gov-pay-partial" method="post" class="form">
+
+        {{ input({
+                label: {
+                  text: 'Amount to pay'
+                },
+                hint: {
+                  html: 'You cannot change this on the next page'
+                },
+                id: 'amountToPay',
+                name: 'amountToPay',
+                classes: 'nhsuk-input--width-5',
+                inputmode: 'numeric',
+                prefix: '£'
+        }) }}
+
+        {% if formType === 'partial' %}
+            <p class="nhsuk-body">You can choose to pay more than £16.67 this month, but this will not count toward your next monthly payment.</p>
+        {% elseif formType === 'simplified' %}
+            <p class="nhsuk-body">Payments can be as much as you like, but we suggest a payment each month of £16.67 to pay over 3 months.</p>
+        {% elseif formType === 'simplifiedNoDates' %}
+            <!--<p class="nhsuk-body">If you make a £16.67 payment today, and then 2 further payments of £16.67 on the {{ 3 | getPaymentDate }} of each month, you will pay your Penalty Charge Notice in full within 3 months.</p>-->
+        {% endif %}
+            
+        <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+            
+        {{ checkboxes({
+          idPrefix: 'surchargeUnderstood',
+          name: 'surchargeUnderstood',
+          fieldset: {
+            legend: {
+              text: 'Confirm you understand the condition to continue',
+              classes: 'nhsuk-u-visually-hidden',
+              isPageHeading: false
+            }
+          },
+          items: [
+            {
+              value: 'I understand that if I fail to make regular payments every 31 days, an extra surcharge of up to £50 may be added to my charges.',
+              text: 'I understand that if I fail to make regular payments every 31 days, an extra surcharge of up to £50 may be added to my charges.'
+            }
+          ]
+        }) }}
+  
+
+        {{ button({
+          text: 'Continue'
+        }) }}
+
+    </form>
+
+{% endmacro %}

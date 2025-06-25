@@ -1,0 +1,210 @@
+<!-- 
+
+  BLOCK TYPES 
+  
+  partial
+  full
+  simplified
+
+-->
+{% macro paymentBlock( blockType = 'partial', alreadyPaid = 'false', secondPayment = 'false' ) %}
+
+    {% from 'summary-list/macro.njk' import summaryList %}
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+    {% if blockType !== 'full' %}
+      <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+    {% endif %}
+              
+              <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+
+              <!-- OUTSTANDING BALANCE -->
+              {% if secondPayment === 'true' %}
+                
+                {% if alreadyPaid === 'true' %}
+                  {% set amountOutstanding = '£16.67' %}
+                {% else %}
+                  {% set amountOutstanding = '£33.33' %}
+                {% endif %}
+
+              {% else %}
+
+                {% if alreadyPaid === 'true' %}
+                  {% set amountOutstanding = '£33.33' %}
+                {% else %}
+                  {% set amountOutstanding = '£50.00' %}
+                {% endif %}
+
+              {% endif %}
+
+
+
+              <!-- SUMMARY LIST -->
+              {% if blockType === 'partial' or blockType === 'simplifiedPartial' or blockType === 'full' %}
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Total amount' },
+                      value: { html: '<strong>£57.90</strong>' }
+                  }]%}  
+
+              {% else %}
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Prescription charges' },
+                      value: { text: '£9.65' }
+                    },
+                    {
+                      key: { text: 'Penalty charges' },
+                      value: { text: '£48.25' }
+                    },
+                    {
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£57.90</strong>' }
+                  }]%}  
+
+              {% endif %}
+
+              {{ summaryList({
+                  rows: summaryListRows
+              }) }}
+
+
+
+              <h3 class="nhsuk-heading-m">Previous payments</h3>
+
+              {% if secondPayment === 'true' %}
+
+                <!-- SECOND PAYMENT -->
+                {% if alreadyPaid === 'true' %}
+
+                  {% set amountPaid = '£41.24' %}
+                  {% set amountPaidRows = [
+                      [ { text: 1 | alterTodaysDateByNumberOfMonths(0) }, { text: '£16.67' } ],
+                      [ { text: 0 | alterTodaysDateByNumberOfMonths(-10) }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% else %}
+
+                  {% set amountPaid = '£24.57' %}
+                  {% set amountPaidRows = [
+                      [ { text: 0 | alterTodaysDateByNumberOfMonths(-10) }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% endif %}
+
+            {% else %}
+
+                <!-- FIRST PAYMENT -->
+                {% if alreadyPaid === 'true' %}
+
+                  {% set amountPaid = '£24.57' %}
+                  {% set amountPaidRows = [
+                      [ { text: -1 | alterTodaysDateByNumberOfDays }, { text: '£16.67' } ],
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% else %}
+
+                  {% set amountPaid = '£7.90' %}
+                  {% set amountPaidRows = [
+                      [ { text: -20 | alterTodaysDateByNumberOfDays }, { text: '£4.00' } ],
+                      [ { text: -30 | alterTodaysDateByNumberOfDays }, { text: '£3.90' } ]
+                  ] %}
+
+                {% endif %}
+
+              {% endif %}
+
+                {{ summaryList({
+                    classes: 'nhsuk-u-margin-bottom-6',
+                    rows: [
+                    {
+                        key: { text: 'Payments made' },
+                        value: { text: amountPaid }
+                    }]
+                }) }}
+
+                {# details({
+                        classes: 'nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-6',
+                        text: 'View all previous payments',
+                        HTML: table({
+                            panel: false,
+                            caption: 'Previous payments',
+                            captionClasses: 'nhsuk-u-visually-hidden',
+                            firstCellIsHeader: false,
+                            head: [
+                                { text: 'Date' },
+                                { text: 'Amount' }
+                            ],
+                            rows: amountPaidRows
+                            })
+                        })
+                    #}
+
+
+
+                {% if blockType === 'full' %}
+                
+                  <!-- PAY FULL AMOUNT -->
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-6">Amount still to pay: {{ amountOutstanding }}</p>
+
+                {% elseif blockType === 'simplifiedPartial' %}
+
+                 
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
+                  
+                {% elseif blockType === 'simplified' %}
+                
+                  <!-- SIMPLIFIED -->
+                  <p class="nhsuk-heading-l nhsuk-u-margin-bottom-3">Amount still to pay: {{ amountOutstanding }}</p>
+                  <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
+
+                {% else %}
+
+                  {% if alreadyPaid === 'true' %}
+
+                    <!-- MANUAL PAYMENT ALREADY MADE -->
+                    <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding }}</p>
+                  
+                  {% else %}
+
+                    <!-- MANUAL PAYMENT -->
+                    {% set amountToPayThisMonth = '£16.67' %}
+
+                    {% if secondPayment === 'true' %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 1 | alterTodaysDateByNumberOfMonths(12) }}: {{ amountToPayThisMonth }}</p>
+                    {% else %}
+                      <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">Amount to pay by {{ 12 | alterTodaysDateByNumberOfDays }}: {{ amountToPayThisMonth }}</p>
+                    {% endif %}
+
+                  {% endif %}
+
+              {% endif %}
+
+              {% if blockType === 'full' %}
+
+                <!-- SHOW BUTTON -->
+                {{ button({
+                    classes: 'nhsuk-u-margin-bottom-0',
+                    text: 'Pay in full',
+                    href: '../gov-pay'
+                }) }}
+
+              {% endif %}
+
+        {% if blockType !== 'full' %}
+            </div>
+          </div>
+        {% endif %}
+
+{% endmacro %}

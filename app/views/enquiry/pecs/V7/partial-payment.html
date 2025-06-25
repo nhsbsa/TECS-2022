@@ -1,0 +1,127 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Pay by card
+{% endblock %}
+
+{% block outerContent %}
+
+{% endblock %}
+
+{% block content %}
+
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <h1 class="nhsuk-heading-l">Make a partial payment</h1>
+
+    <form action="gov-pay-partial" method="post" class="form">
+
+      {{ card({
+      heading: "Penalty charge notice amount",
+      headingLevel: "3",
+      descriptionHtml: '
+
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Total amount
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £57.90
+          </dd>
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Total amount to pay
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £50.00
+          </dd>
+        </div>
+      </dl>
+      <h4>Previous payments</h4>
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Payments made
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            £7.90
+          </dd>
+        </div>
+      </dl>
+
+      <h3>You must make a payment by 5 August 2025</h3>'
+      }) }}
+      <h3>How much are you paying today?</h3>
+      {{ details({
+      text: "View suggested payment plan",
+      html: "
+      <p>An NHS number is a 10 digit number, like 485 777 3456.</p>
+      <p>You can find your NHS number by logging in to a GP online service or on any document the NHS has sent you, such
+        as your:</p>
+      <ul>
+        <li>prescriptions</li>
+        <li>test results</li>
+        <li>hospital referral letters</li>
+        <li>appointment letters</li>
+      </ul>
+      <p>Ask your GP surgery for help if you can't find your NHS number.</p>
+      "
+      }) }}
+      {{ input({
+      label: {
+      text: "Amount to pay"
+      },
+      hint: {
+      text: "You cannot change this on the next page."
+      },
+      id: "example",
+      name: "example",
+      prefix: "£",
+      classes: "nhsuk-input--width-5"
+      }) }}
+      <p>Payment can be as much as you like, but we suggest a payment each month of £16.67 to pay over 3 months.</p>
+      <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+      <form method="post" novalidate>
+        {{ checkboxes({
+        idPrefix: "confirm",
+        name: "confirm",
+        fieldset: {
+        legend: {
+        text: "",
+        classes: "nhsuk-fieldset__legend--l"
+        }
+        },
+        items: [
+        {
+        value: "confirm",
+        text: "I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be
+        added to my charges. "
+        }
+        ]
+        }) }}
+      </form>
+      <div class="nhsuk-form-group">
+        {{ button({
+        text: 'Continue'
+        }) }}
+        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+      </div>
+
+
+
+
+  </div>
+</div>
+
+
+{% endblock %}
