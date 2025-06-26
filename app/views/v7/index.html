@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}{{ serviceName }} - Configure {{ version }} prototype{% endblock %}
+
+
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+       
+
+        <h1>Configure {{ version }} prototype</h1>
+
+        <form action="configure-prototype" method="post" novalidate>
+
+            
+            {{ radios({
+                idPrefix: 'type',
+                name: 'type',
+                value: data.type,
+                fieldset: {
+                    legend: {
+                        text: 'What type of charges do you want to simulate?',
+                        classes: 'nhsuk-fieldset__legend--s',
+                        isPageHeading: false
+                    }
+                },
+                items: [
+                    {
+                        value: 'pecs',
+                        text: 'Prescription charges'
+                    },
+                    {
+                        value: 'decs',
+                        text: 'Dental charges'
+                    }
+                ]
+            }) }}
+
+            {{ radios({
+                idPrefix: 'letter',
+                name: 'letter',
+                value: data.letter,
+                fieldset: {
+                    legend: {
+                        text: 'What letter has the patient received?',
+                        classes: 'nhsuk-fieldset__legend--s',
+                        isPageHeading: false
+                    }
+                },
+                items: [
+                    {
+                        value: 'enquiry',
+                        text: 'Enquiry'
+                    },
+                    {
+                        value: 'pcn',
+                        text: 'Penalty Charge Notice (PCN)'
+                    }
+                ]
+            }) }}
+            
+
+
+            {{ button({
+                text: 'Configure and launch'
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+ {% endblock %}

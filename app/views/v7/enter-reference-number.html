@@ -1,54 +1,46 @@
 {% extends 'layout.html' %}
 
-{% set mainClasses = "nhsuk-main-wrapper--s" %}
-
-{% block pageTitle %}
-What is your reference number?
-{% endblock %}
+{% block pageTitle %}{{ serviceName }} - What is your reference number?{% endblock %}
 
 {% block outerContent %}
-
+  {{ backLink({
+    href: 'javascript:history.go(-1);',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
+
 {% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
 
+      <form action="enter-reference-number" method="post" novalidate>
 
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
+        <span class="nhsuk-caption-m">Your details</span>
 
-    <form action="enter-reference-number-again" method="post" class="form">
-      <span class="nhsuk-caption-m">Your details</span>
+        {{ input({
+             label: {
+                 text: 'What is your reference number?',
+                 classes: 'nhsuk-label--l',
+                 isPageHeading: true
+             },
+            hint: {
+                text: 'You can find this on your letter. Only include numbers in your reference number.'
+            },
+            id: 'referenceNumber',
+            name: 'referenceNumber',
+            value: data.referenceNumber,
+            classes: 'nhsuk-input--width-10'
+        }) }}
 
-      {% call fieldset({
-      legend: {
-      text: 'What is your reference number?',
-      classes: 'nhsuk-fieldset__legend--l',
-      isPageHeading: true
-      }
-      }) %}
+        {{ button({
+            text: 'Continue'
+        }) }}
+        
+       </form>
 
-      {{ input({
-      hint: {
-      text: "You can find this on your letter. Only include numbers in your reference number"
-      },
-      classes: 'nhsuk-u-width-two-thirds',
-      id: 'referenceNumber',
-      name: 'referenceNumber',
-      value: data.referenceNumber
-      }) }}
+       <p><a href="start">Cancel</a></p>
 
-      {% endcall %}
-
-      {{ button({
-      text: 'Continue'
-      }) }}
-
-      <p><a href="respond-to-your-letter">Cancel</a></p>
-    </form>
-
-
-
+    </div>
   </div>
-</div>
-
 {% endblock %}
