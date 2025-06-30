@@ -20,17 +20,17 @@ Confirm entitlement
     text: "Go back"
     }) }}
 
-    <form action="did-you-have-an-exemption" method="get" class="form">
+    <form action="confirm-entitlement" method="post" class="form">
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
       {{ radios({
-      idPrefix: "example-inline",
-      name: "example-inline",
-      classes: "nhsuk-radios--inline",
+      idPrefix: "benefit",
+      name: "benefit",
+      classes: "nhsuk-radios",
       fieldset: {
       legend: {
-      text: "Did you have a valid [Benefit] between 1 June and 30 June 2025?",
+      text: "Did you have a valid [NHSBSA Benefit] between 1 June and 30 June 2025?",
       classes: "nhsuk-fieldset__legend--l",
       isPageHeading: true
       }

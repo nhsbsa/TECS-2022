@@ -22,13 +22,13 @@ text: "Go back"
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="what-happens-next" method="get" class="form">
+    <form action="what-you-want-to-do-next" method="post" class="form">
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
       {{ radios({
-      idPrefix: "example",
-      name: "example",
+      idPrefix: "confirm",
+      name: "confirm",
       fieldset: {
       legend: {
       text: "What do you want to do next?",
@@ -38,6 +38,10 @@ text: "Go back"
       },
       items: [
       {
+      value: "pay-pcn",
+      text: "Pay my Penalty Charge Notice"
+      },
+      {
       value: "confirm-entitled",
       text: "Confirm I was entitled to free NHS prescriptions",
       hint: {
@@ -45,8 +49,7 @@ text: "Go back"
       }
       },
       {
-      value: "not-entitled",
-      text: "I was not entitled to free NHS prescriptions and want to know what happens next"
+      divider: "or"
       },
       {
       value: "not-sure",
