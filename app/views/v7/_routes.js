@@ -84,4 +84,52 @@ router.post(/exemption-certificate-number/, function (req, res) {
     res.redirect(destination);
 });
 
+router.post(/check-personal-details/, function (req, res) {
+    const destination = 'cannot-confirm';
+    res.redirect( destination );
+    
+});
+
+router.post(/cannot-confirm/, function (req, res) {
+    const destination = 'payment-method';
+    res.redirect( destination );
+    
+});
+
+router.post(/payment-method/, function (req, res) {
+    const { paymentType } = req.body; // ID from the radio buttons
+
+    let destination;
+    if (paymentType === 'debit-credit-card') {
+        destination = 'pay-by-card';
+    } else if (paymentType === 'direct-debit'){
+        destination = 'pay-by-dd';
+    } else {
+        destination ='#'; //validation for no selected radio button
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/pay-by-card/, function (req, res) {
+    const { amount } = req.body; // ID from the radio buttons
+
+    let destination;
+    if (amount === 'fullAmount') {
+        destination = 'gov-pay';
+    } else if (amount === 'partialPayment'){
+        destination = 'partial-payment';
+    } else {
+        destination ='#'; //validation for no selected radio button
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/payment-made/, function (req, res) {
+    const destination = 'payment-method';
+    res.redirect( destination );
+    
+});
+
 module.exports = router;

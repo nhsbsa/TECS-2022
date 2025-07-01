@@ -19,19 +19,20 @@ text: "Go back"
 
 <div class="nhsuk-grid-row">
 	<div class="nhsuk-grid-column-two-thirds">
-		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-		<h1 class="nhsuk-heading-l">Paying by Direct Debit</h1>
-		<p>Direct Debit lets you pay your penalty charge over a number of months, on a date that suits you.</p>
+		<form action="pay-by-dd" method="post" class="form">
+			<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+			<h1 class="nhsuk-heading-l">Paying by Direct Debit</h1>
+			<p>Direct Debit lets you pay your penalty charge over a number of months, on a date that suits you.</p>
 
-		{{ insetText({
-		html: "<p>If we are unable to take a payment, you may have to pay extra charges.</p>"
-		}) }}
+			{{ insetText({
+			html: "<p>If we are unable to take a payment, you may have to pay extra charges.</p>"
+			}) }}
 
-		<p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and you
-			may need to pay the amount you owe in full.</p>
+			<p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and
+				you
+				may need to pay the amount you owe in full.</p>
 
 
-		<form action="/v6-pcn/pay-by-dd" method="post">
 
 			{{ checkboxes({
 			idPrefix: "example",
@@ -59,17 +60,17 @@ text: "Go back"
 			}
 			]
 			}) }}
-		</form>
 
-		<p>Read the <a href="https://www.directdebit.co.uk/direct-debit-explained/direct-debit-guarantee/">Direct
-				Debit Guarantee</a>.</p>
+			<p>Read the <a href="https://www.directdebit.co.uk/direct-debit-explained/direct-debit-guarantee/">Direct
+					Debit Guarantee</a>.</p>
 
 
-		{{ button({
-		text: 'Continue'
-		}) }}
+			{{ button({
+			text: 'Continue'
+			}) }}
 
-		<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
 		</form>
 	</div>
 </div>

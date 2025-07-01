@@ -19,9 +19,9 @@ text: "Go back"
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-    <h1 class="nhsuk-heading-l">Pay by card</h1>
-    <form action="gov-pay" method="post" class="form">
+    <form action="pay-by-card" method="post" class="form">
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+      <h1 class="nhsuk-heading-l">Pay by card</h1>
       {{ card({
       heading: "Penalty charge notice amount",
       headingLevel: "3",
@@ -54,8 +54,8 @@ text: "Go back"
       <p>If you have recently made a payment, it can take up to 24 hours for payment information to update.</p>
 
       {{ radios({
-      idPrefix: "example",
-      name: "example",
+      idPrefix: "amount",
+      name: "amount",
       fieldset: {
       legend: {
       text: "Do you want to pay the full amount still to pay?",
@@ -65,11 +65,11 @@ text: "Go back"
       },
       items: [
       {
-      value: "yes",
+      value: "fullAmount",
       text: "Yes, I want to pay the full amount"
       },
       {
-      value: "no",
+      value: "partialPayment",
       text: "No, I want to make a partial payment"
       }
       ]
@@ -84,7 +84,7 @@ text: "Go back"
 
 
 
-
+    </form>
   </div>
 </div>
 
