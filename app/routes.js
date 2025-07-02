@@ -1,45 +1,6 @@
 // External dependencies
 const express = require('express');
-
 const router = express.Router();
-
-
-//
-// DETECT CURRENT VERSION
-//
-router.use((req, res, next) => {
-
-  console.log('----------------------------------');
-  console.log(req.originalUrl);
-
-  // Versions
-  const versions = ['v7'];
-
-  // Clear current routes 
-  router.stack = router.stack.filter(layer => layer.name !== 'router');
-
-  // Get the current version needed
-  let version = '';
-  versions.forEach(function (vers) {
-    if (req.originalUrl.toLowerCase().indexOf('/' + vers + '/') > -1) {
-      version = vers;
-    }
-  });
-
-  res.locals.version = version;
-  
-  // Load the required routes
-  if (version) {
-    console.log('Loading routes for ' + version);
-    router.use('/' + version, require('./views/' + version + '/_routes'));
-  }
-
-  next();
-
-
-});
-
-
 
 
 
@@ -373,8 +334,8 @@ router.get(/bsa-choice/, function (req, res) {
 });
 
 //  New route 
-router.post(/claiming-any-benefits/, function (req, res) {
-
+router.post(/claiming-any-benefits-old/, function (req, res) {
+  
   const anyBenefits = req.session.data['exemptiontype']
 
   if (anyBenefits === 'no') {
@@ -382,6 +343,7 @@ router.post(/claiming-any-benefits/, function (req, res) {
   } else {
     res.redirect('check-personal-details-dwp');
   }
+
 
 })
 
@@ -830,6 +792,45 @@ router.post( /payment-plan-calculator-date-reset/, function(req, res){
 
 // Routes for UR Feb 2025
 router.use('/user-research-feb-2025', require('./views/user-research-feb-2025/\_routes'));
+
+
+
+//
+// DETECT CURRENT VERSION
+//
+router.use((req, res, next) => {
+
+  console.log('----------------------------------');
+  console.log(req.originalUrl);
+
+  // Versions
+  const versions = ['v7'];
+
+  // Clear current routes 
+  router.stack = router.stack.filter(layer => layer.name !== 'router');
+
+  // Get the current version needed
+  let version = '';
+  versions.forEach(function (vers) {
+    if (req.originalUrl.toLowerCase().indexOf('/' + vers + '/') > -1) {
+      version = vers;
+    }
+  });
+
+  res.locals.version = version;
+  
+  // Load the required routes
+  if (version) {
+    console.log('Loading routes for ' + version);
+    router.use('/' + version, require('./views/' + version + '/_routes'));
+  }
+
+  next();
+
+
+});
+
+
 
 
 module.exports = router;

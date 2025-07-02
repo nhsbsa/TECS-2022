@@ -188,6 +188,7 @@ router.post(/did-you-have-an-exemption/, function (req, res) {
 // });
 
 router.post(/were-you-claiming-any-benefits/, function (req, res) {
+    console.log('HELLO!!!!!');
     const destination = 'reviewing-case';
     res.redirect( destination );
     
