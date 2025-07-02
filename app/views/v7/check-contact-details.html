@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your contact details
+{% endblock %}
+
+
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+        <form action="check-contact-details" method="post" class="form">
+            <span class="nhsuk-caption-m">Confirm your entitlement</span>
+            <h1 class="nhsuk-heading-l">Check your contact details are correct</h1>
+
+            {{ summaryList({
+            rows: [
+            {
+            key: {
+            text: "[Benefit] number"
+            },
+            value: {
+            text: "1234567890"
+            },
+            actions: {
+            items: [
+            {
+            href: "exemption-certificate-number",
+            text: "Change",
+            visuallyHiddenText: "benefit number"
+            }
+            ]
+            }
+            },
+            {
+            key: {
+            text: "How we'll contact you"
+            },
+            value: {
+            text: "Email and Telephone"
+            },
+            actions: {
+            items: [
+            {
+            href: "contact-preferences",
+            text: "Change",
+            visuallyHiddenText: "Telephone"
+            }
+            ]
+            }
+            },
+            {
+            key: {
+            text: "Email address"
+            },
+            value: {
+            text: "jack.burton@hotmail.com"
+            },
+            actions: {
+            items: [
+            {
+            href: "what-is-your-email",
+            text: "Change",
+            visuallyHiddenText: "Telephone"
+            }
+            ]
+            }
+            },
+            {
+            key: {
+            text: "Telephone number"
+            },
+            value: {
+            html: '01234 567890'
+            },
+            actions: {
+            items: [
+            {
+            href: "what-is-your-phone-number",
+            text: "Change",
+            visuallyHiddenText: "home address"
+            }
+            ]
+            }
+            }
+            ]
+            }) }}
+
+            {{ button({
+            text: "Continue"
+            }) }}
+            <p><a href="respond-to-your-letter">Cancel</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

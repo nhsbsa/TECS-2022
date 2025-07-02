@@ -35,7 +35,7 @@ router.post(/pcn-details/, function (req, res) {
 });
 
 
-router.post('/what-you-want-to-do-next/', function (req, res) {
+router.post(/what-you-want-to-do-next/, function (req, res) {
     const { confirm } = req.body; // ID from the radio buttons
 
     let destination;
@@ -128,6 +128,67 @@ router.post(/pay-by-card/, function (req, res) {
 
 router.post(/payment-made/, function (req, res) {
     const destination = 'payment-method';
+    res.redirect( destination );
+    
+});
+
+router.post(/contact-preferences/, function (req, res) {
+    const destination = 'what-is-your-email';
+    res.redirect( destination );
+    
+});
+
+router.post(/what-is-your-email/, function (req, res) {
+    const destination = 'what-is-your-phone-number';
+    res.redirect( destination );
+    
+});
+
+router.post(/what-is-your-phone-number/, function (req, res) {
+    const destination = 'check-contact-details';
+    res.redirect( destination );
+    
+});
+
+router.post(/check-contact-details/, function (req, res) {
+    const destination = 'reviewing-case';
+    res.redirect( destination );
+    
+});
+
+
+router.post(/did-you-have-an-exemption/, function (req, res) {
+    const { exemptions } = req.body;
+
+    let destination;
+    if (['medex-cert' , 'matex-cert' , 'ppc-cert' , 'hc2-cert' , 'tax-credit-cert'].includes(exemptions)) {
+        destination = 'exemption-certificate-number';
+    } else if (exemptions === 'none-of-these') {
+        destination = 'were-you-claiming-any-benefits';
+    } else {
+        destination = '#';
+    }
+
+    res.redirect(destination);
+});
+
+// router.post(/were-you-claiming-any-benefits/, function (req, res) {
+//     const { claimBenefits } = req.body;
+
+//     let destination;
+//     if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
+//         destination = 'check-personal-details';
+//     } else if (claimBenefits === 'none-of-these') {
+//         destination = 'medical-conditions';
+//     } else {
+//         destination = '#';
+//     }
+
+//     res.redirect(destination);
+// });
+
+router.post(/were-you-claiming-any-benefits/, function (req, res) {
+    const destination = 'reviewing-case';
     res.redirect( destination );
     
 });

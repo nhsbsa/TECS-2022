@@ -21,13 +21,13 @@ Did you have an NHS exemption
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="exemption-certificate-number" method="get" class="form">
+      <form action="did-you-have-an-exemption" method="post" class="form">
 
         <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
         {{ radios({
-        idPrefix: "example-divider",
-        name: "example-divider",
+        idPrefix: "exemptions",
+        name: "exemptions",
         fieldset: {
         legend: {
         text: "Did you have one of these NHS exemption certificates between 1 June and 30 June
@@ -54,7 +54,7 @@ Did you have an NHS exemption
         text: "HC2 certificate (full help with health costs)"
         },
         {
-        value: "tac-credit-cert",
+        value: "tax-credit-cert",
         text: "NHS Tax Credit Exemption Certificate"
         },
         {

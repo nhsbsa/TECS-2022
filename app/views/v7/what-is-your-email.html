@@ -3,7 +3,7 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-What is your telephone number?
+What is your email address?
 {% endblock %}
 
 {% block outerContent %}
@@ -19,19 +19,18 @@ What is your telephone number?
     text: "Go back"
     }) }}
 
-    <form action="check-contact-details" method="post" class="form">
+    <form action="what-is-your-email" method="post" class="form">
       <div class="heading-group">
         <span class="nhsuk-caption-m">Confirm your entitlement</span>
-        <h2>What is your telephone number?</h2>
+        <h2>What is your email address?</h2>
         <div class="nhsuk-form-group">
 
           {{ input({
           label: {
           text: ""
           },
-          id: "telephone",
-          name: "telephone",
-          inputmode: "number",
+          id: "email",
+          name: "email",
           classes: "nhsuk-input--width-20"
           }) }}
         </div>
