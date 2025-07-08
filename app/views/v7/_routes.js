@@ -39,11 +39,34 @@ router.post(/what-you-want-to-do-next/, function (req, res) {
     const { confirm } = req.body; // ID from the radio buttons
 
     let destination;
-    if (confirm === 'pay-pcn') {
-        destination = 'payment-method';
-    } else {
-        destination = 'what-happens-next';
+
+    switch( confirm ){
+       
+
+        case 'confirm-entitled':
+            destination = 'what-happens-next';
+            break;
+
+        case 'what-happens-next':
+            destination = 'you-will-be-sent-a-pcn';
+            break;
+
+         case 'pay-pcn':
+            destination = 'payment-method';
+            break;
+
+        default:
+            destination = 'what-happens-next';
+            break;
     }
+
+    /*
+        confirm-entitled
+        what-happens-next -> enquiry flow
+        pay-pcn -> pcn flow
+        not-sure
+    */
+
 
     res.redirect(destination);
 });

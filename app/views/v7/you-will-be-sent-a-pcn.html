@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+What do you want to do next?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l">Not entitled to free NHS prescriptions</h1>
+    
+
+    <p>Stuff goes here from https://tecs-2022.herokuapp.com/v5-enquiry/you-will-be-sent-pcn</p>
+
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

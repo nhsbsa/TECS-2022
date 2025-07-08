@@ -6,18 +6,14 @@
 What do you want to do next?
 {% endblock %}
 
-{% block outerContent %}
-
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
 {% block content %}
-
-
-
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
@@ -26,36 +22,72 @@ text: "Go back"
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
+
+      {% if data.letter === 'pcn' %}
+
+        {% set radioItems = [
+          {
+            value: 'confirm-entitled',
+            text: 'Confirm I was entitled to free NHS prescripitons',
+            hint: {
+              text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
+            }
+          },
+          {
+            value: 'pay-pcn',
+            text: 'I was not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice'
+          },
+          {
+            divider: 'or'
+          },
+          {
+            value: 'not-sure',
+            text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
+          }
+        ]
+      %}
+
+        
+
+      {% else %}
+
+          {% set radioItems = [
+          {
+            value: 'confirm-entitled',
+            text: 'Confirm I was entitled to free NHS prescripitons',
+            hint: {
+              text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
+            }
+          },
+          {
+            value: 'what-happens-next',
+            text: 'I was not entitled to free NHS prescriptions and want to know what happens next'
+          },
+          {
+            divider: 'or'
+          },
+          {
+            value: 'not-sure',
+            text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
+          }
+        ]
+        %}
+
+      {% endif %}
+
+
       {{ radios({
-      idPrefix: "confirm",
-      name: "confirm",
-      fieldset: {
-      legend: {
-      text: "What do you want to do next?",
-      classes: "nhsuk-fieldset__legend--l",
-      isPageHeading: true
-      }
+        idPrefix: "confirm",
+        name: "confirm",
+        fieldset: {
+        legend: {
+          text: "What do you want to do next?",
+          classes: "nhsuk-fieldset__legend--l",
+          isPageHeading: true
+        }
       },
-      items: [
-      {
-      value: "pay-pcn",
-      text: "Pay my Penalty Charge Notice"
-      },
-      {
-      value: "confirm-entitled",
-      text: "Confirm I was entitled to free NHS prescriptions",
-      hint: {
-      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
-      }
-      },
-      {
-      divider: "or"
-      },
-      {
-      value: "not-sure",
-      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check."
-      }
-      ]
+      items: radioItems
+
       }) }}
 
       {{ button({
