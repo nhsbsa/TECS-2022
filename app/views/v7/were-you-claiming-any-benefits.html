@@ -7,10 +7,10 @@ Did you have an NHS exemption
 {% endblock %}
 
 {% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.back();',
-    text: "Go back"
-  }) }}
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@ Did you have an NHS exemption
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
     <span class="nhsuk-caption-m">Confirm your entitlement</span>
-    <form action="were-you-claiming-any-benefits" method="post" novalidate>
+    <form action="were-you-claiming-any-benefits" method="post" class="form">
 
       {{ radios({
       idPrefix: "claimBenefits",

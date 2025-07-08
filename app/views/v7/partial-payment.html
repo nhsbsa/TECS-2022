@@ -7,22 +7,22 @@ Pay by card
 {% endblock %}
 
 {% block outerContent %}
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 
 {% endblock %}
 
 {% block content %}
 
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
     <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
     <h1 class="nhsuk-heading-l">Make a partial payment</h1>
 
-    <form action="gov-pay-partial" method="post" class="form">
+    <form action="partial-payment" method="post" class="form">
 
       {{ card({
       heading: "Penalty charge notice amount",
@@ -91,25 +91,23 @@ text: "Go back"
       }) }}
       <p>Payment can be as much as you like, but we suggest a payment each month of £16.67 to pay over 3 months.</p>
       <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-      <form method="post" novalidate>
-        {{ checkboxes({
-        idPrefix: "confirm",
-        name: "confirm",
-        fieldset: {
-        legend: {
-        text: "",
-        classes: "nhsuk-fieldset__legend--l"
-        }
-        },
-        items: [
-        {
-        value: "confirm",
-        text: "I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be
-        added to my charges. "
-        }
-        ]
-        }) }}
-      </form>
+      {{ checkboxes({
+      idPrefix: "confirm",
+      name: "confirm",
+      fieldset: {
+      legend: {
+      text: "",
+      classes: "nhsuk-fieldset__legend--l"
+      }
+      },
+      items: [
+      {
+      value: "confirm",
+      text: "I understand that if I fail to make regular monthly payments, an extra surcharge of up to £50 may be
+      added to my charges. "
+      }
+      ]
+      }) }}
       <div class="nhsuk-form-group">
         {{ button({
         text: 'Continue'
@@ -120,6 +118,7 @@ text: "Go back"
 
 
 
+    </form>
   </div>
 </div>
 

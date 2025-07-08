@@ -126,6 +126,12 @@ router.post(/pay-by-card/, function (req, res) {
     res.redirect(destination);
 });
 
+router.post(/partial-payment/, function (req, res) {
+    const destination = 'gov-pay';
+    res.redirect( destination );
+    
+});
+
 router.post(/payment-made/, function (req, res) {
     const destination = 'payment-method';
     res.redirect( destination );
@@ -172,24 +178,68 @@ router.post(/did-you-have-an-exemption/, function (req, res) {
     res.redirect(destination);
 });
 
-// router.post(/were-you-claiming-any-benefits/, function (req, res) {
-//     const { claimBenefits } = req.body;
-
-//     let destination;
-//     if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
-//         destination = 'check-personal-details';
-//     } else if (claimBenefits === 'none-of-these') {
-//         destination = 'medical-conditions';
-//     } else {
-//         destination = '#';
-//     }
-
-//     res.redirect(destination);
-// });
-
 router.post(/were-you-claiming-any-benefits/, function (req, res) {
-    console.log('HELLO!!!!!');
-    const destination = 'reviewing-case';
+    const { claimBenefits } = req.body;
+
+    let destination;
+    if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
+        destination = 'check-personal-details';
+    } else if (claimBenefits === 'none-of-these') {
+        destination = 'medical-conditions';
+    } else {
+        destination = '#';
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/medical-conditions/, function (req, res) {
+    const { medicalConditions } = req.body; // ID from the radio buttons
+
+    let destination;
+    if (medicalConditions === 'yes') {
+        destination = 'no-valid-exemption';
+    } else if (medicalConditions === 'no'){
+        destination = 'maternity-exemption';
+    } else {
+        destination ='#'; //validation for no selected radio button
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/maternity-exemption/, function (req, res) {
+    const { maternityExemption } = req.body; // ID from the radio buttons
+
+    let destination;
+    if (maternityExemption === 'yes') {
+        destination = 'no-valid-exemption';
+    } else if (maternityExemption === 'no'){
+        destination = 'cannot-confirm';
+    } else {
+        destination ='#'; //validation for no selected radio button
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/no-valid-matex/, function (req, res) {
+    const { payment } = req.body; // ID from the radio buttons
+
+    let destination;
+    if (payment === 'pay-prescription') {
+        destination = 'pay-apply';
+    } else if (payment === 'pay-charge'){
+        destination = 'payment-method';
+    } else {
+        destination ='#'; //validation for no selected radio button
+    }
+
+    res.redirect(destination);
+});
+
+router.post(/pay-apply/, function (req, res) {
+    const destination = 'payment-method';
     res.redirect( destination );
     
 });

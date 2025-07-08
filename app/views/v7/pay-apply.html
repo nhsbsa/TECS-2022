@@ -7,21 +7,18 @@ Pay your prescription charge and apply for a meternity exemption certificate
 {% endblock %}
 
 {% block outerContent %}
-
-{% endblock %}
-
-{% block content %}
-
-
 {{ backLink({
 href: 'javascript:history.back();',
 text: "Go back"
 }) }}
+{% endblock %}
+
+{% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="5" method="get" class="form">
+    <form action="pay-apply" method="post" class="form">
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
@@ -47,11 +44,10 @@ text: "Go back"
         <h3>Pay the prescription charge now</h3>
         <p>You'll need to pay the original £9.65 prescription charge.</p>
 
-        <form action="" method="get" class="form">
-          {{ button({
-          text: 'Pay now'
-          }) }}
-        </form>
+
+        {{ button({
+        text: 'Pay now'
+        }) }}
 
         <h3>What happens next?</h3>
         <p>After your maternity exemption certificate application has been submitted, an automatic check is carried out.
@@ -66,6 +62,7 @@ text: "Go back"
 
         <p>If your application is successful and you pay the £9.65 prescription charge your PCN will be closed. You'll
           not need to do anything more.</p>
+    </form>
   </div>
 </div>
 {% endblock %}
