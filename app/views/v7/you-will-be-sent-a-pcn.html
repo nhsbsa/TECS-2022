@@ -4,11 +4,11 @@
 What do you want to do next?
 {% endblock %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.back();',
-    text: 'Go back'
-  }) }}
+{% block outerContent %}
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@ What do you want to do next?
   <div class="nhsuk-grid-column-two-thirds">
 
     <h1 class="nhsuk-heading-l">Not entitled to free NHS prescriptions</h1>
-    
+
 
     <p>Stuff goes here from https://tecs-2022.herokuapp.com/v5-enquiry/you-will-be-sent-pcn</p>
 

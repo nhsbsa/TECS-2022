@@ -2,43 +2,43 @@
 
 {% block pageTitle %}{{ serviceName }} - Enter your reference number again{% endblock %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.go(-1);',
-    text: 'Go back'
-  }) }}
+{% block outerContent %}
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 
 {% block content %}
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="enter-reference-number-again" method="post" novalidate>
+    <form action="enter-reference-number-again" method="post" novalidate>
 
-        <span class="nhsuk-caption-m">Your details</span>
+      <span class="nhsuk-caption-m">Your details</span>
 
-        {{ input({
-             label: {
-                 text: 'Enter your reference number again',
-                 classes: 'nhsuk-label--l',
-                 isPageHeading: true
-             },
-            hint: {
-                text: 'We ask this to make sure we find the correct record.'
-            },
-            id: 'referenceNumberConfirmation',
-            classes: 'nhsuk-input--width-10'
-        }) }}
+      {{ input({
+      label: {
+      text: 'Enter your reference number again',
+      classes: 'nhsuk-label--l',
+      isPageHeading: true
+      },
+      hint: {
+      text: 'We ask this to make sure we find the correct record.'
+      },
+      id: 'referenceNumberConfirmation',
+      classes: 'nhsuk-input--width-10'
+      }) }}
 
-        {{ button({
-            text: 'Continue'
-        }) }}
-        
-       </form>
+      {{ button({
+      text: 'Continue'
+      }) }}
 
-       <p><a href="start">Cancel</a></p>
+    </form>
 
-    </div>
+    <p><a href="start">Cancel</a></p>
+
   </div>
+</div>
 {% endblock %}

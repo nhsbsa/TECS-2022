@@ -7,7 +7,10 @@ You didn't have a valid medical exemption certificate
 {% endblock %}
 
 {% block outerContent %}
-
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 {% block content %}

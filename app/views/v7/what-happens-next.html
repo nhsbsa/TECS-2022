@@ -7,15 +7,13 @@ What do you want to do next?
 {% endblock %}
 
 {% block outerContent %}
-
-{% endblock %}
-
-{% block content %}
-
 {{ backLink({
 href: 'javascript:history.back();',
 text: "Go back"
 }) }}
+{% endblock %}
+
+{% block content %}
 
 
 <div class="nhsuk-grid-row">

@@ -6,10 +6,10 @@
 Enter your postcode as shown on your letter
 {% endblock %}
 
-{% block beforeContent %}
+{% block outerContent %}
 {{ backLink({
-href: 'javascript:history.go(-1);',
-text: 'Go back'
+href: 'javascript:history.back();',
+text: "Go back"
 }) }}
 {% endblock %}
 

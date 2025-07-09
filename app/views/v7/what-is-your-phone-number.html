@@ -7,17 +7,15 @@ What is your telephone number?
 {% endblock %}
 
 {% block outerContent %}
-
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 {% block content %}
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-
-    {{ backLink({
-    href: 'javascript:history.back();',
-    text: "Go back"
-    }) }}
 
     <form action="what-is-your-phone-number" method="post" class="form">
       <div class="heading-group">

@@ -7,18 +7,15 @@ Confirm entitlement
 {% endblock %}
 
 {% block outerContent %}
-
+{{ backLink({
+href: 'javascript:history.back();',
+text: "Go back"
+}) }}
 {% endblock %}
 
 {% block content %}
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-
-
-    {{ backLink({
-    href: 'javascript:history.back();',
-    text: "Go back"
-    }) }}
 
     <form action="confirm-entitlement" method="post" class="form">
 
