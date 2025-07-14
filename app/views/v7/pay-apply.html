@@ -24,20 +24,39 @@ text: "Go back"
 
       <fieldset class="nhsuk-fieldset">
         <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-          <h1 class="nhsuk-fieldset__heading">
+          {% if data.medicalConditions == "yes" %}
+  <h1 class="nhsuk-fieldset__heading">
+            Pay your prescription charge and apply for a medical exemption certificate
+          </h1>
+
+{% else %}
+    <h1 class="nhsuk-fieldset__heading">
             Pay your prescription charge and apply for a maternity exemption certificate
           </h1>
+{% endif %}
         </legend>
 
         <p>You can use this service to pay the original £9.65 prescription charge.</p>
 
-        <p>To apply for a maternity exemption certificate, speak to your midwife, doctor or health visitor. They'll
+         {% if data.medicalConditions == "yes" %}
+          <p>To apply for a medical exemption certificate, speak to your doctor. They'll
+          give you an application form.</p>
+
+{% else %}
+                   <p>To apply for a maternity exemption certificate, speak to your midwife, doctor or health visitor. They'll
           complete the application for you.</p>
+{% endif %}
+
+ {% if data.medicalConditions == "yes" %}
+  {% set certificateType = "medical exemption certificate" %}
+{% else %}
+  {% set certificateType = "maternity exemption certificate" %}
+{% endif %}
 
         {{ warningCallout({
         heading: "Important",
-        HTML: "<p>You have until <strong>10 July 2023</strong> to get a maternity exemption certificate.</p>
-        <p>If you are not eligible for a maternity exemption certificate you'll need to pay the full amount of the
+        HTML: "<p>You have until <strong>10 July 2023</strong> to get a " + certificateType + ".</p>
+        <p>If you are not eligible for " + certificateType + " you'll need to pay the full amount of the
           Penalty Charge Notice (PCN).</p>"
         }) }}
 
@@ -50,10 +69,18 @@ text: "Go back"
         }) }}
 
         <h3>What happens next?</h3>
-        <p>After your maternity exemption certificate application has been submitted, an automatic check is carried out.
+
+        {% if data.medicalConditions == "yes" %}
+                    <p>After your medical exemption certificate application has been submitted, an automatic check is carried out.
           You do not need to contact us.</p>
 
-        <p>You can apply for a maternity exemption cetificate if, at the time you claimed the free prescription (the
+        <p>If your application is successful and you pay the £9.65 prescription charge your PCN will be closed. You'll
+          not need to do anything more.</p>
+
+{% else %}
+                         <p>After your maternity exemption certificate application has been submitted, an automatic check is carried out.
+          You do not need to contact us.</p>
+             <p>You can apply for a maternity exemption cetificate if, at the time you claimed the free prescription (the
           date on your PCN), you:</p>
         <ul>
           <li>were pregnant</li>
@@ -62,6 +89,8 @@ text: "Go back"
 
         <p>If your application is successful and you pay the £9.65 prescription charge your PCN will be closed. You'll
           not need to do anything more.</p>
+{% endif %}
+
     </form>
   </div>
 </div>

@@ -219,6 +219,8 @@ router.post(/were-you-claiming-any-benefits/, function (req, res) {
 router.post(/medical-conditions/, function (req, res) {
     const { medicalConditions } = req.body; // ID from the radio buttons
 
+     req.session.data.medicalConditions = medicalConditions;
+
     let destination;
     if (medicalConditions === 'yes') {
         destination = 'no-valid-exemption';

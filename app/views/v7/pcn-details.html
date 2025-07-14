@@ -9,11 +9,16 @@ Penalty Charge Notice
 
 {% block content %}
 
-
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
-
-    <form action="pcn-details" method="post" class="form">
+{% if data.type == "pecs"%}
+  <p>This content is shown only when type is PECS and letter is an enquiry for the Enquiry route.</p>
+  {% elif data.letter == "enquiry" %}
+  <p>This content is shown only when letter is for the enquiry route</p>
+  {% endif %}
+  
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      
+      <form action="pcn-details" method="post" class="form">
       <span class="nhsuk-caption-m">Your details</span>
       <h1>
         Penalty Charge Notice 01234567890
@@ -142,4 +147,5 @@ Penalty Charge Notice
     </form>
   </div>
 </div>
+
 {% endblock %}

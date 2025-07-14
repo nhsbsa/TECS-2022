@@ -30,16 +30,36 @@ text: "Go back"
 
       <fieldset class="nhsuk-fieldset">
         <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-          <h1 class="nhsuk-fieldset__heading">
+                    {% if data.medicalConditions == "yes" %}
+            <h1 class="nhsuk-fieldset__heading">
+            You didn't have a valid medical exemption certificate at the time, but you can still apply
+          </h1>
+
+{% else %}
+             <h1 class="nhsuk-fieldset__heading">
             You didn't have a valid maternity exemption certificate at the time, but you can still apply
           </h1>
+{% endif %}
         </legend>
 
-        <p>Although you didn't have a valid maternity exemption certificate when you claimed a free prescription, you
+        {% if data.medicalConditions == "yes" %}
+            <p>Although you didn't have a valid medical exemption certificate when you claimed a free NHS prescription, you
+          still have the chance to apply.</p>
+        <p>You have until <strong>10 July 2025</strong> to get a medical exemption certificate.</p>
+
+{% else %}
+            <p>Although you didn't have a valid maternity exemption certificate when you claimed a free NHS prescription, you
           still have the chance to apply.</p>
         <p>You have until <strong>10 July 2025</strong> to get a maternity exemption certificate.</p>
+{% endif %}
         <p>If your application is successful, you'll only have to pay the original prescription charge. You will not
           have to pay your penalty charge.</p>
+
+ {% if data.medicalConditions == "yes" %}
+  {% set certificateType = "medical exemption certificate" %}
+{% else %}
+  {% set certificateType = "maternity exemption certificate" %}
+{% endif %}
 
         {{ radios({
         idPrefix: "payment",
@@ -54,7 +74,7 @@ text: "Go back"
         items: [
         {
         value: "pay-prescription",
-        text: "Pay the original £9.65 prescription charge, and apply for a maternity exemption certificate."
+        text: "Pay the original £9.65 prescription charge, and apply for a " + certificateType + ""
         },
         {
         value: "pay-charge",
@@ -66,10 +86,17 @@ text: "Go back"
         text: 'Continue'
         }) }}
 
-        <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made this claim,
+                            {% if data.letter == "enquiry" %}
+                <p>If you were not entitled to free or reduced cost NHS prescriptions but have an exceptional reason why you made this claim,
           you can ask us to review your enquiry letter. <a href="who-can-ask-for-review">Find out if you can ask for a
             review</a></p>
         <p>
+
+{% else %}
+           <p>If you were not entitled to free or reduced cost NHS prescriptions but have an exceptional reason why you made this claim,
+          you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a
+            review</a></p>
+{% endif %}
           <a href="">Print this page</a>
         </p>
 
