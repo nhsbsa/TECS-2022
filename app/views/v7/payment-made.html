@@ -21,22 +21,30 @@ Payment confirmation
     <form action="payment-made" method="post" class="form">
 
       <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+      {% if data.amount == "partialPayment" %}
       <h1 class="nhsuk-heading-xl">Partial payment made</h1>
+      {% else %}
+      <h1 class="nhsuk-heading-xl">Full payment made</h1>
+      {% endif %}
+
+      {% if data.amount == "partialPayment" %}
+  {% set paymentType = "You have paid £25 towards your Penalty
+        Charge Notice" %}
+{% else %}
+  {% set paymentType = "You have paid your Penalty Charge Notice in full and your case has now been closed." %}
+{% endif %}
+
       {{ panel({
-      html: "<h2>You have paid £25 towards your Penalty
-        Charge Notice</h2>"
+      html: "<h2>" + paymentType + "</h2>"
       }) }}
 
       <h2>Payment confirmation</h2>
       <p>We've received your payment towards your Penalty Charge Notice.</p>
 
+       {% if data.amount == "partialPayment" %}
       <div class="nhsuk-inset-text">
         <span class="nhsuk-u-visually-hidden">Information: </span>
-
-
-
         <dl class="nhsuk-summary-list">
-
           <div class="nhsuk-summary-list__row">
             <dt class="nhsuk-summary-list__key">
               Penalty Charge Notice reference number
@@ -44,9 +52,6 @@ Payment confirmation
             <dd class="nhsuk-summary-list__value">
               123456789
             </dd>
-
-
-
           </div>
 
           <div class="nhsuk-summary-list__row">
@@ -56,9 +61,6 @@ Payment confirmation
             <dd class="nhsuk-summary-list__value">
               £32.90
             </dd>
-
-
-
           </div>
 
           <div class="nhsuk-summary-list__row">
@@ -68,18 +70,35 @@ Payment confirmation
             <dd class="nhsuk-summary-list__value">
               <p>£25</p>
             </dd>
-
-
-
+          </div>
+        </dl>
+      </div>
+      {% else %}
+       <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <dl class="nhsuk-summary-list">
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              Penalty Charge Notice reference number
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              123456789
+            </dd>
           </div>
 
-
+          <div class="nhsuk-summary-list__row">
+            <dt class="nhsuk-summary-list__key">
+              You've paid
+            </dt>
+            <dd class="nhsuk-summary-list__value">
+              £57.90
+            </dd>
+          </div>
         </dl>
-
-
-
-
       </div>
+      {% endif %}
+
+{% if data.amount == "partialPayment" %}
       {{ warningCallout({
       heading: "Your next manual payment",
       HTML: "<p>You can return to this service to pay your remaining balance at any time.</p>
@@ -89,11 +108,11 @@ Payment confirmation
       {{ button({
       text: 'Make another payment'
       }) }}
-
+{% endif %}
       <p><a href="javascript:window.print();">Print this page</a></p>
 
 
-      <h2>How to avoid a future Penalty Charge Notice</h2>
+      <h3>How to avoid a Penalty Charge Notice in the future</h3>
       <p>We match exemptions using a combination of your:</p>
       <ul>
         <li>name</li>

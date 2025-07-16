@@ -137,6 +137,8 @@ router.post(/payment-method/, function (req, res) {
 router.post(/pay-by-card/, function (req, res) {
     const { amount } = req.body; // ID from the radio buttons
 
+    req.session.data.amount = amount;
+
     let destination;
     if (amount === 'fullAmount') {
         destination = 'gov-pay';
