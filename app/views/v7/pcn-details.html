@@ -9,6 +9,8 @@ Penalty Charge Notice
 
 {% block content %}
 
+
+
 {% if data.type == "pecs"%}
   <p>This content is shown only when type is PECS and letter is an enquiry for the Enquiry route.</p>
   {% elif data.letter == "enquiry" %}
@@ -25,58 +27,17 @@ Penalty Charge Notice
       </h1>
 
       {{ warningCallout({
-      heading: "Do not delay",
-      HTML: "<p>You now have 10 days to either confirm you were entitled to free NHS prescriptions, or pay this Penalty
-        Charge
-        Notice (by 06 September 2021). <br><br>If you do not respond, an extra surcharge of up to £50 may be added to
-        these charges.</p>"
+        heading: "Do not delay",
+        HTML: "<p>You now have 10 days to either confirm you were entitled to free NHS prescriptions, or pay this Penalty
+          Charge
+          Notice (by 06 September 2021). <br><br>If you do not respond, an extra surcharge of up to £50 may be added to
+          these charges.</p>"
       }) }}
 
-      {{ card({
-      heading: "Penalty charge notice amount",
-      headingLevel: "3",
-      descriptionHtml: '
+      {% from '../'+version+'/macros/payment-block.njk' import paymentBlock %}
+      {{ paymentBlock( data, 'true' ) }}
 
-      <dl class="nhsuk-summary-list">
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Precription charges
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            £9.65
-          </dd>
-        </div>
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Penalty charge
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            £48.25
-          </dd>
-        </div>
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Total amount to pay
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            £57.90
-          </dd>
-        </div>
-      </dl>
-      <h4>Previous payments</h4>
-      <dl class="nhsuk-summary-list">
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Payments made
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            £7.90
-          </dd>
-        </div>
-      </dl>
-
-      <h2>Amount still to pay: £50</h2>'
-      }) }}
+     
 
       <p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
 
@@ -138,12 +99,10 @@ Penalty Charge Notice
 
       </dl>
 
-
-
-
       {{ button({
-      text: "Continue"
+        text: "Continue"
       }) }}
+
     </form>
   </div>
 </div>

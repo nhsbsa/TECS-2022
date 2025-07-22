@@ -1,0 +1,117 @@
+{% macro paymentBlock( data, showCard ) %}
+
+    {% from 'summary-list/macro.njk' import summaryList %}
+    {% from 'tables/macro.njk' import table %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+    {% if showCard === 'true' %}
+      <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+    {% endif %}
+
+    
+    <!-- CHARGE TITLE -->
+    {% set chargeTitle = 'Prescription charges' %}
+    {% if data.type === 'decs' %}
+        {% set chargeTitle = 'Dental treatment charges' %}
+    {% endif %}
+
+
+    <!-- LETTERS -->
+        {% if data.letter === 'enquiry' %}
+
+            {% set totalAmount = data.amounts[data.type].amountOwed %}
+
+            <!-- ENQUIRY -->
+            {% set summaryListRows = [
+                {
+                    key: { text: chargeTitle },
+                    value: { text: ( data.amounts[data.type].amountOwed | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Total amount to pay' },
+                    value: { html: '<strong>' + ( totalAmount | convertNumberToAmount ) + '</strong>' }
+            }]%}
+
+        {% elif data.letter === 'pcn' %}
+
+           {% set totalAmount = data.amounts[data.type].amountOwed + data.amounts[data.type].amountPenalty %}
+
+            {% set summaryListRows = [
+                {
+                    key: { text: chargeTitle },
+                    value: { text: ( data.amounts[data.type].amountOwed | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Penalty charge' },
+                    value: { text: ( data.amounts[data.type].amountPenalty | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Total amount to pay' },
+                    value: { html: '<strong>' + ( totalAmount | convertNumberToAmount ) + '</strong>' }
+            }]%}
+          
+        
+        {% elif data.letter === 'scn' %}
+
+            {% set totalAmount = data.amounts[data.type].amountOwed + data.amounts[data.type].amountPenalty + data.amounts[data.type].amountSurcharge %}
+
+            {% set summaryListRows = [
+                {
+                    key: { text: chargeTitle },
+                    value: { text: ( data.amounts[data.type].amountOwed | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Penalty charge' },
+                    value: { text: ( data.amounts[data.type].amountPenalty | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Surcharge' },
+                    value: { text: ( data.amounts[data.type].amountSurcharge | convertNumberToAmount ) }
+                },
+                {
+                    key: { text: 'Total amount to pay' },
+                    value: { html: '<strong>' + ( totalAmount | convertNumberToAmount ) + '</strong>' }
+            }]%}
+
+        {% endif %}
+
+
+    <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+     {{ summaryList({
+            rows: summaryListRows
+        }) }}    
+
+    <h3 class="nhsuk-heading-m">Previous payments</h3>
+    {{ summaryList({
+        classes: 'nhsuk-u-margin-bottom-6',
+        rows: [
+            {
+                key: { text: 'Payments made' },
+                value: { text: ( data.amounts[data.type].amountPaid | convertNumberToAmount ) }
+            }]
+    }) }}
+
+
+    {% set amountOutstanding = totalAmount - data.amounts[data.type].amountPaid %}
+
+    {% if data.status === 'dd-blocked' %}
+        <p class="nhsuk-heading-l nhsuk-u-margin-bottom-3">Amount still to pay: {{ amountOutstanding | convertNumberToAmount }}</p>
+        <p class="nhsuk-heading-m nhsuk-u-margin-bottom-0">You must make a payment by {{ 31 | alterTodaysDateByNumberOfDays }}</p>
+    {% else %}
+        <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding | convertNumberToAmount }}</p>
+    {% endif %}
+
+    
+    
+
+
+    {% if showCard === 'true' %}
+            </div>
+        </div>
+    {% endif %}
+
+
+
+{% endmacro %}

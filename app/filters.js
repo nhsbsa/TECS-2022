@@ -228,6 +228,14 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
   };
 
+  //
+  // CONVERT NUMBER TO AMOUNT FILTER
+  //
+  filters.convertNumberToAmount = function( num ){
+    num = ( !isNaN( parseFloat(num) ) ) ? parseFloat(num) : 0;
+    return '£' + num.toFixed(2);
+  };
+
 
   //
   // GENERATE CALCULATOR PAYMENT PLAN ROWS FILTER

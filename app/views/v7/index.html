@@ -58,6 +58,29 @@
                     }
                 ]
             }) }}
+
+            {{ radios({
+                idPrefix: 'status',
+                name: 'status',
+                value: data.status,
+                fieldset: {
+                    legend: {
+                        text: 'What status is the case in?',
+                        classes: 'nhsuk-fieldset__legend--s',
+                        isPageHeading: false
+                    }
+                },
+                items: [
+                    {
+                        value: 'default',
+                        text: 'No specific status'
+                    },
+                    {
+                        value: 'dd-blocked',
+                        text: 'DD blocked (KYC failed three times)'
+                    }
+                ]
+            }) }}
             
 
 

@@ -18,3 +18,13 @@
     }
 }
 
+.nhsuk-footer a[href="?debug=false"],
+.nhsuk-footer[data-type="pecs"] a[href="?type=pecs"],
+.nhsuk-footer[data-type="decs"] a[href="?type=decs"],
+.nhsuk-footer[data-letter="enquiry"] a[href="?letter=enquiry"],
+.nhsuk-footer[data-letter="pcn"] a[href="?letter=pcn"],
+.nhsuk-footer[data-letter="scn"] a[href="?letter=scn"],
+.nhsuk-footer[data-status="default"] a[href="?status=default"],
+.nhsuk-footer[data-status="dd-blocked"] a[href="?status=dd-blocked"] {
+   font-weight: 600;
+}

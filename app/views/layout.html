@@ -72,7 +72,42 @@
     <!-- For adding page specific JavsScript -->
     {% block pageScripts %}{% endblock %}
 
+    {% if data.debug === 'true' %}
+    
+      <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-full">
+
+            <h2 class="nhsuk-heading-m">Session data</h2>
+            {{ textarea({
+              value: data | dump
+            }) }}
+
+          </div>
+        </div>
+      </div>
+
+      {% set attributes = { 
+        'data-type': data.type,
+        'data-letter': data.letter,
+        'data-status': data.status
+      } %}
+
+      {% set metaLinks = [
+        { URL: '?debug=false', label: 'Debug' },
+        { URL: '?type=pecs', label: 'PECS' },
+        { URL: '?type=decs', label: 'DECS' },
+        { URL: '?letter=enquiry', label: 'Enquiry' },
+        { URL: '?letter=pcn', label: 'PCN' },
+        { URL: '?letter=scn', label: 'SCN' },
+        { URL: '?status=default', label: 'Default' },
+        { URL: '?status=dd-blocked', label: 'DD blocked' }
+        ] %}
+
+    {% endif %}
+
     {{ footer({
+      attributes: attributes,
       links: [
         {
           URL: 'https://www.nhsbsa.nhs.uk/accessibility-statement-respond-your-letter',
@@ -94,7 +129,8 @@
           URL: 'https://www.nhsbsa.nhs.uk/our-policies/terms-and-conditions',
           label: 'Terms and conditions'
         }
-      ]
+      ],
+      metaLinks: metaLinks
     })}}
 
     <!--<footer role="contentinfo">
