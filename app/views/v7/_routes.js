@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+router.get(/start-redirect/, function(req, res){
+    const destination = 'enter-reference-number';
+    res.redirect( destination );
+});
 
-router.post(/configure-prototype/, function (req, res) {
+router.get(/configure-prototype/, function (req, res) {
     const destination = 'start';
     res.redirect( destination );
 });
@@ -23,9 +27,10 @@ router.post(/date-of-birth/, function (req, res) {
 });
 
 router.post(/enter-postcode/, function (req, res) {
-    const destination = 'pcn-details';
-    res.redirect( destination );
     
+    const destination = ( req.session.data.status === 'not-found' ) ? 'cannot-find-your-details' : 'pcn-details';
+    res.redirect( destination );
+
 });
 
 router.post(/pcn-details/, function (req, res) {
@@ -34,7 +39,6 @@ router.post(/pcn-details/, function (req, res) {
     
 });
 
-
 router.post(/what-you-want-to-do-next/, function (req, res) {
     const { confirm } = req.body; // ID from the radio buttons
 
@@ -42,7 +46,6 @@ router.post(/what-you-want-to-do-next/, function (req, res) {
 
     switch( confirm ){
        
-
         case 'confirm-entitled':
             destination = 'what-happens-next';
             break;
@@ -59,16 +62,8 @@ router.post(/what-you-want-to-do-next/, function (req, res) {
             destination = 'what-happens-next';
             break;
     }
-
-    /*
-        confirm-entitled
-        what-happens-next -> enquiry flow
-        pay-pcn -> pcn flow
-        not-sure
-    */
-
-
     res.redirect(destination);
+
 });
 
 router.post(/what-happens-next/, function (req, res) {

@@ -1,13 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %}{{ serviceName }} - Enter your reference number again{% endblock %}
-
-{% block outerContent %}
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
-{% endblock %}
+{% block pageTitle %}Enter your reference number again - {{ serviceName }}{% endblock %}
 
 
 {% block content %}

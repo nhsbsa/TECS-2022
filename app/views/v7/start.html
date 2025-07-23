@@ -7,9 +7,7 @@
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-    <h1 class="nhsuk-heading-xl">
-      Respond to your letter
-    </h1>
+    <h1 class="nhsuk-heading-xl">{{ serviceName }}</h1>
 
     <p>Use this service to:</p>
     <ul>
@@ -26,10 +24,11 @@
     <p>If you are not sure if you were entitled you can <a href="https://services.nhsbsa.nhs.uk/check-for-help-paying-nhs-costs/start">check if you are currently entitled to help with your health costs</a>.</p>
     <p>If you are paying a Penalty Charge Notice you will need your card details. You can pay by credit or debit card, or by Direct Debit.</p>
 
-    {{ button({
-        text: 'Start now',
-        href: 'enter-reference-number'
-    }) }}
+    <form action="start-redirect" method="get" novalidate>
+      {{ button({
+          text: 'Start now'
+      }) }}
+    </form>
 
     <h3>How we use your information</h3>
     <p>We use the information you provide to help us match your details. You can find out more about <a href="https://www.nhsbsa.nhs.uk/our-policies/privacy/challenge-your-pcn-privacy-notice">how we use your information</a>.</p>

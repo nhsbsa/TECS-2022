@@ -10,7 +10,7 @@
 
         <h1>Configure {{ version }} prototype</h1>
 
-        <form action="configure-prototype" method="post" novalidate>
+        <form action="configure-prototype" method="get" novalidate>
 
             
             {{ radios({
@@ -76,13 +76,16 @@
                         text: 'No specific status'
                     },
                     {
+                        value: 'not-found',
+                        text: 'Could not find details'
+                    },
+                    {
                         value: 'dd-blocked',
                         text: 'DD blocked (KYC failed three times)'
                     }
                 ]
             }) }}
             
-
 
             {{ button({
                 text: 'Configure and launch'

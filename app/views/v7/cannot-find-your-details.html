@@ -1,18 +1,16 @@
 {% extends 'layout.html' %}
 
-{% set mainClasses = "nhsuk-main-wrapper--s" %}
-
-{% block pageTitle %}
-We cannot find your details
-{% endblock %}
+{% block pageTitle %}We cannot find your details - {{ serviceName }}{% endblock %}
 
 {% block content %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
+
     <span class="nhsuk-caption-m">Your details</span>
-    <h1 class="nhsuk-heading-l">
-      We cannot find your details
-    </h1>
+    <h1 class="nhsuk-heading-l">We cannot find your details</h1>
+
+
     <form action="enter-reference-number" method="post" class="form">
       <p>We have been unable to confirm your identity using the information you've provided. Check your answers and
         change
@@ -57,8 +55,7 @@ We cannot find your details
       }) }}
     </form>
 
-    <p>If your answers are correct, <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">contact us</a> if
-      you have received a letter about claiming help with your health costs.</p>
+    <p>If your answers are correct, <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">contact us</a> if you have received a letter about claiming help with your health costs.</p>
 
 
 

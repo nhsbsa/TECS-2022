@@ -7,7 +7,7 @@ module.exports = {
 
     type: 'pecs', // ['pecs','decs']
     letter: 'enquiry', // ['enquiry','pcn','scn']
-    status: 'default', // ['default','dd-blocked']
+    status: 'default', // ['default','not-found','dd-blocked']
 
     amounts: {
         pecs: {
