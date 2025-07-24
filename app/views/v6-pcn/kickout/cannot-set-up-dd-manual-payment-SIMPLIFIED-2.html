@@ -31,24 +31,19 @@
 
                 <ul class="nhsuk-tabs__list">
 
-                    <li class="nhsuk-tabs__list-item">
-                        <a class="nhsuk-tabs__tab" href="#pay-in-full">Pay in full</a>
-                    </li>
+                   
 
                     <li class="nhsuk-tabs__list-item">
                         <a class="nhsuk-tabs__tab" href="#make-manual-payments-every-month">Make manual payments every month</a>
                     </li>
 
+                     <li class="nhsuk-tabs__list-item">
+                        <a class="nhsuk-tabs__tab" href="#pay-in-full">Pay in full</a>
+                    </li>
+
                 </ul>
 
-                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
-
-                    <!-- CONTENT FOR PAY IN FULL -->
-
-                    {% from '../MACRO-payment-block.njk' import paymentBlock %}
-                    {{ paymentBlock( 'full', 'false', 'false' ) }}
-
-                </div>
+                
 
                 <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="make-manual-payments-every-month">
 
@@ -76,6 +71,18 @@
                     
                     
                 </div>
+
+                
+                <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
+
+                    <!-- CONTENT FOR PAY IN FULL -->
+
+                    {% from '../MACRO-payment-block.njk' import paymentBlock %}
+                    {{ paymentBlock( 'full', 'false', 'false' ) }}
+
+                </div>
+
+
             </div>
 
 
