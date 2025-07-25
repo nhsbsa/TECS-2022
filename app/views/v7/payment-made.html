@@ -28,11 +28,11 @@ Payment confirmation
       {% endif %}
 
       {% if data.amount == "partialPayment" %}
-  {% set paymentType = "You have paid £25 towards your Penalty
-        Charge Notice" %}
-{% else %}
-  {% set paymentType = "You have paid your Penalty Charge Notice in full and your case has now been closed." %}
-{% endif %}
+        {% set paymentType = "You have paid £25 towards your Penalty
+              Charge Notice" %}
+      {% else %}
+        {% set paymentType = "You have paid your Penalty Charge Notice in full and your case has now been closed." %}
+      {% endif %}
 
       {{ panel({
       html: "<h2>" + paymentType + "</h2>"
@@ -124,15 +124,14 @@ Payment confirmation
       <p>If any of your details are not up to date, you may receive another Penalty Charge Notice in the future.</p>
 
       {{ actionLink({
-      text: "Check if you are currently entitled to help with your health costs.",
-      href: "https://www.nhsbsa.nhs.uk/check-if-youre-eligible-help"
+        text: 'Check if you are currently entitled to help with your health costs.',
+        href: 'https://www.nhsbsa.nhs.uk/check-if-youre-eligible-help'
       }) }}
 
 
       <h3>Feedback</h3>
       <p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
-      <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">Leave
-          feedback (opens in a new window)</a></p>
+      <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">Leave feedback (opens in a new window)</a></p>
     </form>
 
   </div>

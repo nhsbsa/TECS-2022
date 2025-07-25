@@ -38,7 +38,7 @@ Penalty Charge Notice
 
         <!-- PAYMENT BLOCK-->
         {% from '../'+version+'/macros/payment-block.njk' import paymentBlock %}
-        {{ paymentBlock( data, 'true' ) }}
+        {{ paymentBlock( data, ['showCard'] ) }}
 
         <p class="nhsuk-body">If you have recently made a payment, it can take 24 hours for payment information to update.</p>
 

@@ -1,34 +1,30 @@
 {% extends 'layout.html' %}
 
-{% set mainClasses = "nhsuk-main-wrapper--s" %}
+{% block pageTitle %}Paying by Direct Debit - {{ serviceName}}{% endblock %}
 
-{% block pageTitle %}
-Paying by Direct Debit
+{% block beforeContent %}
+	{{ backLink({
+		href: 'javascript:history.back();',
+		text: 'Go back'
+	}) }}
 {% endblock %}
 
-{% block outerContent %}
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
-{% endblock %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
 	<div class="nhsuk-grid-column-two-thirds">
 		<form action="pay-by-dd" method="post" class="form">
+
 			<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
 			<h1 class="nhsuk-heading-l">Paying by Direct Debit</h1>
 			<p>Direct Debit lets you pay your penalty charge over a number of months, on a date that suits you.</p>
 
 			{{ insetText({
-			html: "<p>If we are unable to take a payment, you may have to pay extra charges.</p>"
+				html: "<p>If we are unable to take a payment, you may have to pay extra charges.</p>"
 			}) }}
 
-			<p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and
-				you
-				may need to pay the amount you owe in full.</p>
+			<p>If we are unable to take payments on more than one occasion, your Direct Debit plan may be cancelled and you may need to pay the amount you owe in full.</p>
 
 
 
@@ -64,12 +60,13 @@ text: "Go back"
 
 
 			{{ button({
-			text: 'Continue'
+				text: 'Continue'
 			}) }}
 
 
-			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+			<p class="nhsuk-body"><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
 		</form>
+
 	</div>
 </div>
 

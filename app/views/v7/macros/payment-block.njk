@@ -1,11 +1,18 @@
-{% macro paymentBlock( data, showCard ) %}
+{% macro paymentBlock( data, attributes ) %}
+
+    {# attributes = ['showCard','showButton','showLastRowOnly'] #}
 
     {% from 'summary-list/macro.njk' import summaryList %}
     {% from 'tables/macro.njk' import table %}
     {% from 'details/macro.njk' import details %}
     {% from 'button/macro.njk' import button %}
 
-    {% if showCard === 'true' %}
+    {% if not ( attributes is iterable and attributes.length is defined )  %}
+        {% set attributes = [] %}
+    {% endif %}
+
+
+    {% if 'showCard' in attributes %}
       <div class="nhsuk-card">
             <div class="nhsuk-card__content">
     {% endif %}
@@ -77,6 +84,10 @@
 
         {% endif %}
 
+        {% if 'showLastRowOnly' in attributes %}
+            {% set summaryListRows = [summaryListRows[summaryListRows.length-1]] %}
+        {% endif %}
+
 
     <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
      {{ summaryList({
@@ -103,11 +114,22 @@
         <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount still to pay: {{ amountOutstanding | convertNumberToAmount }}</p>
     {% endif %}
 
+    {% if 'showButton' in attributes %}
+            {{ button({
+                classes: 'nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-0',
+                text: 'Pay in full',
+                href: '../gov-pay'
+            }) }}
+        {% endif %}
+
+
+    
+
     
     
 
 
-    {% if showCard === 'true' %}
+    {% if 'showCard' in attributes %}
             </div>
         </div>
     {% endif %}
