@@ -158,16 +158,45 @@ router.post(/payment-made/, function (req, res) {
     
 });
 
-router.post(/contact-preferences/, function (req, res) {
-    const destination = 'what-is-your-email';
-    res.redirect( destination );
-    
+router.post(/contact-preferences/, (req, res) => {
+    let { contactPreferences } = req.body;
+
+        // make sure options are stored as array in case only one checkbox is selected
+    if (!Array.isArray(contactPreferences)) {
+        contactPreferences = contactPreferences ? [contactPreferences] : [];
+    }
+
+    // Store in session
+    req.session.data.contactPreferences = contactPreferences;
+
+
+    if (contactPreferences.includes('email')) {
+        // First go to email input if email selected (even if both are selected)
+        res.redirect('what-is-your-email');
+    } else if (contactPreferences.includes('telephone')) {
+        // If only telephone selected
+        res.redirect('what-is-your-phone-number');
+    } else {
+        // If neither selected, validation fallback
+        res.redirect('#');
+    }
 });
 
-router.post(/what-is-your-email/, function (req, res) {
-    const destination = 'what-is-your-phone-number';
-    res.redirect( destination );
+// router.post(/contact-preferences/, function (req, res) {
+//     const destination = 'what-is-your-email';
+
+//     res.redirect( destination );
     
+// });
+
+router.post(/what-is-your-email/, function (req, res) {
+  const contactPreferences = req.session.data.contactPreferences || [];
+
+    if (contactPreferences.includes('telephone')) {
+        res.redirect('what-is-your-phone-number');
+    } else {
+        res.redirect('check-contact-details');
+    }
 });
 
 router.post(/what-is-your-phone-number/, function (req, res) {

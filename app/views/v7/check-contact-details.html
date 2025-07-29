@@ -14,43 +14,89 @@ Check your contact details
             <span class="nhsuk-caption-m">Confirm your entitlement</span>
             <h1 class="nhsuk-heading-l">Check your contact details are correct</h1>
 
-            {{ summaryList({
-            rows: [
-            {
-            key: {
-            text: "[Benefit] number"
-            },
-            value: {
-            text: "1234567890"
-            },
-            actions: {
-            items: [
-            {
-            href: "exemption-certificate-number",
-            text: "Change",
-            visuallyHiddenText: "benefit number"
-            }
-            ]
-            }
-            },
-            {
-            key: {
-            text: "How we'll contact you"
-            },
-            value: {
-            text: "Email and Telephone"
-            },
-            actions: {
-            items: [
-            {
-            href: "contact-preferences",
-            text: "Change",
-            visuallyHiddenText: "Telephone"
-            }
-            ]
-            }
-            },
-            {
+{% set contactSummary = [] %}
+
+{% if data.contactPreferences.includes("email") %}
+  {% set _ = contactSummary.push({
+    key: { text: "Email address" },
+    value: { text: "jack.burton@gmail.com" },
+    actions: {
+      items: [
+        {
+          href: "what-is-your-email",
+          text: "Change",
+          visuallyHiddenText: "email address"
+        }
+      ]
+    }
+  }) %}
+{% endif %}
+
+{% if data.contactPreferences.includes("telephone") %}
+  {% set _ = contactSummary.push({
+    key: { text: "Telephone number" },
+    value: { text: "07913265752" },
+    actions: {
+      items: [
+        {
+          href: "what-is-your-phone-number",
+          text: "Change",
+          visuallyHiddenText: "telephone number"
+        }
+      ]
+    }
+  }) %}
+{% endif %}
+
+{% if data.contactPreferences.includes("email") and data.contactPreferences.includes("telephone") %}
+  {% set howToContact = "Email and Telephone" %}
+{% elif data.contactPreferences.includes("email") %}
+  {% set howToContact = "Email" %}
+{% elif data.contactPreferences.includes("telephone") %}
+  {% set howToContact = "Telephone" %}
+{% else %}
+  {% set howToContact = "Not provided" %}
+{% endif %}
+
+{% set baseRows = [
+  {
+    key: {
+      text: "[Benefit] number"
+    },
+    value: {
+      text: "1234567890"
+    },
+    actions: {
+      items: [
+        {
+          href: "exemption-certificate-number",
+          text: "Change",
+          visuallyHiddenText: "benefit number"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "How we'll contact you"
+    },
+    value: {
+      text: howToContact
+    },
+    actions: {
+      items: [
+        {
+          href: "contact-preferences",
+          text: "Change",
+          visuallyHiddenText: "contact preferences"
+        }
+      ]
+    }
+  }
+] %}
+
+{% if data.contactPreferences.includes("telephone") and data.telephone %}
+     {
             key: {
             text: "Email address"
             },
@@ -67,31 +113,12 @@ Check your contact details
             ]
             }
             },
-            {
-            key: {
-            text: "Telephone number"
-            },
-            value: {
-            html: '01234 567890'
-            },
-            actions: {
-            items: [
-            {
-            href: "what-is-your-phone-number",
-            text: "Change",
-            visuallyHiddenText: "home address"
-            }
-            ]
-            }
-            }
-            ]
-            }) }}
+{% endif %}
 
+{{ summaryList({
+  rows: baseRows.concat(contactSummary)
+}) }}
             {{ button({
             text: "Continue"
             }) }}
-            <p><a href="respond-to-your-letter">Cancel</a></p>
-        </form>
-    </div>
-</div>
 {% endblock %}
