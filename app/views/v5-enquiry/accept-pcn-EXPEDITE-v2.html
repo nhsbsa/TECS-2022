@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+You are not entitled to free NHS prescriptions
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+
+    
+
+
+    <h1 class="nhsuk-heading-l">Review your penalty charge</h1>
+
+    {{ warningCallout({
+        heading: 'Important information',
+        HTML: '<p>If you accept your penalty charge today, you must make a payment or set up a Direct Debit within 31 days. If you do not, we may apply an additional surcharge of up to £50.</p>'
+    }) }}
+
+
+        <div class="nhsuk-card">
+            <div class="nhsuk-card__content">
+ 
+
+            <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Prescription charges' },
+                      value: { text: '£9.90' }
+                    },
+                    {
+                      key: { text: 'Penalty charge' },
+                      value: { text: '£50.00' }
+                    },
+                    {
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£59.90</strong>' }
+                }]%} 
+
+
+
+                {{ summaryList({
+                    rows: summaryListRows
+                }) }}
+
+                <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount to pay: £59.90</p>
+
+            </div>
+        </div>
+
+
+        <form action="accept-pcn-EXPEDITE-v2" method="post" novalidate>
+
+
+            {{ checkboxes({
+                idPrefix: 'acceptPCNDeclaration',
+                name: 'acceptPCNDeclaration',
+                fieldset: {
+                legend: {
+                    text: 'Tick the box if you accept the following statements',
+                    isPageHeading: false,
+                    classes: 'nhsuk-u-visually-hidden'
+                }
+                },
+                items: [
+                    {
+                        value: 'acceptCharge',
+                        text: 'I confirm that I was not entitled to free NHS prescriptions and accept my penalty charge'
+                    },
+                    {
+                        value: 'acceptTiming',
+                        text: 'I understand that I must make a payment or set up a Direct Debit within 31 days'
+                    }
+                ]
+            }) }}
+
+            {{ button({
+                text: 'Accept penalty charge'
+            }) }}
+
+        </form>
+
+
+
+        <p class="nhsuk-body nhsuk-u-margin-top-6"><a href="enquiry-letter-details" class="nhsuk-link">Do not accept penalty charge</a></p>
+
+    
+
+
+    </div>
+</div>
+
+    {% endblock %}
