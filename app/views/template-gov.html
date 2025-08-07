@@ -42,16 +42,15 @@
 
     <title>{% block pageTitle %}NHS.UK prototype kit{% endblock %}</title>
 
-    <link href="https://www.nhs.uk/" rel="preconnect">
-    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
-
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin>
-
     {% block headCSS %}
       <link href="/css/main.css" rel="stylesheet">
-      <link rel="stylesheet" href="/assets/sass/govuk-frontend-4.1.0.min.css">
+      <link rel="stylesheet" href="/sass/govuk-frontend-4.1.0.min.css">
+      <style>* {
+        font-family:"GDS Transport" !important;
+      }
+      </style>
     {% endblock %}
+    
 
     {% block customStyles %}
     {% endblock %}
