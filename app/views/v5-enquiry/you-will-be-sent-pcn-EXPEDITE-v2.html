@@ -16,19 +16,26 @@ You are not entitled to free NHS prescriptions
   <div class="nhsuk-grid-column-two-thirds">
 
     <h1 class="nhsuk-heading-l">Not entitled to free NHS prescriptions</h1>
-    <p>If you were not entitled to free NHS prescriptions you will be sent a Penalty Charge Notice (PCN).</p>
-    <p>We send the enquiry letter before the PCN to give you time to confirm you were entitled to free NHS prescriptions
-      which can stop a PCN being issued.</p>
-    <p>If you do not confirm you were entitled to free NHS prescriptions within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) we will send a PCN.</p>
+    
+
+
+    <p>If you were not entitled to free NHS prescriptions you will be sent a Penalty Charge Notice.</p>
+    <p>We send the enquiry letter before the Penalty Charge Notice to give you time to confirm you were entitled to free NHS prescriptions which can stop a penalty charge being issued.</p>
+    <p>If you do not confirm you were entitled to free NHS prescriptions within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) we will send a Penalty Charge Notice. You will not be able to make a payment until you receive this.</p>
+    <p>Once you have received it, you’ll be able to use this service to pay your penalty charge.</p>
 
     {{ details({
       text: 'I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim',
-      html: '<p class="nhsuk-body">If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can ask us to review your case. <class="nhsuk-link" href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>'
+      html: '<p class="nhsuk-body">If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can ask us to review your case. <a class="nhsuk-link" href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>'
     }) }}
 
-    <h2 class="nhsuk-heading-m">Accept and pay your penalty charge today</h2>
-    <p>If you cannot confirm you were entitled to free NHS prescriptions, you cannot avoid paying a penalty charge.</p>
-    <p>You can review and accept your penalty charge today. You can then pay by credit or debit card, or set up a Direct Debit.</p>
+    <h2 class="nhsuk-heading-m">Accept your penalty charge today</h2>
+   
+
+    <p>If you do not want to wait until {{ 28 | alterTodaysDateByNumberOfDays }}, you can review your penalty charge now.</p>
+    <p>If you were not entitled to free NHS prescriptions, you can decide to accept the penalty charge today. You can then pay by credit or debit card, or set up a Direct Debit straight away.</p>
+
+
 
     {{ button({
       text: 'Review penalty charge',

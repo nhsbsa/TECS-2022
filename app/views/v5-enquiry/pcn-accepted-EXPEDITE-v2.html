@@ -15,12 +15,16 @@ You are not entitled to free NHS prescriptions
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-
-
-
         {{ panel({
             titleText: 'You have accepted the penalty charge',
-            html: 'We have sent you a letter with the details of your Penalty Charge Notice (PCN)',
+            html: '
+                We’ll send you a letter with the details of your Penalty Charge Notice
+                <dl>
+                    <div>
+                        <dd class="nhsuk-body nhsuk-u-margin-0">Reference number:</dd>
+                        <dt class="nhsuk-heading-l">01234567890</dt>
+                    </div>
+                </dl>',
             classes: 'nhsuk-u-margin-bottom-6'
         }) }}
 
@@ -57,7 +61,7 @@ You are not entitled to free NHS prescriptions
                 {{ warningCallout({
                     heading: 'Please note',
                     classes: 'nhsuk-u-margin-bottom-0',
-                    HTML: '<p>If you pay today, you will still receive a PCN letter. This is for your records, and will not represent an additional penalty charge.</p>'
+                    HTML: '<p>If you pay today, you will still receive a letter. This is for your records, and will not represent an additional penalty charge.</p>'
                 }) }}
 
 
@@ -75,10 +79,12 @@ You are not entitled to free NHS prescriptions
         </div>
 
 
-        <h2 class="nhsuk-heading-m">Other ways to pay your PCN</h2>
+        <h2 class="nhsuk-heading-m">Other ways to pay your Penalty Charge Notice</h2>
         <p>You can also make payments over the phone.</p>
         <p><strong>Telephone:</strong> 0300 330 9291</p>
-        <p>You will need to keep a record of your PCN reference number to make a payment.</p>
+
+        <p>You will need to keep a record of your Penalty Charge Notice reference number to make a payment.</p>
+
         <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" class="nhsuk-link--no-visited-state">Find out about call charges and other ways to contact us on our website</a></p>
             
 
