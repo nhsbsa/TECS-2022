@@ -1,21 +1,25 @@
 {% extends 'layout.html' %}
 
+{% set title = 'Not entitled to free NHS prescriptions' %}
+
 {% block pageTitle %}
-You are not entitled to free NHS prescriptions
+    {{ title }}
 {% endblock %}
 
 
-
+{% block beforeContent %}
+    {{ backLink({
+        text: 'Go back',
+        href: 'javascript:history.back();'
+    }) }}
+{% endblock %}
 
 {% block content %}
-
-
-
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <h1 class="nhsuk-heading-l">Not entitled to free NHS prescriptions</h1>
+    <h1 class="nhsuk-heading-l">{{ title }}</h1>
     
 
 
