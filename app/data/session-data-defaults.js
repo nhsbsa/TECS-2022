@@ -28,8 +28,8 @@ module.exports = {
     settings: {
         'v5-enquiry': {
             allowExpedite : 'true', // Use this to switch on/off the UR route for Expedite a PCN
-            type: 'decs',
-            version: 'b' // ['a','b']
+            type: 'pecs',
+            version: 'a' // ['a','b']
         }
     }
 
