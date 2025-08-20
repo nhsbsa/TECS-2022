@@ -772,14 +772,6 @@ router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
 
 });
 
-router.post(/accept-pcn-EXPEDITE-v2/, function (req, res) {
-  res.redirect( 'pcn-accepted-EXPEDITE-v2' );
-});
-
-router.post(/accept-pcn-EXPEDITE/, function (req, res) {
-  res.redirect( 'pcn-accepted-EXPEDITE' );
-});
-
 router.post( /payment-plan-calculator-date-reset/, function(req, res){
 
   delete req.session.data.calculatorAmountToPay;
@@ -796,6 +788,7 @@ router.use('/user-research-feb-2025', require('./views/user-research-feb-2025/\_
 
 
 
+
 //
 // DETECT CURRENT VERSION
 //
@@ -805,7 +798,7 @@ router.use((req, res, next) => {
   console.log(req.originalUrl);
 
   // Versions
-  const versions = ['v7'];
+  const versions = ['v7','v5-enquiry'];
 
   // Clear current routes 
   router.stack = router.stack.filter(layer => layer.name !== 'router');
@@ -826,10 +819,39 @@ router.use((req, res, next) => {
     router.use('/' + version, require('./views/' + version + '/_routes'));
   }
 
+  // Allow URL strings such as key[anotherKey][yetAnotherKey]
+  if( req.originalUrl.split('?').length > 1 ){
+
+    const params = new URLSearchParams( req.originalUrl.toLowerCase().split('?')[1] );
+
+    for (const [key, value] of params.entries()) {
+
+      const matches = key.match(/([^\[\]]+)/g) || [];
+      if( matches.length > 1 ){
+        
+        const tidyMatches = [];
+        matches.forEach(function( m ){
+          tidyMatches.push( m.replace(/[^0-9a-z\-_]/g, '') );
+        });
+
+        if( eval( 'req.session.data["' + tidyMatches.join('"]["') + '"]="' + value + '"' ) ){
+          delete req.session.data[key];
+        };
+
+      }
+    }
+    
+  }
+  
+  
+  
   next();
 
 
 });
+
+
+
 
 
 

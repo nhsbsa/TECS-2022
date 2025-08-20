@@ -2,6 +2,11 @@
 
 {% set title = 'Review your penalty charge' %}
 
+{% set freeStuff = 'free NHS prescriptions' %}
+{% if data.settings[version].type === 'decs' %}
+  {% set freeStuff = 'free or reduced cost NHS dental treatment' %}
+{% endif %}
+
 {% block pageTitle %}
     {{ title }}
 {% endblock %}
@@ -21,6 +26,20 @@
 
     <h1 class="nhsuk-heading-l">{{ title }}</h1>
 
+    {% set errorMessageText = 'Select that you accept your penalty charge and understand you must make a payment within 31 days' %}
+
+    {% if data.showErrors === 'true' %}
+        {{ errorSummary({
+        titleText: 'There is a problem',
+        errorList: [
+                {
+                    text: errorMessageText,
+                    href: '#acceptPCNDeclaration-1'
+                }
+            ]
+        }) }}
+    {% endif %}
+
     {{ warningCallout({
         heading: 'Important information',
         HTML: '<p>If you accept your penalty charge today, you must make a payment or set up a Direct Debit within 31 days. If you do not, an extra surcharge of up to £50 may be added to these charges.</p>'
@@ -29,10 +48,35 @@
 
         <div class="nhsuk-card">
             <div class="nhsuk-card__content">
+
+                <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
  
+            {% if data.settings[version].type === 'decs' %}
 
-            <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+                <!-- DECS -->
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Dental treatment charges' },
+                      value: { text: '£75.30' }
+                    },
+                    {
+                      key: { text: 'Penalty charge' },
+                      value: { text: '£50.00' }
+                    },
+                    {
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£125.30</strong>' }
+                }]%} 
 
+                {{ summaryList({
+                    rows: summaryListRows
+                }) }}
+
+                <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount to pay: £125.30</p>
+
+            {% else %}
+
+                <!-- PECS -->
                 {% set summaryListRows = [
                     {
                       key: { text: 'Prescription charges' },
@@ -47,13 +91,13 @@
                       value: { html: '<strong>£59.90</strong>' }
                 }]%} 
 
-
-
                 {{ summaryList({
                     rows: summaryListRows
                 }) }}
 
                 <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount to pay: £59.90</p>
+
+            {% endif%}
 
             </div>
         </div>
@@ -64,9 +108,17 @@
 
         <form action="accept-pcn-EXPEDITE-v2" method="post" novalidate>
 
+            {% set errorMessage = '' %}
+            {% if data.showErrors === 'true' %}
+                {% set errorMessage = { text: errorMessageText } %}
+            {% endif %}
+
             {{ checkboxes({
                 idPrefix: 'acceptPCNDeclaration',
                 name: 'acceptPCNDeclaration',
+                id: 'acceptPCNDeclaration',
+                values: data.acceptPCNDeclaration,
+                errorMessage: errorMessage,
                 fieldset: {
                     legend: {
                         text: 'Tick to accept the penalty charge',
@@ -77,7 +129,7 @@
                 items: [
                     {
                         value: 'acceptCharge',
-                        text: 'I was not entitled to free NHS prescriptions and accept my penalty charge'
+                        text: 'I was not entitled to '+freeStuff+' and accept my penalty charge'
                     },
                     {
                         value: 'acceptTiming',

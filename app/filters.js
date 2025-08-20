@@ -107,6 +107,30 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     return dateString;
   };
 
+
+  //
+  // GET CLAIM DATE RANGE FUNCTION
+  //
+  filters.getClaimDateRange = function( monthOffset ){
+
+    monthOffset = ( typeof monthOffset === 'number' && parseInt(monthOffset) ) ? parseInt(monthOffset) : -1;
+
+    const today = new Date();
+    const firstDayPreviousMonth = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1);
+    const lastDayPreviousMonth = new Date(today.getFullYear(), today.getMonth() + (monthOffset+1), 0);
+
+    return 'Between ' + firstDayPreviousMonth.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }) + ' and ' + lastDayPreviousMonth.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+  };
+
   //
   // ALTER DATE BY NUMBER OF MONTHS FUNCTION
   //

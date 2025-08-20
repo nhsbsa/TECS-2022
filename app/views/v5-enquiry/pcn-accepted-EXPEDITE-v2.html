@@ -1,17 +1,11 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %}
-You are not entitled to free NHS prescriptions
-{% endblock %}
+{% block pageTitle %}You have accepted the penalty charge{% endblock %}
 
 
 
 
 {% block content %}
-
-
-
-
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
@@ -35,6 +29,32 @@ You are not entitled to free NHS prescriptions
 
             <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
 
+                {% if data.settings[version].type === 'decs' %}
+
+                <!-- DECS -->
+                {% set summaryListRows = [
+                    {
+                      key: { text: 'Dental treatment charges' },
+                      value: { text: '£75.30' }
+                    },
+                    {
+                      key: { text: 'Penalty charge' },
+                      value: { text: '£50.00' }
+                    },
+                    {
+                      key: { text: 'Total amount to pay' },
+                      value: { html: '<strong>£125.30</strong>' }
+                }]%} 
+
+                {{ summaryList({
+                    rows: summaryListRows
+                }) }}
+
+                <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount to pay: £125.30</p>
+
+            {% else %}
+
+                <!-- PECS -->
                 {% set summaryListRows = [
                     {
                       key: { text: 'Prescription charges' },
@@ -49,13 +69,13 @@ You are not entitled to free NHS prescriptions
                       value: { html: '<strong>£59.90</strong>' }
                 }]%} 
 
-
-
                 {{ summaryList({
                     rows: summaryListRows
                 }) }}
 
                 <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">Amount to pay: £59.90</p>
+
+            {% endif%}
 
 
                 {{ warningCallout({
@@ -65,10 +85,16 @@ You are not entitled to free NHS prescriptions
                 }) }}
 
 
+                
+                {% set buttonURL = '../v6-pcn/payment-method' %}
+                {% if data.settings[version].type === 'decs' %}
+                    {% set buttonURL = '../v6-pcn-decs/payment-method' %}
+                {% endif %}
+
                 {{ button({
                     classes: 'nhsuk-u-margin-top-6',
                     text: 'Pay your penalty charge',
-                    href: '../v6-pcn/payment-method'
+                    href: buttonURL
                 }) }}
 
 

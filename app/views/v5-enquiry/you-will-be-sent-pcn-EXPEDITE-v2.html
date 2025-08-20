@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 
-{% set title = 'Not entitled to free NHS prescriptions' %}
+{% set freeStuff = 'free NHS prescriptions' %}
+{% if data.settings[version].type === 'decs' %}
+  {% set freeStuff = 'free or reduced cost NHS dental treatment' %}
+{% endif %}
+
+{% set title = 'Not entitled to ' + freeStuff %}
 
 {% block pageTitle %}
     {{ title }}
@@ -20,30 +25,31 @@
   <div class="nhsuk-grid-column-two-thirds">
 
     <h1 class="nhsuk-heading-l">{{ title }}</h1>
-    
 
-
-    <p>If you were not entitled to free NHS prescriptions you will be sent a Penalty Charge Notice.</p>
-    <p>We send the enquiry letter before the Penalty Charge Notice to give you time to confirm you were entitled to free NHS prescriptions which can stop a penalty charge being issued.</p>
-    <p>If you do not confirm you were entitled to free NHS prescriptions within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) we will send a Penalty Charge Notice. You will not be able to make a payment until you receive this.</p>
+    <p>If you were not entitled to {{ freeStuff }} you will be sent a Penalty Charge Notice.</p>
+    <p>We send the enquiry letter before the Penalty Charge Notice to give you time to confirm you were entitled to {{ freeStuff }} which can stop a penalty charge being issued.</p>
+    <p>If you do not confirm you were entitled to {{ freeStuff }} within 28 days (by {{ 28 | alterTodaysDateByNumberOfDays }}) we will send a Penalty Charge Notice. You will not be able to make a payment until you receive this.</p>
     <p>Once you have received it, you’ll be able to use this service to pay your penalty charge.</p>
 
     {{ details({
-      text: 'I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim',
-      html: '<p class="nhsuk-body">If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can ask us to review your case. <a class="nhsuk-link" href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>'
+      text: 'I was not entitled to '+freeStuff+' but have an exceptional reason why I made the claim',
+      html: '<p class="nhsuk-body">If you were not entitled to '+freeStuff+' but have an exceptional reason why you made the claim, you can ask us to review your case. <a class="nhsuk-link" href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>'
     }) }}
 
     <h2 class="nhsuk-heading-m">Accept your penalty charge today</h2>
-   
-
+    
     <p>If you do not want to wait until {{ 28 | alterTodaysDateByNumberOfDays }}, you can review your penalty charge now.</p>
-    <p>If you were not entitled to free NHS prescriptions, you can decide to accept the penalty charge today. You can then pay by credit or debit card, or set up a Direct Debit straight away.</p>
+    <p>If you were not entitled to {{ freeStuff }}, you can decide to accept the penalty charge today. You can then pay by credit or debit card, or set up a Direct Debit straight away.</p>
 
-
+    {% if data.settings[version].version === 'b' %}
+      {% set buttonDestination = 'accept-pcn-EXPEDITE-v2-b' %}
+    {% else %}
+      {% set buttonDestination = 'accept-pcn-EXPEDITE-v2' %}
+    {% endif %}
 
     {{ button({
       text: 'Review penalty charge',
-      href: 'accept-pcn-EXPEDITE-v2'
+      href: buttonDestination
     }) }}
 
 </div>
