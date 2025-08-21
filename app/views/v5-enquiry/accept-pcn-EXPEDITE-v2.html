@@ -26,7 +26,7 @@
 
     <h1 class="nhsuk-heading-l">{{ title }}</h1>
 
-    {% set errorMessageText = 'Select that you accept your penalty charge and understand you must make a payment within 31 days' %}
+    {% set errorMessageText = 'Tick to accept your penalty charge and confirm you understand you must a payment within 31 days' %}
 
     {% if data.showErrors === 'true' %}
         {{ errorSummary({
@@ -121,10 +121,13 @@
                 errorMessage: errorMessage,
                 fieldset: {
                     legend: {
-                        text: 'Tick to accept the penalty charge',
+                        text: 'Accept the penalty charge',
                         isPageHeading: false,
                         classes: 'nhsuk-fieldset__legend--m'
                     }
+                },
+                hint: {
+                    text: 'Before accepting your penalty charge, you must confirm the following:'
                 },
                 items: [
                     {
