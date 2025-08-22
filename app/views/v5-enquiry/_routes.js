@@ -5,6 +5,12 @@ const router = express.Router();
 // in the session-data-defaults.js, this will allow any postcode and begin
 // the expedite route
 
+router.post(/date-of-birth/, function( req, res ){
+    let destination = 'enter-postcode';
+    res.redirect( destination );
+});
+
+
 router.post(/enter-postcode/, function( req, res ){
     let destination = 'enquiry-letter-details';
     if( req.session.data.settings[res.locals.version].type === 'decs' ){
