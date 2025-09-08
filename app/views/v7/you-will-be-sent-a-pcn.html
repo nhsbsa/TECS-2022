@@ -19,9 +19,32 @@ text: "Go back"
     <h1 class="nhsuk-heading-l">Not entitled to free NHS prescriptions</h1>
 
 
-    <p>Stuff goes here from https://tecs-2022.herokuapp.com/v5-enquiry/you-will-be-sent-pcn</p>
+    <p>If you were not entitled to free NHS prescriptions you will be sent a Penalty Charge Notice (PCN).
+    </p>
+    <p>
+      We send the enquiry letter before the PCN to give you time to confirm you were entitled to free NHS prescriptions
+      which can stop a PCN being issued.
+    </p>
+    <p>
+      If you do not confirm you were entitled to free NHS prescriptions within [number] days (by [date]) we will send a
+      PCN.
+    </p>
+    <p>
+      You will not be able to make a payment until you receive the PCN.
+    </p>
+    <p>
+      Once you have received it, you’ll be able to use this service to pay your penalty charge.</p>
 
-    <p><a href="respond-to-your-letter">Cancel</a></p>
+    {% from 'details/macro.njk' import details %}
+
+    {% from 'details/macro.njk' import details %}
+
+    {% call details({
+    summarytext:"I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim"
+    }) %}
+    <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you can
+      ask us to review your case. Find out if you can ask for a review.</p>
+    {% endcall %}
 
   </div>
 </div>
