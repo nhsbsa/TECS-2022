@@ -23,12 +23,12 @@ text: "Go back"
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
 
-      {% if data.letter === 'pcn' %}
+      {% if data.letter === 'pcn' and data.type === 'pecs'%}
 
       {% set radioItems = [
       {
       value: 'confirm-entitled',
-      text: 'Confirm I was entitled to free NHS prescripitons',
+      text: 'Confirm I was entitled to free NHS prescripitons PCN',
       hint: {
       text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
       }
@@ -47,15 +47,12 @@ text: "Go back"
       ]
       %}
 
-
-
-      {% else %}
-      {% if data.type === 'decs' && if data.letter === 'pcn'%}
+      {% elif data.letter === 'pcn' and data.type === 'decs' %}
 
       {% set radioItems = [
       {
       value: 'confirm-entitled',
-      text: 'Confirm I was entitled to free NHS prescripitons',
+      text: 'Confirm I was entitled to free or reduced cost NHS dental treatment',
       hint: {
       text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
       }
