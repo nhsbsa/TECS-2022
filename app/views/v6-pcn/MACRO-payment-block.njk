@@ -7,7 +7,7 @@
   simplified
 
 -->
-{% macro paymentBlock( blockType = 'partial', alreadyPaid = 'false', secondPayment = 'false' ) %}
+{% macro paymentBlock( blockType = 'partial', alreadyPaid = 'false', secondPayment = 'false', headerTag = 'h3' ) %}
 
     {% from 'summary-list/macro.njk' import summaryList %}
     {% from 'tables/macro.njk' import table %}
@@ -19,7 +19,7 @@
             <div class="nhsuk-card__content">
     {% endif %}
               
-              <h3 class="nhsuk-heading-m">Penalty Charge Notice amount</h3>
+              <{{ headerTag }} class="nhsuk-heading-m">Penalty Charge Notice amount</{{headerTag}}>
 
               <!-- OUTSTANDING BALANCE -->
               {% if secondPayment === 'true' %}
@@ -75,7 +75,7 @@
 
 
 
-              <h3 class="nhsuk-heading-m">Previous payments</h3>
+              <{{ headerTag }} class="nhsuk-heading-m">Previous payments</{{ headerTag }}>
 
               {% if secondPayment === 'true' %}
 

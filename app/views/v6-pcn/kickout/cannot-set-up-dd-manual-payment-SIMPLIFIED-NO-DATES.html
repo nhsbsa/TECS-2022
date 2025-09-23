@@ -25,9 +25,13 @@
                 <li>pay the full amount in one payment</li>
             </ul>
 
+
+
+           
+
             <!-- TABS -->
 
-            <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+            <div id="dd-tabs" class="nhsuk-tabs" data-module="nhsuk-tabs">
 
                 <ul class="nhsuk-tabs__list">
 
@@ -46,6 +50,8 @@
                 <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="make-manual-payments-every-month">
 
                     <!-- CONTENT FOR MAKE MANUAL PAYMENTS EVERY MONTH -->
+
+                    <h3 class="">Make manual payments every month</h3>
                 
                     <p class="nhsuk-body">If you want to spread the cost of your Penalty Charge Notice over several payments, you can make regular manual payments.</p>
                     <p class="nhsuk-body">You'll need to make your first payment by {{ 31 | alterTodaysDateByNumberOfDays }}. You then need to continue to make payments every 31 days until you have paid the Penalty Charge Notice in full.</p>
@@ -96,6 +102,7 @@
                     {{ warningCallout({
                         classes: 'nhsuk-u-margin-bottom-5',
                         heading: 'Important',
+                        headingLevel: 4,
                         HTML: warningText
                     }) }}
 
@@ -114,9 +121,10 @@
                 <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="pay-in-full">
 
                     <!-- CONTENT FOR PAY IN FULL -->
+                    <h3 class="">Pay in full</h3>
 
                     {% from '../MACRO-payment-block.njk' import paymentBlock %}
-                    {{ paymentBlock( 'full', 'false', 'false' ) }}
+                    {{ paymentBlock( 'full', 'false', 'false', 'h4' ) }}
 
                 </div>
 

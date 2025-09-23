@@ -28,3 +28,44 @@
 .nhsuk-footer[data-status="dd-blocked"] a[href="?status=dd-blocked"] {
    font-weight: 600;
 }
+
+/* DD TABS */
+@include nhsuk-media-query($until: tablet) {
+
+    #dd-tabs .nhsuk-tabs__panel {
+        background-color: #FFF;
+        padding: 1rem 1rem 2rem 1rem;
+        border: 1px solid #d8dde0;
+    }
+
+    
+    #dd-tabs h3 {
+        padding: 8px 17px;
+        top: -17px;
+        background-color: #005eb8;
+        color: #fff;
+        display: inline-block;
+        font-size: 19px;
+        font-size: 1.1875rem;
+        line-height: 1.42105;
+        margin: -8px 0 0 -17px;
+        outline: 1px solid transparent;
+        outline-offset: -1px;
+        position: relative;
+    }
+
+    #dd-tabs .nhsuk-tabs__panel > h4 {
+        font-size: 19px;
+        font-size: 1.1875rem;
+        line-height: 1.42105;
+    }
+
+}
+
+@include nhsuk-media-query($from: tablet) {
+
+    #dd-tabs h3 {
+        display: none;
+    }
+
+}
