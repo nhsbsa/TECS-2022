@@ -22,9 +22,20 @@ router.post(/enter-postcode/, function( req, res ){
 router.post(/what-you-want-to-do-next/, function( req, res ){
     let destination = 'what-happens-next';
     if( req.session.data.confirm === 'what-happens-next' ){
-        destination = 'you-will-be-sent-pcn-EXPEDITE-v2';
+        destination = 'you-will-be-sent-pcn-EXPEDITE-v3';
     }
     res.redirect( destination );
+});
+
+router.post(/accept-pcn-EXPEDITE-v3/, function (req, res) {
+   let destination = 'accept-pcn-EXPEDITE-v3?showErrors=true';
+   const tickBox = req.session.data.acceptPCNDeclarationB;
+  if( Array.isArray(tickBox) && tickBox[0] === 'acceptCharge'  ){
+    delete req.session.data.showErrors;
+    destination = 'pcn-accepted-EXPEDITE-v3';
+  }
+
+  res.redirect( destination );
 });
 
 router.post(/accept-pcn-EXPEDITE-v2-b/, function (req, res) {
@@ -63,6 +74,10 @@ router.post(/accept-pcn-EXPEDITE-v2/, function (req, res) {
 router.post(/accept-pcn-EXPEDITE/, function (req, res) {
   res.redirect( 'pcn-accepted-EXPEDITE' );
 });
+
+
+
+
 
 
 module.exports = router;
