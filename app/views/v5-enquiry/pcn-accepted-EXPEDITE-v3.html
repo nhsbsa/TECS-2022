@@ -12,7 +12,6 @@
         {{ panel({
             titleText: 'You have accepted the penalty charge',
             html: '
-                We’ll send you a letter with the details of your Penalty Charge Notice
                 <dl>
                     <div>
                         <dd class="nhsuk-body nhsuk-u-margin-0">Reference number</dd>
@@ -79,9 +78,10 @@
 
 
                 {{ warningCallout({
-                    heading: 'Please note',
-                    classes: 'nhsuk-u-margin-bottom-0 smaller-heading',
-                    HTML: '<p>If you pay today, you will still receive a letter. This is for your records, and will not represent an additional penalty charge.</p>'
+                    heading: 'What happens now',
+                    classes: 'nhsuk-u-margin-bottom-0',
+                    HTML: '<p class="nhsuk-body">We\'ll send you a letter with your penalty charge details. This is for your records, and does not represent any extra charges.</p>
+                            <p class="nhsuk-body">You do not need to wait for this letter to pay your penalty charge. You can make a payment now.</p>'      
                 }) }}
 
 
