@@ -798,7 +798,7 @@ router.use((req, res, next) => {
   console.log(req.originalUrl);
 
   // Versions
-  const versions = ['v7','v5-enquiry'];
+  const versions = ['v7','v5-enquiry','v5-enquiry-decs'];
 
   // Clear current routes 
   router.stack = router.stack.filter(layer => layer.name !== 'router');

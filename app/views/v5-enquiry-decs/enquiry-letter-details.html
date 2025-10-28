@@ -4,9 +4,6 @@
 Enquiry letter
 {% endblock %}
 
-
-
-
 {% block content %}
 
 
@@ -24,7 +21,7 @@ Enquiry letter
             Do not delay
           </span>
         </h3>
-        <p>You now have 28 days to confirm you were entitled to free or reduced cost NHS dental treatment (by 28 March 2018). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
+        <p>You now have 28 days to confirm you were entitled to free or reduced cost NHS dental treatment (by {{ 28 | alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
       </div>
      
     
@@ -70,7 +67,7 @@ Enquiry letter
             Date dental treatment was claimed
           </dt>
           <dd class="nhsuk-summary-list__value">
-            Between 1 November 2017 and 30 November 2017
+            {{ -1 | getClaimDateRange }}
           </dd>
       
         </div>
