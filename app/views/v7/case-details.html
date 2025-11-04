@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+
+
+
+{% if data.letter === 'enquiry' %}
+  {% set pageTitleText = 'Enquiry letter' %}
+{% else %}
+  {% set pageTitleText = 'Penalty Charge Notice' %}
+{% endif %}
+
+
+
+{% block pageTitle %}{{ pageTitleText }} - {{ serviceName }}{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<!-- Let's output my first name -->
+{{ myFirstNestedObject.name.firstName }}
+
+
+  
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      
+      <span class="nhsuk-caption-m">Your details</span>
+      {% if data.letter === 'enquiry' %}
+        
+        <!-- ENQUIRY LETTER -->
+        <h1 class="nhsuk-heading-xl">{{ pageTitleText }} reference {{ data.referenceNumber or '01234567890'}}</h1>
+        
+        {% set warningHTML %}
+          <p class="nhsuk-body">You now have 28 days to confirm you were entitled to free NHS prescriptions (by {{ 28 | alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
+        {% endset %}
+
+      {% else %}
+        
+        <!-- PCN LETTER  -->
+        <h1 class="nhsuk-heading-l">{{ pageTitleText}} {{ data.referenceNumber or '01234567890'}}</h1>
+
+        {% set warningHTML %}
+          <p class="nhsuk-body"><p>
+        {% endset %}
+
+
+      {% endif %}
+
+      <!-- WARNING CALLOUT -->
+      {{ warningCallout({
+        heading: 'Do not delay',
+        HTML: warningHTML
+      }) }}
+
+
+      {% if data.letter === 'enquiry' %}
+
+        <!-- CHECK YOUR DETAILS -->
+        <h2 class="nhsuk-heading-l">Check your details carefully</h2>
+
+        <p>We check details on your prescription match the details on your exemption certificate, qualifying benefit, or prepayment certificate.</p>
+        <p>We have not been able to confirm you were entitled to free NHS prescriptions using these details.</p>
+
+
+      {% else %}
+
+        <!-- PAYMENT BLOCK-->
+        {% from '../'+version+'/macros/payment-block.njk' import paymentBlock %}
+        {{ paymentBlock( data, ['showCard'] ) }}
+
+        <p class="nhsuk-body">If you have recently made a payment, it can take 24 hours for payment information to update.</p>
+
+      {% endif %}
+
+     
+      {% set summaryRows = [
+        {
+          key: { text: 'Name' },
+          value: { text: 'John Smith' }
+        },
+        {
+          key: { text: 'Address' },
+          value: { html: '12 Old Oak Road<br />Throckley<br /> NE67 9AD' }
+        }
+      ] %}
+
+      {% if data.exemption === 'bsa' %}
+        {% set summaryRows = ( summaryRows.push( { key: { text: 'Exemption reason ticked' }, value: { text: 'HELLO' }  } ), summaryRows ) %}
+      {% else %}
+        {% set summaryRows = ( summaryRows.push( { key: { text: 'Exemption reason ticked' }, value: { text: 'HELLO DWP' }  } ), summaryRows ) %}
+      {% endif %}
+
+
+      {{ summaryList({
+        rows: summaryRows
+      }) }}
+
+
+
+      <dl class="nhsuk-summary-list">
+
+      </dl>
+      <h3 class="nhsuk-heading-m">Details on the prescription</h3>
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Jack Burton
+          </dd>
+
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Address
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            12 Old Oak Road<br>Throckley<br> NE67 9AD
+          </dd>
+
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Exemption reason ticked
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <p>Gets Income Support or income-related Employment and Support Allowance</p>
+
+          </dd>
+
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Date prescription was claimed
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            On 21 April 2021
+          </dd>
+
+        </div>
+      </dl>
+
+
+
+
+
+    <p class="nhsuk-body">If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
+
+
+    <form action="case-details" method="post" novalidate>
+
+      {{ button({
+        text: 'Continue'
+      }) }}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

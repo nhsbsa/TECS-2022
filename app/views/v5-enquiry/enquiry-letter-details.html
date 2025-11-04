@@ -74,8 +74,35 @@ Enquiry letter
           </dd>
       
         </div>
-        
       </dl>
+
+      {% if data.showEmail === 'true' %}
+
+            <h3>Contact details</h3>
+            {{ summaryList({
+                rows: [
+                  {
+                    key: {
+                      text: 'Email address'
+                    },
+                    value: {
+                      text: data.emailAddress or 'joe.bloggs@hotmail.com'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: 'email-EXPEDITE-v3',
+                          text: 'Change',
+                          visuallyHiddenText: 'email address'
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+        {% endif %}
+
       <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
       </dl>
     </div>
