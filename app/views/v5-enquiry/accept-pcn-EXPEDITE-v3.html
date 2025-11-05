@@ -170,8 +170,77 @@
                     id: 'emailAddress',
                     name: 'emailAddress',
                     value: data.emailAddress,
+                    attributes: {
+                        autocomplete: 'none'
+                    },
                     classes: 'nhsuk-input--width-20'
                 }) }}
+                
+                {{ input({
+                    label: {
+                        text: 'Confirm email',
+                        classes: 'nhsuk-label--s'
+                    },
+                    id: 'confirmEmailAddress',
+                    inputmode: 'email',
+                    attributes: {
+                        autocomplete: 'none'
+                    },
+                    classes: 'nhsuk-input--width-20'
+                }) }}
+
+                <style>
+                    
+                    .nhsuk-hidden {
+                        display: none;
+                    }
+
+                </style>
+
+                <script>
+
+                    const ConfirmEmail = (function(){
+
+                        function _init(){
+
+                            const email = document.querySelector('#emailAddress');
+                            const emailConfirm = document.querySelector('#confirmEmailAddress');
+
+                            emailConfirm.parentElement.classList.add('nhsuk-hidden');
+
+                            email.addEventListener('change', function(){
+
+                               if( email.value.trim() !== '' ){
+
+                                // Value exists
+                                emailConfirm.value = '';
+                                emailConfirm.parentElement.classList.remove('nhsuk-hidden');
+                                emailConfirm.focus();
+
+                               } else {
+
+                                // No value
+                                emailConfirm.value = '';
+                                emailConfirm.parentElement.classList.add('nhsuk-hidden');
+
+                               }
+
+                            });
+                            
+
+                        };
+
+                        return {
+                            init: _init
+                        }
+                    })();
+
+                    document.addEventListener( 'DOMContentLoaded', function(){
+                        ConfirmEmail.init();
+                    });
+
+                </script>
+                
 
                 <hr class="nhsuk-section-break nhsuk-section-break--m" />
 
