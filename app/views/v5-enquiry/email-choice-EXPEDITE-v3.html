@@ -23,14 +23,11 @@
                     {{ input({
                         id: 'emailAddress',
                         name: 'emailAddress',
-                        hint: {
-                            text: 'We will use this to send you notifications about your case.'
-                        },
                         value: data.emailAddress,
                         classes: 'nhsuk-u-width-two-thirds',
                         attributes: { 'autocomplete' : 'off', 'inputmode' : 'email' },
                         label: {
-                            text: 'Email address (optional)'
+                            text: 'Email address'
                         }
                     }) }}
 
@@ -42,10 +39,13 @@
                     value: data.hasEmailAddress,
                     fieldset: {
                         legend: {
-                        text: 'Do you have an email address?',
-                        classes: 'nhsuk-fieldset__legend--l',
-                        isPageHeading: true
+                            text: 'Do you have an email address?',
+                            classes: 'nhsuk-fieldset__legend--l',
+                            isPageHeading: true
                         }
+                    },
+                    hint: {
+                        text: 'You do not need to provide an email address, but if you do we can send you updates about your case.'
                     },
                     items: [
                         {
@@ -61,6 +61,30 @@
                         }
                     ]
                 }) }}
+
+
+                {% set detailsHTML %}
+
+                    <p>We will send you an email if you use this online service to:</p>
+                    <ul class="nshuk-list nhsuk-list-bullet">
+                    {% if data.settings[version].type === 'decs' %}
+                        <li>confirm you were entitled to free NHS prescriptions</li>
+                    {% else %}
+                        <li>confirm you were entitled to free or reduced cost NHS dental treatment</li>
+                    {% endif %}
+                        <li>try to confirm your entitlement but we cannot find your details</li>
+                        <li>accept a penalty charge</li>
+                        <li>make a payment towards a penalty charge</li>
+                    </ul>
+
+                {% endset %}
+
+                {{ details({
+                    text: 'What type of updates will I receive?',
+                    html: detailsHTML
+                }) }}
+
+
 
                 {{ button({
                     text: 'Continue'
