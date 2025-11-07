@@ -27,7 +27,8 @@ module.exports = {
 
     settings: {
         'v5-enquiry': {
-            allowExpedite : 'true', // Use this to switch on/off the UR route for Expedite a PCN
+            allowExpedite : 'true', // Use this to switch on/off the UR route for Expedite a PCN,
+            allowEmail: 'true',
             type: 'pecs',
             version: 'a' // ['a','b'] - // Only used in v2 expedite screens for UR
         },

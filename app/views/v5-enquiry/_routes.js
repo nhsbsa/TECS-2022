@@ -12,12 +12,49 @@ router.post(/date-of-birth/, function( req, res ){
 
 
 router.post(/enter-postcode/, function( req, res ){
+    
     let destination = 'enquiry-letter-details';
-    if( req.session.data.settings[res.locals.version].type === 'decs' ){
-        destination = 'enquiry-letter-details-decs-EXPEDITE';
+
+    if( req.session.data.settings[res.locals.version].allowEmail === 'true' ){
+          destination = 'email-choice-EXPEDITE-v3';
+    } else {
+      if( req.session.data.settings[res.locals.version].type === 'decs' ){
+          destination = 'enquiry-letter-details-decs-EXPEDITE';
+      }
     }
+
     res.redirect( destination );
 });
+
+router.post(/email-choice-EXPEDITE-v3/, function( req, res ){
+
+  let destination = 'enquiry-letter-details?showEmail=blank';
+
+  if( req.session.data.hasEmailAddress === 'yes' && req.session.data.emailAddress ){
+    destination = 'email-confirmation-EXPEDITE-v3';
+  } else {
+
+    if( req.session.data.hasEmailAddress === 'no' ){
+      req.session.data.emailAddress = '';
+    }
+
+    if( req.session.data.settings[res.locals.version].type === 'decs' ){
+      destination = 'enquiry-letter-details-decs-EXPEDITE';
+    }
+  }
+
+  res.redirect( destination );
+});
+
+router.post(/email-confirmation-EXPEDITE-v3/, function( req, res ){
+  let destination = 'enquiry-letter-details?showEmail=provided';
+  if( req.session.data.settings[res.locals.version].type === 'decs' ){
+          destination = 'enquiry-letter-details-decs-EXPEDITE';
+  }
+  res.redirect( destination );
+});
+
+
 
 router.post(/what-you-want-to-do-next/, function( req, res ){
     let destination = 'what-happens-next';

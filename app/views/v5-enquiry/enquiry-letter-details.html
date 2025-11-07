@@ -76,7 +76,7 @@ Enquiry letter
         </div>
       </dl>
 
-      {% if data.showEmail === 'true' %}
+      {% if data.showEmail === 'provided' %}
 
             <h3>Contact details</h3>
             {{ summaryList({
@@ -91,7 +91,7 @@ Enquiry letter
                     actions: {
                       items: [
                         {
-                          href: 'email-EXPEDITE-v3',
+                          href: 'email-choice-EXPEDITE-v3',
                           text: 'Change',
                           visuallyHiddenText: 'email address'
                         }
@@ -102,6 +102,37 @@ Enquiry letter
               }) }}
 
         {% endif %}
+
+
+        {% if data.showEmail === 'blank' %}
+
+            <h3>Contact details</h3>
+            {{ summaryList({
+                rows: [
+                  {
+                    key: {
+                      text: 'Email address'
+                    },
+                    value: {
+                      text: 'Not provided'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: 'email-choice-EXPEDITE-v3',
+                          text: 'Add',
+                          visuallyHiddenText: 'email address'
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+        {% endif %}
+
+
+
 
       <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
       </dl>
