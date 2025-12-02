@@ -76,66 +76,45 @@ Enquiry letter
         </div>
       </dl>
 
+
+
       {% if data.showEmail === 'provided' %}
+        {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
+      {% else %}
+        {% set emailValue = 'No email provided' %}
+      {% endif %}
 
-            <h3>Contact details</h3>
-            {{ summaryList({
-                rows: [
+      <h3>Contact details</h3>
+      {{ summaryList({
+          rows: [
+            {
+              key: {
+                text: 'Email address'
+              },
+              value: {
+                text: emailValue
+              },
+              actions: {
+                items: [
                   {
-                    key: {
-                      text: 'Email address'
-                    },
-                    value: {
-                      text: data.emailAddress or 'joe.bloggs@hotmail.com'
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: 'email-choice-EXPEDITE-v3',
-                          text: 'Change',
-                          visuallyHiddenText: 'email address'
-                        }
-                      ]
-                    }
+                    href: 'email-change-EXPEDITE-v3',
+                    text: 'Change',
+                    visuallyHiddenText: 'email address'
                   }
                 ]
-              }) }}
+              }
+            }
+          ]
+        }) }}
 
-        {% endif %}
-
-
-        {% if data.showEmail === 'blank' %}
-
-            <h3>Contact details</h3>
-            {{ summaryList({
-                rows: [
-                  {
-                    key: {
-                      text: 'Email address'
-                    },
-                    value: {
-                      text: 'No email address'
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: 'email-choice-EXPEDITE-v3',
-                          text: 'Change',
-                          visuallyHiddenText: 'email address'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }) }}
-
-        {% endif %}
+        
 
 
 
 
       <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
-      </dl>
+      
+      
     </div>
    
   </div>

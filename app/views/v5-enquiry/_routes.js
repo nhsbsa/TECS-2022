@@ -46,6 +46,16 @@ router.post(/email-choice-EXPEDITE-v3/, function( req, res ){
   res.redirect( destination );
 });
 
+
+router.post(/email-change-EXPEDITE-v3/, function( req, res ){
+  let destination = 'email-confirmation-EXPEDITE-v3';
+  res.redirect( destination );
+});
+
+
+
+
+
 router.post(/email-confirmation-EXPEDITE-v3/, function( req, res ){
   let destination = 'enquiry-letter-details?showEmail=provided';
   if( req.session.data.settings[res.locals.version].type === 'decs' ){
