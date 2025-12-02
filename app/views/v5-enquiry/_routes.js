@@ -30,18 +30,15 @@ router.post(/email-choice-EXPEDITE-v3/, function( req, res ){
 
   let destination = 'enquiry-letter-details?showEmail=blank';
 
-  if( req.session.data.hasEmailAddress === 'yes' && req.session.data.emailAddress ){
-    destination = 'email-confirmation-EXPEDITE-v3';
-  } else {
-
-    if( req.session.data.hasEmailAddress === 'no' ){
-      req.session.data.emailAddress = '';
-    }
+  if( req.session.data.hasEmailAddress === 'yes' ){
 
     if( req.session.data.settings[res.locals.version].type === 'decs' ){
       destination = 'enquiry-letter-details-decs-EXPEDITE';
+    } else {
+      destination = 'email-confirmation-EXPEDITE-v3'
     }
-  }
+
+  } 
 
   res.redirect( destination );
 });
