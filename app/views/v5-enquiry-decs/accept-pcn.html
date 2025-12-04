@@ -109,10 +109,17 @@
 
             <h2 class="nhsuk-heading-m">Do not accept the penalty charge</h2>
 
-            <p>You now have 28 days to confirm you were entitled to {{ freeStuff }} (by {{ 28 | alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
-            <p><a class="nhsuk-link" href="enquiry-letter-details">Check the details on your enquiry letter</a></p>
+            <p>You still have 28 days to confirm you were entitled to {{ freeStuff }} (by {{ 28 | alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
+            <p>If you do not want to accept the penalty charge today you can still use this service to confirm you were entitled. You'll need to check the details on your enquiry letter first.</p>
+
+            {{ actionLink({
+                href: 'enquiry-letter-details',
+                text: 'Go back to check the details on your enquiry letter'
+            }) }}
+            
             <p>If you do not confirm you were entitled to {{ freeStuff }} we will send a Penalty Charge Notice.</p>
 
+            
 
             <h2 class="nhsuk-heading-m">Accept the penalty charge</h2>
 
