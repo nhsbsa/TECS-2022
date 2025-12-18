@@ -78,7 +78,9 @@ Enquiry letter
 
 
 
-      {% if data[version].showEmail === 'true' %}
+      {% if data[version].allowEmail === 'true' %}
+
+        <!-- Allow email is set in the session-data-defaults.js file -->
 
         {% if data.showEmail === 'provided' %}
           {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
