@@ -78,34 +78,38 @@ Enquiry letter
 
 
 
-      {% if data.showEmail === 'provided' %}
-        {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
-      {% else %}
-        {% set emailValue = 'No email provided' %}
-      {% endif %}
+      {% if data[version].showEmail === 'true' %}
 
-      <h3>Contact details</h3>
-      {{ summaryList({
-          rows: [
-            {
-              key: {
-                text: 'Email address'
-              },
-              value: {
-                text: emailValue
-              },
-              actions: {
-                items: [
-                  {
-                    href: 'email-change-EXPEDITE-v3',
-                    text: 'Change',
-                    visuallyHiddenText: 'email address'
-                  }
-                ]
+        {% if data.showEmail === 'provided' %}
+          {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
+        {% else %}
+          {% set emailValue = 'No email provided' %}
+        {% endif %}
+
+        <h3>Contact details</h3>
+        {{ summaryList({
+            rows: [
+              {
+                key: {
+                  text: 'Email address'
+                },
+                value: {
+                  text: emailValue
+                },
+                actions: {
+                  items: [
+                    {
+                      href: 'email-change-EXPEDITE-v3',
+                      text: 'Change',
+                      visuallyHiddenText: 'email address'
+                    }
+                  ]
+                }
               }
-            }
-          ]
-        }) }}
+            ]
+          }) }}
+
+        {% endif %}
 
         
 
