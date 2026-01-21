@@ -15,11 +15,11 @@ router.post(/what-you-want-to-do-next/, function( req, res ){
 });
 
 router.post(/accept-pcn/, function (req, res) {
-   let destination = 'accept-pcn?showErrors=true';
+   let destination = ( req.originalUrl.indexOf('hc3') > -1 ) ? 'accept-pcn-hc3?showErrors=true' : 'accept-pcn?showErrors=true';
    const tickBox = req.session.data.acceptPCNDeclarationB;
   if( Array.isArray(tickBox) && tickBox[0] === 'acceptCharge'  ){
     delete req.session.data.showErrors;
-    destination = 'pcn-accepted';
+    destination = ( req.originalUrl.indexOf('hc3') > -1 ) ? 'pcn-accepted-hc3' : 'pcn-accepted';
   }
 
   res.redirect( destination );
