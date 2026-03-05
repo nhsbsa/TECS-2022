@@ -1,10 +1,45 @@
 const express = require('express');
 const router = express.Router();
 
-router.post(/enter-postcode/, function( req, res ){
-    destination = 'enquiry-letter-details';
+
+router.post(/date-of-birth/, function( req, res ){
+    let destination = 'enter-postcode';
     res.redirect( destination );
 });
+
+
+router.post(/enter-postcode/, function( req, res ){
+    let destination = 'enquiry-letter-details';
+    if( req.session.data.settings[res.locals.version].allowEmail === 'true' ){
+          destination = 'email-choice';
+    }
+    res.redirect( destination );
+});
+
+router.post(/email-choice/, function( req, res ){
+
+  let destination = 'enquiry-letter-details?showEmail=blank';
+
+  if( req.session.data.hasEmailAddress === 'yes' ){
+    destination = 'email-confirmation'
+  } 
+
+  res.redirect( destination );
+});
+
+
+router.post(/email-change/, function( req, res ){
+  let destination = 'email-confirmation';
+  res.redirect( destination );
+});
+
+router.post(/email-confirmation/, function( req, res ){
+  let destination = 'enquiry-letter-details?showEmail=provided';
+  res.redirect( destination );
+});
+
+
+
 
 router.post(/what-you-want-to-do-next/, function( req, res ){
     let destination = 'what-happens-next';

@@ -33,6 +33,8 @@ module.exports = {
             version: 'a' // ['a','b'] - // Only used in v2 expedite screens for UR
         },
         'v5-enquiry-decs': {
+            allowExpedite : 'true',
+            allowEmail: 'true',
             type: 'decs'
         }
     }
