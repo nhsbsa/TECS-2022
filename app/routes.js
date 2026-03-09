@@ -619,8 +619,10 @@ router.get(/full-partial/, function (req, res) {
 router.post('/v6-pcn/pay-by-dd', function(req, res) {
     const selectedCheckboxes = req.body.checkbox;
 
+    console.log( selectedCheckboxes );
+
     // Check if all 3 checkboxes are selected
-    if (Array.isArray(selectedCheckboxes) && selectedCheckboxes.length === 3) {
+    if (Array.isArray(selectedCheckboxes) && selectedCheckboxes.indexOf('bank') > -1 && selectedCheckboxes.indexOf('account') > -1 && selectedCheckboxes.indexOf('direct') > -1 ) {
       // All checkboxes are selected, redirect to 'instalment' page
       res.redirect('/v6-pcn/direct-debit-instalment-option');
     } else {
@@ -647,6 +649,9 @@ router.post('/v6-pcn/direct-debit-instalment-option', function(req, res) {
 router.post('/v6-pcn/direct-debit-date', function(req, res) {
   const day = req.session.data['day'];
 
+  // Nah, just go for it...
+  res.redirect('/v6-pcn/direct-debit-check-address');
+  /*
   if (day > 0 &&  day <= 28) {
     // if day number is greater than 0 and less or equal to 28 progress
     res.redirect('/v6-pcn/direct-debit-check-address');
@@ -654,6 +659,7 @@ router.post('/v6-pcn/direct-debit-date', function(req, res) {
     // if day number is greater than 28 don't progress
     res.redirect('/v6-pcn/direct-debit-date');
   }
+    */
 });
 
 // DD check address is correct - PECS
