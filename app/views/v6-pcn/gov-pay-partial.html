@@ -22,7 +22,7 @@ GOV.UK prototype kit
 						Total amount:
 					</p>
 
-					<span id="amount" class="govuk-heading-l" style="padding-top: 0px; margin-bottom: 0px;">£25.00</span>
+					<span id="amount" class="govuk-heading-l" style="padding-top: 0px; margin-bottom: 0px;">£{{ data.partialPaymentAmount | formatAmount or '25.00' }}</span>
 				</div>
 
 
@@ -417,7 +417,7 @@ GOV.UK prototype kit
 					</div>
 					
 					<div class="form-group" style="margin-top:20px">
-						<a href="gov-payment-confirmed" class="govuk-button nhsuk-u-margin-bottom-6">
+						<a href="gov-payment-confirmed-partial" class="govuk-button nhsuk-u-margin-bottom-6">
 						Continue
 						</a>
 						

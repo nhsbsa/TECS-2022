@@ -174,6 +174,13 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
 
 
   //
+  // FORMAT AMOUNT FUNCTION
+  //
+  filters.formatAmount  = function( amount ){
+    return ( !Number.isNaN( parseFloat( amount ) ) ) ? parseFloat(amount).toFixed(2) + '' : '00.00';
+  };
+
+  //
   // GENERATE PAYMENT PLAN ROWS FUNCTION
   //
   filters.generatePaymentPlanRows = function( amount, months, daysOffset, dueMonth, alreadyPaid, showStatuses ){

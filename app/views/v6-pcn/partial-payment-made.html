@@ -17,7 +17,7 @@ Payment confirmation
         <div class="nhsuk-card__content">
           
           
-          <h2 class="nhsuk-card__content" style="text-align: center; color: white;">You have paid £25 towards your Penalty Charge Notice</h2>
+          <h2 class="nhsuk-card__content" style="text-align: center; color: white;">You have paid £{{ data.partialPaymentAmount | formatAmount or '25.00' }} towards your Penalty Charge Notice</h2>
           
  
           
@@ -52,7 +52,7 @@ Payment confirmation
               So far you've paid
             </dt>
             <dd class="nhsuk-summary-list__value">
-              £32.90
+              £{{ data.partialPaymentAmount | formatAmount or '25.00' }}
             </dd>
         
             
@@ -64,7 +64,7 @@ Payment confirmation
               You still need to pay
             </dt>
             <dd class="nhsuk-summary-list__value">
-              <p >£25</p>
+              <p>£25</p>
             </dd>
         
             
@@ -81,9 +81,9 @@ Payment confirmation
       <h3>Further payments</h3>
       <p>You can use this service to pay the remaining amount of <strong>£25</strong>.</p>
 
-      <a href="payment-method"><button class="nhsuk-button" data-module="nhsuk-button" type="submit" >
+      <a class="nhsuk-button" href="payment-method">
         Make another payment
-      </button></a>
+      </a>
 
       <p><a href="javascript:window.print();">Print this page</a></p>
 
