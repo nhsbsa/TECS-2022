@@ -5,7 +5,7 @@ module.exports = {
 
     debug: 'false',
 
-    type: 'decs', // ['pecs','decs']
+    type: 'pecs', // ['pecs','decs']
     letter: 'pcn', // ['enquiry','pcn','scn']
     status: 'default', // ['default','not-found','dd-blocked'],
     exemption: 'bsa', // ['bsa','dwp']

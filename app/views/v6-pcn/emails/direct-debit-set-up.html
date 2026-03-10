@@ -1,0 +1,16 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}Direct Debit set up for Penalty Charge Notice - (01234567890){% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+    <p>You have set up a Direct Debit to pay your penalty charge.</p>
+    <p>Confirmation of the instruction will be sent to you in 3 working days, or be received to you by no later than 10 working days before the first collection.</p>
+    <p>Your first payment of £11.37 will be taken on or just after 1 February 2023.</p>
+    <p>Your next payment of £11.37 will be taken on or just after 1 March 2023.</p>
+    <p>As long as you keep up payments there will be no further charges added to your account.</p>
+    <p>If you have any other queries, you can find out our contact details at <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+    <p>NHS Business Services Authority</p>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}Payment for Penalty Charge Notice received{% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+
+    {% if data.type === 'decs' %}
+        <p>Thank you for confirming you were entitled to free dental treatment.</p>
+    {% else %}
+        <p>Thank you for confirming you were entitled to free or reduced cost NHS prescriptions.</p>
+    {% endif %}
+
+    <p>Your case has now been closed.</p>
+   
+    <p>If you have any other queries, you can find out our contact details at <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+    <p>NHS Business Services Authority</p>
+
+{% endblock %}
+
+
+

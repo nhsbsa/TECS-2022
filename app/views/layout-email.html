@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>
+            {% block emailTitle %}Email title{% endblock %}
+        </title>
+
+        <style>
+
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 2.5rem;
+                font-family: -apple-system,
+                            BlinkMacSystemFont,
+                            "Segoe UI",
+                            "Helvetica Neue",
+                            Arial,
+                            sans-serif;
+            }
+
+            dd,
+            dl,
+            dt {
+                display: block;
+                overflow: hidden;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            dl {
+                border: 1px solid #CCC;
+                max-width: 600px;
+            }
+
+            dt, dd {
+                font-size: 1rem;
+                padding: 0.625rem 1.25rem;
+            }
+
+            dt {
+                font-size: 0.8rem;
+                color: #999;
+                padding-bottom: 0;
+            }
+
+            dd {
+                border-bottom: 1px solid #CCC;
+            }
+
+            a {
+                color: royalblue;
+            }
+
+            .subject dd {
+                font-weight: 600;
+            }
+
+            .body dt {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                margin: -1px;
+                border: 0;
+                padding: 0;
+                white-space: nowrap;
+                clip-path: inset(100%);
+                clip: rect(0 0 0 0);
+                overflow: hidden;
+            }
+
+            .body dd {
+                border-bottom: none;
+            }
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <dl>
+
+            <!-- FROM -->
+            <div class="from">
+                <dt>From</dt>
+                <dd>
+                    {% block emailFrom %}
+                        <a href="mailto:service@nhsbsa.nhs.uk">exemption.checking@nhsbsa.nhs.uk</a>
+                    {% endblock %}
+                </dd>
+            </div>
+
+            <!-- TO -->
+            <div class="to">
+                <dt>To</dt>
+                <dd>
+                    {% block emailTo %}
+                        <a href="mailto:patient@outlook.com">patient@outlook.com</a>
+                    {% endblock %}
+                </dd>
+            </div>
+
+            <!-- SUBJECT -->
+            <div class="subject">
+                <dt>Subject</dt>
+                <dd>
+                    {% block emailSubject %}Email subject{% endblock %}
+                </dd>
+            </div>
+
+            <!-- BODY -->
+            <div class="body">
+                <dt>Body</dt>
+                <dd>
+                    {% block emailBody %}
+                        <p>Email body text</p>
+                    {% endblock %}
+                </dd>
+            </div>
+
+        </dl>
+
+    </body>
+</html>

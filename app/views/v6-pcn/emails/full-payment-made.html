@@ -1,0 +1,13 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}Payment for Penalty Charge Notice received{% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+    <p>We've received your full payment and have closed your case. You do not need to do anything else.</p>
+    <p>Penalty Charge Notice reference number: 01234567890<br />You've paid £57.90</p>
+    <p>If you have any other queries, you can find out our contact details at <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+    <p>NHS Business Services Authority</p>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}Case Closed - (01234567890){% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+
+    <p>You've accepted the penalty charge using our online service.</p>
+
+    <h2>What happens next</h2>
+
+    <p>We'll send you a letter with your penalty charge details. This is for your records, and does not represent any extra charges.</p>
+    <p>You do not need to wait for this letter to pay your penalty charge. You can make a payment now.</p>
+    <p>You can make payments by card or Direct Debit using our online service at <a href="https://www.nhsbsa.nhs.uk/respond">https://www.nhsbsa.nhs.uk/respond</a></p>
+
+    <p>For other ways to pay, or if you have any other queries, you can find out our contact details at <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+    <p>NHS Business Services Authority</p>
+
+{% endblock %}

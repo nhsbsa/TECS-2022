@@ -1,0 +1,19 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}Payment for Penalty Charge Notice received{% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+    
+    <p>We've received a partial payment towards your Penalty Charge Notice.</p>
+    <p>Penalty Charge Notice reference number: 01234567890<br />So far you've paid: £27.90<br />You still need to pay: £30.00</p>
+
+    <h2>What happens next</h2>
+    <p>You now have 28 days to either confirm you were entitled to free NHS prescriptions, or pay this Penalty Charge Notice in full.</p>
+    <p>You can make payments by card or Direct Debit using our online service at <a href="https://www.nhsbsa.nhsbsa.nhs.uk/respond">https://www.nhsbsa.nhsbsa.nhs.uk/respond</a></p>
+
+    <p>For other ways to pay, or if you have any other queries, you can find out our contact details at <a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+    <p>NHS Business Services Authority</p>
+
+{% endblock %}
