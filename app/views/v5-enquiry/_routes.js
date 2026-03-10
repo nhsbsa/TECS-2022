@@ -55,9 +55,21 @@ router.post(/email-change-EXPEDITE-v3/, function( req, res ){
 
 router.post(/email-confirmation-EXPEDITE-v3/, function( req, res ){
   let destination = 'enquiry-letter-details?showEmail=provided';
-  if( req.session.data.settings[res.locals.version].type === 'decs' ){
+
+  if( req.session.data.returnTo === 'locked' ){
+    
+    destination = 'adhoc-screens/enquiry-letter-details-locked?returnTo=';
+    if( req.session.data.settings[res.locals.version].type === 'decs' ){
+          destination = 'adhoc-screens/enquiry-letter-details-locked-decs?returnTo=';
+    }
+
+  } else {
+    if( req.session.data.settings[res.locals.version].type === 'decs' ){
           destination = 'enquiry-letter-details-decs-EXPEDITE';
+    }
   }
+
+  
   res.redirect( destination );
 });
 

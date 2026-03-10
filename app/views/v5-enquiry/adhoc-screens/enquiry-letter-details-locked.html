@@ -100,6 +100,43 @@
 
       </dl>
 
+
+
+      {% if data.settings[version].allowEmail === 'true' %}
+
+        <!-- Allow email is set in the session-data-defaults.js file -->
+
+        {% if data.showEmail === 'provided' %}
+          {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
+        {% else %}
+          {% set emailValue = 'No email provided' %}
+        {% endif %}
+
+        <h3>Contact details</h3>
+        {{ summaryList({
+            rows: [
+              {
+                key: {
+                  text: 'Email address'
+                },
+                value: {
+                  text: emailValue
+                },
+                actions: {
+                  items: [
+                    {
+                      href: '../email-change-EXPEDITE-v3?returnTo=locked',
+                      text: 'Change',
+                      visuallyHiddenText: 'email address'
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
       
 
       
