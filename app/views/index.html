@@ -2,27 +2,26 @@
 
 <!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
 
-<!-- Extends the layout from /views/layout.html -->
+<!-- Extends the layout from /app/views/layout.html -->
 {% extends 'layout.html' %}
-<!-- 
-  In /views/layout.html you can:
-    - change the header and footer 
+<!--
+  In /app/views/layout.html you can:
+    - change the header and footer
     - add custom CSS and JavaScript
 -->
 
-<!-- Set the page title -->
-{% block pageTitle %}
-  TECS - Respond to your letter
-{% endblock %}
+<!--
+  Use this to set the page name which will appear at the
+  start of the <title> tag, followed by the service name.
+  This is often not needed on the homepage, where only the
+  service name is needed. You can also reuse this variable
+  within the <h1>, where they are the same.
+-->
+{% set pageName = "" %}
 
-<!-- For adding a breadcrumb -->
-<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
 {% block beforeContent %}
-{% endblock %}
-
-<!-- For adding a back link -->
-<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
-{% block outerContent %}
 {% endblock %}
 
 <!-- For adding page content -->
@@ -120,14 +119,19 @@
                 <p class="nhsuk-card__description nhsuk-u-margin-bottom-5">An online service to challenge an enquiry letter.</p>
                 
                 <a class="nhsuk-button" href="v5-enquiry/respond-to-your-letter">Latest prototype version</a>
-                <div class="nhsuk-action-link">
-                <a class="nhsuk-action-link__link" href="enquiry">
+                <div class="nhsuk-grid-row">
+                    <div class="nhsuk-grid-column-full">
+                        <div class="nhsuk-action-link">
+                    <a class="nhsuk-action-link__link" href="enquiry">
                     <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
                     </svg>
                     
                     <span class="nhsuk-action-link__text">Enquiry Letter Iteration History</span>
+                    </a>
+                    </div>
+                </div>
                 </a>
                 </div>
             </div>
@@ -141,6 +145,8 @@
             <p class="nhsuk-card__description nhsuk-u-margin-bottom-5">An online service to challenge an enquiry letter.</p>
 
             <a class="nhsuk-button" href="v5-enquiry-decs/respond-to-your-letter">Latest prototype version</a>
+            <div class="nhsuk-grid-row">
+                    <div class="nhsuk-grid-column-full">
                 <div class="nhsuk-action-link">
                     <a class="nhsuk-action-link__link" href="enquiry">
                     <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
@@ -150,6 +156,8 @@
                     
                     <span class="nhsuk-action-link__text">Enquiry Letter Iteration History</span>
                     </a>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -161,7 +169,8 @@
                 </h3>
                 <p class="nhsuk-card__description nhsuk-u-margin-bottom-5">An online service to challenge or pay a PCN.</p>
                 <a class="nhsuk-button" href="v6-pcn/respond-to-your-letter">Latest prototype version</a>
-                
+                <div class="nhsuk-grid-row">
+                    <div class="nhsuk-grid-column-full">
                 <div class="nhsuk-action-link">
                     <a class="nhsuk-action-link__link" href="penalty">
                         <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
@@ -172,7 +181,8 @@
                         <span class="nhsuk-action-link__text">PCN Iteration History</span>
                     </a>
                 </div>
-
+</div>
+</div>
                 <hr>
 
                 <h4>February 2025 UR Journey</h4>
@@ -259,4 +269,4 @@
         </div> -->
     </div>
 </div>
- {% endblock %}
+{% endblock %}
