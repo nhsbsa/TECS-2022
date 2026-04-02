@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
 {% block pageTitle %}What is your email address?{% endblock %}
 =
 {% block beforeContent %}
@@ -43,7 +43,7 @@
                 {{ button({
                     text: 'Continue'
                 }) }}
-        
+        <p><a href="enquiry-letter-details">Cancel</a></p>
         </form>
 
 
