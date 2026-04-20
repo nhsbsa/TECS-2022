@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What do you want to do next?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="what-you-want-to-do-next" method="post" class="form">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+
+{% if data.type == "pecs" %}
+        {% set radioItems = [
+      {
+      value: 'confirm-entitled',
+      text: 'Confirm I was entitled to free NHS prescripitons',
+      hint: {
+      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
+      }
+      },
+      {
+      value: 'not-entitled',
+      text: 'I was not entitled to free NHS prescriptions and want to know what happens next'
+      },
+      {
+      divider: 'or'
+      },
+      {
+      value: 'not-sure',
+      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
+      }
+      ]
+      %}
+{% else %}
+        {% set radioItems = [
+      {
+      value: 'confirm-entitled',
+      text: 'Confirm I was entitled to free or reduced cost NHS dental treatment',
+      hint: {
+      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
+      }
+      },
+      {
+      value: 'not-entitled',
+      text: 'I was not entitled to free or reduced cost NHS dental treatment and want to know what happens next'
+      },
+      {
+      divider: 'or'
+      },
+      {
+      value: 'not-sure',
+      text: "I'm not sure if I was entitled to free or reduced cost NHS dental treatment and want to check"
+      }
+      ]
+      %}
+{% endif %}
+
+      {{ radios({
+      idPrefix: "confirm",
+      name: "confirm",
+      fieldset: {
+      legend: {
+      text: "What do you want to do next?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: radioItems
+
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+    <p><a href="respond-to-your-letter">Cancel</a></p>
+
+  </div>
+</div>
+<style>
+</style>
+
+{% endblock %}

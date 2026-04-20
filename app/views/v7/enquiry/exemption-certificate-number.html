@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Did you know your [Benefit] number?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
+    <div class="nhsuk-form-group">
+
+
+      <form action="exemption-certificate-number" method="post" class="form">
+
+{% from "radios/macro.njk" import radios %}
+{% from "input/macro.njk" import input %}
+
+{% set yesHtml %}
+  {{ input({
+    id: "certificate-number",
+    name: "certificate-number",
+    classes: "nhsuk-u-width-two-thirds",
+    label: {
+      text: "Certificate number"
+    }
+  }) }}
+{% endset -%}
+
+{{ radios({
+  idPrefix: "exemptionNumber",
+  name: "exemptionNumber",
+  fieldset: {
+    legend: {
+      text: "Do you know your [Benefit] number?",
+      size: "l",
+      isPageHeading: true
+    }
+  },
+  hint: {
+    text: "You do not have to tell us your certificate number, but telling us can help us find your certificate. You can find the number on the certificate"
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      conditional: {
+        html: yesHtml
+      }
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+        <!-- <div class="nhsuk-radios nhsuk-radios--conditional">
+
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes"
+              aria-controls="conditional-contact-1" aria-expanded="false">
+            <label class="nhsuk-label nhsuk-radios__label" for="contact-1">
+              Yes
+            </label>
+          </div>
+
+          <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-contact-1">
+
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label" for="email">
+                Certificate number
+              </label>
+              <input class="nhsuk-input nhsuk-u-width-one-half" id="cert-number-input" name="certificatenumber"
+                type="text">
+            </div>
+
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="exemption" name="exemption" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="no">
+              No
+            </label>
+          </div>
+
+
+        </div> -->
+        </fieldset>
+
+    </div>
+    <div class="nhsuk-form-group">
+      <button class="nhsuk-button" type="submit">
+        Continue
+      </button>
+    </div>
+    </form>
+
+    <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
+
+
+  </div>
+</div>
+
+{% endblock %}

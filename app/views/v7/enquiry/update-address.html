@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your address
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="check-personal-details" method="post" class="form">
+
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">What was your address when you had [Benefit]?</h1>
+       
+
+          <div class="nhsuk-form-group">
+              <label class="nhsuk-label" for="addressline1">
+                  Address line 1
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline1" name="addressline1" type="text" autocomplete="address-line1">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="addressline2">
+                  Address line 2 (optional)
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="addressline2" name="addressline2" type="text" autocomplete="address-line2">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="towncity">
+                  Town or city
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-20" id="towncity" name="towncity" type="text" autocomplete="address-level2">
+          </div>
+
+          <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="postcode">
+                  Postcode
+              </label>
+              <input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
+          </div>
+
+          
+
+      
+
+                
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+          Continue
+        </button>
+        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+       </form>
+
+    </div>
+  </div>
+
+{% endblock %}

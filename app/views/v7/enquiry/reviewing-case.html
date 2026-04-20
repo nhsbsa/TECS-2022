@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+We are now reviewing your case
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .nhsuk-panel {
+    background: #005EB8;
+  }
+
+  .nhsuk-panel__title,
+  .nhsuk-panel__body {
+    text-align: center;
+  }
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    {{ panel({
+    titleText: "Thank you",
+    html: "We are now reviewing your case and
+    will contact you within 2 working days."
+    }) }}
+  </div>
+
+</div>
+
+<p>We will not add any extra charges during this time.</p>
+<p>You do not need to do anything until we contact you.</p>
+
+{{ insetText({
+html: '<span class="nhsuk-u-visually-hidden">Information: </span>
+<p>Jack Burton</p>
+<p>Reference number: 01234567890</p>'
+}) }}
+
+<p><a href="">Print this page</a></p>
+
+
+
+<h3>Feedback</h3>
+<p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
+<p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">Leave
+    feedback (opens in a new window)</a></p>
+
+
+</div>
+</div>
+{% endblock %}

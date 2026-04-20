@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}What is your reference number? - {{ serviceName }}{% endblock %}
+
+{% block content %}
+
+{% if data.type == "pecs" %}
+  {% set pageTitle = "What is your prescription reference number?" %}
+  {% set hintText = "You can find this on your prescription letter." %}
+{% else %}
+  {% set pageTitle = "What is your dental reference number?" %}
+  {% set hintText = "You can find this on your dental letter." %}
+{% endif %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="enter-reference-number" method="post" novalidate>
+
+      <span class="nhsuk-caption-m">Your details</span>
+
+      {{ input({
+        label: {
+          text: pageTitle,
+          classes: 'nhsuk-label--l',
+          isPageHeading: true
+        },
+        hint: {
+          text: hintText
+        },
+        id: 'referenceNumber',
+        name: 'referenceNumber',
+        value: data.referenceNumber,
+        classes: 'nhsuk-input--width-10'
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+    <p><a href="start">Cancel</a></p>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Benefit between 1 November and 30 November 2017
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-form-group">
+      
+        <form action="did-you-have-this-benefit" method="post" class="form">
+      
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        <div class="nhsuk-form-group">
+
+          {{ radios({
+      idPrefix: "benefit",
+      name: "benefit",
+      classes: "nhsuk-radios",
+      fieldset: {
+      legend: {
+      text: "[DWP Benefit] between 1 November and 30 November 2025?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "yes",
+      text: "Yes"
+      },
+      {
+      value: "no",
+      text: "No"
+      }
+      ]
+      }) }}
+
+        </fieldset>
+      
+      </div>
+      <div class="nhsuk-form-group">
+             {{ button({
+      text: 'Continue'
+      }) }}
+        </div>
+  
+        
+  
+          </form>      
+          
+      </div>
+        
+
+      </form>
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+
+    </div>
+  </div>
+  <style>
+    .heading-group p {
+    margin: 0;
+    padding: 0;
+    color: gray;
+    
+    
+}
+.heading-group {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.nhsuk-heading-l {
+ padding-bottom: 0px;
+}
+.nhsuk-input {
+  margin-bottom: 24px;
+}
+  </style>
+
+{% endblock %}

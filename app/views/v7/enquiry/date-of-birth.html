@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}What is your date of birth? - {{ serviceName }}{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form action="date-of-birth" method="post" novalidate>
+
+      <span class="nhsuk-caption-m">Your details</span>
+      {{ dateInput({
+      id: 'dateOfBirth',
+      namePrefix: 'dateOfBirth',
+      fieldset: {
+        legend: {
+          text: 'What is your date of birth?',
+          classes: 'nhsuk-label--l',
+          isPageHeading: true
+        }
+      },
+      hint: {
+        text: 'For example, 31 3 1980'
+      },
+      items: [
+        {
+          name: 'day',
+          classes: 'nhsuk-input--width-2',
+          value: data.dateOfBirth.day
+        },
+        {
+          name: 'month',
+          classes: 'nhsuk-input--width-2',
+          value: data.dateOfBirth.month
+        },
+        {
+          name: 'year',
+          classes: 'nhsuk-input--width-4',
+          value: data.dateOfBirth.year
+        }
+      ]
+      }) }}
+
+
+      {{ button({
+        text: 'Continue'
+      }) }}
+
+
+      <p><a href="start">Cancel</a></p>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

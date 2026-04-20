@@ -104,7 +104,7 @@
         </div>
 
 
-        <form action="accept-pcn-EXPEDITE-v3" method="post" novalidate>
+        <form action="accept-pcn" method="post" novalidate>
 
 
             <h2 class="nhsuk-heading-m">Do not accept the penalty charge</h2>
@@ -119,9 +119,7 @@
             
             <p>If you do not confirm you were entitled to {{ freeStuff }} we will send a Penalty Charge Notice.</p>
 
-
-
-
+            
 
             <h2 class="nhsuk-heading-m">Accept the penalty charge</h2>
 
@@ -157,105 +155,10 @@
                 items: [
                     {
                         value: 'acceptCharge',
-                        html: 'I confirm and accept my penalty charge'
+                        text: 'I confirm and accept my penalty charge'
                     }
                 ]
             }) }}
-
-
-            {% if data.showEmailInput === 'true' %}
-
-                <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--m" />
-
-                {{ input({
-                    label: {
-                        text: 'What is your email address? (optional)',
-                        classes: 'nhsuk-label--s'
-                    },
-                    hint: {
-                        text: 'We will use this to send you notifications and reminders about your case.'
-                    },
-                    inputmode: 'email',
-                    id: 'emailAddress',
-                    name: 'emailAddress',
-                    value: data.emailAddress,
-                    attributes: {
-                        autocomplete: 'none'
-                    },
-                    classes: 'nhsuk-input--width-20'
-                }) }}
-                
-                {{ input({
-                    label: {
-                        text: 'Confirm email',
-                        classes: 'nhsuk-label--s'
-                    },
-                    id: 'confirmEmailAddress',
-                    inputmode: 'email',
-                    attributes: {
-                        autocomplete: 'none'
-                    },
-                    classes: 'nhsuk-input--width-20'
-                }) }}
-
-                <style>
-                    
-                    .nhsuk-hidden {
-                        display: none;
-                    }
-
-                </style>
-
-                <script>
-
-                    const ConfirmEmail = (function(){
-
-                        function _init(){
-
-                            const email = document.querySelector('#emailAddress');
-                            const emailConfirm = document.querySelector('#confirmEmailAddress');
-
-                            emailConfirm.parentElement.classList.add('nhsuk-hidden');
-
-                            email.addEventListener('change', function(){
-
-                               if( email.value.trim() !== '' ){
-
-                                // Value exists
-                                emailConfirm.value = '';
-                                emailConfirm.parentElement.classList.remove('nhsuk-hidden');
-                                emailConfirm.focus();
-
-                               } else {
-
-                                // No value
-                                emailConfirm.value = '';
-                                emailConfirm.parentElement.classList.add('nhsuk-hidden');
-
-                               }
-
-                            });
-                            
-
-                        };
-
-                        return {
-                            init: _init
-                        }
-                    })();
-
-                    document.addEventListener( 'DOMContentLoaded', function(){
-                        ConfirmEmail.init();
-                    });
-
-                </script>
-                
-
-                <hr class="nhsuk-section-break nhsuk-section-break--m" />
-
-            {% endif %}
-
-
 
             {{ button({
                 text: 'Accept penalty charge'

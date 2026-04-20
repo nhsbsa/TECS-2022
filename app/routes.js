@@ -856,10 +856,173 @@ router.use((req, res, next) => {
 
 });
 
+// ==================================================================
+//                          V7 ENQUIRY FLOW
+// ==================================================================
+
+// ======= Index Page routing  and session data ========
+
+router.post('/set-type', function (req, res) {
+
+  const [letter, type] = req.body.flow.split('-');
+const version = 'v7';
+  req.session.data.letter = letter;  // enquiry / PCN
+  req.session.data.type = type;      // pecs / decs
+  req.session.data.version = 'v7';
+
+  res.redirect(`/${version}/${letter}/respond-to-your-letter`);
+
+});
 
 
+router.post('/start-journey', function (req, res) {
+
+  const { type, letter, version } = req.session.data;
+
+  const folder = letter === 'pcn' ? 'pcn' : 'enquiry';
+
+  res.redirect(`/${version}/${folder}/enter-reference-number`);
+
+});
+
+// ======== Email and Email Confirmation Page routing and session data ========
+
+router.post('/do-you-have-an-email', function (req, res) {
+
+  const { version, letter } = req.session.data;
+  const hasEmail = req.body.hasEmail;
+  const emailAddress = req.body.emailAddress;
+
+  // 1: must select yes/no
+  if (!hasEmail) {
+    req.session.data.emailError =
+      'Select yes if you have an email address, or no if you do not';
+
+    return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
+  }
+
+  req.session.data.hasEmail = hasEmail;
+
+  // 2: YES flow
+  if (hasEmail === 'yes') {
+
+    // Email is required if YES selected
+    if (!emailAddress) {
+      req.session.data.emailError = 'Enter your email address';
+
+      return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
+    }
+
+    req.session.data.email = emailAddress;
+
+    return res.redirect(`/${version}/${letter}/email-confirmation`);
+  }
+
+  // 3: NO flow cleanup
+  req.session.data.email = null;
+  req.session.data.pendingEmail = null;
+  req.session.data.emailConfirmed = false;
+
+  return res.redirect(`/${version}/${letter}/enquiry-letter-details`);
+});
+
+router.post('/change-email', function (req, res) {
+
+  const { version, letter } = req.session.data;
+  const emailAddress = req.body.emailAddress;
+
+  // Checking input - must enter something
+  if (!emailAddress) {
+    req.session.data.emailError = 'Enter your email address';
+
+    return res.redirect(`/${version}/${letter}/change-email`);
+  }
+
+  // store new email as pending (DO NOT overwrite final email yet, this will be done by confirm email screen)
+  req.session.data.pendingEmail = emailAddress;
+
+  // mark as edit mode
+  req.session.data.editEmail = true;
+
+  return res.redirect(`/${version}/${letter}/email-confirmation`);
+});
 
 
+router.post('/email-confirmation', function (req, res) {
 
+  const existingEmail = req.session.data.email;       // confirmed email
+  const confirmEmail = req.body.confirmEmail;         // user input
+
+  req.session.data.pendingEmail = confirmEmail;
+
+  // Always validate format first (optional but good practice)
+  if (!confirmEmail) {
+    req.session.data.emailError = 'Enter an email address';
+    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
+  }
+
+  //1: first time user (no existing email yet)
+  if (!existingEmail) {
+    req.session.data.email = confirmEmail;
+    req.session.data.emailConfirmed = true;
+    req.session.data.pendingEmail = null;
+    req.session.data.editEmail = false;
+
+    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+  }
+
+  //2 edit email mode - after hitting 'change' link on enquiry letter details page and coming from change-email
+  if (req.session.data.editEmail) {
+
+    // BUG FIX:
+    // if they re-enter the SAME old email, reject it
+    if (confirmEmail === existingEmail) {
+      req.session.data.emailError = 'Enter a different email address';
+      return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
+    }
+
+    // otherwise accept change
+    req.session.data.email = confirmEmail;
+    req.session.data.emailConfirmed = true;
+
+    req.session.data.pendingEmail = null;
+    req.session.data.editEmail = false;
+    req.session.data.emailError = false;
+
+    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+  }
+
+  // 3: normal confirmation flow mismatch check
+  if (existingEmail !== confirmEmail) {
+    req.session.data.emailError = true;
+    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
+  }
+
+  // fallback success
+  req.session.data.email = confirmEmail;
+  req.session.data.emailConfirmed = true;
+
+  return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+});
+
+
+////////// Index Page routing  and session data //////////
+router.post(/were-you-claiming-any-benefits/, function (req, res) {
+    const { claimBenefits } = req.body;
+
+ // Storing Universal credit selection for confirmation page content later
+  req.session.data.claimBenefits = claimBenefits;
+
+    let destination;
+    if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
+        destination = 'check-personal-details';
+    } else if (claimBenefits === 'none-of-these') {
+        destination = 'cannot-confirm';
+    } else {
+        destination = '#';
+    }
+
+    res.redirect(destination);
+});
 
 module.exports = router;

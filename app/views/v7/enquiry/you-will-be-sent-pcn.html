@@ -1,7 +1,15 @@
 {% extends 'layout.html' %}
 
+
+{% if data.type == "pecs" %}
+
+{% else %}
+
+{% endif %}
+
+
 {% set freeStuff = 'free NHS prescriptions' %}
-{% if data.settings[version].type === 'decs' %}
+{% if data.type == "decs" %}
   {% set freeStuff = 'free or reduced cost NHS dental treatment' %}
 {% endif %}
 
@@ -44,7 +52,7 @@
 
     {{ button({
       text: 'Review penalty charge',
-      href: 'accept-pcn-EXPEDITE-v3'
+      href: 'accept-pcn'
     }) }}
 
 </div>

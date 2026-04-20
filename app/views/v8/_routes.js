@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+router.get(/start-redirect/, function(req, res){
+    const destination = 'enter-reference-number';
+    res.redirect( destination );
+});
+
+router.get(/configure-prototype/, function (req, res) {
+    const destination = 'start';
+    res.redirect( destination );
+});
 
 router.post(/enter-reference-number-again/, function (req, res) {
     const destination = 'date-of-birth';
@@ -19,14 +28,10 @@ router.post(/date-of-birth/, function (req, res) {
 
 router.post(/enter-postcode/, function (req, res) {
     
-    const destination = ( req.session.data.status === 'not-found' ) ? 'cannot-find-your-details' : 'do-you-have-an-email';
+    const destination = ( req.session.data.status === 'not-found' ) ? 'cannot-find-your-details' : 'pcn-details';
     res.redirect( destination );
 
 });
-
-// ============================================================
-// Email routing is in main routes.js file due to session data
-// ============================================================
 
 router.post(/pcn-details/, function (req, res) {
     const destination = 'what-you-want-to-do-next';
@@ -49,8 +54,8 @@ router.post(/what-you-want-to-do-next/, function (req, res) {
             destination = 'you-will-be-sent-a-pcn';
             break;
 
-         case 'not-entitled':
-            destination = 'you-will-be-sent-pcn';
+         case 'pay-pcn':
+            destination = 'payment-method';
             break;
 
         default:
@@ -62,19 +67,17 @@ router.post(/what-you-want-to-do-next/, function (req, res) {
 });
 
 router.post(/what-happens-next/, function (req, res) {
-    const destination = 'did-you-have-this-benefit';
+    const destination = 'confirm-entitlement';
     res.redirect( destination );
     
 });
 
-
-//ADD BSA VARIANT HERE
-router.post(/did-you-have-this-benefit/, function (req, res) {
+router.post(/confirm-entitlement/, function (req, res) {
     const { benefit } = req.body; // ID from the radio buttons
 
     let destination;
     if (benefit === 'yes') {
-        destination = 'check-personal-details';
+        destination = 'exemption-certificate-number';
     } else if (benefit === 'no'){
         destination = 'did-you-have-an-exemption';
     } else {
@@ -179,6 +182,12 @@ router.post(/contact-preferences/, (req, res) => {
     }
 });
 
+// router.post(/contact-preferences/, function (req, res) {
+//     const destination = 'what-is-your-email';
+
+//     res.redirect( destination );
+    
+// });
 
 router.post(/what-is-your-email/, function (req, res) {
   const contactPreferences = req.session.data.contactPreferences || [];
@@ -225,7 +234,7 @@ router.post(/were-you-claiming-any-benefits/, function (req, res) {
     if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
         destination = 'check-personal-details';
     } else if (claimBenefits === 'none-of-these') {
-        destination = 'cannot-confirm';
+        destination = 'medical-conditions';
     } else {
         destination = '#';
     }
@@ -248,12 +257,6 @@ router.post(/medical-conditions/, function (req, res) {
     }
 
     res.redirect(destination);
-});
-
-router.post(/update-exemption-certificate-number/, function (req, res) {
-    const destination = 'check-contact-details';
-    res.redirect( destination );
-    
 });
 
 router.post(/maternity-exemption/, function (req, res) {
