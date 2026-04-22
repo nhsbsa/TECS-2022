@@ -3,7 +3,10 @@
 {% block pageTitle %}What is your email address?{% endblock %}
 =
 {% block beforeContent %}
-
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
 
