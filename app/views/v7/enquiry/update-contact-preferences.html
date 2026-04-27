@@ -6,11 +6,11 @@
 Contact preferences
 {% endblock %}
 
-{% block outerContent %}
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
+{% block beforeContent %}
+  {{ backLink({
+    href: 'check-contact-details',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
 {% block content %}

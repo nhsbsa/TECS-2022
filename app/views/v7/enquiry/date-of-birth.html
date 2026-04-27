@@ -1,58 +1,81 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %}What is your date of birth? - {{ serviceName }}{% endblock %}
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+What is your date of birth?
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
 
 {% block content %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="date-of-birth" method="post" novalidate>
+    {% if data.dobError %}
+      {{ errorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: data.dobError,
+            href: "#dateOfBirth-day"
+          }
+        ]
+      }) }}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/date-of-birth" method="post">
 
       <span class="nhsuk-caption-m">Your details</span>
+
+      {% set errorMessage = null %}
+      {% if data.dobError %}
+        {% set errorMessage = { text: data.dobError } %}
+      {% endif %}
+
       {{ dateInput({
-      id: 'dateOfBirth',
-      namePrefix: 'dateOfBirth',
-      fieldset: {
-        legend: {
-          text: 'What is your date of birth?',
-          classes: 'nhsuk-label--l',
-          isPageHeading: true
-        }
-      },
-      hint: {
-        text: 'For example, 31 3 1980'
-      },
-      items: [
-        {
-          name: 'day',
-          classes: 'nhsuk-input--width-2',
-          value: data.dateOfBirth.day
+        id: 'dateOfBirth',
+        namePrefix: 'dateOfBirth',
+        errorMessage: errorMessage,
+        fieldset: {
+          legend: {
+            text: 'What is your date of birth?',
+            classes: 'nhsuk-label--l',
+            isPageHeading: true
+          }
         },
-        {
-          name: 'month',
-          classes: 'nhsuk-input--width-2',
-          value: data.dateOfBirth.month
+        hint: {
+          text: 'For example, 31 3 1980'
         },
-        {
-          name: 'year',
-          classes: 'nhsuk-input--width-4',
-          value: data.dateOfBirth.year
-        }
-      ]
+        items: [
+          {
+            name: 'day',
+            classes: 'nhsuk-input--width-2',
+            value: data.dateOfBirth.day
+          },
+          {
+            name: 'month',
+            classes: 'nhsuk-input--width-2',
+            value: data.dateOfBirth.month
+          },
+          {
+            name: 'year',
+            classes: 'nhsuk-input--width-4',
+            value: data.dateOfBirth.year
+          }
+        ]
       }) }}
 
-
-      {{ button({
-        text: 'Continue'
-      }) }}
-
+      {{ button({ text: 'Continue' }) }}
 
       <p><a href="start">Cancel</a></p>
 
+    </form>
 
   </div>
 </div>
-
-
 
 {% endblock %}

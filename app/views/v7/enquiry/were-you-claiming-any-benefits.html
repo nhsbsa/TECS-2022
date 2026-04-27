@@ -7,67 +7,67 @@ Were you claiming any of these benefits?
 {% endblock %}
 
 {% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.back();',
-    text: 'Go back'
-  }) }}
+{{ backLink({
+href: 'javascript:history.back();',
+text: 'Go back'
+}) }}
 {% endblock %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
+
     <span class="nhsuk-caption-m">Confirm your entitlement</span>
-    <form action="were-you-claiming-any-benefits" method="post" class="form">
+
+    {% set errorMessage = null %}
+
+    {% if data.claimBenefitsError %}
+    {% set errorMessage = { text: data.claimBenefitsError } %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.claimBenefitsError,
+    href: "#were-you-claiming-any-benefits"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/were-you-claiming-any-benefits" method="post">
 
       {{ radios({
       idPrefix: "claimBenefits",
       name: "claimBenefits",
+      value: data.claimBenefits,
+      errorMessage: errorMessage,
       fieldset: {
       legend: {
-      text: "Were you claiming any of these benefits (or named on them) between 1 June
-      and 30 June 2025?",
-      classes: "nhsuk-fieldset__legend--l",
-      isPageHeading: false
+      text: 'Were you claiming any of these benefits?',
+      classes: 'nhsuk-fieldset__legend--l',
+      isPageHeading: true
       }
       },
       items: [
-      {
-      value: "income-employment-support",
-      text: "Income Support or income-related Employment and Support Allowance"
-      },
-      {
-      value: "jsa",
-      text: "Income-based Jobseeker's Allowance"
-      },
-      {
-      value: "universal-credit",
-      text: "Universal Credit"
-      },
-      {
-      value: "pension-credit-guarantee",
-      text: "Your partner's Pension Credit Guarantee Credit award"
-      },
-
-      {
-      divider: "or"
-      },
-      {
-      value: "none-of-these",
-      text: "No, none of these"
-      }
+      { value: "income-employment-support", text: "Income Support or ESA" },
+      { value: "jsa", text: "Jobseeker's Allowance" },
+      { value: "universal-credit", text: "Universal Credit" },
+      { value: "pension-credit-guarantee", text: "Pension Credit Guarantee Credit" },
+      { divider: "or" },
+      { value: "none-of-these", text: "No, none of these" }
       ]
       }) }}
 
-      {{ button({
-      text: 'Continue'
-      }) }}
-
-      <p><a href="respond-to-your-letter">Cancel</a></p>
-
+      {{ button({ text: "Continue" }) }}
 
     </form>
 
+    <p>
+      <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
+        Cancel
+      </a>
+    </p>
 
   </div>
 </div>

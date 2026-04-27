@@ -1,15 +1,35 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %}Enter your reference number again - {{ serviceName }}{% endblock %}
-
+{% block pageTitle %}
+Enter your reference number again - {{ serviceName }}
+{% endblock %}
 
 {% block content %}
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="enter-reference-number-again" method="post" novalidate>
+    <form action="/{{ data.version }}/{{ data.letter }}/enter-reference-number-again" method="post">
 
       <span class="nhsuk-caption-m">Your details</span>
+
+      {% set errorMessage = null %}
+      {% if data.referenceNumberConfirmationError %}
+      {% set errorMessage = {
+      text: data.referenceNumberConfirmationError
+      } %}
+      {% endif %}
+
+      {% if data.referenceNumberConfirmationError %}
+      {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+      {
+      text: data.referenceNumberConfirmationError,
+      href: "#referenceNumberConfirmation"
+      }
+      ]
+      }) }}
+      {% endif %}
 
       {{ input({
       label: {
@@ -21,7 +41,10 @@
       text: 'We ask this to make sure we find the correct record.'
       },
       id: 'referenceNumberConfirmation',
-      classes: 'nhsuk-input--width-10'
+      name: 'referenceNumberConfirmation',
+      value: data.referenceNumberConfirmation,
+      classes: 'nhsuk-input--width-10',
+      errorMessage: errorMessage
       }) }}
 
       {{ button({

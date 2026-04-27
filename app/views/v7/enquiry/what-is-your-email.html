@@ -6,35 +6,71 @@
 What is your email address?
 {% endblock %}
 
-
+{% block beforeContent %}
+{{ backLink({
+text: 'Go back',
+href: 'javascript:history.back();'
+}) }}
+{% endblock %}
 
 {% block content %}
+
+{% if data.type == "pecs" %}
+{% set pageTitle = "What is your prescription reference number?" %}
+{% set hintText = "You can find this on your prescription letter." %}
+{% else %}
+{% set pageTitle = "What is your dental reference number?" %}
+{% set hintText = "You can find this on your dental letter." %}
+{% endif %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="what-is-your-email" method="post" class="form">
-      <div class="heading-group">
-        <span class="nhsuk-caption-m">Confirm your entitlement</span>
-        <h2>What is your email address?</h2>
-        <div class="nhsuk-form-group">
 
-          {{ input({
-          label: {
-          text: ""
-          },
-          id: "email",
-          name: "email",
-          classes: "nhsuk-input--width-20"
-          }) }}
-        </div>
+    {% set emailErrorMessage = null %}
 
-        {{ button({
-        text: 'Continue'
-        }) }}
-        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+    {% if data.emailError and data.emailSubmitted %}
+    {% set emailErrorMessage = {
+    text: data.emailError
+    } %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.emailError,
+    href: "#what-is-your-email"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/what-is-your-email" method="post">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+      {{ input({
+      id: 'emailAddress',
+      name: 'emailAddress',
+      value: data.email,
+      classes: 'nhsuk-u-width-two-thirds',
+      attributes: {
+      autocomplete: 'off',
+      inputmode: 'email'
+      },
+      label: {
+      text: 'What is your email address?',
+      classes: 'nhsuk-label--l',
+      isPageHeading: true
+      },
+      errorMessage: emailErrorMessage
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+      <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
     </form>
 
-  </div>
-</div>
 
-{% endblock %}
+
+    {% endblock %}

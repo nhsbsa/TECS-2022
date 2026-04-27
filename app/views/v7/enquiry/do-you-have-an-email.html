@@ -2,103 +2,133 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}What is your email address?{% endblock %}
-=
+
 {% block beforeContent %}
-    {{ backLink({
-        text: 'Go back',
-        href: 'javascript:history.back();'
-    }) }}
+
 {% endblock %}
 
 
 {% block content %}
 <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-        
-        <form action="/do-you-have-an-email" method="post">
+  <div class="nhsuk-grid-column-two-thirds">
 
-            <span class="nhsuk-caption-m">Your details</span>
-            {% set yesHTML %}
-
-                    <!-- YES HTML -->
-                    {{ input({
-                        id: 'emailAddress',
-                        name: 'emailAddress',
-                        value: data.emailAddress,
-                        classes: 'nhsuk-u-width-two-thirds',
-                        attributes: { 'autocomplete' : 'off', 'inputmode' : 'email' },
-                        label: {
-                            text: 'Email address'
-                        }
-                    }) }}
-
-                {% endset %}
-
-
-                {{ radios({
-                    name: 'hasEmail',
-                    value: data.hasEmail,
-                    fieldset: {
-                        legend: {
-                            text: 'Do you have an email address?',
-                            classes: 'nhsuk-fieldset__legend--l',
-                            isPageHeading: true
-                        }
-                    },
-                    hint: {
-                        text: 'You do not need to provide an email address, but if you do we can send you updates about your case.'
-                    },
-                    items: [
-                        {
-                            value: 'yes',
-                            text: 'Yes',
-                            conditional : {
-                                html : yesHTML
-                            }
-                        },
-                        {
-                            value: 'no',
-                            text: 'No'
-                        }
-                    ]
-                }) }}
-
-
-                {% if data.showDetails === 'true' %}
-
-                    {% set detailsHTML %}
-
-                        <p>We will send you an email if you use this online service to:</p>
-                        <ul class="nshuk-list nhsuk-list-bullet">
-                        {% if data.settings[version].type === 'decs' %}
-                            <li>confirm you were entitled to free NHS prescriptions</li>
-                        {% else %}
-                            <li>confirm you were entitled to free or reduced cost NHS dental treatment</li>
-                        {% endif %}
-                            <li>try to confirm your entitlement but we cannot find your details</li>
-                            <li>accept a penalty charge</li>
-                            <li>make a payment towards a penalty charge</li>
-                        </ul>
-
-                    {% endset %}
-
-                    {{ details({
-                        text: 'What type of updates will I receive?',
-                        html: detailsHTML
-                    }) }}
-
-                {% endif %}
+    <form action="/{{ data.version }}/{{ data.letter }}/do-you-have-an-email" method="post">
 
 
 
-                {{ button({
-                    text: 'Continue'
-                }) }}
-         <p><a href="respond-to-your-letter">Cancel</a></p>
-        </form>
+      {% set hasEmailErrorMessage = null %}
+
+      {% if data.hasEmailError and data.emailSubmitted %}
+
+      {% set hasEmailErrorMessage = {text: data.hasEmailError} %}
+      {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+      {
+      text: data.hasEmailError,
+      href: "#update-exemption-certificate-number"
+      }
+      ]
+      }) }}
+      {% endif %}
 
 
-    </div>
+      {% set emailErrorMessage = null %}
+
+      {% if data.emailError and data.emailSubmitted %}
+      {% set emailErrorMessage = {text: data.emailError} %}
+      {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+      {
+      text: data.emailError,
+      href: "#update-exemption-certificate-number"
+      }
+      ]
+      }) }}
+      {% endif %}
+
+      <span class="nhsuk-caption-m">Your details</span>
+
+      {% set yesHTML %}
+
+      {{ input({
+      id: 'emailAddress',
+      name: 'emailAddress',
+      value: data.email,
+      classes: 'nhsuk-u-width-two-thirds',
+      attributes: { 'autocomplete' : 'off', 'inputmode' : 'email' },
+      label: {
+      text: 'Email address'
+      },
+      errorMessage: emailErrorMessage
+      }) }}
+
+      {% endset %}
+
+      {{ radios({
+      name: 'hasEmail',
+      value: data.hasEmail,
+      errorMessage: hasEmailErrorMessage,
+      fieldset: {
+      legend: {
+      text: 'Do you have an email address?',
+      classes: 'nhsuk-fieldset__legend--l',
+      isPageHeading: true
+      }
+      },
+      hint: {
+      text: 'You do not need to provide an email address, but if you do we can send you updates about your case.'
+      },
+      items: [
+      {
+      value: 'yes',
+      text: 'Yes',
+      conditional: {
+      html: yesHTML
+      }
+      },
+      {
+      value: 'no',
+      text: 'No'
+      }
+      ]
+      }) }}
+
+
+      {% if data.showDetails === 'true' %}
+
+      {% set detailsHTML %}
+
+      <p>We will send you an email if you use this online service to:</p>
+      <ul class="nshuk-list nhsuk-list-bullet">
+        {% if data.settings[version].type === 'decs' %}
+        <li>confirm you were entitled to free NHS prescriptions</li>
+        {% else %}
+        <li>confirm you were entitled to free or reduced cost NHS dental treatment</li>
+        {% endif %}
+        <li>try to confirm your entitlement but we cannot find your details</li>
+        <li>accept a penalty charge</li>
+        <li>make a payment towards a penalty charge</li>
+      </ul>
+
+      {% endset %}
+
+      {{ details({
+      text: 'What type of updates will I receive?',
+      html: detailsHTML
+      }) }}
+
+      {% endif %}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+      <p><a href="respond-to-your-letter">Cancel</a></p>
+    </form>
+
+  </div>
 </div>
 
 {% endblock %}

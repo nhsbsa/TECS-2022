@@ -1,37 +1,60 @@
 {% extends 'layout.html' %}
 
-{% block pageTitle %}What is your reference number? - {{ serviceName }}{% endblock %}
+{% block pageTitle %}
+What is your reference number? - {{ serviceName }}
+{% endblock %}
 
 {% block content %}
 
 {% if data.type == "pecs" %}
-  {% set pageTitle = "What is your prescription reference number?" %}
-  {% set hintText = "You can find this on your prescription letter." %}
+{% set pageTitle = "What is your prescription reference number?" %}
+{% set hintText = "You can find this on your prescription letter." %}
 {% else %}
-  {% set pageTitle = "What is your dental reference number?" %}
-  {% set hintText = "You can find this on your dental letter." %}
+{% set pageTitle = "What is your dental reference number?" %}
+{% set hintText = "You can find this on your dental letter." %}
 {% endif %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="enter-reference-number" method="post" novalidate>
+    <form action="/{{ data.version }}/{{ data.letter }}/enter-reference-number" method="post">
 
       <span class="nhsuk-caption-m">Your details</span>
 
+      {# ================= ERROR HANDLING ================= #}
+      {% set errorMessage = null %}
+      {% if data.referenceNumberError %}
+      {% set errorMessage = {
+      text: data.referenceNumberError
+      } %}
+      {% endif %}
+
+      {% if data.referenceNumberError %}
+      {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+      {
+      text: data.referenceNumberError,
+      href: "#referenceNumber"
+      }
+      ]
+      }) }}
+      {% endif %}
+
       {{ input({
-        label: {
-          text: pageTitle,
-          classes: 'nhsuk-label--l',
-          isPageHeading: true
-        },
-        hint: {
-          text: hintText
-        },
-        id: 'referenceNumber',
-        name: 'referenceNumber',
-        value: data.referenceNumber,
-        classes: 'nhsuk-input--width-10'
+      label: {
+      text: pageTitle,
+      classes: 'nhsuk-label--l',
+      isPageHeading: true
+      },
+      hint: {
+      text: hintText
+      },
+      id: 'referenceNumber',
+      name: 'referenceNumber',
+      value: data.referenceNumber,
+      classes: 'nhsuk-input--width-10',
+      errorMessage: errorMessage
       }) }}
 
       {{ button({
@@ -44,4 +67,5 @@
 
   </div>
 </div>
+
 {% endblock %}

@@ -3,37 +3,27 @@
 {% block pageTitle %}What is your email address?{% endblock %}
 =
 {% block beforeContent %}
-{{ backLink({
-text: 'Go back',
-href: 'javascript:history.back();'
-}) }}
+    {{ backLink({
+        text: 'Go back',
+        href: 'javascript:history.back();'
+    }) }}
 {% endblock %}
 
 
 {% block content %}
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-
-        {% set emailErrorMessage = null %}
-
-        {% if data.emailError and data.emailSubmitted %}
-        {% set emailErrorMessage = {
-        text: data.emailError
-        } %}
-        {{ errorSummary({
-        titleText: "There is a problem",
-        errorList: [
-        {
-        text: data.emailError,
-        href: "#email-confirmation"
-        }
-        ]
-        }) }}
-        {% endif %}
-
-        <form action="/{{ data.version }}/{{ data.letter }}/email-confirmation" method="post">
+        
+        <form action="/{{ data.version }}/{{ data.letter }}/update-email-confirmation" method="post">
 
             <span class="nhsuk-caption-m">Your details</span>
+          {% set emailErrorMessage = null %}
+
+            {% if data.emailError and data.emailSubmitted %}
+            {% set emailErrorMessage = {
+            text: data.emailError
+            } %}
+            {% endif %}
 
             {{ input({
             id: 'confirmEmail',
@@ -55,9 +45,9 @@ href: 'javascript:history.back();'
             {{ button({
             text: 'Continue'
             }) }}
-
+        
         </form>
-        <p><a href="respond-to-your-letter">Cancel</a></p>
+<p><a href="respond-to-your-letter">Cancel</a></p>
 
     </div>
 </div>

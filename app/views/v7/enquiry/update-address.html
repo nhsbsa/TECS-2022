@@ -7,64 +7,128 @@ What is your address
 {% endblock %}
 
 {% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.back();',
-    text: 'Go back'
-  }) }}
+{{ backLink({
+href: 'javascript:history.back();',
+text: 'Go back'
+}) }}
 {% endblock %}
 
 {% block content %}
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="check-personal-details" method="post" class="form">
+    {# 🔴 Error summary #}
+    {% set errorList = [] %}
 
-        <span class="nhsuk-caption-m">Confirm your entitlement</span>
-        <h1 class="nhsuk-heading-l">What was your address when you had [Benefit]?</h1>
-       
+    {% if data.addressLine1Error %}
+    {% set _ = errorList.push({
+    text: data.addressLine1Error,
+    href: "#address-line-1"
+    }) %}
+    {% endif %}
 
-          <div class="nhsuk-form-group">
-              <label class="nhsuk-label" for="addressline1">
-                  Address line 1
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="addressline1" name="addressline1" type="text" autocomplete="address-line1">
-          </div>
+    {% if data.addressTownError %}
+    {% set _ = errorList.push({
+    text: data.addressTownError,
+    href: "#address-town"
+    }) %}
+    {% endif %}
 
-          <div class="nhsuk-form-group">
-                  <label class="nhsuk-label" for="addressline2">
-                  Address line 2 (optional)
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="addressline2" name="addressline2" type="text" autocomplete="address-line2">
-          </div>
+    {% if data.addressPostcodeError %}
+    {% set _ = errorList.push({
+    text: data.addressPostcodeError,
+    href: "#address-postcode"
+    }) %}
+    {% endif %}
 
-          <div class="nhsuk-form-group">
-                  <label class="nhsuk-label" for="towncity">
-                  Town or city
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-20" id="towncity" name="towncity" type="text" autocomplete="address-level2">
-          </div>
+    {% if errorList.length %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: errorList
+    }) }}
+    {% endif %}
 
-          <div class="nhsuk-form-group">
-                  <label class="nhsuk-label" for="postcode">
-                  Postcode
-              </label>
-              <input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
-          </div>
+    <form action="/{{ data.version }}/{{ data.letter }}/update-address" method="post">
 
-          
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
-      
+      {% call fieldset({
+      legend: {
+      text: "What was your address when you had [Benefit]?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      }) %}
 
-                
+      {# Field error objects (Nunjucks-safe) #}
 
-        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-          Continue
-        </button>
-        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
-       </form>
+{% set line1Error = null %}
+{% if data.addressLine1Error %}
+  {% set line1Error = { text: data.addressLine1Error } %}
+{% endif %}
 
-    </div>
+{% set townError = null %}
+{% if data.addressTownError %}
+  {% set townError = { text: data.addressTownError } %}
+{% endif %}
+
+{% set postcodeError = null %}
+{% if data.addressPostcodeError %}
+  {% set postcodeError = { text: data.addressPostcodeError } %}
+{% endif %}
+
+      {{ input({
+      label: { text: "Address line 1" },
+      id: "address-line-1",
+      name: "addressLine1",
+      value: data.addressLine1,
+      classes: "nhsuk-input--width-20",
+      errorMessage: line1Error,
+      autocomplete: "address-line1"
+      }) }}
+
+      {{ input({
+      label: { text: "Address line 2 (optional)" },
+      id: "address-line-2",
+      name: "addressLine2",
+      value: data.addressLine2,
+      classes: "nhsuk-input--width-20",
+      autocomplete: "address-line2"
+      }) }}
+
+      {{ input({
+      label: { text: "Town or city" },
+      id: "address-town",
+      name: "addressTown",
+      value: data.addressTown,
+      classes: "nhsuk-input--width-20",
+      errorMessage: townError,
+      autocomplete: "address-level2"
+      }) }}
+
+      {{ input({
+      label: { text: "Postcode" },
+      id: "address-postcode",
+      name: "addressPostcode",
+      value: data.addressPostcode,
+      classes: "nhsuk-input--width-10",
+      errorMessage: postcodeError,
+      autocomplete: "postal-code",
+      spellcheck: false
+      }) }}
+
+      {% endcall %}
+
+      {{ button({ text: 'Continue' }) }}
+
+      <p class="navigation">
+        <a class="cancel" href="respond-to-your-letter">Cancel</a>
+      </p>
+
+    </form>
+
   </div>
+</div>
 
 {% endblock %}

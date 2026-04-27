@@ -2,6 +2,19 @@
 const express = require('express');
 const router = express.Router();
 
+/**
+ * Import shared validation helpers
+ * --------------------------------------------
+ * These are used across multiple routes to avoid duplication
+ */
+const {
+  validateRequired,
+  isValidEmail,
+  isInList,
+  setError,
+  clearError
+} = require('./helpers/validation');
+
 
 
 ///////////////////////
@@ -249,16 +262,6 @@ router.get(/enq-benefit-num/, function (req, res) {
 
 });
 
-// router.get(/confirm-entitlement/, function (req, res) {
-
-//   if (req.query.confirm == 'entitlement') {
-//     res.redirect('what-happens-next');
-//   }
-//   else if (req.query.confirm == 'pay') {
-//     res.redirect('cannot-pay');;
-//   }
-// });
-
 ///////////////////////
 // ///V5 Routing///////
 //////////////////////
@@ -335,7 +338,7 @@ router.get(/bsa-choice/, function (req, res) {
 
 //  New route 
 router.post(/claiming-any-benefits-old/, function (req, res) {
-  
+
   const anyBenefits = req.session.data['exemptiontype']
 
   if (anyBenefits === 'no') {
@@ -616,24 +619,24 @@ router.get(/full-partial/, function (req, res) {
 
 // Pay by DD checkboxes - PECS
 
-router.post('/v6-pcn/pay-by-dd', function(req, res) {
-    const selectedCheckboxes = req.body.checkbox;
+router.post('/v6-pcn/pay-by-dd', function (req, res) {
+  const selectedCheckboxes = req.body.checkbox;
 
-    console.log( selectedCheckboxes );
+  console.log(selectedCheckboxes);
 
-    // Check if all 3 checkboxes are selected
-    if (Array.isArray(selectedCheckboxes) && selectedCheckboxes.indexOf('bank') > -1 && selectedCheckboxes.indexOf('account') > -1 && selectedCheckboxes.indexOf('direct') > -1 ) {
-      // All checkboxes are selected, redirect to 'instalment' page
-      res.redirect('/v6-pcn/direct-debit-instalment-option');
-    } else {
-      // Not all checkboxes are selected, redirect to 'unable to set up' page
-      res.redirect('/v6-pcn/unable-to-set-up-direct-debit');
-    }
+  // Check if all 3 checkboxes are selected
+  if (Array.isArray(selectedCheckboxes) && selectedCheckboxes.indexOf('bank') > -1 && selectedCheckboxes.indexOf('account') > -1 && selectedCheckboxes.indexOf('direct') > -1) {
+    // All checkboxes are selected, redirect to 'instalment' page
+    res.redirect('/v6-pcn/direct-debit-instalment-option');
+  } else {
+    // Not all checkboxes are selected, redirect to 'unable to set up' page
+    res.redirect('/v6-pcn/unable-to-set-up-direct-debit');
+  }
 });
 
 // DD monthly instalment option - PECS
 
-router.post('/v6-pcn/direct-debit-instalment-option', function(req, res) {
+router.post('/v6-pcn/direct-debit-instalment-option', function (req, res) {
   const months = req.session.data['months'];
 
   if (months === "3" || months === "6" || months === "12") {
@@ -646,7 +649,7 @@ router.post('/v6-pcn/direct-debit-instalment-option', function(req, res) {
 
 // DD select payment date - PECS
 
-router.post('/v6-pcn/direct-debit-date', function(req, res) {
+router.post('/v6-pcn/direct-debit-date', function (req, res) {
   const day = req.session.data['day'];
 
   // Nah, just go for it...
@@ -664,7 +667,7 @@ router.post('/v6-pcn/direct-debit-date', function(req, res) {
 
 // DD check address is correct - PECS
 
-router.post('/v6-pcn/direct-debit-check-address', function(req, res) {
+router.post('/v6-pcn/direct-debit-check-address', function (req, res) {
   const address = req.session.data['address'];
 
   if (address === "yes") {
@@ -681,9 +684,9 @@ router.post('/v6-pcn/direct-debit-check-address', function(req, res) {
 
 //  Enter your bank details - PECS
 
-router.post('/v6-pcn/enter-bank-details', function(request, response) {
+router.post('/v6-pcn/enter-bank-details', function (request, response) {
   var accnumber = request.session.data['accnumber']
-  if (accnumber === "12345679"){
+  if (accnumber === "12345679") {
     response.redirect("/v6-pcn/we-could-not-verify-your-details")
   } else {
     response.redirect("/v6-pcn/confirm-direct-debit")
@@ -692,13 +695,13 @@ router.post('/v6-pcn/enter-bank-details', function(request, response) {
 
 //  Enter your bank details - DECS
 
-router.post('/v6-pcn-decs/enter-bank-details', function(request, response) {
+router.post('/v6-pcn-decs/enter-bank-details', function (request, response) {
   var accnumber = request.session.data['accnumber']
-  if (accnumber === "12345679"){
+  if (accnumber === "12345679") {
     response.redirect("/v6-pcn/we-could-not-verify-your-details")
-} else {
-response.redirect("/v6-pcn-decs/confirm-direct-debit")
-}
+  } else {
+    response.redirect("/v6-pcn-decs/confirm-direct-debit")
+  }
 })
 
 //  You've told us that you were pregnant - DECS
@@ -739,9 +742,9 @@ router.post('/v6-pcn/kickout/cannot-set-up-dd-manual-payment-surcharge', functio
 
 // Experimental - Postcode lookup for address
 
-router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, res) {
+router.post('/v6-pcn/experimental/what-is-your-address-postcode', function (req, res) {
   let postcode = req.session.data['postcode-search'];
-  
+
   if (postcode && postcode.trim() !== '') {
     res.redirect('/v6-pcn/experimental/what-is-your-address-select');
   } else {
@@ -753,9 +756,9 @@ router.post('/v6-pcn/experimental/what-is-your-address-postcode', function(req, 
 
 /* SIMPLIFIED AND NEW RULES ROUTES */
 
-router.post('/v6-pcn/partial-payment-NEW-RULES-ALREADY-PAID', function(req, res) {
+router.post('/v6-pcn/partial-payment-NEW-RULES-ALREADY-PAID', function (req, res) {
 
-  if( req.session.data.makeAnotherPayment === 'payInFull' ){
+  if (req.session.data.makeAnotherPayment === 'payInFull') {
     res.redirect('gov-pay');
   } else {
     res.redirect('partial-payment-NEW-RULES-ALREADY-PAID');
@@ -767,18 +770,18 @@ router.post(/version6-pcn-SIMPLIFIED/, function (req, res) {
 
   let destination = 'what-happens-next-bsa';
 
-   switch( req.session.data['penalty-confirm-pay'] ) {
+  switch (req.session.data['penalty-confirm-pay']) {
     case 'pay':
       destination = 'payment-choice';
-    break;
-   }
-    
-  res.redirect( destination );
-   
+      break;
+  }
+
+  res.redirect(destination);
+
 
 });
 
-router.post( /payment-plan-calculator-date-reset/, function(req, res){
+router.post(/payment-plan-calculator-date-reset/, function (req, res) {
 
   delete req.session.data.calculatorAmountToPay;
   delete req.session.data.calculatorNumberOfMonths;
@@ -804,7 +807,7 @@ router.use((req, res, next) => {
   console.log(req.originalUrl);
 
   // Versions
-  const versions = ['v7','v5-enquiry','v5-enquiry-decs'];
+  const versions = ['v7', 'v5-enquiry', 'v5-enquiry-decs'];
 
   // Clear current routes 
   router.stack = router.stack.filter(layer => layer.name !== 'router');
@@ -818,7 +821,7 @@ router.use((req, res, next) => {
   });
 
   res.locals.version = version;
-  
+
   // Load the required routes
   if (version) {
     console.log('Loading routes for ' + version);
@@ -826,49 +829,55 @@ router.use((req, res, next) => {
   }
 
   // Allow URL strings such as key[anotherKey][yetAnotherKey]
-  if( req.originalUrl.split('?').length > 1 ){
+  if (req.originalUrl.split('?').length > 1) {
 
-    const params = new URLSearchParams( req.originalUrl.toLowerCase().split('?')[1] );
+    const params = new URLSearchParams(req.originalUrl.toLowerCase().split('?')[1]);
 
     for (const [key, value] of params.entries()) {
 
       const matches = key.match(/([^\[\]]+)/g) || [];
-      if( matches.length > 1 ){
-        
+      if (matches.length > 1) {
+
         const tidyMatches = [];
-        matches.forEach(function( m ){
-          tidyMatches.push( m.replace(/[^0-9a-z\-_]/g, '') );
+        matches.forEach(function (m) {
+          tidyMatches.push(m.replace(/[^0-9a-z\-_]/g, ''));
         });
 
-        if( eval( 'req.session.data["' + tidyMatches.join('"]["') + '"]="' + value + '"' ) ){
+        if (eval('req.session.data["' + tidyMatches.join('"]["') + '"]="' + value + '"')) {
           delete req.session.data[key];
         };
 
       }
     }
-    
+
   }
-  
-  
-  
+
+
+
   next();
 
 
 });
 
-// ==================================================================
-//                          V7 ENQUIRY FLOW
-// ==================================================================
+// =================================================================================================
+//                                          ENQUIRY FLOW
+// =================================================================================================
 
-// ======= Index Page routing  and session data ========
+
+
+// ======= Index Page routing  and session data ======== //
+// ===================================================== //
 
 router.post('/set-type', function (req, res) {
 
+  req.session.data = {}; // Reset session data at the start of the flow to avoid odd behaviour
+
   const [letter, type] = req.body.flow.split('-');
-const version = 'v7';
+  const version = 'v7'; // setting the version here - Change this for future iterations
+
   req.session.data.letter = letter;  // enquiry / PCN
   req.session.data.type = type;      // pecs / decs
-  req.session.data.version = 'v7';
+  req.session.data.version = version;
 
   res.redirect(`/${version}/${letter}/respond-to-your-letter`);
 
@@ -885,17 +894,70 @@ router.post('/start-journey', function (req, res) {
 
 });
 
-// ======== Email and Email Confirmation Page routing and session data ========
 
-router.post('/do-you-have-an-email', function (req, res) {
+
+// ============================================================================ //
+//           Email and Email Confirmation Page routing and session data         //
+// =========================================================================== //
+
+
+// ============== 🧠 Helper function to validate email format ============== //
+// function isValidEmail(email) {
+//   if (!email) return false;
+
+//   // must contain one @
+//   if (!email.includes('@')) return false;
+
+//   const [local, domain] = email.split('@');
+
+//   // both parts must exist
+//   if (!local || !domain) return false;
+
+//   // domain must contain a dot
+//   if (!domain.includes('.')) return false;
+
+//   // no spaces allowed
+//   if (email.includes(' ')) return false;
+
+//   return true;
+// }
+
+
+// ======================= Get Routes =============================== //
+// Resets page states, errors etc and renders the pages default view
+// ================================================================ //
+
+router.get('/:version/:letter/change-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  // 🧹 clear stale state
+  req.session.data.pendingEmail = '';
+  delete req.session.data.emailError;
+  delete req.session.data.emailSubmitted;
+  delete req.session.data.editEmail;
+
+
+  res.render(`${version}/${letter}/change-email`);
+});
+
+router.post('/:version/:letter/do-you-have-an-email', function (req, res) {
+
 
   const { version, letter } = req.session.data;
   const hasEmail = req.body.hasEmail;
-  const emailAddress = req.body.emailAddress;
+  const emailAddress = req.body.emailAddress?.trim();
 
-  // 1: must select yes/no
+  // ✅ Mark that an email has been submitted
+  req.session.data.emailSubmitted = true;
+
+  // 🧹 Clear previous errors
+  delete req.session.data.emailError;
+  delete req.session.data.hasEmailError;
+
+  // 1. Must select yes/no
   if (!hasEmail) {
-    req.session.data.emailError =
+    req.session.data.hasEmailError =
       'Select yes if you have an email address, or no if you do not';
 
     return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
@@ -903,22 +965,29 @@ router.post('/do-you-have-an-email', function (req, res) {
 
   req.session.data.hasEmail = hasEmail;
 
-  // 2: YES flow
+  // 2. YES flow
   if (hasEmail === 'yes') {
 
-    // Email is required if YES selected
+    // Check if email input is blank
     if (!emailAddress) {
       req.session.data.emailError = 'Enter your email address';
-
       return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
     }
 
+    // Check if email is in the correct format
+    if (!isValidEmail(emailAddress)) {
+      req.session.data.emailError =
+        'Enter an email address in the correct format, like name@example.com';
+      return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
+    }
+
+    // ✅ success
     req.session.data.email = emailAddress;
 
     return res.redirect(`/${version}/${letter}/email-confirmation`);
   }
 
-  // 3: NO flow cleanup
+  // NO flow - user doesn't have email
   req.session.data.email = null;
   req.session.data.pendingEmail = null;
   req.session.data.emailConfirmed = false;
@@ -926,103 +995,993 @@ router.post('/do-you-have-an-email', function (req, res) {
   return res.redirect(`/${version}/${letter}/enquiry-letter-details`);
 });
 
-router.post('/change-email', function (req, res) {
+router.get('/:version/:letter/email-confirmation', function (req, res) {
 
-  const { version, letter } = req.session.data;
-  const emailAddress = req.body.emailAddress;
+  const { version, letter } = req.params;
 
-  // Checking input - must enter something
+  // clear UI state
+  delete req.session.data.emailError;
+  delete req.session.data.emailSubmitted;
+
+  // 🔥 IMPORTANT: confirm page always starts empty
+  req.session.data.confirmEmail = '';
+
+  res.render(`${version}/${letter}/email-confirmation`);
+});
+
+router.get('/:version/:letter/update-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  // 🧹 clear stale state
+  req.session.data.pendingEmail = '';
+  delete req.session.data.emailError;
+  delete req.session.data.emailSubmitted;
+  delete req.session.data.editEmail;
+
+
+  res.render(`${version}/${letter}/update-email`);
+});
+
+router.get('/:version/:letter/what-is-your-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  // prefill from confirmed email flow
+  req.session.data.email = req.session.data.email || '';
+
+  delete req.session.data.emailError;
+  delete req.session.data.emailSubmitted;
+
+  res.render(`${version}/${letter}/what-is-your-email`);
+});
+
+// ============================== Post Routes ================================== //
+// Handles form submissions, validation and branching logic.
+// Sets session data for use in page rendering and future branching decisions
+// =========================================================================== //
+
+router.post('/:version/:letter/change-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const emailAddress = req.body.emailAddress?.trim();
+
+  delete req.session.data.emailError;
+
+  // 🧯 required
   if (!emailAddress) {
     req.session.data.emailError = 'Enter your email address';
+    req.session.data.pendingEmail = '';
+    return res.redirect(`/${version}/${letter}/change-email`);
+  }
+
+  // 🧯 format
+  if (!isValidEmail(emailAddress)) {
+    req.session.data.emailError =
+      'Enter an email address in the correct format, like name@example.com';
+
+    req.session.data.pendingEmail = emailAddress;
 
     return res.redirect(`/${version}/${letter}/change-email`);
   }
 
-  // store new email as pending (DO NOT overwrite final email yet, this will be done by confirm email screen)
+  // store as pending ONLY
   req.session.data.pendingEmail = emailAddress;
 
-  // mark as edit mode
-  req.session.data.editEmail = true;
+  // reset confirm state so no stale mismatch bugs
+  req.session.data.confirmEmail = '';
+  req.session.data.emailSubmitted = false;
 
   return res.redirect(`/${version}/${letter}/email-confirmation`);
 });
 
+router.post('/:version/:letter/email-confirmation', function (req, res) {
 
-router.post('/email-confirmation', function (req, res) {
+  const { version, letter } = req.params;
 
-  const existingEmail = req.session.data.email;       // confirmed email
-  const confirmEmail = req.body.confirmEmail;         // user input
+  const confirmEmail = req.body.confirmEmail?.trim();
 
-  req.session.data.pendingEmail = confirmEmail;
+  const sourceEmail =
+    req.session.data.pendingEmail ||
+    req.session.data.email;
 
-  // Always validate format first (optional but good practice)
+  req.session.data.emailSubmitted = true;
+
+  delete req.session.data.emailError;
+
+  // required
   if (!confirmEmail) {
-    req.session.data.emailError = 'Enter an email address';
-    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
+    req.session.data.emailError = 'Enter your email address again';
+    req.session.data.confirmEmail = '';
+    return res.redirect(`/${version}/${letter}/email-confirmation`);
   }
 
-  //1: first time user (no existing email yet)
-  if (!existingEmail) {
-    req.session.data.email = confirmEmail;
-    req.session.data.emailConfirmed = true;
-    req.session.data.pendingEmail = null;
-    req.session.data.editEmail = false;
+  // format
+  if (!isValidEmail(confirmEmail)) {
+    req.session.data.emailError =
+      'Enter an email address in the correct format, like name@example.com';
 
-    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+    req.session.data.confirmEmail = confirmEmail;
+
+    return res.redirect(`/${version}/${letter}/email-confirmation`);
   }
 
-  //2 edit email mode - after hitting 'change' link on enquiry letter details page and coming from change-email
-  if (req.session.data.editEmail) {
+  // mismatch check (NOW WORKS AGAIN)
+  if (confirmEmail !== sourceEmail) {
+    req.session.data.emailError =
+      'Check your email address. This does not match the one entered on the previous screen';
 
-    // BUG FIX:
-    // if they re-enter the SAME old email, reject it
-    if (confirmEmail === existingEmail) {
-      req.session.data.emailError = 'Enter a different email address';
-      return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
-    }
+    req.session.data.confirmEmail = confirmEmail;
 
-    // otherwise accept change
-    req.session.data.email = confirmEmail;
-    req.session.data.emailConfirmed = true;
-
-    req.session.data.pendingEmail = null;
-    req.session.data.editEmail = false;
-    req.session.data.emailError = false;
-
-    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+    return res.redirect(`/${version}/${letter}/email-confirmation`);
   }
 
-  // 3: normal confirmation flow mismatch check
-  if (existingEmail !== confirmEmail) {
-    req.session.data.emailError = true;
-    return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/email-confirmation`);
-  }
-
-  // fallback success
+  // success
   req.session.data.email = confirmEmail;
+
+  // clear temporary edit state
+  req.session.data.pendingEmail = null;
   req.session.data.emailConfirmed = true;
 
-  return res.redirect(`/${req.session.data.version}/${req.session.data.letter}/enquiry-letter-details`);
+  return res.redirect(`/${version}/${letter}/enquiry-letter-details`);
+});
+
+router.post('/:version/:letter/update-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const emailAddress = req.body.emailAddress?.trim();
+
+  delete req.session.data.emailError;
+
+  // 🧯 required
+  if (!emailAddress) {
+    req.session.data.emailError = 'Enter your email address';
+    req.session.data.pendingEmail = '';
+    return res.redirect(`/${version}/${letter}/update-email`);
+  }
+
+  // 🧯 format validation
+  if (!isValidEmail(emailAddress)) {
+    req.session.data.emailError =
+      'Enter an email address in the correct format, like name@example.com';
+
+    req.session.data.pendingEmail = emailAddress;
+
+    return res.redirect(`/${version}/${letter}/update-email`);
+  }
+
+  // ✅ SAVE FINAL EMAIL (no confirm step anymore)
+  req.session.data.email = emailAddress;
+
+  // 🧹 clear temporary state
+  req.session.data.pendingEmail = null;
+  req.session.data.emailConfirmed = true;
+
+  return res.redirect(`/${version}/${letter}/check-contact-details`);
+});
+
+router.post('/:version/:letter/what-is-your-email', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const emailAddress = req.body.emailAddress?.trim();
+
+  const contactPreferences = req.session.data.contactPreferences || [];
+
+  delete req.session.data.emailError;
+
+  req.session.data.emailSubmitted = true;
+
+  console.log('EMAIL POST HIT'); // DEBUG
+
+  // required
+  if (!emailAddress) {
+    req.session.data.emailError = 'Enter your email address';
+    req.session.data.email = '';
+    return res.redirect(`/${version}/${letter}/what-is-your-email`);
+  }
+
+  // format
+  if (!isValidEmail(emailAddress)) {
+    req.session.data.emailError =
+      'Enter an email address in the correct format, like name@example.com';
+
+    req.session.data.email = emailAddress;
+
+    return res.redirect(`/${version}/${letter}/what-is-your-email`);
+  }
+
+  // store confirmed email
+  req.session.data.email = emailAddress;
+
+  // branch logic
+  if (contactPreferences.includes('telephone')) {
+    return res.redirect(`/${version}/${letter}/what-is-your-phone-number`);
+  }
+
+  return res.redirect(`/${version}/${letter}/check-contact-details`);
+});
+
+// ============================================================================ //
+//                                  Routes                                      //
+// =========================================================================== //
+
+router.get('/:version/:letter/were-you-claiming-any-benefits', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/were-you-claiming-any-benefits`, {
+    data: req.session.data
+  });
+});
+
+router.post('/:version/:letter/were-you-claiming-any-benefits', function (req, res) {
+
+  const { version, letter } = req.params;
+  const { claimBenefits } = req.body;
+
+  // ❌ DO NOT clear error here at the top
+
+  if (!claimBenefits) {
+    req.session.data.claimBenefitsError = 'Select an option to continue';
+    return res.redirect(`/${version}/${letter}/were-you-claiming-any-benefits`);
+  }
+
+  // ✅ Clear error ONLY when valid
+  delete req.session.data.claimBenefitsError;
+
+  req.session.data.claimBenefits = claimBenefits;
+
+  if ([
+    'income-employment-support',
+    'jsa',
+    'universal-credit',
+    'pension-credit-guarantee'
+  ].includes(claimBenefits)) {
+    return res.redirect(`/${version}/${letter}/check-personal-details`);
+  }
+
+  return res.redirect(`/${version}/${letter}/cannot-confirm`);
 });
 
 
-////////// Index Page routing  and session data //////////
-router.post(/were-you-claiming-any-benefits/, function (req, res) {
-    const { claimBenefits } = req.body;
 
- // Storing Universal credit selection for confirmation page content later
-  req.session.data.claimBenefits = claimBenefits;
+router.get('/:version/:letter/did-you-have-this-benefit', function (req, res) {
+  const { version, letter } = req.params;
 
-    let destination;
-    if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
-        destination = 'check-personal-details';
-    } else if (claimBenefits === 'none-of-these') {
-        destination = 'cannot-confirm';
-    } else {
-        destination = '#';
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/did-you-have-this-benefit`, {
+    data: req.session.data
+  });
+});
+
+router.post('/:version/:letter/did-you-have-this-benefit', function (req, res) {
+
+  const { version, letter } = req.params;
+  const { nhs } = req.body;
+
+  // ❌ validation
+  if (!nhs) {
+    req.session.data.nhsError = 'Select yes if you had this benefit, or no if you did not';
+    return res.redirect(`/${version}/${letter}/did-you-have-this-benefit`);
+  }
+
+  // ✅ clear error on success
+  delete req.session.data.nhsError;
+
+  // store answer
+  req.session.data.nhs = nhs;
+
+  // 🧭 routing logic (binary)
+  if (nhs === 'yes') {
+    return res.redirect(`/${version}/${letter}/check-personal-details`);
+  }
+
+  if (nhs === 'no') {
+    return res.redirect(`/${version}/${letter}/did-you-have-an-exemption`);
+  }
+
+  // fallback safety net
+  return res.redirect(`/${version}/${letter}/did-you-have-this-benefit`);
+});
+
+router.post('/:version/:letter/update-exemption-certificate-number', function (req, res) {
+
+  const { version, letter } = req.params;
+  const certificateNumber = req.body.certificateNumber?.trim();
+
+  // ❌ DO NOT clear error at top
+
+  // required
+  if (!certificateNumber) {
+    req.session.data.benefitNumberError = 'Enter your benefit number';
+    req.session.data.benefitNumber = '';
+    return res.redirect(`/${version}/${letter}/update-exemption-certificate-number`);
+  }
+
+  // must be numeric
+  if (!/^\d+$/.test(certificateNumber)) {
+    req.session.data.benefitNumberError = 'Enter a number using digits only';
+    req.session.data.benefitNumber = certificateNumber;
+    return res.redirect(`/${version}/${letter}/update-exemption-certificate-number`);
+  }
+
+  // ✅ success
+  delete req.session.data.benefitNumberError;
+
+  req.session.data.benefitNumber = certificateNumber;
+
+  return res.redirect(`/${version}/${letter}/check-contact-details`);
+});
+
+router.post('/:version/:letter/what-is-your-phone-number', function (req, res) {
+
+  const { version, letter } = req.params;
+  const telephone = req.body.telephone?.trim();
+
+  // ❌ validation
+  if (!telephone) {
+    req.session.data.phoneNumberError = 'Enter your telephone number';
+    req.session.data.phoneNumber = '';
+    return res.redirect(`/${version}/${letter}/what-is-your-phone-number`);
+  }
+
+  // numbers only (allows spaces to be stripped if you want later)
+  if (!/^\d+$/.test(telephone)) {
+    req.session.data.phoneNumberError = 'Enter a telephone number using digits only';
+    req.session.data.phoneNumber = telephone;
+    return res.redirect(`/${version}/${letter}/what-is-your-phone-number`);
+  }
+
+  // ✅ success
+  delete req.session.data.phoneNumberError;
+
+  req.session.data.phoneNumber = telephone;
+
+  return res.redirect(`/${version}/${letter}/check-contact-details`);
+});
+
+router.post('/:version/:letter/update-phone-number', function (req, res) {
+
+  const { version, letter } = req.params;
+  const telephone = req.body.telephone?.trim();
+
+  // ❌ validation
+  if (!telephone) {
+    req.session.data.phoneNumberError = 'Enter your telephone number';
+    return res.redirect(`/${version}/${letter}/update-phone-number`);
+  }
+
+  if (!/^\d+$/.test(telephone)) {
+    req.session.data.phoneNumberError = 'Enter a telephone number using digits only';
+    req.session.data.phoneNumber = telephone;
+    return res.redirect(`/${version}/${letter}/update-phone-number`);
+  }
+
+  // ✅ success (overwrite)
+  delete req.session.data.phoneNumberError;
+
+  req.session.data.phoneNumber = telephone;
+
+  return res.redirect(`/${version}/${letter}/check-contact-details`);
+});
+
+router.get('/:version/:letter/contact-preferences', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/contact-preferences`, {
+    data: req.session.data
+  });
+});
+
+router.post('/:version/:letter/contact-preferences', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  let contactPreferences = req.body.contactPreferences;
+
+  // 🧹 normalise input
+  if (!contactPreferences) {
+    contactPreferences = [];
+  } else if (!Array.isArray(contactPreferences)) {
+    contactPreferences = [contactPreferences];
+  }
+
+  // 🧹 remove NHS kit junk value
+  contactPreferences = contactPreferences.filter(v => v !== '_unchecked');
+
+  // ❌ validation
+  if (contactPreferences.length === 0) {
+    req.session.data.contactPreferencesError =
+      'Select how you want to be contacted';
+
+    req.session.data.contactPreferences = [];
+
+    return res.redirect(`/${version}/${letter}/contact-preferences`);
+  }
+
+  // ✅ success cleanup
+  delete req.session.data.contactPreferencesError;
+
+  req.session.data.contactPreferences = contactPreferences;
+
+  // 🧭 routing logic
+  if (contactPreferences.includes('email')) {
+    return res.redirect(`/${version}/${letter}/what-is-your-email`);
+  }
+
+  if (contactPreferences.includes('telephone')) {
+    return res.redirect(`/${version}/${letter}/what-is-your-phone-number`);
+  }
+
+  // fallback safety
+  return res.redirect(`/${version}/${letter}/contact-preferences`);
+});
+
+router.get('/:version/:letter/update-name', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/update-name`);
+});
+
+
+router.post('/:version/:letter/update-name', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  let { firstName, lastName } = req.body;
+
+  // 🧹 trim values
+  firstName = firstName?.trim();
+  lastName = lastName?.trim();
+
+  // 🧹 clear previous errors
+  delete req.session.data.nameError;
+  delete req.session.data.firstNameError;
+  delete req.session.data.lastNameError;
+
+  // ❌ validation flags
+  let hasError = false;
+
+  const nameRegex = /^[A-Za-z\s'-]+$/;
+
+  // FIRST NAME
+  if (!firstName) {
+    req.session.data.firstNameError = 'Enter your first name';
+    hasError = true;
+  } else if (!nameRegex.test(firstName)) {
+    req.session.data.firstNameError = 'First name must only contain letters';
+    hasError = true;
+  }
+
+  // LAST NAME
+  if (!lastName) {
+    req.session.data.lastNameError = 'Enter your last name';
+    hasError = true;
+  } else if (!nameRegex.test(lastName)) {
+    req.session.data.lastNameError = 'Last name must only contain letters';
+    hasError = true;
+  }
+
+  // ❌ stop if errors
+  if (hasError) {
+    req.session.data.firstName = firstName;
+    req.session.data.lastName = lastName;
+
+    req.session.data.nameError = 'Enter your name correctly';
+
+    return res.redirect(`/${version}/${letter}/update-name`);
+  }
+
+  // ✅ success
+  req.session.data.firstName = firstName;
+  req.session.data.lastName = lastName;
+
+  // 👉 store combined name
+  req.session.data.fullName = `${firstName} ${lastName}`;
+
+  return res.redirect(`/${version}/${letter}/check-personal-details`);
+});
+
+router.get('/:version/:letter/date-of-birth', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  res.render(`${version}/${letter}/date-of-birth`);
+});
+
+
+router.post('/:version/:letter/date-of-birth', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  let { day, month, year } = req.body.dateOfBirth || {};
+
+  // 🧹 clean + store raw
+  day = day?.trim();
+  month = month?.trim();
+  year = year?.trim();
+
+  req.session.data.dateOfBirth = { day, month, year };
+
+  delete req.session.data.dobError;
+
+  // ❌ validation
+  if (!day || !month || !year) {
+    req.session.data.dobError = 'Enter your date of birth';
+    return res.redirect(`/${version}/${letter}/date-of-birth`);
+  }
+
+  if (!/^\d+$/.test(day) || !/^\d+$/.test(month) || !/^\d+$/.test(year)) {
+    req.session.data.dobError = 'Date of birth must only contain numbers';
+    return res.redirect(`/${version}/${letter}/date-of-birth`);
+  }
+
+  const dob = new Date(year, month - 1, day);
+  const today = new Date();
+
+  if (dob > today) {
+    req.session.data.dobError = 'Date of birth must be in the past';
+    return res.redirect(`/${version}/${letter}/date-of-birth`);
+  }
+
+  // ❌ invalid dates like 31 Feb
+  if (
+    dob.getDate() != day ||
+    dob.getMonth() != month - 1 ||
+    dob.getFullYear() != year
+  ) {
+    req.session.data.dobError = 'Enter a real date of birth';
+    return res.redirect(`/${version}/${letter}/date-of-birth`);
+  }
+
+  // ✅ format for display
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  req.session.data.dobFormatted =
+    `${parseInt(day)} ${months[month - 1]} ${year}`;
+
+  return res.redirect(`/${version}/${letter}/enter-postcode`);
+});
+
+router.get('/:version/:letter/update-dob', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  res.render(`${version}/${letter}/update-dob`);
+});
+
+
+router.post('/:version/:letter/update-dob', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  let { day, month, year } = req.body.dateOfBirth || {};
+
+  day = day?.trim();
+  month = month?.trim();
+  year = year?.trim();
+
+  req.session.data.dateOfBirth = { day, month, year };
+
+  delete req.session.data.dobError;
+
+  // same validation as above 👇
+  if (!day || !month || !year) {
+    req.session.data.dobError = 'Enter your date of birth';
+    return res.redirect(`/${version}/${letter}/update-dob`);
+  }
+
+  if (!/^\d+$/.test(day) || !/^\d+$/.test(month) || !/^\d+$/.test(year)) {
+    req.session.data.dobError = 'Date of birth must only contain numbers';
+    return res.redirect(`/${version}/${letter}/update-dob`);
+  }
+
+  const dob = new Date(year, month - 1, day);
+  const today = new Date();
+
+  if (dob > today) {
+    req.session.data.dobError = 'Date of birth must be in the past';
+    return res.redirect(`/${version}/${letter}/update-dob`);
+  }
+
+  if (
+    dob.getDate() != day ||
+    dob.getMonth() != month - 1 ||
+    dob.getFullYear() != year
+  ) {
+    req.session.data.dobError = 'Enter a real date of birth';
+    return res.redirect(`/${version}/${letter}/update-dob`);
+  }
+
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  req.session.data.dobFormatted =
+    `${parseInt(day)} ${months[month - 1]} ${year}`;
+
+  return res.redirect(`/${version}/${letter}/check-personal-details`);
+});
+
+router.get('/:version/:letter/update-address', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  // 🧠 Seed default ONLY if nothing exists yet
+  if (!req.session.data.addressLine1) {
+    req.session.data.addressLine1 = '12 Lopan Road';
+    req.session.data.addressLine2 = '';
+    req.session.data.addressTown = 'Newcastle';
+    req.session.data.addressPostcode = 'NE1 4XQ';
+
+    req.session.data.fullAddress = '12 Lopan Road, Newcastle, NE1 4XQ';
+  }
+
+  res.render(`${version}/${letter}/update-address`);
+});
+
+
+router.post('/:version/:letter/update-address', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const {
+    addressLine1,
+    addressLine2,
+    addressTown,
+    addressPostcode
+  } = req.body;
+
+  // 🧹 clear errors
+  delete req.session.data.addressLine1Error;
+  delete req.session.data.addressTownError;
+  delete req.session.data.addressPostcodeError;
+
+  let hasError = false;
+
+  // ❌ validation
+  if (!addressLine1 || addressLine1.trim() === '') {
+    req.session.data.addressLine1Error = 'Enter address line 1';
+    hasError = true;
+  }
+
+  if (!addressTown || addressTown.trim() === '') {
+    req.session.data.addressTownError = 'Enter a town or city';
+    hasError = true;
+  }
+
+  if (!addressPostcode || addressPostcode.trim() === '') {
+    req.session.data.addressPostcodeError = 'Enter a postcode';
+    hasError = true;
+  }
+
+  if (hasError) {
+    // preserve values
+    req.session.data.addressLine1 = addressLine1;
+    req.session.data.addressLine2 = addressLine2;
+    req.session.data.addressTown = addressTown;
+    req.session.data.addressPostcode = addressPostcode;
+
+    return res.redirect(`/${version}/${letter}/update-address`);
+  }
+
+  // ✅ store clean values
+  req.session.data.addressLine1 = addressLine1.trim();
+  req.session.data.addressLine2 = addressLine2;
+  req.session.data.addressTown = addressTown.trim();
+  req.session.data.addressPostcode = addressPostcode.trim();
+
+  // ✅ combined display version
+  req.session.data.fullAddress = [
+    addressLine1,
+    addressLine2,
+    addressTown,
+    addressPostcode
+  ]
+    .filter(Boolean)
+    .join(', ');
+
+  return res.redirect(`/${version}/${letter}/check-personal-details`);
+});
+
+// GET
+router.get('/:version/:letter/exemption-certificate-number', function (req, res) {
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/exemption-certificate-number`, {
+    data: req.session.data
+  });
+});
+
+
+// POST
+router.post('/:version/:letter/exemption-certificate-number', function (req, res) {
+  const { version, letter } = req.params;
+
+  const exemptionNumber = req.body.exemptionNumber;
+  const certificateNumber = req.body['certificate-number'];
+
+  // ❌ clear previous errors
+  delete req.session.data.exemptionNumberError;
+  delete req.session.data.certificateNumberError;
+
+  // ❌ no radio selected
+  if (!exemptionNumber) {
+    req.session.data.exemptionNumberError = 'Select yes or no';
+    return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
+  }
+
+  // ❌ yes but no input
+  if (exemptionNumber === 'yes') {
+    if (!certificateNumber) {
+      req.session.data.certificateNumberError = 'Enter your certificate number';
+      return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
     }
 
-    res.redirect(destination);
+    // ❌ not numeric
+    if (!/^[0-9]+$/.test(certificateNumber)) {
+      req.session.data.certificateNumberError = 'Certificate number must be numbers only';
+      return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
+    }
+  }
+
+  // ✅ success
+  req.session.data.exemptionNumber = exemptionNumber;
+  req.session.data.certificateNumber = certificateNumber;
+
+  return res.redirect(`/${version}/${letter}/check-personal-details`);
+});
+
+// GET
+router.get('/:version/:letter/did-you-have-an-exemption', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  // preserve value only if no error
+  if (!req.session.data.didYouHaveAnExemptionError) {
+    delete req.session.data.didYouHaveAnExemption;
+  }
+
+  res.render(`${version}/${letter}/did-you-have-an-exemption`, {
+    data: req.session.data
+  });
+});
+
+
+// POST
+router.post('/:version/:letter/did-you-have-an-exemption', function (req, res) {
+
+  const { version, letter } = req.params;
+  const didYouHaveAnExemption = req.body.didYouHaveAnExemption;
+
+  // ❌ validation
+  if (!didYouHaveAnExemption) {
+    req.session.data.didYouHaveAnExemptionError =
+      'Select an option to continue';
+
+    return res.redirect(`/${version}/${letter}/did-you-have-an-exemption`);
+  }
+
+  // ✅ clear error
+  delete req.session.data.didYouHaveAnExemptionError;
+
+  // store answer
+  req.session.data.didYouHaveAnExemption = didYouHaveAnExemption;
+
+  // routing
+  if (didYouHaveAnExemption === 'no') {
+    return res.redirect(`/${version}/${letter}/were-you-claiming-any-benefits`);
+  }
+
+  return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
+});
+
+router.get('/:version/:letter/what-you-want-to-do-next', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/what-you-want-to-do-next`, {
+    data: req.session.data
+  });
+});
+
+
+router.post('/:version/:letter/what-you-want-to-do-next', function (req, res) {
+
+  const { version, letter } = req.params;
+  const answer = req.body.confirm;
+
+  if (!answer) {
+    return res.render(`${version}/${letter}/what-you-want-to-do-next`, {
+      data: {
+        ...req.session.data,
+        whatYouWantToDoNextError: 'Select an option to continue'
+      }
+    });
+  }
+
+  req.session.data.confirm = answer;
+
+  if (answer === 'confirm-entitled') {
+    return res.redirect(`/${version}/${letter}/what-happens-next`);
+  }
+
+  if (answer === 'not-entitled') {
+    return res.redirect(`/${version}/${letter}/you-will-be-sent-pcn`);
+  }
+
+  return res.redirect(`/${version}/${letter}/what-happens-next`);
+});
+
+router.get('/:version/:letter/enter-postcode', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/enter-postcode`, {
+    data: req.session.data
+  });
+});
+
+
+router.post('/:version/:letter/enter-postcode', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const postCode = req.body.postCode;
+
+  // ❌ validation
+  if (!postCode || postCode.trim() === '') {
+    return res.render(`${version}/${letter}/enter-postcode`, {
+      data: {
+        ...req.session.data,
+        postCodeError: 'Enter your postcode'
+      }
+    });
+  }
+
+  // ✅ success
+  req.session.data.postCode = postCode;
+
+  return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
+});
+
+router.get('/:version/:letter/enter-reference-number', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/enter-reference-number`, {
+    data: req.session.data
+  });
+});
+
+
+router.post('/:version/:letter/enter-reference-number', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const referenceNumber = req.body.referenceNumber;
+
+  // ❌ empty check
+  if (!referenceNumber || referenceNumber.trim() === '') {
+    return res.render(`${version}/${letter}/enter-reference-number`, {
+      data: {
+        ...req.session.data,
+        referenceNumberError: 'Enter your reference number'
+      }
+    });
+  }
+
+  // ❌ numeric check
+  if (!/^[0-9]+$/.test(referenceNumber)) {
+    return res.render(`${version}/${letter}/enter-reference-number`, {
+      data: {
+        ...req.session.data,
+        referenceNumberError: 'Reference number must be numbers only'
+      }
+    });
+  }
+
+  // ✅ success
+  req.session.data.referenceNumber = referenceNumber;
+
+  return res.redirect(`/${version}/${letter}/enter-reference-number-again`);
+});
+
+router.get('/:version/:letter/enter-reference-number-again', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/enter-reference-number-again`, {
+    data: req.session.data
+  });
+});
+
+
+router.post('/:version/:letter/enter-reference-number-again', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  const referenceNumberConfirmation = req.body.referenceNumberConfirmation;
+  const referenceNumber = req.session.data.referenceNumber;
+
+  // ❌ empty check
+  if (!referenceNumberConfirmation || referenceNumberConfirmation.trim() === '') {
+    return res.render(`${version}/${letter}/enter-reference-number-again`, {
+      data: {
+        ...req.session.data,
+        referenceNumberConfirmationError: 'Enter your reference number again'
+      }
+    });
+  }
+
+  // ❌ numeric check
+  if (!/^[0-9]+$/.test(referenceNumberConfirmation)) {
+    return res.render(`${version}/${letter}/enter-reference-number-again`, {
+      data: {
+        ...req.session.data,
+        referenceNumberConfirmationError: 'Reference number must be numbers only'
+      }
+    });
+  }
+
+  // ❌ match check
+  if (referenceNumberConfirmation !== referenceNumber) {
+    return res.render(`${version}/${letter}/enter-reference-number-again`, {
+      data: {
+        ...req.session.data,
+        referenceNumberConfirmationError: 'The reference numbers do not match'
+      }
+    });
+  }
+
+  // ✅ success
+  req.session.data.referenceNumberConfirmation = referenceNumberConfirmation;
+
+  return res.redirect(`/${version}/${letter}/date-of-birth`);
+});
+
+router.post('/:version/:letter/accept-pcn', function (req, res) {
+    const destination = 'pcn-accepted';
+    res.redirect( destination );
+    
 });
 
 module.exports = router;

@@ -105,6 +105,12 @@ router.post(/check-personal-details/, function (req, res) {
     
 });
 
+router.post(/check-personal-details/, function (req, res) {
+    const destination = 'cannot-confirm';
+    res.redirect( destination );
+    
+});
+
 router.post(/cannot-confirm/, function (req, res) {
     const destination = 'payment-method';
     res.redirect( destination );
@@ -180,16 +186,6 @@ router.post(/contact-preferences/, (req, res) => {
 });
 
 
-router.post(/what-is-your-email/, function (req, res) {
-  const contactPreferences = req.session.data.contactPreferences || [];
-
-    if (contactPreferences.includes('telephone')) {
-        res.redirect('what-is-your-phone-number');
-    } else {
-        res.redirect('check-contact-details');
-    }
-});
-
 router.post(/what-is-your-phone-number/, function (req, res) {
     const destination = 'check-contact-details';
     res.redirect( destination );
@@ -218,20 +214,20 @@ router.post(/did-you-have-an-exemption/, function (req, res) {
     res.redirect(destination);
 });
 
-router.post(/were-you-claiming-any-benefits/, function (req, res) {
-    const { claimBenefits } = req.body;
+// router.post(/were-you-claiming-any-benefits/, function (req, res) {
+//     const { claimBenefits } = req.body;
 
-    let destination;
-    if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
-        destination = 'check-personal-details';
-    } else if (claimBenefits === 'none-of-these') {
-        destination = 'cannot-confirm';
-    } else {
-        destination = '#';
-    }
+//     let destination;
+//     if (['income-employment-support' , 'jsa' , 'universal-credit' , 'pension-credit-guarantee'].includes(claimBenefits)) {
+//         destination = 'check-personal-details';
+//     } else if (claimBenefits === 'none-of-these') {
+//         destination = 'cannot-confirm';
+//     } else {
+//         destination = '#';
+//     }
 
-    res.redirect(destination);
-});
+//     res.redirect(destination);
+// });
 
 router.post(/medical-conditions/, function (req, res) {
     const { medicalConditions } = req.body; // ID from the radio buttons

@@ -6,22 +6,43 @@
 Contact preferences
 {% endblock %}
 
-{% block outerContent %}
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
+{% block beforeContent %}
+  {{ backLink({
+    href: 'javascript:history.back();',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
 {% block content %}
 
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-        <form action="contact-preferences" method="post" class="form">
+
+        {% if data.contactPreferencesError %}
+        {{ errorSummary({
+        titleText: "There is a problem",
+        errorList: [
+        {
+        text: data.contactPreferencesError,
+        href: "#contact-preferences"
+        }
+        ]
+        }) }}
+        {% endif %}
+
+        <form action="/{{ data.version }}/{{ data.letter }}/contact-preferences" method="post">
+
             <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
+            {% if data.contactPreferencesError %}
+
             {{ checkboxes({
             idPrefix: "contactPreferences",
             name: "contactPreferences",
+            values: data.contactPreferences,
+            errorMessage: {
+            text: data.contactPreferencesError
+            },
             fieldset: {
             legend: {
             text: "We'll review your case and get back to you, How can we contact you?",
@@ -33,22 +54,47 @@ text: "Go back"
             text: "Select all options that are relevant to you."
             },
             items: [
-            {
-            value: "email",
-            text: "Email"
-            },
-            {
-            value: "telephone",
-            text: "Telephone"
-            }
+            { value: "email", text: "Email" },
+            { value: "telephone", text: "Telephone" }
             ]
             }) }}
 
+            {% else %}
+
+            {{ checkboxes({
+            idPrefix: "contactPreferences",
+            name: "contactPreferences",
+            values: data.contactPreferences,
+            fieldset: {
+            legend: {
+            text: "We'll review your case and get back to you, How can we contact you?",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+            }
+            },
+            hint: {
+            text: "Select all options that are relevant to you."
+            },
+            items: [
+            { value: "email", text: "Email" },
+            { value: "telephone", text: "Telephone" }
+            ]
+            }) }}
+
+            {% endif %}
             {{ button({
             text: 'Continue'
             }) }}
-            <p><a href="respond-to-your-letter">Cancel</a></p>
+
+            <p>
+                <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
+                    Cancel
+                </a>
+            </p>
+
         </form>
+
     </div>
 </div>
+
 {% endblock %}

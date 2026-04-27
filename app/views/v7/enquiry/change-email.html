@@ -3,47 +3,60 @@
 {% block pageTitle %}What is your email address?{% endblock %}
 =
 {% block beforeContent %}
-    {{ backLink({
-        text: 'Go back',
-        href: 'javascript:history.back();'
-    }) }}
+{{ backLink({
+text: 'Go back',
+href: '/' + data.version + '/' + data.letter + '/enquiry-letter-details'
+}) }}
 {% endblock %}
 
 
 {% block content %}
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-        
-        <form action="/change-email" method="post" novalidate>
 
-            <span class="nhsuk-caption-m">Your details</span>
-            
+        <form action="/{{ data.version }}/{{ data.letter }}/change-email" method="post" novalidate>
 
+            {% set emailErrorMessage = null %}
 
-                <!-- YES HTML -->
-                    {{ input({
-                        id: 'emailAddress',
-                        name: 'emailAddress',
-                        value: data.emailAddress,
-                        classes: 'nhsuk-u-width-two-thirds',
-                        attributes: { 'autocomplete' : 'off', 'inputmode' : 'email' },
-                        label: {
-                            text: 'What is your email address?',
-                            classes: 'nhsuk-label--l',
-                            isPageHeading: true
-                        }
-                    }) }}
+            {% if data.emailError %}
+            {% set emailErrorMessage = {
+            text: data.emailError
+            } %}
+            {{ errorSummary({
+            titleText: "There is a problem",
+            errorList: [
+            {
+            text: data.emailError,
+            href: "#update-exemption-certificate-number"
+            }
+            ]
+            }) }}
+            {% endif %}
 
-            
+             <span class="nhsuk-caption-m">Your details</span>
+             
+            {{ input({
+            id: 'emailAddress',
+            name: 'emailAddress',
+            value: data.pendingEmail,
+            classes: 'nhsuk-u-width-two-thirds',
+            attributes: {
+            autocomplete: 'off',
+            inputmode: 'email'
+            },
+            label: {
+            text: 'What is your email address?',
+            classes: 'nhsuk-label--l',
+            isPageHeading: true
+            },
+            errorMessage: emailErrorMessage
+            }) }}
 
+            {{ button({
+            text: 'Continue'
+            }) }}
 
-
-
-
-                {{ button({
-                    text: 'Continue'
-                }) }}
-        <p><a href="enquiry-letter-details">Cancel</a></p>
+            <p><a href="enquiry-letter-details">Cancel</a></p>
         </form>
 
 

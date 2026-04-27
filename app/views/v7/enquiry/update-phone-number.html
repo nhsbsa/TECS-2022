@@ -6,38 +6,53 @@
 What is your telephone number?
 {% endblock %}
 
-{% block outerContent %}
-{{ backLink({
-href: 'javascript:history.back();',
-text: "Go back"
-}) }}
+{% block beforeContent %}
+  {{ backLink({
+    href: 'check-contact-details',
+    text: 'Go back'
+  }) }}
 {% endblock %}
 
 {% block content %}
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="what-is-your-phone-number" method="post" class="form">
-      <div class="heading-group">
-        <span class="nhsuk-caption-m">Confirm your entitlement</span>
-        <h2>What is your telephone number?</h2>
-        <div class="nhsuk-form-group">
+    {% set errorMessage = null %}
 
-          {{ input({
-          label: {
-          text: ""
-          },
-          id: "telephone",
-          name: "telephone",
-          inputmode: "number",
-          classes: "nhsuk-input--width-20"
-          }) }}
-        </div>
+    {% if data.phoneNumberError %}
+    {% set errorMessage = { text: data.phoneNumberError } %}
+        {{ errorSummary({
+            titleText: "There is a problem",
+            errorList: [
+            {
+            text: data.phoneNumberError,
+            href: "#update-phone-number"
+            }
+            ]
+            }) }}
+    {% endif %}
 
-        {{ button({
-        text: 'Continue'
-        }) }}
-        <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
+    <form action="/{{ data.version }}/{{ data.letter }}/update-phone-number" method="post">
+
+      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+      <h1 class="nhsuk-heading-l">What is your telephone number?</h1>
+
+      {{ input({
+      id: "telephone",
+      name: "telephone",
+      value: data.phoneNumber,
+      classes: "nhsuk-input--width-20",
+      errorMessage: errorMessage,
+      attributes: {
+      inputmode: "numeric",
+      autocomplete: "tel"
+      }
+      }) }}
+
+      {{ button({ text: "Continue" }) }}
+
+
+      <p class="navigation"><a class="cancel" href="respond-to-your-letter">Cancel</a></p>
     </form>
 
   </div>

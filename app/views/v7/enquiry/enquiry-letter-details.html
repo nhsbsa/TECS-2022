@@ -9,153 +9,118 @@ Enquiry letter
 
 {% block content %}
 
+
 {% if data.type == "pecs" %}
-  {% set pageTitle = "What is your prescription reference number?" %}
-  {% set hintText = "You can find this on your prescription letter." %}
+{% set claimType = "NHS prescriptions" %}
+{% set claimTitle = "Date prescription was claimed" %}
 {% else %}
-  {% set pageTitle = "What is your dental reference number?" %}
-  {% set hintText = "You can find this on your dental letter." %}
-{% endif %}
-{{ pageTitle }}
-
-
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-      <span class="nhsuk-caption-m">Your details</span>
-      <h1>
-        Enquiry letter reference 01234567890
-      </h1>
-
-      <div class="nhsuk-warning-callout">
-        <h3 class="nhsuk-warning-callout__label">
-          <span role="text">
-            <span class="nhsuk-u-visually-hidden">Important: </span>
-            Do not delay
-          </span>
-        </h3>
-        <p>You now have 28 days to confirm you were entitled to free NHS prescriptions (by {{ 28 | alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a penalty charge.</p>
-      </div>
-     
-    
-       <h2>Check your details carefully</h2>
-
-       <p>We check details on your prescription match the details on your exemption certificate, qualifying benefit, or prepayment certificate.</p>
-      <p>We have not been able to confirm you were entitled to free NHS prescriptions using these details.</p>
-     
-      <h3>Details on the prescription</h3>
-      <dl class="nhsuk-summary-list">
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            Michelle Doe
-          </dd>
-      
-        </div>
-        
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Address
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            12 Old Oak Road<br>Throckley<br> NE67 9AD
-          </dd>
-      
-        </div>
-      
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Exemption reason ticked
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            <p>Gets Income Support or income-related Employment and Support Allowance.</p>
-            
-          </dd>
-      
-        </div>
-        <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-            Date prescription was claimed
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-            {{ -1 | getClaimDateRange }}
-          </dd>
-      
-        </div>
-      </dl>
-
-{% if data.hasEmail == "yes" and data.emailConfirmed %}
-     {{ summaryList({
-            rows: [
-              {
-                key: {
-                  text: 'Email address'
-                },
-                value: {
-                  text: data.email
-                },
-                actions: {
-                  items: [
-                    {
-                      href: 'change-email',
-                      text: 'Change',
-                      visuallyHiddenText: 'email address'
-                    }
-                  ]
-                }
-              }
-            ]
-          }) }}
+{% set claimType = "or reduced cost NHS dental treatment" %}
+{% set claimTitle = "Date dental treatment was claimed" %}
 {% endif %}
 
-      {% if data.settings[version].allowEmail === 'true' %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-m">Your details</span>
+    <h1>
+      Enquiry letter reference 01234567890
+    </h1>
 
-        <!-- Allow email is set in the session-data-defaults.js file -->
-
-        {% if data.showEmail === 'provided' %}
-          {% set emailValue = data.emailAddress or 'joe.bloggs@hotmail.com' %}
-        {% else %}
-          {% set emailValue = 'No email provided' %}
-        {% endif %}
-
-        <h3>Contact details</h3>
-        {{ summaryList({
-            rows: [
-              {
-                key: {
-                  text: 'Email address'
-                },
-                value: {
-                  text: emailValue
-                },
-                actions: {
-                  items: [
-                    {
-                      href: 'email-change-EXPEDITE-v3',
-                      text: 'Change',
-                      visuallyHiddenText: 'email address'
-                    }
-                  ]
-                }
-              }
-            ]
-          }) }}
-
-        {% endif %}
-
-        
-
-
-
-
-      <p>If you were entitled to free NHS prescriptions, answering some questions to confirm this can help us resolve this issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment certificate.</p>
-      
-      
+    <div class="nhsuk-warning-callout">
+      <h3 class="nhsuk-warning-callout__label">
+        <span role="text">
+          <span class="nhsuk-u-visually-hidden">Important: </span>
+          Do not delay
+        </span>
+      </h3>
+      <p>You now have 28 days to confirm you were entitled to free {{ claimType }} (by {{ 28 |
+        alterTodaysDateByNumberOfDays }}). If you can confirm this, it will resolve the issue and stop you getting a
+        penalty charge.</p>
     </div>
-   
+
+
+    <h2>Check your details carefully</h2>
+
+    <p>We check details on your prescription match the details on your exemption certificate, qualifying benefit, or
+      prepayment certificate.</p>
+    <p>We have not been able to confirm you were entitled to free {{ claimType }} using these details.</p>
+
+    <h3>Details on the prescription</h3>
+    <dl class="nhsuk-summary-list">
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Jack Burton
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Address
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          12 Lopan Road<br>Newcastle<br> NE1 4XQ
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Exemption reason ticked
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <p>Gets Income Support or income-related Employment and Support Allowance.</p>
+
+        </dd>
+
+      </div>
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          {{ claimTitle }}
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ -1 | getClaimDateRange }}
+        </dd>
+
+      </div>
+    </dl>
+
+    {% if data.hasEmail == "yes" and data.emailConfirmed %}
+    <h3>Contact details</h3>
+    {{ summaryList({
+    rows: [
+    {
+    key: {
+    text: 'Email address'
+    },
+    value: {
+    text: data.email
+    },
+    actions: {
+    items: [
+    {
+    href: 'change-email',
+    text: 'Change',
+    visuallyHiddenText: 'email address'
+    }
+    ]
+    }
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    <p>If you were entitled to free {{ claimType }}, answering some questions to confirm this can help us resolve this
+      issue. We can check if you had an exemption certificate or qualifying benefit, or if you had a valid prepayment
+      certificate.</p>
+
+
   </div>
-  <a href="what-you-want-to-do-next" class="nhsuk-button">
-    Continue
-  </a>
+
+</div>
+<a href="what-you-want-to-do-next" class="nhsuk-button">
+  Continue
+</a>
 {% endblock %}

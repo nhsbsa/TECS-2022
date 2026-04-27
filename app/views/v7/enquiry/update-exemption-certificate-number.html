@@ -3,42 +3,59 @@
 {% block pageTitle %}What is your [Benefit] number?{% endblock %}
 =
 {% block beforeContent %}
-    {{ backLink({
-        text: 'Go back',
-        href: 'javascript:history.back();'
-    }) }}
+{{ backLink({
+text: 'Go back',
+href: 'check-contact-details'
+}) }}
 {% endblock %}
 
 
 {% block content %}
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-        
-        <form action="update-exemption-certificate-number" method="post" novalidate>
+
+        {% set errorMessage = null %}
+
+        {% if data.benefitNumberError %}
+        {% set errorMessage = { text: data.benefitNumberError } %}
+        {{ errorSummary({
+        titleText: "There is a problem",
+        errorList: [
+        {
+        text: data.benefitNumberError,
+        href: "#update-exemption-certificate-number"
+        }
+        ]
+        }) }}
+        {% endif %}
+
+        <form action="/{{ data.version }}/{{ data.letter }}/update-exemption-certificate-number" method="post">
 
             <span class="nhsuk-caption-m">Your details</span>
-            
+
+            {{ input({
+            id: 'certificateNumber',
+            name: 'certificateNumber',
+            value: data.benefitNumber,
+            classes: 'nhsuk-u-width-two-thirds',
+            errorMessage: errorMessage,
+            attributes: {
+            autocomplete: 'off',
+            inputmode: 'numeric'
+            },
+            label: {
+            text: 'What is your [Benefit] number?',
+            classes: 'nhsuk-label--l',
+            isPageHeading: true
+            }
+            }) }}
+
+            {{ button({
+            text: 'Continue'
+            }) }}
 
 
-                <!-- YES HTML -->
-                    {{ input({
-                        id: 'certificateNumber',
-                        name: 'certificateNumber',
-                        value: data.certificateNumber,
-                        classes: 'nhsuk-u-width-two-thirds',
-                        attributes: { 'autocomplete' : 'off', 'inputmode' : 'email' },
-                        label: {
-                            text: 'What is your [Benefit] number?',
-                            classes: 'nhsuk-label--l',
-                            isPageHeading: true
-                        }
-                    }) }}
-
-
-                {{ button({
-                    text: 'Continue'
-                }) }}
-        <p><a href="enquiry-letter-details">Cancel</a></p>
+            <p><a href="enquiry-letter-details">Cancel</a></p>
         </form>
 
 
