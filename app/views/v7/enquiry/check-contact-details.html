@@ -6,13 +6,15 @@
 Check your contact details
 {% endblock %}
 
-
 {% block content %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
+
     <form action="check-contact-details" method="post" class="form">
+
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
+
       <h1 class="nhsuk-heading-l">Check your contact details are correct</h1>
 
       {% set contactSummary = [] %}
@@ -59,16 +61,24 @@ Check your contact details
       {% set howToContact = "Not provided" %}
       {% endif %}
 
-      {# BASE ROWS #}
+      {# EXEMPTION ROW (SAFE VERSION) #}
+      {% set exemptionHtml %}
+      {% if data.exemptionNumber == "yes" %}
+      {% if data.certificateNumber %}{{ data.certificateNumber }}{% endif %}
+      {% else %}
+      No
+      {% endif %}
+      {% endset %}
+
       {% set baseRows = [
       {
-      key: { text: "[Benefit] number" },
-      value: { text: data.benefitNumber or "Not provided" },
+      key: { text: "Exemption certificate" },
+      value: { html: exemptionHtml },
       actions: {
       items: [{
       href: "/" + data.version + "/" + data.letter + "/update-exemption-certificate-number",
       text: "Change",
-      visuallyHiddenText: "benefit number"
+      visuallyHiddenText: "exemption certificate"
       }]
       }
       },
@@ -92,4 +102,10 @@ Check your contact details
       {{ button({
       text: "Continue"
       }) }}
-      {% endblock %}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -3,96 +3,76 @@
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
-Benefit between 1 November and 30 November 2017
+Benefit check
 {% endblock %}
 
 {% block beforeContent %}
 {{ backLink({
-href: 'javascript:history.back();',
-text: 'Go back'
+  href: 'javascript:history.back();',
+  text: 'Go back'
 }) }}
 {% endblock %}
 
 {% block content %}
+
+{# =========================================================
+  DEFAULT = DWP
+  ONLY SWITCH IF isBsa === true
+========================================================= #}
+
+{% set questionText = "[DWP Benefit] between 1 November and 30 November 2017?" %}
+
+{% if data.isBsa %}
+  {% set questionText = "Did you have a valid NHSBSA benefit between 22 November 2019 and 30 November 2019?" %}
+{% endif %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-
-    {% set errorMessage = null %}
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
     {% if data.nhsError %}
-    {% set errorMessage = { text: data.nhsError } %}
-    {{ errorSummary({
-    titleText: "There is a problem",
-    errorList: [
-    {
-    text: data.nhsError,
-    href: "#did-you-have-this-benefit"
-    }
-    ]
-    }) }}
+      {{ errorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: data.nhsError,
+            href: "#nhs"
+          }
+        ]
+      }) }}
+    {% endif %}
+
+    {% set errorMessage = null %}
+    {% if data.nhsError %}
+      {% set errorMessage = { text: data.nhsError } %}
     {% endif %}
 
     <form action="/{{ data.version }}/{{ data.letter }}/did-you-have-this-benefit" method="post">
 
-
-      <span class="nhsuk-caption-m">Confirm your entitlement</span>
-
       {{ radios({
-      idPrefix: "nhs",
-      name: "nhs",
-      value: data.nhs,
-      errorMessage: errorMessage,
-      fieldset: {
-      legend: {
-      text: "[DWP Benefit] between 1 November and 30 November 2025?",
-      classes: "nhsuk-fieldset__legend--l",
-      isPageHeading: true
-      }
-      },
-      items: [
-      {
-      value: "yes",
-      text: "Yes"
-      },
-      {
-      value: "no",
-      text: "No"
-      }
-      ]
+        idPrefix: "nhs",
+        name: "nhs",
+        value: data.nhs,
+        errorMessage: errorMessage,
+        fieldset: {
+          legend: {
+            text: questionText,
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no", text: "No" }
+        ]
       }) }}
+
       {{ button({ text: "Continue" }) }}
+
     </form>
 
   </div>
-
 </div>
-
-<p><a href="respond-to-your-letter">Cancel</a></p>
-
-</div>
-</div>
-<style>
-  .heading-group p {
-    margin: 0;
-    padding: 0;
-    color: gray;
-
-
-  }
-
-  .heading-group {
-    margin-top: 10px;
-    margin-bottom: 0px;
-  }
-
-  .nhsuk-heading-l {
-    padding-bottom: 0px;
-  }
-
-  .nhsuk-input {
-    margin-bottom: 24px;
-  }
-</style>
 
 {% endblock %}

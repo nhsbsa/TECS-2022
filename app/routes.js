@@ -868,19 +868,24 @@ router.use((req, res, next) => {
 // ======= Index Page routing  and session data ======== //
 // ===================================================== //
 
-router.post('/set-type', function (req, res) {
+router.post('/:version/set-type', function (req, res) {
 
-  req.session.data = {}; // Reset session data at the start of the flow to avoid odd behaviour
+  req.session.data = {};
 
-  const [letter, type] = req.body.flow.split('-');
-  const version = 'v7'; // setting the version here - Change this for future iterations
+  const { version } = req.params;
 
-  req.session.data.letter = letter;  // enquiry / PCN
-  req.session.data.type = type;      // pecs / decs
+  const flow = req.body.flow;
+  const parts = flow.split('-');
+
   req.session.data.version = version;
+  req.session.data.letter = parts[0] || 'enquiry';
+  req.session.data.type = parts[1] || null;
+  req.session.data.isBsa = parts.includes('bsa');
+  req.session.data.flowVariant = parts.includes('norecord')
+    ? 'norecord'
+    : null;
 
-  res.redirect(`/${version}/${letter}/respond-to-your-letter`);
-
+  res.redirect(`/${version}/${req.session.data.letter}/respond-to-your-letter`);
 });
 
 
@@ -1250,7 +1255,6 @@ router.post('/:version/:letter/were-you-claiming-any-benefits', function (req, r
 });
 
 
-
 router.get('/:version/:letter/did-you-have-this-benefit', function (req, res) {
   const { version, letter } = req.params;
 
@@ -1265,31 +1269,40 @@ router.get('/:version/:letter/did-you-have-this-benefit', function (req, res) {
 router.post('/:version/:letter/did-you-have-this-benefit', function (req, res) {
 
   const { version, letter } = req.params;
-  const { nhs } = req.body;
+  const nhs = req.body.nhs;
 
-  // ❌ validation
   if (!nhs) {
-    req.session.data.nhsError = 'Select yes if you had this benefit, or no if you did not';
+    req.session.data.nhsError =
+      'Select yes if you had this benefit, or no if you did not';
+
     return res.redirect(`/${version}/${letter}/did-you-have-this-benefit`);
   }
 
-  // ✅ clear error on success
   delete req.session.data.nhsError;
 
-  // store answer
   req.session.data.nhs = nhs;
 
-  // 🧭 routing logic (binary)
+  const isBsa = req.session.data.isBsa === true;
+
+  // ======================
+  // BSA FLOW
+  // ======================
+  if (isBsa) {
+    if (nhs === 'yes') {
+      return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
+    }
+
+    return res.redirect(`/${version}/${letter}/check-personal-details`);
+  }
+
+  // ======================
+  // DWP DEFAULT FLOW
+  // ======================
   if (nhs === 'yes') {
     return res.redirect(`/${version}/${letter}/check-personal-details`);
   }
 
-  if (nhs === 'no') {
-    return res.redirect(`/${version}/${letter}/did-you-have-an-exemption`);
-  }
-
-  // fallback safety net
-  return res.redirect(`/${version}/${letter}/did-you-have-this-benefit`);
+  return res.redirect(`/${version}/${letter}/did-you-have-an-exemption`);
 });
 
 router.post('/:version/:letter/update-exemption-certificate-number', function (req, res) {
@@ -1736,7 +1749,7 @@ router.post('/:version/:letter/exemption-certificate-number', function (req, res
 
   // ❌ yes but no input
   if (exemptionNumber === 'yes') {
-    if (!certificateNumber) {
+    if (!certificateNumber || certificateNumber.trim() === '') {
       req.session.data.certificateNumberError = 'Enter your certificate number';
       return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
     }
@@ -1748,11 +1761,21 @@ router.post('/:version/:letter/exemption-certificate-number', function (req, res
     }
   }
 
-  // ✅ success
+  // ✅ store values
   req.session.data.exemptionNumber = exemptionNumber;
   req.session.data.certificateNumber = certificateNumber;
 
-  return res.redirect(`/${version}/${letter}/check-personal-details`);
+  // ✅ 🔁 NEW ROUTING LOGIC
+  if (exemptionNumber === 'yes') {
+    return res.redirect(`/${version}/${letter}/contact-preferences`);
+  }
+
+  if (exemptionNumber === 'no') {
+    return res.redirect(`/${version}/${letter}/check-personal-details`);
+  }
+
+  // fallback
+  return res.redirect(`/${version}/${letter}/exemption-certificate-number`);
 });
 
 // GET
@@ -1854,7 +1877,6 @@ router.get('/:version/:letter/enter-postcode', function (req, res) {
   });
 });
 
-
 router.post('/:version/:letter/enter-postcode', function (req, res) {
 
   const { version, letter } = req.params;
@@ -1873,6 +1895,11 @@ router.post('/:version/:letter/enter-postcode', function (req, res) {
 
   // ✅ success
   req.session.data.postCode = postCode;
+
+  // 🔀 FLOW VARIANT: NO RECORD JOURNEY
+  if (req.session.data.flowVariant === 'norecord') {
+    return res.redirect(`/${version}/${letter}/cannot-find-your-details`);
+  }
 
   return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
 });
@@ -1979,9 +2006,9 @@ router.post('/:version/:letter/enter-reference-number-again', function (req, res
 });
 
 router.post('/:version/:letter/accept-pcn', function (req, res) {
-    const destination = 'pcn-accepted';
-    res.redirect( destination );
-    
+  const destination = 'pcn-accepted';
+  res.redirect(destination);
+
 });
 
 module.exports = router;
