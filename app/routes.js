@@ -860,7 +860,7 @@ router.use((req, res, next) => {
 });
 
 // =================================================================================================
-//                                          ENQUIRY FLOW
+//                                          ENQUIRY SPECIFIC ROUTES
 // =================================================================================================
 
 
@@ -892,40 +892,38 @@ router.post('/:version/set-type', function (req, res) {
 router.post('/start-journey', function (req, res) {
 
   const { type, letter, version } = req.session.data;
-
   const folder = letter === 'pcn' ? 'pcn' : 'enquiry';
 
+  // Store amounts for use in conditional messaging
+
+
+  // ✅ Set total amount (number for calculations)
+  let charge;
+  let penaltyCharge;
+  let totalAmount;
+
+  if (type === 'decs') {
+    charge = 75.30;
+    penaltyCharge = 100.00;
+    totalAmount = 175.30; // decs total amount £75.30 prescription charge plus £100.00 penalty
+  } else {
+    charge = 9.90;
+    penaltyCharge = 50.00;
+    totalAmount = 59.90; // pecs total amount £9.90 prescription charge plus £50.00 penalty charge
+  }
+
+  // ✅ store raw number (for maths)
+  req.session.data.charge = charge;
+  req.session.data.penaltyCharge = penaltyCharge;
+  req.session.data.totalAmount = totalAmount;
+
+  // ✅ store formatted values for use in conditional messaging and displaying on pages
+  req.session.data.chargeFormatted = charge.toFixed(2);
+  req.session.data.penaltyChargeFormatted = penaltyCharge.toFixed(2);
+  req.session.data.totalAmountFormatted = totalAmount.toFixed(2);
+
   res.redirect(`/${version}/${folder}/enter-reference-number`);
-
 });
-
-
-
-// ============================================================================ //
-//           Email and Email Confirmation Page routing and session data         //
-// =========================================================================== //
-
-
-// ============== 🧠 Helper function to validate email format ============== //
-// function isValidEmail(email) {
-//   if (!email) return false;
-
-//   // must contain one @
-//   if (!email.includes('@')) return false;
-
-//   const [local, domain] = email.split('@');
-
-//   // both parts must exist
-//   if (!local || !domain) return false;
-
-//   // domain must contain a dot
-//   if (!domain.includes('.')) return false;
-
-//   // no spaces allowed
-//   if (email.includes(' ')) return false;
-
-//   return true;
-// }
 
 
 // ======================= Get Routes =============================== //
@@ -1230,18 +1228,21 @@ router.post('/:version/:letter/were-you-claiming-any-benefits', function (req, r
   const { version, letter } = req.params;
   const { claimBenefits } = req.body;
 
-  // ❌ DO NOT clear error here at the top
-
+  // ❌ validation
   if (!claimBenefits) {
     req.session.data.claimBenefitsError = 'Select an option to continue';
     return res.redirect(`/${version}/${letter}/were-you-claiming-any-benefits`);
   }
 
-  // ✅ Clear error ONLY when valid
+  // ✅ clear error
   delete req.session.data.claimBenefitsError;
 
+  // ✅ store
   req.session.data.claimBenefits = claimBenefits;
 
+  // ======================
+  // ✅ QUALIFYING BENEFITS
+  // ======================
   if ([
     'income-employment-support',
     'jsa',
@@ -1251,7 +1252,18 @@ router.post('/:version/:letter/were-you-claiming-any-benefits', function (req, r
     return res.redirect(`/${version}/${letter}/check-personal-details`);
   }
 
+  // ======================
+  // 🧭 PCN vs ENQUIRY SPLIT
+  // ======================
+  if (letter === 'pcn') {
+    return res.redirect(`/${version}/${letter}/medical-conditions`);
+  }
+
+  // ======================
+  // DEFAULT (ENQUIRY)
+  // ======================
   return res.redirect(`/${version}/${letter}/cannot-confirm`);
+
 });
 
 
@@ -1858,10 +1870,19 @@ router.post('/:version/:letter/what-you-want-to-do-next', function (req, res) {
     return res.redirect(`/${version}/${letter}/what-happens-next`);
   }
 
+  // ✔ NOT ENTITLED (PCN vs ENQUIRY split)
   if (answer === 'not-entitled') {
+
+    // 🧾 PCN FLOW
+    if (letter === 'pcn') {
+      return res.redirect(`/${version}/${letter}/payment-method`);
+    }
+
+    // 📩 ENQUIRY FLOW (default)
     return res.redirect(`/${version}/${letter}/you-will-be-sent-pcn`);
   }
 
+  // ✔ NOT SURE (same for both)
   return res.redirect(`/${version}/${letter}/what-happens-next`);
 });
 
@@ -1899,6 +1920,11 @@ router.post('/:version/:letter/enter-postcode', function (req, res) {
   // 🔀 FLOW VARIANT: NO RECORD JOURNEY
   if (req.session.data.flowVariant === 'norecord') {
     return res.redirect(`/${version}/${letter}/cannot-find-your-details`);
+  }
+
+  // 🧭 PCN vs ENQUIRY split
+  if (letter === 'pcn') {
+    return res.redirect(`/${version}/${letter}/pcn-details`);
   }
 
   return res.redirect(`/${version}/${letter}/do-you-have-an-email`);
@@ -2009,6 +2035,195 @@ router.post('/:version/:letter/accept-pcn', function (req, res) {
   const destination = 'pcn-accepted';
   res.redirect(destination);
 
+});
+
+
+
+// =================================================================================================
+//                                          PCN SPECIFIC ROUTES
+// =================================================================================================
+
+// GET
+router.get('/:version/:letter/payment-method', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/payment-method`, {
+    data: req.session.data
+  });
+});
+
+
+// POST
+router.post('/:version/:letter/payment-method', function (req, res) {
+
+  const { version, letter } = req.params;
+  const paymentMethod = req.body.paymentMethod;
+
+  // ❌ validation
+  if (!paymentMethod) {
+    return res.render(`${version}/${letter}/payment-method`, {
+      data: {
+        ...req.session.data,
+        paymentMethodError: 'Select how you would like to pay your penalty charge'
+      }
+    });
+  }
+
+  // ✅ store
+  req.session.data.paymentMethod = paymentMethod;
+
+  // 🧭 routing
+  if (paymentMethod === 'credit-card') {
+    return res.redirect(`/${version}/${letter}/payment-choice`);
+  }
+
+  if (paymentMethod === 'direct-debit') {
+    return res.redirect(`/${version}/${letter}/pay-by-direct-debit`);
+  }
+
+  // fallback
+  return res.redirect(`/${version}/${letter}/payment-method`);
+});
+
+// GET
+router.get('/:version/:letter/payment-choice', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/payment-choice`, {
+    data: req.session.data
+  });
+});
+
+
+// POST
+router.post('/:version/:letter/payment-choice', function (req, res) {
+
+  const { version, letter } = req.params;
+  const paymentAmount = req.body.paymentAmount;
+
+  // ❌ validation
+  if (!paymentAmount) {
+    return res.render(`${version}/${letter}/payment-choice`, {
+      data: {
+        ...req.session.data,
+        paymentAmountError: 'Select if you want to pay the full amount or make a partial payment'
+      }
+    });
+  }
+
+  // ✅ store
+  req.session.data.paymentAmount = paymentAmount;
+
+  // 🧠 set flag for later pages
+  req.session.data.isPartialPayment = paymentAmount === 'partial-amount';
+
+  // 🧭 routing
+  if (paymentAmount === 'full-amount') {
+    return res.redirect(`/${version}/${letter}/gov-pay`);
+  }
+
+  if (paymentAmount === 'partial-amount') {
+    return res.redirect(`/${version}/${letter}/partial-payment`);
+  }
+
+  // fallback
+  return res.redirect(`/${version}/${letter}/payment-choice`);
+});
+
+// GET
+router.get('/:version/:letter/partial-payment', function (req, res) {
+
+  const { version, letter } = req.params;
+
+  req.session.data.version = version;
+  req.session.data.letter = letter;
+
+  res.render(`${version}/${letter}/partial-payment`, {
+    data: req.session.data
+  });
+});
+
+
+// ======================
+// POST
+// ======================
+router.post('/:version/:letter/partial-payment', function (req, res) {
+
+  const { version, letter } = req.params;
+  const rawAmount = req.body.amountToPay;
+
+  const total = parseFloat(req.session.data.totalAmount);
+
+  // ❌ EMPTY
+  if (!rawAmount || rawAmount.trim() === '') {
+    return res.render(`${version}/${letter}/partial-payment`, {
+      data: {
+        ...req.session.data,
+        amountToPay: rawAmount,
+        amountError: 'Enter an amount to pay'
+      }
+    });
+  }
+
+  // ❌ NOT NUMBER
+  const amount = parseFloat(rawAmount);
+
+  if (isNaN(amount)) {
+    return res.render(`${version}/${letter}/partial-payment`, {
+      data: {
+        ...req.session.data,
+        amountToPay: rawAmount,
+        amountError: 'Enter a valid amount'
+      }
+    });
+  }
+
+  // ❌ <= 0
+  if (amount <= 0) {
+    return res.render(`${version}/${letter}/partial-payment`, {
+      data: {
+        ...req.session.data,
+        amountToPay: rawAmount,
+        amountError: 'Amount must be more than £0'
+      }
+    });
+  }
+
+  // ❌ > total
+  if (amount > total) {
+    return res.render(`${version}/${letter}/partial-payment`, {
+      data: {
+        ...req.session.data,
+        amountToPay: rawAmount,
+        amountError: 'Amount cannot be more than the total owed'
+      }
+    });
+  }
+
+  // ✅ SUCCESS
+
+  const roundedAmount = parseFloat(amount.toFixed(2));
+  const remaining = parseFloat((total - roundedAmount).toFixed(2));
+
+  // store raw
+  req.session.data.amountPaid = roundedAmount;
+  req.session.data.remainingAmount = remaining;
+
+  // store formatted (UI safe)
+  req.session.data.amountPaidFormatted = roundedAmount.toFixed(2);
+  req.session.data.remainingAmountFormatted = remaining.toFixed(2);
+
+  req.session.data.isPartialPayment = true;
+
+  return res.redirect(`/${version}/${letter}/gov-pay`);
 });
 
 module.exports = router;

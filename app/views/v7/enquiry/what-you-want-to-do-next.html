@@ -28,30 +28,31 @@ text: 'Go back'
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
+    {# ================= ERROR HANDLING ================= #}
+    {# 🔴 Error summary #}
+    {% if data.whatYouWantToDoNextError %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.whatYouWantToDoNextError,
+    href: "#confirm"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    {# 🔴 Field-level error #}
+    {% set errorMessage = null %}
+    {% if data.whatYouWantToDoNextError %}
+    {% set errorMessage = {
+    text: data.whatYouWantToDoNextError
+    } %}
+    {% endif %}
+
     <form action="/{{ data.version }}/{{ data.letter }}/what-you-want-to-do-next" method="post">
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
-
-      {# 🔴 Error summary #}
-      {% if data.whatYouWantToDoNextError %}
-      {{ errorSummary({
-      titleText: "There is a problem",
-      errorList: [
-      {
-      text: data.whatYouWantToDoNextError,
-      href: "#confirm"
-      }
-      ]
-      }) }}
-      {% endif %}
-
-      {# 🔴 Field-level error #}
-      {% set errorMessage = null %}
-      {% if data.whatYouWantToDoNextError %}
-      {% set errorMessage = {
-      text: data.whatYouWantToDoNextError
-      } %}
-      {% endif %}
 
       {# 🧠 Single radio config using claimType #}
       {% set radioItems = [

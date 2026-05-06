@@ -12,41 +12,40 @@
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
+    {# ================= ERROR HANDLING ================= #}
+    {% set hasEmailErrorMessage = null %}
+
+    {% if data.hasEmailError and data.emailSubmitted %}
+
+    {% set hasEmailErrorMessage = {text: data.hasEmailError} %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.hasEmailError,
+    href: "#update-exemption-certificate-number"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+
+    {% set emailErrorMessage = null %}
+
+    {% if data.emailError and data.emailSubmitted %}
+    {% set emailErrorMessage = {text: data.emailError} %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.emailError,
+    href: "#update-exemption-certificate-number"
+    }
+    ]
+    }) }}
+    {% endif %}
+
     <form action="/{{ data.version }}/{{ data.letter }}/do-you-have-an-email" method="post">
-
-
-
-      {% set hasEmailErrorMessage = null %}
-
-      {% if data.hasEmailError and data.emailSubmitted %}
-
-      {% set hasEmailErrorMessage = {text: data.hasEmailError} %}
-      {{ errorSummary({
-      titleText: "There is a problem",
-      errorList: [
-      {
-      text: data.hasEmailError,
-      href: "#update-exemption-certificate-number"
-      }
-      ]
-      }) }}
-      {% endif %}
-
-
-      {% set emailErrorMessage = null %}
-
-      {% if data.emailError and data.emailSubmitted %}
-      {% set emailErrorMessage = {text: data.emailError} %}
-      {{ errorSummary({
-      titleText: "There is a problem",
-      errorList: [
-      {
-      text: data.emailError,
-      href: "#update-exemption-certificate-number"
-      }
-      ]
-      }) }}
-      {% endif %}
 
       <span class="nhsuk-caption-m">Your details</span>
 

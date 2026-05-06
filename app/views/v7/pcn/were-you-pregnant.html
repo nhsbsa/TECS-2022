@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Were you pregnant?
+{% endblock %}
+
+{% block beforeContent %}
+    {{ backLink({
+        text: 'Go back',
+        href: 'javascript:history.back();'
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+   
+
+        <span class="nhsuk-caption-m">Confirm your entitlement</span>
+        <h1 class="nhsuk-heading-l">Were you pregnant between 18 November 2019 and 30 November 2019, or had you given birth in the previous 12 months?</h1>
+        <div class="nhsuk-form-group">
+          <form action="maternity-exemption" method="get" class="form">
+
+              
+            <div class="nhsuk-form-group">
+    
+              <div class="nhsuk-radios nhsuk-radios--inline">
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="yes">
+                    <label class="nhsuk-label nhsuk-radios__label" for="yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="benefit-exemption" name="exemption" type="radio" value="no">
+                    <label class="nhsuk-label nhsuk-radios__label" for="no">
+                        No
+                    </label>
+                </div>
+            </div>
+              </fieldset>
+            
+            </div>
+        
+          
+          <div class="nhsuk-form-group">
+          <button class="nhsuk-button" type="submit">
+           Continue
+          </button>
+          <p><a href="respond-to-your-letter">Cancel</a></p>
+          </div>
+      
+              
+         
+      
+          </div>
+        </div>
+
+{% endblock %}

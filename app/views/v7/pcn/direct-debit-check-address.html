@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your address is correct
+{% endblock %}
+
+{% block beforeContent %}
+    {{ backLink({
+        text: 'Go back',
+        href: 'javascript:history.back();'
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">	
+		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+        <h1 class="nhsuk-heading-l">Is your address correct?</h1>
+        
+		<div class="nhsuk-hint" id="contact-hint">
+			We'll send confirmation of your Direct Debit to the address you provide.
+		</div>
+        
+		<dl class="nhsuk-summary-list">
+			<div class="nhsuk-summary-list__row">
+				<dt class="nhsuk-summary-list__key">
+					Address
+				</dt>
+				<dd class="nhsuk-summary-list__value">
+					12 Old Oak Road<br>Throckley<br> NE67 9AD
+				</dd>
+			</div>     
+        </dl>
+        
+		<form action="/v6-pcn/direct-debit-check-address" method="post" class="form">
+			<div class="nhsuk-form-group">
+				<div class="nhsuk-radios nhsuk-radios--inline">
+
+				<div class="nhsuk-radios__item">
+					<input class="nhsuk-radios__input" id="address" name="address" type="radio" value="yes">
+					<label class="nhsuk-label nhsuk-radios__label" for="address-inline-1">
+						Yes
+					</label>
+				</div>
+		
+				<div class="nhsuk-radios__item">
+					<input class="nhsuk-radios__input" id="address" name="address" type="radio" value="no">
+					<label class="nhsuk-label nhsuk-radios__label" for="address-inline-2">
+						No
+					</label>
+				</div>
+			</div>
+			<br>
+			<button class="nhsuk-button" type="submit">
+				Continue
+			</button>
+
+			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+  		</form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,155 @@
+<!-- Use this page as the index for your project -->
+
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /app/views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /app/views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+{% block pageTitle %}
+Transforming Exemption Checking Service
+{% endblock %}
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+        <!-- <span class="nhsuk-caption-l">NHS Business Services Authority</span> -->
+        <span class="nhsuk-caption-m">Transforming Exemption Checking Service</span>
+        <h1 class="nhsuk-heading-xl">
+            Respond to your letter
+        </h1>
+        <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+    </div>
+</div>
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+        <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">Our vision</h2>
+        <p> To create a unified, intuitive easy to use service for users to confirm they were entitled to help with
+            their health costs or pay a Penalty Charge Notice if they were not exempt</p>
+        <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+    </div>
+</div>
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+        {% call details({
+        summaryText: "Enquiry Journey Flows",
+        classes: "nhsuk-expander"
+        }) %}
+        <p class="nhsuk-body-s">Last updated: 28 April 2026</p>
+
+        <form action="/v7/set-type" method="post">
+            <div class="nhsuk-grid-row">
+                <button class="nhsuk-button nhsuk-button" name="flow" value="enquiry-pecs">
+                    PECS journey
+                </button>
+
+                <button class="nhsuk-button nhsuk-button" name="flow" value="enquiry-decs">
+                    DECS journey
+                </button>
+            </div>
+
+            <div class="nhsuk-grid-row">
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="enquiry-pecs-bsa">
+                    PECS journey (BSA)
+                </button>
+
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="enquiry-decs-bsa">
+                    DECS journey (BSA)
+                </button>
+
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="enquiry-norecord">
+                    Cannot find your details
+                </button>
+            </div>
+        </form>
+        <hr>
+        <a href="enquiry" class="nhsuk-link">View version history</a>
+        {% endcall %}
+        {% call details({
+        summaryText: "Penalty Charge Flows",
+        classes: "nhsuk-expander"
+        }) %}
+        <p class="nhsuk-body-s">Last updated: 28 April 2026</p>
+        <hr>
+        <form action="/v7/set-type" method="post">
+            <div class="nhsuk-grid-row">
+                <button class="nhsuk-button nhsuk-button" name="flow" value="pcn-pecs">
+                    PECS journey
+                </button>
+
+                <button class="nhsuk-button nhsuk-button" name="flow" value="pcn-decs">
+                    DECS journey
+                </button>
+            </div>
+
+            <div class="nhsuk-grid-row">
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="pcn-pecs-bsa">
+                    PECS journey (BSA)
+                </button>
+
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="pcn-decs-bsa">
+                    DECS journey (BSA)
+                </button>
+
+                <button class="nhsuk-button nhsuk-button--secondary nhsuk-button--small" name="flow"
+                    value="pcn-norecord">
+                    Cannot find your details
+                </button>
+            </div>
+        </form>
+        <hr>
+        <a href="enquiry" class="nhsuk-link">View version history</a>
+        {% endcall %}
+        <hr class="nhsuk-section-break nhsuk-section-break--m nhsuk-section-break--visible">
+    </div>
+</div>
+<div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-one-half">
+            <div class="nhsuk-card">
+                <div class="nhsuk-card__content">
+                    <h3 class="nhsuk-card__heading">
+                        UR Prototype
+                    </h3>
+                    <p class="nhsuk-body-m">something here</p>
+                    <button class="nhsuk-button nhsuk-button" name="flow" value="enquiry-pecs">
+                        Latest UR journey
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="nhsuk-grid-column-one-half">
+            <ul class="nhsuk-grid-row nhsuk-card-group">
+                <li class="nhsuk-grid-column-full nhsuk-card-group__item">
+                    {{ card({
+                    href: "iteration-history",
+                    primary: "true",
+                    clickable: "true",
+                    heading: "Iteration history",
+                    headingClasses: "nhsuk-heading-m",
+                    description: "The history for all of the TECS prototype
+                    versions, both enquiry and PCN, can be found here along with all of the details for them."
+                    }) }}
+                </li>
+            </ul>
+        </div>
+</div>
+
+{% endblock %}

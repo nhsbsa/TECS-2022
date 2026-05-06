@@ -7,99 +7,80 @@ What do you want to do next?
 {% endblock %}
 
 {% block beforeContent %}
-  {{ backLink({
-    href: 'javascript:history.back();',
-    text: 'Go back'
-  }) }}
+{{ backLink({
+href: 'javascript:history.back();',
+text: 'Go back'
+}) }}
 {% endblock %}
 
 {% block content %}
+
+{# 🧠 fallback so page never breaks #}
+{% set type = data.type or "pecs" %}
+
+{# 🧠 define claim type text once #}
+{% if type == "pecs" %}
+{% set claimType = "free NHS prescriptions" %}
+{% else %}
+{% set claimType = "free or reduced cost NHS dental treatment" %}
+{% endif %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <form action="what-you-want-to-do-next" method="post" class="form">
+    {# ================= ERROR HANDLING ================= #}
+    {# 🔴 Error summary #}
+    {% if data.whatYouWantToDoNextError %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.whatYouWantToDoNextError,
+    href: "#confirm"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    {# 🔴 Field-level error #}
+    {% set errorMessage = null %}
+    {% if data.whatYouWantToDoNextError %}
+    {% set errorMessage = {
+    text: data.whatYouWantToDoNextError
+    } %}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/what-you-want-to-do-next" method="post">
 
       <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
-
-      {% if data.letter === 'enquiry' and data.type === 'pecs'%}
-
+      {# 🧠 Single radio config using claimType #}
       {% set radioItems = [
       {
       value: 'confirm-entitled',
-      text: 'Confirm I was entitled to free NHS prescripitons PCN',
+      text: 'Confirm I was entitled to ' ~ claimType,
       hint: {
       text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
       }
       },
       {
-      value: 'pay-pcn',
-      text: 'I was not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice'
+      value: 'not-entitled',
+      text: 'I was not entitled to ' ~ claimType ~ ' and need to pay a Penalty Charge Notice'
       },
       {
       divider: 'or'
       },
       {
       value: 'not-sure',
-      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
+      text: "I'm not sure if I was entitled to " ~ claimType ~ " and want to check"
       }
-      ]
-      %}
-
-      {% elif data.letter === 'pcn' and data.type === 'decs' %}
-
-      {% set radioItems = [
-      {
-      value: 'confirm-entitled',
-      text: 'Confirm I was entitled to free or reduced cost NHS dental treatment',
-      hint: {
-      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
-      }
-      },
-      {
-      value: 'pay-pcn',
-      text: 'I was not entitled to free NHS prescriptions and need to pay a Penalty Charge Notice'
-      },
-      {
-      divider: 'or'
-      },
-      {
-      value: 'not-sure',
-      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
-      }
-      ]
-      %}
-
-      {% else %}
-
-      {% set radioItems = [
-      {
-      value: 'confirm-entitled',
-      text: 'Confirm I was entitled to free NHS prescripitons',
-      hint: {
-      text: "We'll check if you were getting a qualifying benefit, or had a valid exemption or prepayment certificate."
-      }
-      },
-      {
-      value: 'what-happens-next',
-      text: 'I was not entitled to free NHS prescriptions and want to know what happens next'
-      },
-      {
-      divider: 'or'
-      },
-      {
-      value: 'not-sure',
-      text: "I'm not sure if I was entitled to free NHS prescriptions and want to check"
-      }
-      ]
-      %}
-
-      {% endif %}
-
+      ] %}
 
       {{ radios({
       idPrefix: "confirm",
       name: "confirm",
+      value: data.confirm,
+      errorMessage: errorMessage,
       fieldset: {
       legend: {
       text: "What do you want to do next?",
@@ -108,8 +89,16 @@ What do you want to do next?
       }
       },
       items: radioItems
-
       }) }}
+
+      {% call details({
+      summaryText: "I was not entitled to free NHS prescriptions but have an exceptional reason why I made the claim"
+      }) %}
+      <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you
+        can ask us to review your case.
+        <a href="who-can-ask-for-review">Find out if you can ask for a review.</a>
+      </p>
+      {% endcall %}
 
       {{ button({
       text: 'Continue'
@@ -117,11 +106,13 @@ What do you want to do next?
 
     </form>
 
-    <p><a href="respond-to-your-letter">Cancel</a></p>
+    <p>
+      <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
+        Cancel
+      </a>
+    </p>
 
   </div>
 </div>
-<style>
-</style>
 
 {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+How would you like to pay your penalty charge?
+{% endblock %}
+
+{% block beforeContent %}
+{{ backLink({
+text: 'Go back',
+href: 'javascript:history.back();'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    {# ================= ERROR HANDLING ================= #}
+    {# 🔴 Error summary #}
+    {% if data.paymentMethodError %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.paymentMethodError,
+    href: "#paymentMethod"
+    }
+    ]
+    }) }}
+    {% endif %}
+
+    {# 🔴 Field error #}
+    {% set errorMessage = null %}
+    {% if data.paymentMethodError %}
+    {% set errorMessage = {
+    text: data.paymentMethodError
+    } %}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/payment-method" method="post">
+
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+
+      {{ radios({
+      idPrefix: "paymentMethod",
+      name: "paymentMethod",
+      value: data.paymentMethod,
+      errorMessage: errorMessage,
+      fieldset: {
+      legend: {
+      text: "How would you like to pay your penalty charge?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+      }
+      },
+      items: [
+      {
+      value: "credit-card",
+      text: "Debit or credit card"
+      },
+      {
+      value: "direct-debit",
+      text: "Direct Debit"
+      }
+      ]
+      }) }}
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+    <p>
+      <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
+        Cancel
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

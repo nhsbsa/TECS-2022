@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Pay by card
+{% endblock %}
+
+{% block beforeContent %}
+{{ backLink({
+text: 'Go back',
+href: 'javascript:history.back();'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    {# ================= ERROR HANDLING ================= #}
+
+    {% set errorMessage = null %}
+
+    {% if data.amountError %}
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.amountError,
+    href: "#amountToPay"
+    }
+    ]
+    }) }}
+
+    {% set errorMessage = {
+    text: data.amountError
+    } %}
+    {% endif %}
+
+    <form action="/{{ data.version }}/{{ data.letter }}/partial-payment" method="post">
+
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+
+      <h1 class="nhsuk-heading-l">How much are you paying today?</h1>
+
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+
+          <h3 class="nhsuk-card__heading">Penalty Charge Notice amount</h3>
+          {% set total = data.totalAmountFormatted %}
+
+          {{ summaryList({
+          rows: [
+          {
+          key: { text: 'Total amount to pay' },
+          value: { html: '<strong>£' + total + '</strong>' }
+          }
+          ]
+          }) }}
+
+          <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">
+            Amount to pay: £{{ total }}
+          </p>
+
+        </div>
+      </div>
+
+      <div class="nhsuk-form-group">
+
+        {{ input({
+        label: {
+        text: "Amount to pay"
+        },
+        id: "amountToPay",
+        name: "amountToPay",
+        prefix: "£",
+        classes: "nhsuk-input--width-5",
+        value: data.amountToPay,
+        errorMessage: errorMessage,
+        spellcheck: false
+        }) }}
+
+      </div>
+
+      <p>You cannot change this on the next page.</p>
+
+      {{ button({
+      text: 'Continue'
+      }) }}
+
+    </form>
+
+    <p>
+      <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
+        Cancel
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
