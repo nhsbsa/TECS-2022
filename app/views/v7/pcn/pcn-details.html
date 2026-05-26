@@ -9,6 +9,11 @@ Penalty Charge Notice
 
 {% block content %}
 
+{% set totalBill = data.totalBillFormatted %}
+{% set Charge = data.chargeFormatted %} 
+{% set Penalty = data.penaltyChargeFormatted %}
+{% set remaining = data.outstandingBalanceFormatted %}
+
 <style>
   .payment-summary {
     border-top: 2px solid #1d70b8;
@@ -22,7 +27,7 @@ Penalty Charge Notice
   <div class="nhsuk-grid-column-two-thirds">
     <span class="nhsuk-caption-m">Your details</span>
     <h1>
-      Penalty Charge Notice 01234567890
+      Penalty Charge Notice {{ data.referenceNumber }}
     </h1>
 
     <div class="nhsuk-warning-callout">
@@ -95,7 +100,7 @@ Penalty Charge Notice
               Prescription charges
             </dt>
             <dd class="nhsuk-summary-list__value">
-              £9.65
+              £{{ Charge }}
             </dd>
 
           </div>
@@ -105,7 +110,7 @@ Penalty Charge Notice
                Penalty charge
             </dt>
             <dd class="nhsuk-summary-list__value">
-              £48.25
+              £{{ Penalty }}
             </dd>
 
           </div>
@@ -114,7 +119,7 @@ Penalty Charge Notice
               Total amount to pay
             </dt>
             <dd class="nhsuk-summary-list__value">
-              <strong>£57.90</strong>
+              <strong>£{{ totalBill }}</strong>
             </dd>
 
           </div>
@@ -128,7 +133,7 @@ Penalty Charge Notice
             <p>Your total amount is the penalty charge amount plus your original prescription costs.</p>
          -->
       
-        <h2 class="nhsuk-card__heading">
+        <!-- <h2 class="nhsuk-card__heading">
           Previous payments
         </h3>
 
@@ -145,69 +150,15 @@ Penalty Charge Notice
 
           </div>
 
-          
-          
-
-
-        </dl>
+        </dl> -->
         <p style="font-weight: bold; font-size:36px;">
-         Amount still to pay: £50
+         Amount still to pay: £{{remaining}}
 
         </p>
 
       </div>
     </div>
     <p>If you have recently made a payment, it can take 24 hours for payment information to update.</p>
-
-
-    
-
-    <!-- <div class="payment-summary">
-        <h2 class="nhsuk-heading-l">Penalty Charge Notice summary</h2>
-        <dl class="nhsuk-summary-list nhsuk-summary-list">
-
-          <div class="nhsuk-summary-list__row">
-            <dt class="nhsuk-summary-list__key">
-              Prescription charges:
-            </dt>
-            <dd class="nhsuk-summary-list__value">
-              £23.80
-            </dd>
-        
-          </div>
-        
-          <div class="nhsuk-summary-list__row">
-            <dt class="nhsuk-summary-list__key">
-              Penalty charge:
-            </dt>
-            <dd class="nhsuk-summary-list__value">
-              £100.00
-            </dd>
-        
-          </div>
-        
-        
-        </dl>
-        
-          
-          <p style="font-weight: bold;">
-            Total amount:
-            
-          </p>
-          <span id="amount" style="font-size:36px;"> £123.80</span>
-      </div> -->
-
-
-
-    <!-- <div class="nhsuk-promo">
-
-
-      <p>Prescription charges: £23.80</p>
-      <p> Penalty charge: £100.00</p>
-      <p>Total amount:<br> <strong style="font-size: 36px;">£123.80</strong></p>
-
-    </div> -->
-
 
     <dl class="nhsuk-summary-list">
 

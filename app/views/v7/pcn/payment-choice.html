@@ -8,118 +8,121 @@ Pay by card
 
 {% block beforeContent %}
 {{ backLink({
-text: 'Go back',
-href: 'javascript:history.back();'
+  text: 'Go back',
+  href: 'javascript:history.back();'
 }) }}
 {% endblock %}
 
 {% block content %}
 
+{# ================================
+SOURCE OF TRUTH (DIRECT FROM SESSION)
+================================ #}
+
+{% set totalBill = data.totalBillFormatted %}
+{% set outstanding = data.outstandingBalanceFormatted %}
+{% set totalPaid = data.totalPaidSoFarFormatted%}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    {# ================= ERROR HANDLING ================= #}
-    {# 🔴 Error summary #}
     {% if data.paymentAmountError %}
-    {{ errorSummary({
-    titleText: "There is a problem",
-    errorList: [
-    {
-    text: data.paymentAmountError,
-    href: "#paymentAmount"
-    }
-    ]
-    }) }}
+      {{ errorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: data.paymentAmountError,
+            href: "#paymentAmount"
+          }
+        ]
+      }) }}
     {% endif %}
 
-    {# 🔴 Field error #}
-    {% set errorMessage = null %}
-    {% if data.paymentAmountError %}
-    {% set errorMessage = {
-    text: data.paymentAmountError
-    } %}
-    {% endif %}
+    {% set errorMessage = data.paymentAmountError and { text: data.paymentAmountError } or null %}
 
-    {% set charge = data.chargeFormatted %}
-    {% set penaltyCharge = data.penaltyChargeFormatted %}
-    {% set totalAmount = data.totalAmountFormatted %}
+    <span class="nhsuk-caption-m">
+      Pay a Penalty Charge Notice
+    </span>
 
-    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-    <h1 class="nhsuk-heading-l">Pay by card</h1>
+    <h1 class="nhsuk-heading-l">
+      Pay by card
+    </h1>
 
     <div class="nhsuk-card">
       <div class="nhsuk-card__content">
 
-        <h3 class="nhsuk-card__heading">Penalty Charge Notice amount</h3>
-
-        {% set total = data.totalAmountFormatted or "59.90" %}
-
-        {% set summaryListRows = [
-        {
-        key: { text: 'Prescription charges' },
-        value: { html: '£' + charge }
-        },
-        {
-        key: { text: 'Penalty charge' },
-        value: { html: '£' + penaltyCharge }
-        },
-        {
-        key: { text: 'Total amount to pay' },
-        value: { html: '<strong>£' + totalAmount + '</strong>' }
-        }
-        ] %}
+        <h3 class="nhsuk-card__heading">
+          Penalty Charge Notice amount
+        </h3>
 
         {{ summaryList({
-        rows: summaryListRows
+          rows: [
+            {
+              key: { text: "Total amount" },
+              value: { html: "<strong>£" + totalBill + "</strong>" }
+            }
+          ]
         }) }}
 
+        <h3 class="nhsuk-card__heading">
+          Previous payments
+        </h3>
+
+        {{ summaryList({
+          rows: [
+            {
+              key: { text: "Payments made" },
+              value: { html: "£" + totalPaid }
+            }
+          ]
+        }) }}
+
+
         <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">
-          Amount to pay: £{{ totalAmount }}
+          Amount still to pay: £{{ outstanding }}
         </p>
 
       </div>
     </div>
 
-    <p>You can either pay the full amount in one payment or split it across several payments.</p>
-    <p>If you have recently made a payment, it can take up to 24 hours for payment information to update.</p>
+    <p>
+      You can either pay the remaining amount in full or split it across several payments.
+    </p>
+
+    <p>
+      If you have recently made a payment, it can take up to 24 hours for payment information to update.
+    </p>
 
     <form action="/{{ data.version }}/{{ data.letter }}/payment-choice" method="post">
 
       {{ radios({
-      idPrefix: "paymentAmount",
-      name: "paymentAmount",
-      value: data.paymentAmount,
-      errorMessage: errorMessage,
-      fieldset: {
-      legend: {
-      text: "Do you want to pay the full amount still to pay?",
-      classes: "nhsuk-fieldset__legend--l",
-      isPageHeading: true
-      }
-      },
-      items: [
-      {
-      value: "full-amount",
-      text: "Yes, I want to pay the full amount"
-      },
-      {
-      value: "partial-amount",
-      text: "No, I want to make a partial payment"
-      }
-      ]
+        idPrefix: "paymentAmount",
+        name: "paymentAmount",
+        value: data.paymentAmount,
+        errorMessage: errorMessage,
+        fieldset: {
+          legend: {
+            text: "Do you want to pay the remaining balance in full?",
+            classes: "nhsuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "full-amount",
+            text: "Yes, I want to pay the full remaining amount"
+          },
+          {
+            value: "partial-amount",
+            text: "No, I want to make a partial payment"
+          }
+        ]
       }) }}
 
       {{ button({
-      text: 'Continue'
+        text: 'Continue'
       }) }}
 
     </form>
-
-    <p>
-      <a href="/{{ data.version }}/{{ data.letter }}/respond-to-your-letter">
-        Cancel
-      </a>
-    </p>
 
   </div>
 </div>

@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Select how many months you want to pay over
+{% endblock %}
+
+{% block beforeContent %}
+{{ backLink({
+text: 'Go back',
+href: 'javascript:history.back();'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% set remainingBalance =
+data.directDebitAmountFormatted
+or data.outstandingBalanceFormatted
+or data.totalBillFormatted
+or "0.00"
+%}
+
+{% if data.instalmentOptionsError %}
+
+{{ errorSummary({
+titleText: "There is a problem",
+errorList: [
+{
+text: data.instalmentOptionsError,
+href: "#instalmentOptions"
+}
+]
+}) }}
+
+{% set instalmentError = {
+text: data.instalmentOptionsError
+} %}
+
+{% endif %}
+
+{% set radioItems = [] %}
+
+{% for p in data.availablePlans %}
+
+{% set radioItems = (radioItems.push({
+  value: p.value,
+  text: p.months + " months",
+  checked: data.instalmentOptions == p.value,
+  hint: {
+    text:
+      "1 payment of £" + p.plan[0] +
+      " followed by " + (p.plan.length - 1) +
+      " payments of £" + p.plan[1]
+  }
+}), radioItems) %}
+
+{% endfor %}
+
+<div class="nhsuk-grid-row">
+
+	<div class="nhsuk-grid-column-two-thirds">
+
+		<span class="nhsuk-caption-m">
+			Pay a Penalty Charge Notice
+		</span>
+
+		<h1 class="nhsuk-heading-l">
+			Select how many months you want to pay over
+		</h1>
+
+		<p>
+			Your total amount to pay is
+			<strong>£{{ remainingBalance }}</strong>.
+			You will not be charged interest on this amount and it will not affect your credit score.
+		</p>
+
+		<form action="/{{ data.version }}/{{ data.letter }}/direct-debit-instalment-option" method="post">
+
+			{{ radios({
+  idPrefix: "instalmentOptions",
+  name: "instalmentOptions",
+  errorMessage: instalmentError,
+
+  fieldset: {
+    legend: {
+      size: "l"
+    }
+  },
+
+  items: radioItems
+}) }}
+
+			<p>
+				<a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs" target="_blank">
+					Contact us if you cannot afford any of these monthly plans (opens in new tab)
+				</a>
+			</p>
+
+			{{ button({
+			text: "Continue"
+			}) }}
+
+			<p>
+				<a href="penalty-charge-notice-details-bsa">
+					Cancel
+				</a>
+			</p>
+
+		</form>
+
+	</div>
+
+</div>
+
+{% endblock %}

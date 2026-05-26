@@ -7,19 +7,24 @@ Payment confirmation
 {% block content %}
 
 {# ================================
-🧠 DATA SETUP
+SOURCE OF TRUTH (SESSION ONLY)
 ================================ #}
 
+{% set totalBill = data.totalBillFormatted %}
+{% set totalPaid = data.totalPaidSoFarFormatted %}
+{% set remaining = data.outstandingBalanceFormatted %}
+{% set latestPayment = data.currentPaymentFormatted %}
+
 {% set isPartial = data.isPartialPayment %}
-{% set totalAmount = data.totalAmount or 59.90 %}
-{% set amountPaid = data.amountPaid or totalAmount %}
-{% set remainingAmount = data.remainingAmount or 0 %}
+
 {% set referenceNumber = data.referenceNumber or "123456789" %}
 
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
 
-    <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+    <span class="nhsuk-caption-m">
+      Pay a Penalty Charge Notice
+    </span>
 
     {% if isPartial %}
     <h1 class="nhsuk-heading-xl">Partial payment made</h1>
@@ -30,26 +35,37 @@ Payment confirmation
     <div class="nhsuk-card" style="background: #005EB8; margin-top: 0;">
       <div class="nhsuk-card__content">
 
-        {% if isPartial %}
-        <h2 class="nhsuk-heading-m" style="text-align: center; color: white;">
-          You have made a partial payment towards your Penalty Charge Notice.
-        </h2>
-        {% else %}
-        <h2 class="nhsuk-heading-m" style="text-align: center; color: white;">
+        <h2 class="nhsuk-heading-l" style="text-align:center; color:white; padding:32px;">
+          {% if isPartial %}
+          You have paid £{{latestPayment}} towards your Penalty Charge Notice
+          {% else %}
           You have paid your Penalty Charge Notice in full and your case has now been closed.
+          {% endif %}
         </h2>
-        {% endif %}
 
       </div>
     </div>
-
-    <h2>Payment confirmation</h2>
+    <h2 class="nhsuk-heading-l">Payment confirmation</h2>
 
     {% if isPartial %}
+    <p>
+      We've received your payment towards your Penalty Charge Notice.
+    </p>
 
-    <p>We've received your payment. Your remaining balance will still need to be paid.</p>
+    {% else %}
+
+    <p>
+      We've received your full payment and have closed your case.
+      You do not need to do anything else.
+    </p>
+
+    {% endif %}
+
 
     <div class="nhsuk-inset-text">
+
+      {% if isPartial %}
+
       {{ summaryList({
       rows: [
       {
@@ -58,31 +74,17 @@ Payment confirmation
       },
       {
       key: { text: "So far you've paid" },
-      value: { text: "£" + amountPaid.toFixed(2) }
+      value: { text: "£" + totalPaid }
       },
       {
       key: { text: "You still need to pay" },
-      value: { html: "<strong>£" + remainingAmount.toFixed(2) + "</strong>" }
+      value: { html: "<strong>£" + remaining + "</strong>" }
       }
       ]
       }) }}
-    </div>
 
-    <h3>Further payments</h3>
-    <p>
-      You can use this service to pay the remaining amount of
-      <strong>£{{ remainingAmount.toFixed(2) }}</strong>.
-    </p>
+      {% else %}
 
-    <a class="nhsuk-button" href="payment-method">
-      Make another payment
-    </a>
-
-    {% else %}
-
-    <p>We've received your full payment and have closed your case. You do not need to do anything else.</p>
-
-    <div class="nhsuk-inset-text">
       {{ summaryList({
       rows: [
       {
@@ -91,19 +93,65 @@ Payment confirmation
       },
       {
       key: { text: "You've paid" },
-      value: { text: "£" + totalAmount.toFixed(2) }
+      value: { text: "£" + totalPaid }
       }
       ]
       }) }}
+
+      {% endif %}
+
     </div>
+
+    {% if isPartial %}
+
+    <h3 class="nhsuk-heading-m">Further payments</h3>
+
+    <p>
+      You can use this service to pay the remaining amount of
+      <strong>£{{ remaining }}</strong>.
+    </p>
+
+    <a class="nhsuk-button" href="payment-method">
+      Make another payment
+    </a>
+
+    {% endif %}
+
+    <!-- Matex application content -->
+    {% if variant === "maternity-exemption-partial" %}
+
+    <p>If your application for a maternity exemption certificate is successful, you'll not need to pay the remaining
+      amount.</p>
+
+    <p>You have until <strong>10 July 2026</strong> to get a maternity exemption certificate. To apply for a maternity
+      exemption certificate, speak to your midwife, doctor or health visitor. They'll complete the application for you.
+    </p>
+    <p>If you are not eligible for a maternity exemption certificate you'll need to pay the remaining amount of
+      <strong>£{{ remaining }}</strong></p>
+
+    {% endif %}
+
+    <!-- Medex application content -->
+    {% if variant === "medical-exemption-partial" %}
+
+    <p>If your application for a medical exemption certificate is successful, you'll not need to pay the remaining
+      amount.</p>
+
+    <p>You have until <strong>10 July 2026</strong> to get a medical exemption certificate. To apply, speak to your
+      doctor, they give you an application form.</p>
+    <p>If you are not eligible for a medical exemption certificate you'll need to pay the remaining amount of
+      <strong>£{{ remaining }}</strong>
+    </p>
 
     {% endif %}
 
     <a href="javascript:window.print();">
-      <p>Print this page</p>
+      <p>
+        Print this page
+      </p>
     </a>
 
-    <h3>How to avoid a future Penalty Charge Notice</h3>
+    <h2>How to avoid a future Penalty Charge Notice</h2>
     <p>We match exemptions using a combination of your:</p>
     <ul>
       <li>name</li>
@@ -115,29 +163,17 @@ Payment confirmation
     <p>Make sure your details are correct at your GP surgery, dental practice, and any benefits organisations.</p>
     <p>If any of your details are not up to date, you may receive another Penalty Charge Notice in the future.</p>
 
-    <div class="nhsuk-action-link">
-      <a class="nhsuk-action-link__link" href="https://www.nhsbsa.nhs.uk/check-if-youre-eligible-help">
-        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-          aria-hidden="true" width="36" height="36">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path
-            d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z">
-          </path>
-        </svg>
-        <span class="nhsuk-action-link__text">
-          Check if you are currently entitled to help with your health costs.
-        </span>
-      </a>
-    </div>
+    {% from "action-link/macro.njk" import actionLink %}
+
+    {{ actionLink({
+    text: "Check if you are currently entitled to help with your health costs.",
+    href: "https://www.nhsbsa.nhs.uk/check-if-youre-eligible-help"
+    }) }}
 
     <h3>Feedback</h3>
     <p>Leaving feedback takes 5 minutes. Your comments will help us provide a better service.</p>
-    <p>
-      <a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">
-        Leave feedback (opens in a new window)
-      </a>
-    </p>
-
+    <p><a href="https://online1.snapsurveys.com/interview/c65416e2-df71-4e71-a691-315b9abb4eae" target="_blank">Leave
+        feedback (opens in a new window)</a></p>
   </div>
 </div>
 

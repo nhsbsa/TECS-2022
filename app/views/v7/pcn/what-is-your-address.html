@@ -65,18 +65,20 @@ text: 'Go back'
     {% set postcodeError = { text: data.addressPostcodeError } %}
     {% endif %}
 
-    <form action="/{{ data.version }}/{{ data.letter }}/update-address" method="post">
+    <form action="/{{ data.version }}/{{ data.letter }}/what-is-your-address" method="post">
 
-      <span class="nhsuk-caption-m">Confirm your entitlement</span>
+      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
 
       {% call fieldset({
       legend: {
-      text: "What was your address when you had [Benefit]?",
+      text: "What is your address?",
       classes: "nhsuk-fieldset__legend--l",
       isPageHeading: true
       }
       }) %}
 
+      <p>This address will be updated on your record.</p>
+      
       {{ input({
       label: { text: "Address line 1" },
       id: "address-line-1",

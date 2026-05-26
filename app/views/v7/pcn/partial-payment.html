@@ -15,14 +15,16 @@ href: 'javascript:history.back();'
 
 {% block content %}
 
+{% set outstanding = data.outstandingBalanceFormatted %}
+{% set totalPaid = data.totalPaidSoFarFormatted %}
+
 <div class="nhsuk-grid-row">
   <div class="nhsuk-grid-column-two-thirds">
-
-    {# ================= ERROR HANDLING ================= #}
 
     {% set errorMessage = null %}
 
     {% if data.amountError %}
+
     {{ errorSummary({
     titleText: "There is a problem",
     errorList: [
@@ -36,32 +38,46 @@ href: 'javascript:history.back();'
     {% set errorMessage = {
     text: data.amountError
     } %}
+
     {% endif %}
 
     <form action="/{{ data.version }}/{{ data.letter }}/partial-payment" method="post">
 
-      <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
+      <span class="nhsuk-caption-m">
+        Pay a Penalty Charge Notice
+      </span>
 
-      <h1 class="nhsuk-heading-l">How much are you paying today?</h1>
+      <h1 class="nhsuk-heading-l">
+        How much are you paying today?
+      </h1>
 
       <div class="nhsuk-card">
         <div class="nhsuk-card__content">
 
-          <h3 class="nhsuk-card__heading">Penalty Charge Notice amount</h3>
-          {% set total = data.totalAmountFormatted %}
+          <h3 class="nhsuk-card__heading">
+            Payment summary
+          </h3>
 
           {{ summaryList({
           rows: [
           {
-          key: { text: 'Total amount to pay' },
-          value: { html: '<strong>£' + total + '</strong>' }
+          key: {
+          text: "Amount still to pay"
+          },
+          value: {
+          html: "<strong>£" + outstanding + "</strong>"
+          }
+          },
+          {
+          key: {
+          text: "Already paid"
+          },
+          value: {
+          html: "£" + totalPaid
+          }
           }
           ]
           }) }}
-
-          <p class="nhsuk-heading-l nhsuk-u-margin-bottom-0">
-            Amount to pay: £{{ total }}
-          </p>
 
         </div>
       </div>
@@ -83,7 +99,9 @@ href: 'javascript:history.back();'
 
       </div>
 
-      <p>You cannot change this on the next page.</p>
+      <p>
+        You cannot change this on the next page.
+      </p>
 
       {{ button({
       text: 'Continue'

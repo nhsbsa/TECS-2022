@@ -1,0 +1,199 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-m">
+      Pay a Penalty Charge Notice
+    </span>
+
+    <h1 class="nhsuk-heading-l">
+      Check your answers are correct
+    </h1>
+
+    <form action="/{{ data.version }}/{{ data.letter }}/direct-debit-check-answers" method="post">
+
+      <p>
+        <a href="">
+          Print this page
+        </a>
+      </p>
+
+      {# =========================================
+      DIRECT DEBIT DETAILS
+      ========================================= #}
+
+      <h2 class="nhsuk-heading-m">
+        Your Direct Debit details
+      </h2>
+
+      {{ summaryList({
+      rows: [
+
+      {
+      key: {
+      text: "Number of payments"
+      },
+      value: {
+      text: data.numberOfPayments
+      },
+      actions: {
+      items: [
+      {
+      href: "direct-debit-instalment-option?change=true",
+      text: "Change",
+      visuallyHiddenText: "number of payments"
+      }
+      ]
+      }
+      },
+
+      {
+      key: {
+      text: "Chosen payment date"
+      },
+      value: {
+      text: data.directDebitDay
+      },
+      actions: {
+      items: [
+      {
+      href: "direct-debit-date?change=true",
+      text: "Change",
+      visuallyHiddenText: "chosen payment date"
+      }
+      ]
+      }
+      }
+
+      ]
+      }) }}
+
+      <p>
+        Your payments will be taken on, or just after,
+        your chosen date each month until your penalty charge
+        has been cleared.
+      </p>
+
+      {# =========================================
+      PAYMENT SUMMARY
+      ========================================= #}
+
+      <h2 class="nhsuk-heading-m">
+        Your payment summary
+      </h2>
+
+      {{ summaryList({
+      rows: [
+
+      {
+      key: {
+      text: "First payment"
+      },
+      value: {
+      text: "£" + data.firstPaymentAmount
+      }
+      },
+
+      {
+      key: {
+      text: "First payment taken on or just after"
+      },
+      value: {
+      text: data.directDebitDay + " June 2026"
+      }
+      },
+
+      {
+      key: {
+      text: "Following " + data.followingPaymentsCount + " payments"
+      },
+      value: {
+      text:
+      "£" + data.followingPaymentAmount
+      }
+      },
+
+      {
+      key: {
+      text: "Total amount"
+      },
+      value: {
+      text: "£" + data.directDebitTotalFormatted
+      }
+      }
+
+      ]
+      }) }}
+
+      <p>
+        Your payment summary is based on the information
+        you have given us.
+      </p>
+
+      <p>
+        You're responsible for making sure that payments
+        can be taken on these dates.
+      </p>
+
+      {# =========================================
+      ADDRESS
+      ========================================= #}
+
+      <h2 class="nhsuk-heading-m">
+        We'll send confirmation of your Direct Debit to this address
+      </h2>
+
+      {{ summaryList({
+      rows: [
+
+      {
+      key: {
+      text: "Address"
+      },
+      value: {
+      html: data.directDebitAddressHtml | safe
+      },
+      actions: {
+      items: [
+      {
+      href: "what-is-your-address",
+      text: "Change",
+      visuallyHiddenText: "address"
+      }
+      ]
+      }
+      }
+
+      ]
+      }) }}
+
+      {{ button({
+      text: "Continue"
+      }) }}
+
+      <p>
+        <a href="penalty-charge-notice-details-bsa">
+          Cancel
+        </a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

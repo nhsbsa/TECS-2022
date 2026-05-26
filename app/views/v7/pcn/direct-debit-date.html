@@ -7,35 +7,80 @@ Which date would you like payments to be taken each month?
 {% endblock %}
 
 {% block beforeContent %}
-    {{ backLink({
-        text: 'Go back',
-        href: 'javascript:history.back();'
-    }) }}
+{{ backLink({
+text: 'Go back',
+href: 'javascript:history.back();'
+}) }}
 {% endblock %}
 
 {% block content %}
 
-<div class="nhsuk-grid-row">	
+{# =========================================
+ERROR SETUP
+========================================= #}
+
+{% if data.dateError %}
+
+{{ errorSummary({
+titleText: "There is a problem",
+errorList: [
+{
+text: data.dateError,
+href: "#date"
+}
+]
+}) }}
+
+{% set dateError = {
+text: data.dateError
+} %}
+
+{% endif %}
+
+<div class="nhsuk-grid-row">
 	<div class="nhsuk-grid-column-two-thirds">
-		<span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
-		<h1 class="nhsuk-heading-l">Which date would you like payments to be taken each month?</h1>
-		<p>All payments will be taken on, or just after, your chosen date.</p>
-		<p>Enter a payment date between 1 and 28.</p>
 
-      	<form action="/v6-pcn/direct-debit-date" method="post" class="form">		
-			<div class="nhsuk-form-group">
-				<label class="nhsuk-label nhsuk-date-input__label" for="day">
-					Date
-				</label>
-				<input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" type="number" id="day" name="day" inputmode="numeric">
-			</div>
+		<span class="nhsuk-caption-m">
+			Pay a Penalty Charge Notice
+		</span>
 
-			<button class="nhsuk-button" type="submit">
-				Continue
-			</button>
-		
-			<p><a href="penalty-charge-notice-details-bsa">Cancel</a></p>
+		<h1 class="nhsuk-heading-l">
+			Which date would you like payments to be taken each month?
+		</h1>
+
+		<p>
+			All payments will be taken on, or just after, your chosen date.
+		</p>
+
+		<p>
+			Enter a payment date between 1 and 28.
+		</p>
+
+		<form action="/{{ data.version }}/{{ data.letter }}/direct-debit-date" method="post">
+
+			{{ input({
+			label: {
+			text: "Date"
+			},
+			id: "date",
+			name: "date",
+			classes: "nhsuk-input--width-2",
+			value: data.date,
+			errorMessage: dateError
+			}) }}
+
+			{{ button({
+			text: "Continue"
+			}) }}
+
+			<p>
+				<a href="penalty-charge-notice-details-bsa">
+					Cancel
+				</a>
+			</p>
+
 		</form>
+
 	</div>
 </div>
 

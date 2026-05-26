@@ -1,10 +1,12 @@
-{% extends "layout-gov.html" %}
+{% extends "govuk-layout.html" %}
 
 {% block page_title %}
   GOV.UK prototype kit
 {% endblock %}
 
 {% block content %}
+
+{% set totalAmount = data.displayAmountFormatted or "0.00" %}
 
 <main id="content" role="main">
   <div class="grid-row">
@@ -17,11 +19,11 @@
           <h2 class="nhsuk-heading-l">Payment summary</h2>
            
             
-            <p class="govuk-body govuk-!-margin-bottom-0" style="font-size:19px;">
+            <p class="govuk-body govuk-!-margin-bottom-0">
               Total amount:
               
             </p>
-            <span id="amount" class="amount govuk-!-font-size-36 govuk-!-font-weight-bold" style="font-size:36px !important;"> £50</span>
+            <span id="amount" class="amount govuk-!-font-size-36 govuk-!-font-weight-bold"> £{{totalAmount}}</span>
         </div>
 
         <dl class="govuk-summary-list">
@@ -68,13 +70,13 @@
         </dl>
 
         
-            <div class="form-group" style="margin-top:20px">
+            <div class="form-group">
               <a href="payment-made" class="govuk-button">
                 Confirm payment
               </a>
               
             
-              <p class="navigation"><a class="cancel" href="/v6-pcn/kickout/payment-has-been-cancelled">Cancel payment</a></p>
+              <p class="navigation"><a class="cancel" href="payment-cancelled">Cancel payment</a></p>
               <!--<details class="nhsuk-details nhsuk-expander">
                 <summary class="nhsuk-details__summary">
                   <span class="nhsuk-details__summary-text">

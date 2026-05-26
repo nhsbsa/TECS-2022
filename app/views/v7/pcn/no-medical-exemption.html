@@ -6,106 +6,103 @@
 You didn't have a valid medical exemption certificate
 {% endblock %}
 
-{% block outerContent %}
-
-{% endblock %}
-
 {% block content %}
 
+{% set totalBill = data.totalBillFormatted %}
+{% set Charge = data.chargeFormatted %}
 
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+    {# ================= ERROR SUMMARY ================= #}
 
-      
+    {% if data.noMedicalConditionsError %}
 
-      
+    {{ errorSummary({
+    titleText: "There is a problem",
+    errorList: [
+    {
+    text: data.noMedicalConditionsError,
+    href: "#NoMedicalConditions"
+    }
+    ]
+    }) }}
 
-        <span class="nhsuk-caption-m">Confirm your entitlement</span>
-        
-        <fieldset class="nhsuk-fieldset">
-          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-            <h1 class="nhsuk-fieldset__heading">
-              You did not have a valid medical exemption certificate at the time, but you can still apply for one
-            </h1>
-          </legend>
+    {% endif %}
 
-          <p>Although you did not have a valid medical exemption certificate when you claimed a free NHS prescription, you still have the chance to apply for one.</p>
+    <span class="nhsuk-caption-m">Confirm your entitlement</span>
 
-          <p>You have until <strong>10 July 2023</strong> to get a medical exemption certificate.</p>
-          <P>If your application is successful, you'll only have to pay the original prescription charge. You will not have to pay your penalty charge. </P>
-        
+    <h1 class="nhsuk-heading-l">
+      You did not have a valid medical exemption certificate at the time, but you can still apply for one
+    </h1>
 
-            
-         
+    {% if data.type == "pecs" %}
+    <p>Although you did not have a valid medical exemption certificate when you claimed a free NHS prescription, you
+      still have the chance to apply for one.</p>
+    {% else %}
+    <p>Although you did not have a valid medical exemption certificate when you claimed free or reduced cost NHS
+      dental treatment, you still have the chance to apply for one.</p>
+    {% endif %}
 
+    <p>
+      You have until <strong>10 July 2026</strong> to get a medical exemption certificate.
+    </p>
 
-  <h3>What do you want to do next?</h3>
-          <form action="medex-radios" method="get" class="form">
+    {% if data.type == "pecs" %}
+    <p>If your application is successful, you'll only have to pay the original prescription charge. You will not have
+      to pay your penalty charge.</p>
+    {% else %}
+    <p>If your application is successful, you'll only have to pay the original dental treatment charge. You will not
+      have to pay your penalty charge.</p>
+    {% endif %}
 
-            
-            <div class="nhsuk-form-group">
-    
-              <div class="nhsuk-radios nhsuk-radios">
-                <div class="nhsuk-radios__item">
-                    <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="credit">
-                    <label class="nhsuk-label nhsuk-radios__label" for="yes">
-                      Pay the original £9.65 prescription charge, and apply for a medical exemption certificate
-                    </label>
-                    
-                </div>
-                <div class="nhsuk-radios__item">
-                    <input class="nhsuk-radios__input" id="debit-card" name="debit" type="radio" value="direct">
-                    <label class="nhsuk-label nhsuk-radios__label" for="no">
-                      Pay the full penalty charge amount of £57.90
-                    </label>
-                   
-                    
-                </div>
-            </div>
-              </div>
-              <button class="nhsuk-button" type="submit">
-              Continue
-              </button>
-              
-              </form>
+    <h3>What do you want to do next?</h3>
 
-         
-         
+    <form action="/{{ data.version }}/{{ data.letter }}/no-medical-exemption" method="post">
 
-     
+      {% if data.type == "pecs" %}
+      {% set claimType = "prescription charge" %}
+      {% else %}
+      {% set claimType = "dental charge" %}
+      {% endif %}
 
-         
-           
-         
+      {{ radios({
+      idPrefix: "NoMedicalConditions",
+      name: "NoMedicalConditions",
+      classes: "nhsuk-radios--inline",
+      items: [
+      {
+      value: "payCost",
+      text: "Pay the original £" + Charge + " " + claimType + ", and apply for a medical exemption certificate"
+      },
+      {
+      value: "payPenalty",
+      text: "Pay the full penalty charge amount of £" + totalBill
+      }
+      ]
+      }) }}
 
-          <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made this claim, you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a review</a>.</p>
-          <p><a href="">Print this page</a></p>
-         
+      {{ button({
+      text: "Continue"
+      }) }}
 
-              
-              
-                  
-              
-                    
-              
-              
-        
-        
-        
-        
-        </div>
+    </form>
 
+    {% if data.type == "pecs" %}
+    <p>If you were not entitled to free NHS prescriptions but have an exceptional reason why you made the claim, you
+      can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out if you can ask for a
+        review</a>.</p>
+    {% else %}
+    <p>If you were not entitled to free or reduced cost NHS dental treatment, but have an exceptional reason why you
+      made the claim, you can ask us to review your Penalty Charge Notice. <a href="who-can-ask-for-review">Find out
+        if you can ask for a review</a>.</p>
+    {% endif %}
 
+    <p>
+      <a href="">Print this page</a>
+    </p>
 
-        </div>
-         
-          
-
-        
-   
-
-    </div>
   </div>
+</div>
 
 {% endblock %}
