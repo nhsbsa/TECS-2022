@@ -904,9 +904,9 @@ router.post('/start-journey', function (req, res) {
   let totalBill = 0;
 
   if (type === 'decs') {
-    charge = 75.30;
+    charge = 76.60;
     penaltyCharge = 100.00;
-    totalBill = 175.30;
+    totalBill = 176.60;
   } else {
     charge = 9.90;
     penaltyCharge = 50.00;
