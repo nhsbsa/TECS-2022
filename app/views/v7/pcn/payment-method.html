@@ -40,22 +40,6 @@ href: 'javascript:history.back();'
     } %}
     {% endif %}
 
-    {% set paymentItems = [
-    {
-    value: "credit-card",
-    text: "Debit or credit card"
-    }
-    ] %}
-
-    {% if data.directDebitAvailable %}
-    {% set paymentItems = paymentItems.concat([
-    {
-    value: "direct-debit",
-    text: "Direct Debit"
-    }
-    ]) %}
-    {% endif %}
-
     <form action="/{{ data.version }}/{{ data.letter }}/payment-method" method="post">
 
       <span class="nhsuk-caption-m">Pay a Penalty Charge Notice</span>
@@ -72,7 +56,16 @@ href: 'javascript:history.back();'
       isPageHeading: true
       }
       },
-      items: paymentItems
+      items: [
+      {
+      value: "credit-card",
+      text: "Debit or credit card"
+      },
+      {
+      value: "direct-debit",
+      text: "Direct Debit"
+      }
+      ]
       }) }}
 
       {{ button({

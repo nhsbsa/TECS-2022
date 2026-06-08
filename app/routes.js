@@ -1108,7 +1108,8 @@ router.post('/:version/:letter/email-confirmation', function (req, res) {
 
   const { version, letter } = req.params;
 
-  const confirmEmail = req.body.confirmEmail?.trim();
+  const confirmEmail =
+    req.body.confirmEmail?.trim();
 
   const sourceEmail =
     req.session.data.pendingEmail ||
@@ -1118,41 +1119,37 @@ router.post('/:version/:letter/email-confirmation', function (req, res) {
 
   delete req.session.data.emailError;
 
-  // required
-  if (!confirmEmail) {
-    req.session.data.emailError = 'Enter your email address again';
-    req.session.data.confirmEmail = '';
-    return res.redirect(`/${version}/${letter}/email-confirmation`);
-  }
+  // =========================================
+  // MATCH CHECK ONLY
+  // =========================================
 
-  // format
-  if (!isValidEmail(confirmEmail)) {
-    req.session.data.emailError =
-      'Enter an email address in the correct format, like name@example.com';
-
-    req.session.data.confirmEmail = confirmEmail;
-
-    return res.redirect(`/${version}/${letter}/email-confirmation`);
-  }
-
-  // mismatch check (NOW WORKS AGAIN)
   if (confirmEmail !== sourceEmail) {
+
     req.session.data.emailError =
       'Check your email address. This does not match the one entered on the previous screen';
 
-    req.session.data.confirmEmail = confirmEmail;
+    req.session.data.confirmEmail =
+      confirmEmail;
 
-    return res.redirect(`/${version}/${letter}/email-confirmation`);
+    return res.redirect(
+      `/${version}/${letter}/email-confirmation`
+    );
   }
 
-  // success
-  req.session.data.email = confirmEmail;
+  // =========================================
+  // SUCCESS
+  // =========================================
 
-  // clear temporary edit state
+  req.session.data.email =
+    confirmEmail;
+
   req.session.data.pendingEmail = null;
+
   req.session.data.emailConfirmed = true;
 
-  return res.redirect(`/${version}/${letter}/enquiry-letter-details`);
+  return res.redirect(
+    `/${version}/${letter}/enquiry-letter-details`
+  );
 });
 
 router.post('/:version/:letter/update-email', function (req, res) {
@@ -2541,6 +2538,7 @@ router.post('/:version/:letter/pay-apply-maternity', function (req, res) {
 });
 
 // GET
+// GET
 router.get('/:version/:letter/payment-method', function (req, res) {
 
   const { version, letter } = req.params;
@@ -2570,35 +2568,70 @@ router.get('/:version/:letter/payment-method', function (req, res) {
     return payments.map(p => (p / 100).toFixed(2));
   }
 
-  const totalBill = Number(req.session.data.totalBill || 0);
+  const totalBill =
+    Number(req.session.data.totalBill || 0);
 
   const outstandingBalance =
     Number(req.session.data.outstandingBalance ?? totalBill);
 
   const amountToPay =
-    outstandingBalance > 0 ? outstandingBalance : totalBill;
+    outstandingBalance > 0
+      ? outstandingBalance
+      : totalBill;
 
-  // build plans
-  const threeMonthPlan = buildPlan(amountToPay, 3);
-  const sixMonthPlan = buildPlan(amountToPay, 6);
-  const twelveMonthPlan = buildPlan(amountToPay, 12);
+  // =========================================
+  // BUILD PLANS
+  // =========================================
 
-  // check monthly costs
-  const monthly3 = Number(threeMonthPlan[1] || 0);
-  const monthly6 = Number(sixMonthPlan[1] || 0);
-  const monthly12 = Number(twelveMonthPlan[1] || 0);
+  const threeMonthPlan =
+    buildPlan(amountToPay, 3);
 
-  // ANY valid DD option?
+  const sixMonthPlan =
+    buildPlan(amountToPay, 6);
+
+  const twelveMonthPlan =
+    buildPlan(amountToPay, 12);
+
+  // =========================================
+  // CHECK MONTHLY VALUES
+  // =========================================
+
+  const monthly3 =
+    Number(threeMonthPlan[1] || 0);
+
+  const monthly6 =
+    Number(sixMonthPlan[1] || 0);
+
+  const monthly12 =
+    Number(twelveMonthPlan[1] || 0);
+
   const directDebitAvailable =
-    monthly3 >= 9 || monthly6 >= 9 || monthly12 >= 9;
+    monthly3 >= 9 ||
+    monthly6 >= 9 ||
+    monthly12 >= 9;
 
-  req.session.data.directDebitAvailable = directDebitAvailable;
+  req.session.data.directDebitAvailable =
+    directDebitAvailable;
+
+  // =========================================
+  // NO DIRECT DEBIT OPTIONS?
+  // SKIP THIS PAGE ENTIRELY
+  // =========================================
+
+  if (!directDebitAvailable) {
+
+    req.session.data.paymentMethod =
+      'credit-card';
+
+    return res.redirect(
+      `/${version}/${letter}/payment-choice`
+    );
+  }
 
   res.render(`${version}/${letter}/payment-method`, {
     data: req.session.data
   });
 });
-
 // POST
 router.post('/:version/:letter/payment-method', function (req, res) {
 
