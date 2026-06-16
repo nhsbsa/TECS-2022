@@ -1,13 +1,13 @@
 function initialiseJourney(req) {
 
-  const { version, letter } = req.params;
+  const { version, journeyType } = req.params;
 
   req.session.data.version = version;
-  req.session.data.letter = letter;
+  req.session.data.journeyType = journeyType;
 
   return {
     version,
-    letter
+    journeyType
   };
 }
 
