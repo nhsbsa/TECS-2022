@@ -1,0 +1,27 @@
+{% extends 'layout-email.html' %}
+
+{% block emailSubject %}NHS Penalty Charge Notice 01234567890{% endblock %}
+
+{% block emailBody %}
+
+    <p>Dear Michelle Doe,</p>
+
+    <p>You've accepted the penalty charge using our online service.</p>
+
+    <h2>What happens next</h2>
+
+    <p>We'll send you a letter with your penalty charge details.</p>
+    <p>You do not need to wait for this letter to pay your penalty charge. You can make a payment now.</p>
+    <p>You can make a payment by card or Direct Debit using our online service at <a href="https://www.nhsbsa.nhs.uk/respond">https://www.nhsbsa.nhs.uk/respond</a>.</p>
+
+    <p>For other ways to pay, or if you have any other queries, you can find our contact details at:</p>
+    
+    <p><a href="https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs">https://www.nhsbsa.nhs.uk/contact-nhs-help-health-costs</a></p>
+
+    <h2>About the letter we send</h2>
+    <p>We are required to send you the penalty charge details by post, even if you accepted the penalty charge online. It does not represent any extra charges.</p>
+    <p>It will show a breakdown of how the penalty charge amount was calculated.</p>
+    <p>The letter will not show any payments you have already made, of if you have set up a Direct Debit. You can see any payments made, or if you have a Direct Debit set up, on our online service at <a href="https://www.nhsbsa.nhs.uk/respond">https://www.nhsbsa.nhs.uk/respond</a>.</p>
+    <p>Regards,<br>NHS Business Services Authority</p>
+
+{% endblock %}
